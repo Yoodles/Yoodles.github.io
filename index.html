@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORDWARD</title>
+    <link rel="stylesheet" type="text/css" href="style2.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+</head>
+<body>
+
+<div id="header">
+    <div id="gameName">
+        <h1 id="W1">W</h1>
+        <h1 id="ORD"> ORD</h1>
+        <div id="SLASH" class="line"></div>
+        <h1 id="W2">W</h1>
+        <h1 id="ARD">ARD</h1>
+    </div>
+</div>    
+
+<div id="gameArea" class="hidden">
+    
+    <div id="gameplayCont">
+        
+        <div id="startWordCont" data-layout="stack" class="wordCont setWord">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    
+        <div id="normInputRack" data-layout="stack rack" class="midRound hidden">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <div id="inputterSet" data-layout="stack" class="preRound">
+            <div id="flipperAndDeleters">
+                <button id="upperDeleter" data-phase="midRound" class="deleters invisible">x</button>
+                <button id="toggleFlip" type="button">
+                    <p id="toggleTop">W</p>
+                    <p id="toggleBottom">W</p>
+                </button>
+                <button id="lowerDeleter" data-phase="midRound" class="deleters invisible">x</button>
+            </div>
+            <input id="currentInput" type ="text">
+            <button id="submitMove">GO</button>
+        </div>
+
+        <div id="flipInputRack" data-layout="stack rack" data-flip class="midRound hidden">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div> 
+
+        <div id="endWordCont" data-layout="stack" class="wordCont setWord">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+        </div>
+    </div>
+
+    <div id="resultMessage" data-phase="postRound" class="postRound hidden"></div>
+</div>    
+
+<div id="footer">
+    <div>
+        <button id="resetRound" data-phase="preRound">RESET</button>
+        
+        <div id="movesCont">    
+            <div id="moveCounter">Moves: 0</div>
+            <div id="bestScore">Low Score: --</div>
+        </div>
+
+        <button id="skipRound" data-phase="preRound">SKIP</button>
+    </div>
+</div>
+
+<!-- Linking your JavaScript files -->
+<script type="module" src="script.js"></script>
+
+
+</body>
+</html>

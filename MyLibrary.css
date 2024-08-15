@@ -1,0 +1,16 @@
+
+CSS:
+
+Combining attribute and a class
+
+element[attribute="value"].className {
+    /* CSS properties */
+}
+
+or:
+
+input[type="text"][name="username"] {
+    /* CSS properties */
+}
+
+
