@@ -176,9 +176,9 @@ background-color: rgba(0, 180, 0, 0.65);
 } */
 
 #startWordRack { order: 1; }
-#normInputRack { order: 2; }
+#normInputRack { order: 2; flex-direction: column}
 #inputterSet { order: 3; }
-#flipInputRack { order: 4; }
+#flipInputRack { order: 4; flex-direction: column-reverse; }
 #endWordRack { order: 5; }
 
 
@@ -195,16 +195,14 @@ div[data-flip] #endWordRack { order: 1; }
 #endWordRack[data-flip] { order: 1; } */
 
 #normInputRack {
-    display: flex;
+    /* display: flex; */
     overflow-y: scroll;
-    flex-direction: column;
     max-height: 35vh;
 }
 
  #flipInputRack {
-    display: flex;
+    /* display: flex; */
     overflow-y: scroll;
-    flex-direction: column-reverse;    
     max-height: 35vh;
 }
 
@@ -224,9 +222,6 @@ div[data-flip] #endWordRack { order: 1; }
     margin: auto;
 }
 
-/* div[data-flip][data-layout="stack"] {
-    flex-direction: column-reverse;
-} */
 
 #inputterSet {
     display: flex;
