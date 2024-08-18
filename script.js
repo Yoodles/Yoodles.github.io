@@ -1,8 +1,8 @@
 import { wordPairList, wordList } from './words.js';
 
 const gameArea = document.getElementById('gameArea');
-const startWordCont = document.getElementById('startWordCont');
-const endWordCont = document.getElementById('endWordCont');
+const startWordRack = document.getElementById('startWordRack');
+const endWordRack = document.getElementById('endWordRack');
 
 const normInputRack = document.getElementById('normInputRack'); 
 const flipInputRack = document.getElementById('flipInputRack');
@@ -190,11 +190,11 @@ function updateDirectionUI() {
     // flipInputRack.classList.toggle('flip', !isFlipped);
     // normInputRack.classList.toggle('flip', isFlipped);
 
-    startWordCont[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
+    // startWordRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
     flipInputRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
     normInputRack[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
-    endWordCont[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
-    // gameplayCont[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
+    // endWordRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
+    gameplayCont[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
 }
 
 
@@ -418,7 +418,7 @@ function fillAndShowTiles(word, wordCont) {
 
 function highlightMatchingLettersBasedOnWords(inputWord, endWord) {
     const inputTiles = dirConfigNow.upperRack.lastElementChild.querySelectorAll('.tiles');
-    const endTiles = endWordCont.querySelectorAll('.tiles');
+    const endTiles = endWordRack.querySelectorAll('.tiles');
 
     for (let i = 0; i < inputWord.length; i++) {
         if (i < endWord.length && inputWord[i].toUpperCase() === endWord[i].toUpperCase()) {
@@ -431,7 +431,7 @@ function highlightMatchingLettersBasedOnWords(inputWord, endWord) {
 function makeTilesFor(word) {
     let wordCont;
     if (word === gameState.wordPair.startWord || word === gameState.wordPair.endWord) {
-        wordCont = word === gameState.wordPair.startWord ? startWordCont : endWordCont;
+        wordCont = word === gameState.wordPair.startWord ? startWordRack : endWordRack;
     } else {
         wordCont = prepareInputWordCont();
     }
