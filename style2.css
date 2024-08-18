@@ -217,9 +217,9 @@ background-color: rgba(0, 180, 0, 0.65);
     margin: auto;
 }
 
-div[data-flip][data-layout="stack"] {
+/* div[data-flip][data-layout="stack"] {
     flex-direction: column-reverse;
-}
+} */
 
 #inputterSet {
     display: flex;
