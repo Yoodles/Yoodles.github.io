@@ -181,11 +181,18 @@ background-color: rgba(0, 180, 0, 0.65);
 #flipInputRack { order: 4; }
 #endWordCont { order: 5; }
 
-#startWordCont[data-flip] { order: 5; }
+
+div[data-flip] #inputterSet { order: 5; }
+div[data-flip] #normInputRack { order: 4; flex-direction: column-reverse;}
+div[data-flip] #inputterSet { order: 3; }
+div[data-flip] #flipInputRack { order: 2; flex-direction: column;}
+div[data-flip] #endWordCont { order: 1; }
+
+/* #startWordCont[data-flip] { order: 5; }
 #normInputRack[data-flip] { order: 4; flex-direction: column-reverse;}
 #inputterSet[data-flip] { order: 3; }
 #flipInputRack[data-flip] { order: 2; flex-direction: column;}
-#endWordCont[data-flip] { order: 1; }
+#endWordCont[data-flip] { order: 1; } */
 
 #normInputRack {
     display: flex;

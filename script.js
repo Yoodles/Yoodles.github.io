@@ -190,7 +190,6 @@ function updateDirectionUI() {
     // flipInputRack.classList.toggle('flip', !isFlipped);
     // normInputRack.classList.toggle('flip', isFlipped);
 
-
     startWordCont[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
     flipInputRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
     normInputRack[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
