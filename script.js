@@ -33,6 +33,18 @@ let gameState = {
     resultMessage: ''
 }
 
+function setInitialGameState() {   // 🚨 
+    gameState.latestWord = gameState.wordPair.startWord;
+    gameState.targetWord = gameState.wordPair.endWord;
+    gameState.gameDirection = 'norm';
+    gameState.moveCounter = 0;
+    gameState.normInputArray = [];
+    gameState.flipInputArray = [];
+    gameState.gamePhase = 'preRound';
+    gameState.resultMessage = '';
+}
+
+
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️⬇️
 function setWordPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL rounds completed"は"NEXTROUND"の場合オンリー
     index = gameState.wordPair.currentPairIndex;
@@ -72,22 +84,12 @@ function getDirectionalConfig() {
         };
     }
 }
+
 let dirConfigNow = getDirectionalConfig(); //❓❓❓❓❓
 
-function setInitialGameState() {   // 🚨 
-    gameState.latestWord = gameState.wordPair.startWord;
-    gameState.targetWord = gameState.wordPair.endWord;
-    gameState.gameDirection = 'norm';
-    gameState.moveCounter = 0;
-    gameState.normInputArray = [];
-    gameState.flipInputArray = [];
-    gameState.gamePhase = 'preRound';
-    gameState.resultMessage = '';
-}
 
 //// DEBUGGING: DISPLAY CONTENT OF ARRAYS TO VERIFY
 function displayArrays() {
-//    console.log('All Inputs:', inputArray); //
     console.log('Norm Inputs:', gameState.normInputArray);
     console.log('Flip Inputs:', gameState.flipInputArray);
 }
@@ -100,9 +102,6 @@ function showOrHideGameArea(which) { //toggleでも
     }    
 }
  
-
-
-//ANIMATIONS
 
 // UTILITY FUNCTIONS
 ////SHOWING & HIDING WHOLE CLASSES//// ✅
@@ -431,7 +430,7 @@ function highlightMatchingLettersBasedOnWords(inputWord, endWord) {
 function makeTilesFor(word) {
     let wordCont;
     if (word === gameState.wordPair.startWord || word === gameState.wordPair.endWord) {
-        wordCont = word === gameState.wordPair.startWord ? startWordRack : endWordRack;
+        wordCont = word === gameState.wordPair.startWord ? startWordRack : endWordRacka;
     } else {
         wordCont = prepareInputWordCont();
     }
