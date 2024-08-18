@@ -189,12 +189,13 @@ function updateDirectionUI() {
 
     // flipInputRack.classList.toggle('flip', !isFlipped);
     // normInputRack.classList.toggle('flip', isFlipped);
-    // gameplayCont.classList.toggle('flip', isFlipped);
 
 
+    startWordCont[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
     flipInputRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
-    normInputRack[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');　
-    gameplayCont[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
+    normInputRack[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
+    endWordCont[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
+    // gameplayCont[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
 }
 
 
