@@ -370,7 +370,7 @@ function resetTilesOfCont(wordCont) {
  
 //GETTING THE INPUTWORD CONT READY // ❗️❗️❗️❗️❗️ロード後にたくさん作らせとく
 function prepareInputWordCont() {
-    dirConfigNow 
+    dirConfigNow;
     const placeInRack = dirConfigNow.upperRackArray.length;
     console.log("upperRackArray.length: ", dirConfigNow.upperRackArray.length);
     let wordCont;
