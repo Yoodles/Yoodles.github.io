@@ -1,4 +1,4 @@
-import { wordPairList, wordList } from './words.js';
+import { wordPairList } from './words.js';
 
 const gameArea = document.getElementById('gameArea');
 const startWordRack = document.getElementById('startWordRack');

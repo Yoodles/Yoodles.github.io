@@ -1,4 +1,4 @@
-import { wordPairList, wordList } from './words.js';
+import { wordList } from './words.js';
 
 //=====MOVES====✅
 
