@@ -97,13 +97,7 @@ function showOrHideGameArea(which) { //toggleでも
         gameArea.classList.add('hidden');
     }    
 }
-// function showOrHideGameArea(which) {
-//     if (which === 'show') {
-//     gameArea.classList.toggle('hidden', (!which === 'show'));
-//     }
-// }    
-
-
+ 
 
 
 //ANIMATIONS
@@ -466,7 +460,9 @@ function submitMove() {
 
         //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
         if (inputWord === gameState.targetWord || inputWord === gameState.latestWord) {
+            console.log('inputWord matches targetWord');
             updateGame('completeRound');
+        
         } else {
             updateGame();
         }
