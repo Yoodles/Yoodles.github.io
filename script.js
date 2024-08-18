@@ -29,7 +29,8 @@ let gameState = {
     normInputArray: [], //❓❓❓❓❓❓
     flipInputArray: [],
     latestWord: '',
-    targetWord: ''
+    targetWord: '',
+    resultMessage: ''
 }
 
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️⬇️
@@ -81,6 +82,7 @@ function setInitialGameState() {   // 🚨
     gameState.normInputArray = [];
     gameState.flipInputArray = [];
     gameState.gamePhase = 'preRound';
+    gameState.resultMessage = '';
 }
 
 //// DEBUGGING: DISPLAY CONTENT OF ARRAYS TO VERIFY
