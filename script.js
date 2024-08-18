@@ -12,7 +12,7 @@ const lowerDeleter = document.getElementById('lowerDeleter');
 
 // let inputWord = document.getElementById('currentInput');
 
-// INITIAL STATE AT START OF ROUND
+//// INITIAL STATE AT START OF ROUND ////
 // GAME STATE
 let gameState = {
     wordPair: {
@@ -506,6 +506,7 @@ function deleteOne(upperOrLower, direction) {
 function updateUI(phase) {
     switch (phase) {
         case 'preRound':   ///これだとゲーム中にupdateUIを使えない?
+            resultMessage.innerText = "";
             showClass('preRound');
             hideClass('midRound', 'postRound');
             // updateDeleters();
