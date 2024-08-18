@@ -401,7 +401,7 @@ function highlightMatchingLettersBasedOnWords(inputWord, endWord) {
 function makeTilesFor(word) {
     let wordCont;
     if (word === gameState.wordPair.startWord || word === gameState.wordPair.endWord) {
-        wordCont = word === gameState.wordPair.startWord ? startWordRack : endWordRacka;
+        wordCont = word === gameState.wordPair.startWord ? startWordRack : endWordRack;
     } else {
         wordCont = prepareInputWordCont();
     }
