@@ -3,10 +3,11 @@ import { isTotallyValid } from './word-validity.js';
 
 const gameArea = document.getElementById('gameArea');
 const startWordRack = document.getElementById('startWordRack');
-const endWordRack = document.getElementById('endWordRack');
 
 const normInputRack = document.getElementById('normInputRack'); 
 const flipInputRack = document.getElementById('flipInputRack');
+
+const endWordRack = document.getElementById('endWordRack');
 
 const upperDeleter = document.getElementById('upperDeleter');
 const lowerDeleter = document.getElementById('lowerDeleter');
@@ -86,7 +87,7 @@ function getDirectionalConfig() {
     }
 }
 
-let dirConfigNow = getDirectionalConfig(); //❓❓❓❓❓
+let currentDirectionalConfig = getDirectionalConfig(); //❓❓❓❓❓
 
 
 //// DEBUGGING: DISPLAY CONTENT OF ARRAYS TO VERIFY
@@ -140,8 +141,6 @@ function emptyInputRacks() {
     flipWordConts.forEach(clearAndResetWordCont);
 }
 
-
-
 ////CLEARING TEXT INPUT BOX
 function emptyTextInputBox() {
     document.getElementById('currentInput').value = '';
@@ -151,15 +150,15 @@ function emptyTextInputBox() {
 ////FUNCTIONS FOR UPDATING LATEST/TARGET WORD ❓❓❓❓
 
 function updateLatestWord() {
-    dirConfigNow = getDirectionalConfig();
-    let {upperRackArray, wordAtTop} = dirConfigNow;   //これ今後大事？？？？❗️❗️❗️❗️  
-    console.log("Word at Top: ", dirConfigNow.wordAtTop, "Upper Rack Array: ", dirConfigNow.upperRackArray);
+    currentDirectionalConfig = getDirectionalConfig();
+    let {upperRackArray, wordAtTop} = currentDirectionalConfig;   //これ今後大事？？？？❗️❗️❗️❗️  
+    // console.log("Word at Top: ", currentDirectionalConfig.wordAtTop, "Upper Rack Array: ", currentDirectionalConfig.upperRackArray);
     gameState.latestWord = upperRackArray.length > 0 ? upperRackArray[upperRackArray.length - 1] : wordAtTop;
     console.log("Latest: ", gameState.latestWord);
 }
 function updateTargetWord() {
-    dirConfigNow = getDirectionalConfig();
-    let {lowerRackArray, wordAtBottom} = dirConfigNow;
+    currentDirectionalConfig = getDirectionalConfig();
+    let {lowerRackArray, wordAtBottom} = currentDirectionalConfig;
     gameState.targetWord = lowerRackArray.length > 0 ? lowerRackArray[lowerRackArray.length - 1] : wordAtBottom;
     console.log("Target:", gameState.targetWord);
 }
@@ -182,12 +181,12 @@ function updateDirectionUI() {
 
 
 //FUNC: FLIPPING (AND UPDATING LATEST/TARGET WORDS)
-function toggleFlip() { ////アニメーション！！
+function toggleFlip() {
     gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
-    dirConfigNow = getDirectionalConfig(); //＜＜＜ここで、ちゃんとFLIPのCONFIGに変わっているか？
-/*    console.log("Word at Top/Upper Rack Array ", dirConfigNow.wordAtTop, dirConfigNow.upperRackArray); */
+    currentDirectionalConfig = getDirectionalConfig(); //＜＜＜ここで、ちゃんとFLIPのCONFIGに変わっているか？
+/*    console.log("Word at Top/Upper Rack Array ", currentDirectionalConfig.wordAtTop, currentDirectionalConfig.upperRackArray); */
     updateDirectionUI();
-    console.log("4: ", gameState.latestWord);
+    // console.log("4: ", gameState.latestWord);
     updateLatestWord();
     updateTargetWord();
     updateDeleters();
@@ -224,9 +223,9 @@ function updateDeleters() {
         upperDeleter.classList.add('invisible');
         lowerDeleter.classList.add('invisible');
     } else {
-        dirConfigNow = getDirectionalConfig();
-        upperDeleter.classList.toggle('invisible', dirConfigNow.upperRackArray.length === 0);
-        lowerDeleter.classList.toggle('invisible', dirConfigNow.lowerRackArray.length === 0);
+        currentDirectionalConfig = getDirectionalConfig();
+        upperDeleter.classList.toggle('invisible', currentDirectionalConfig.upperRackArray.length === 0);
+        lowerDeleter.classList.toggle('invisible', currentDirectionalConfig.lowerRackArray.length === 0);
     }
 }
 
@@ -241,31 +240,31 @@ function updateMoveCounterUI() {
 //HANDLING THE INPUT
 ////FUNC: ADD INPUT TO RIGHT ARRAYS ❓❓❓❓//　ちゃんとこの時点でconfigが平気か❓❓❓❓ DELETEどこでcall
 function addToCorrectArray(word) {
-    dirConfigNow = getDirectionalConfig();
-    dirConfigNow.upperRackArray.push(word);
-    // console.log("upperRackArrayに入ってる言葉の数は", dirConfigNow.upperRackArray.length) 
-    if (dirConfigNow.upperRackArray.length === 1) {
+    currentDirectionalConfig = getDirectionalConfig();
+    currentDirectionalConfig.upperRackArray.push(word);
+    // console.log("upperRackArrayに入ってる言葉の数は", currentDirectionalConfig.upperRackArray.length) 
+    if (currentDirectionalConfig.upperRackArray.length === 1) {
         upperDeleter.classList.remove('invisible');
     }
-    console.log("Upper Array", dirConfigNow.upperRackArray);
+    console.log("Upper Array", currentDirectionalConfig.upperRackArray);
 }
 
 // GENERATING WORD TILES
  
 //GETTING THE INPUTWORD CONT READY // ❗️❗️❗️❗️❗️ロード後にたくさん作らせとく
 function prepareInputWordCont() {
-    dirConfigNow;
-    const placeInRack = dirConfigNow.upperRackArray.length;
-    console.log("upperRackArray.length: ", dirConfigNow.upperRackArray.length);
+    currentDirectionalConfig;
+    const placeInRack = currentDirectionalConfig.upperRackArray.length;
+    console.log("upperRackArray.length: ", currentDirectionalConfig.upperRackArray.length);
     let wordCont;
 
-    const rackDivs = dirConfigNow.upperRack.children;
+    const rackDivs = currentDirectionalConfig.upperRack.children;
 
     if (rackDivs && placeInRack < rackDivs.length) {
         wordCont = rackDivs[placeInRack];
     } else {
         wordCont = document.createElement('div');
-        dirConfigNow.upperRack.appendChild(wordCont);
+        currentDirectionalConfig.upperRack.appendChild(wordCont);
     }
 
     // Ensure wordCont is empty before adding new tiles
@@ -300,7 +299,7 @@ function fillAndShowTiles(word, wordCont) {
 
 
 function highlightMatchingLettersBasedOnWords(inputWord, endWord) {
-    const inputTiles = dirConfigNow.upperRack.lastElementChild.querySelectorAll('.tiles');
+    const inputTiles = currentDirectionalConfig.upperRack.lastElementChild.querySelectorAll('.tiles');
     const endTiles = endWordRack.querySelectorAll('.tiles');
 
     for (let i = 0; i < inputWord.length; i++) {
@@ -320,7 +319,7 @@ function makeTilesFor(word) {
     }
     fillAndShowTiles(word, wordCont);
      // Call the highlighting function after a short delay
-     setTimeout(() => {
+    setTimeout(() => {
         highlightMatchingLettersBasedOnWords(word, gameState.wordPair.endWord);
     }, 600); // Adjust based on your animation duration
 }
@@ -335,17 +334,18 @@ function makeWordPairTiles() {
 //FUNC: SUBMITTING A MOVE
 function submitMove() {
     let inputWord = document.getElementById('currentInput').value.toLowerCase();
+
+    // If valid word
     if (isTotallyValid(inputWord, gameState.latestWord)) {
         gameState.latestWord = inputWord;
         gameState.moveCounter++;
 
         addToCorrectArray(inputWord);
-        // makeInputWord(inputWord); //いったん見せてからアニメーション？それとも直接postRound UIに？
         makeTilesFor(inputWord);
 
         //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
-        // if (inputWord === gameState.targetWord || inputWord === gameState.latestWord) {
-        if (inputWord === gameState.targetWord) {
+        if (inputWord === gameState.targetWord || inputWord === gameState.latestWord) {
+        // if (inputWord === gameState.targetWord) {
             console.log('inputWord matches targetWord');
             updateGame('completeRound');
         
@@ -478,7 +478,7 @@ function updateGame(action) {
             document.getElementById('currentInput').focus(); //でもsubmitがinvalidだったら？ 
             break;
     };
-    //dirConfigNow?
+    //currentDirectionalConfig?
     document.getElementById('currentInput').focus(); //FOCUS;
 }
 
