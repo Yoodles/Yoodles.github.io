@@ -1,4 +1,5 @@
 import { wordList } from './words.js';
+import { gameState } from './script.js';
 
 //=====MOVES====✅
 

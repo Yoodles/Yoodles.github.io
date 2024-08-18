@@ -15,7 +15,7 @@ const lowerDeleter = document.getElementById('lowerDeleter');
 
 //// INITIAL STATE AT START OF ROUND ////
 // GAME STATE
-let gameState = {
+export let gameState = {
     wordPair: {
         currentPairIndex: 0, //
         startWord: '', //
