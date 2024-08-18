@@ -118,23 +118,6 @@ function hideClass(className) {
     });
 }
 
-function showOrHideElements(showOrHide, type, selector) {
-    let elements;
-    if (type === 'class') {
-        elements = document.querySelectorAll('.' + selector);
-    } else if (type === 'data') {
-        elements = document.querySelectorAll(`[data-${selector}]`);
-    }
-
-    elements.forEach(function(element) {
-        if (showOrHide === 'show') {
-            element.classList.remove('hidden');
-        } else if (showOrHide === 'hide') {
-            element.classList.add('hidden');
-        }
-    });
-}
-
 ////EMPTYING CONTAINERS and CONTAINER RACKS ❗️❗️❗️❗️❗️❗️
 function emptyInputRacks() {
     // Function to clear the contents of each tile and reset classes
@@ -355,18 +338,6 @@ function addToCorrectArray(word) {
 }
 
 // GENERATING WORD TILES
-
-
-//FUNCTION to reset the tiles (maybe attribute too)
-function resetTilesOfCont(wordCont) {
-    const tiles = wordCont.querySelectorAll('.tiles');
-
-    tiles.forEach(tile => {
-        tile.textContent = ''; // Clear the text content
-        tile.style.animationDelay = ''; // Clear the inline animation delay style
-        tile.classList.remove('tiles'); // Remove the 'tiles' class
-    });
-}
  
 //GETTING THE INPUTWORD CONT READY // ❗️❗️❗️❗️❗️ロード後にたくさん作らせとく
 function prepareInputWordCont() {
