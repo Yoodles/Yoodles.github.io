@@ -1,4 +1,5 @@
 import { wordPairList } from './words.js';
+import { isTotallyValid } from './word-validity.js';
 
 const gameArea = document.getElementById('gameArea');
 const startWordRack = document.getElementById('startWordRack');

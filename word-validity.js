@@ -38,7 +38,7 @@ function isOneMoveApart(word1, word2) {
 }
 
 ////FUNC: CHECK IF WORD MEETS ALL CONDITIONS // ✅
-function isTotallyValid(word, word2) {
+export function isTotallyValid(word, word2) {
 
     //INPUT IS VALID WORD LENGTH ✅
     function isValidLength(word) {
