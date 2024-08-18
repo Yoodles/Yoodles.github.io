@@ -190,7 +190,7 @@ function toggleFlip() {
     updateLatestWord();
     updateTargetWord();
     updateDeleters();
-    console.log("Game Mode:", gameState.gameDirection, ". Latest Word:", gameState.latestWord,". Target Word:", gameState.targetWord);
+    console.log("Game Mode: ", gameState.gameDirection, ". Latest Word: ", gameState.latestWord,". Target Word: ", gameState.targetWord);
     updateGame();
 }
 
@@ -318,10 +318,11 @@ function makeTilesFor(word) {
         wordCont = prepareInputWordCont();
     }
     fillAndShowTiles(word, wordCont);
+    
      // Call the highlighting function after a short delay
     setTimeout(() => {
         highlightMatchingLettersBasedOnWords(word, gameState.wordPair.endWord);
-    }, 600); // Adjust based on your animation duration
+    }, 600); // Adjust based on animation duration
 }
 
 //// GENERATE TILES FOR ROUND'S WORDPAIR //"if preRound""にすれば、argumentもこのfunctionも要らない？
