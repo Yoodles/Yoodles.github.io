@@ -445,7 +445,7 @@ function submitMove() {
         document.getElementById('currentInput').focus(); //要る？
     }
 
-    console.log("SUBMIT: Latest/Target: ", gameState.latestWord, gameState.targetWord);
+    console.log("SUBMITTED. Latest Word: ", gameState.latestWord, "; Target Word: ", gameState.targetWord);
 }
 
 //FUNC: DELETE LAST INPUT (x TWO BUTTONS)
