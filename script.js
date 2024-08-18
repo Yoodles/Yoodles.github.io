@@ -459,7 +459,8 @@ function submitMove() {
         makeTilesFor(inputWord);
 
         //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
-        if (inputWord === gameState.targetWord || inputWord === gameState.latestWord) {
+        // if (inputWord === gameState.targetWord || inputWord === gameState.latestWord) {
+        if (inputWord === gameState.targetWord) {
             console.log('inputWord matches targetWord');
             updateGame('completeRound');
         
