@@ -393,7 +393,7 @@ function updateUI(phase) {
         case 'preRound':   ///これだとゲーム中にupdateUIを使えない?
             resultMessage.innerText = "";
             showClass('preRound');
-            hideClass('midRound', 'postRound');
+            hideClass('postRound');
             // updateDeleters();
             break;
             //UPDATE MOVE COUNTER
@@ -401,7 +401,7 @@ function updateUI(phase) {
 
         case 'postRound':
             resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
-            hideClass('preRound', 'midRound');
+            hideClass('preRound');
             showClass('postRound');
             // updateDeleters();
             emptyTextInputBox(); //消しとかないと？でも"BACK"した時
