@@ -166,9 +166,6 @@ function updateDirectionUI() {
     const isFlipped = gameState.gameDirection === 'flip';
     const gameplayCont = document.getElementById('gameplayCont');
 
-    // flipInputRack.classList.toggle('flip', !isFlipped);
-    // normInputRack.classList.toggle('flip', isFlipped);
-
     // startWordRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
     flipInputRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
     normInputRack[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
@@ -244,8 +241,9 @@ function addToCorrectArray(word) {
     console.log("Upper Array", currentDirectionalConfig.upperRackArray);
 }
 
-// GENERATING WORD TILES
- 
+
+////GENERATING WORD TILES////
+
 //GETTING THE INPUTWORD CONT READY // ❗️❗️❗️❗️❗️ロード後にたくさん作らせとく
 function prepareInputWordCont() {
     currentDirectionalConfig;
@@ -314,7 +312,7 @@ function makeTilesFor(word) {
     }
     fillAndShowTiles(word, wordCont);
 
-     // Call the highlighting function after a short delay
+    // Call the highlighting function after a short delay
     setTimeout(() => {
         highlightMatchingLettersBasedOnWords(word, gameState.wordPair.endWord);
     }, 600); // Adjust based on animation duration
@@ -460,10 +458,7 @@ function updateGame(action) {
                 updateDirectionUI();
                 updateUI('preRound');
 
-
                 makeWordPairTiles(); //Animationをリセットするか否か
-                // var afterEmptying = true;
-                // makeWordPairTiles(afterEmptying);
                 
                 showLatestBestScore(); //ここ？
             }
