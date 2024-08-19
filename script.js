@@ -332,7 +332,7 @@ function submitMove() {
 
     // Check if input is valid...
     if (isTotallyValid(inputWord, gameState.latestWord)) {
-        gameState.latestWord = inputWord; //...update latestWord...
+        // gameState.latestWord = inputWord; //...update latestWord...
         gameState.moveCounter++; //...& the move counter
 
         addToCorrectArray(inputWord);
@@ -351,7 +351,8 @@ function submitMove() {
             updateGame('midRound');
         }
         // emptyTextInputBox();
-
+        updateLatestWord();
+        updateTargetWord();
     // 
     } else {
         document.getElementById('currentInput').focus(); //要る？
