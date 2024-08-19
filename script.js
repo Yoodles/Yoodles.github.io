@@ -348,7 +348,7 @@ function submitMove() {
             updateGame('completeRound');
         
         } else {
-            updateGame();
+            updateGame('midRound');
         }
         // emptyTextInputBox();
 
