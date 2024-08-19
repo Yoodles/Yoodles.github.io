@@ -97,11 +97,8 @@ function displayArrays() {
 }
 
 function showOrHideGameArea(which) { //toggleでも
-    if (which === 'show') {
-        gameArea.classList.remove('hidden');
-    } else {
-        gameArea.classList.add('hidden');
-    }    
+    if (which === 'show') gameArea.classList.remove('hidden');
+    else gameArea.classList.add('hidden');    
 }
  
 
@@ -234,8 +231,6 @@ function updateMoveCounterUI() {
     document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
 }
 
-//==========//
-
 
 //HANDLING THE INPUT
 ////FUNC: ADD INPUT TO RIGHT ARRAYS ❓❓❓❓//　ちゃんとこの時点でconfigが平気か❓❓❓❓ DELETEどこでcall
@@ -344,6 +339,8 @@ function submitMove() {
 
         addToCorrectArray(inputWord);
         makeTilesFor(inputWord);
+
+        // if (gameState.gamePhase === 'preRound')
 
         //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
