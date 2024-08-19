@@ -48,7 +48,7 @@ function setInitialGameState() {   // 🚨
 
 
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️⬇️
-function setWordPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL rounds completed"は"NEXTROUND"の場合オンリー
+function setInitialPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL rounds completed"は"NEXTROUND"の場合オンリー
     index = gameState.wordPair.currentPairIndex;
     if (gameState.wordPair.currentPairIndex < wordPairList.length) {
 
@@ -60,7 +60,7 @@ function setWordPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL rou
     } else {
         document.getElementById('gameArea').innerText = "No Word Pair Found!";
     }
-/*    console.log("INsetWordPairAndLengths: PairIndex; start; end; Max.; Min.:", gameState.wordPair.currentPairIndex, gameState.wordPair.startWord, gameState.wordPair.endWord, gameState.wordPair.maxLength, gameState.wordPair.minLength);
+/*    console.log("INsetInitialPairAndLengths: PairIndex; start; end; Max.; Min.:", gameState.wordPair.currentPairIndex, gameState.wordPair.startWord, gameState.wordPair.endWord, gameState.wordPair.maxLength, gameState.wordPair.minLength);
 */
 }
 
@@ -287,7 +287,7 @@ function fillAndShowTiles(word, wordCont) {
             tileConts[i].textContent = word[i].toUpperCase();
             tileConts[i].classList.add('tiles');
             tileConts[i].classList.remove('hidden');
-            tileConts[i].style.animationDelay = `${i * 0.3}s`;
+            tileConts[i].style.animationDelay = `${i * 0.2}s`;
         } else {
             tileConts[i].textContent = '';
             tileConts[i].classList.remove('tiles');
@@ -318,7 +318,7 @@ function makeTilesFor(word) {
         wordCont = prepareInputWordCont();
     }
     fillAndShowTiles(word, wordCont);
-    
+
      // Call the highlighting function after a short delay
     setTimeout(() => {
         highlightMatchingLettersBasedOnWords(word, gameState.wordPair.endWord);
@@ -334,27 +334,30 @@ function makeWordPairTiles() {
 
 //FUNC: SUBMITTING A MOVE
 function submitMove() {
+    // Set text box content as inputWord
     let inputWord = document.getElementById('currentInput').value.toLowerCase();
 
-    // If valid word
+    // Check if input is valid...
     if (isTotallyValid(inputWord, gameState.latestWord)) {
-        gameState.latestWord = inputWord;
-        gameState.moveCounter++;
+        gameState.latestWord = inputWord; //...update latestWord...
+        gameState.moveCounter++; //...& the move counter
 
         addToCorrectArray(inputWord);
         makeTilesFor(inputWord);
 
         //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
+
+        // If round complete
         if (inputWord === gameState.targetWord || inputWord === gameState.latestWord) {
-        // if (inputWord === gameState.targetWord) {
             console.log('inputWord matches targetWord');
             updateGame('completeRound');
         
         } else {
             updateGame();
         }
-        emptyTextInputBox();
+        // emptyTextInputBox();
 
+    // 
     } else {
         document.getElementById('currentInput').focus(); //要る？
     }
@@ -453,7 +456,7 @@ function updateGame(action) {
                 document.getElementById('gameArea').innerText = "All rounds completed!"; //🚨 
             } else {
                 gameState.wordPair.currentPairIndex++;
-                setWordPairAndLengths();
+                setInitialPairAndLengths();
                 setInitialGameState(); //includes Arrays
                 emptyInputRacks(); //??
                 updateDeleters();
@@ -487,7 +490,7 @@ function updateGame(action) {
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD　//❓❓❓いつconfigは？ 最初にgameAreaを「hidden」にしておく
 document.addEventListener('DOMContentLoaded', (event) => {
 
-    setWordPairAndLengths(0);
+    setInitialPairAndLengths(0);
     setInitialGameState();
 
     makeWordPairTiles();
