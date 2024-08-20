@@ -155,8 +155,8 @@ function updateDirectionUI() {
     const isFlipped = gameState.gameDirection === 'flip';
     const gameplayCont = document.getElementById('gameplayCont');
 
-    flipInputRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
-    normInputRack[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
+    // flipInputRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
+    // normInputRack[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
     gameplayCont[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
 }
 
