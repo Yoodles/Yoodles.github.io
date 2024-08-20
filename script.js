@@ -151,15 +151,23 @@ function updateLatestWord() {
     let {upperRackArray, wordAtTop} = currentDirectionalConfig;   //これ今後大事？？？？❗️❗️❗️❗️  
     // console.log("Word at Top: ", currentDirectionalConfig.wordAtTop, "Upper Rack Array: ", currentDirectionalConfig.upperRackArray);
     gameState.latestWord = upperRackArray.length > 0 ? upperRackArray[upperRackArray.length - 1] : wordAtTop;
-    console.log("Latest: ", gameState.latestWord);
+    // console.log("Latest: ", gameState.latestWord);
 }
 function updateTargetWord() {
     currentDirectionalConfig = getDirectionalConfig();
     let {lowerRackArray, wordAtBottom} = currentDirectionalConfig;
     gameState.targetWord = lowerRackArray.length > 0 ? lowerRackArray[lowerRackArray.length - 1] : wordAtBottom;
-    console.log("Target:", gameState.targetWord);
+    // console.log("Target:", gameState.targetWord);
 }
 
+function updateLatestAndTargetWord() {
+    currentDirectionalConfig = getDirectionalConfig();
+    let {upperRackArray, wordAtTop} = currentDirectionalConfig;
+    let {lowerRackArray, wordAtBottom} = currentDirectionalConfig;
+    gameState.latestWord = upperRackArray.length > 0 ? upperRackArray[upperRackArray.length - 1] : wordAtTop;
+    gameState.targetWord = lowerRackArray.length > 0 ? lowerRackArray[lowerRackArray.length - 1] : wordAtBottom;
+    // console.log("Target:", gameState.targetWord);
+}
 
 ////FUNC: UPDATE UI (AND CONFIG) AFTER TOGGLEFLIP (DELETERSももしや?あと、GAME LOGICとUIを一緒でいいのか)
 function updateDirectionUI() {
@@ -181,8 +189,9 @@ function toggleFlip() {
 /*    console.log("Word at Top/Upper Rack Array ", currentDirectionalConfig.wordAtTop, currentDirectionalConfig.upperRackArray); */
     updateDirectionUI();
     // console.log("4: ", gameState.latestWord);
-    updateLatestWord();
-    updateTargetWord();
+    // updateLatestWord();
+    // updateTargetWord();
+    updateLatestAndTargetWord();
     updateDeleters();
     console.log("Game Mode: ", gameState.gameDirection, ". Latest Word: ", gameState.latestWord,". Target Word: ", gameState.targetWord);
     updateGame();
@@ -351,8 +360,9 @@ function submitMove() {
             updateGame('midRound');
         }
         // emptyTextInputBox();
-        updateLatestWord();
-        updateTargetWord();
+        // updateLatestWord();
+        // updateTargetWord();
+        updateLatestAndTargetWord();
     // 
     } else {
         document.getElementById('currentInput').focus(); //要る？
@@ -378,8 +388,9 @@ function deleteOne(upperOrLower, direction) {
     if (array.length === 0) {     //redundant!!!!! でもどうするか
         deleteButton.classList.add('invisible');
     }
-    updateLatestWord();
-    updateTargetWord();
+    // updateLatestWord();
+    // updateTargetWord();
+    updateLatestAndTargetWord();
     gameState.moveCounter--; //When to display?
     console.log("Deleted. Latest:", gameState.latestWord,"; Target:", gameState.targetWord);
 /*    updateGame('deleteOne'); */
