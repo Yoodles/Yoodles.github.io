@@ -145,21 +145,6 @@ function emptyTextInputBox() {
 
 
 ////FUNCTIONS FOR UPDATING LATEST/TARGET WORD ❓❓❓❓
-
-function updateLatestWord() {
-    currentDirectionalConfig = getDirectionalConfig();
-    let {upperRackArray, wordAtTop} = currentDirectionalConfig;   //これ今後大事？？？？❗️❗️❗️❗️  
-    // console.log("Word at Top: ", currentDirectionalConfig.wordAtTop, "Upper Rack Array: ", currentDirectionalConfig.upperRackArray);
-    gameState.latestWord = upperRackArray.length > 0 ? upperRackArray[upperRackArray.length - 1] : wordAtTop;
-    // console.log("Latest: ", gameState.latestWord);
-}
-function updateTargetWord() {
-    currentDirectionalConfig = getDirectionalConfig();
-    let {lowerRackArray, wordAtBottom} = currentDirectionalConfig;
-    gameState.targetWord = lowerRackArray.length > 0 ? lowerRackArray[lowerRackArray.length - 1] : wordAtBottom;
-    // console.log("Target:", gameState.targetWord);
-}
-
 function updateLatestAndTargetWord() {
     currentDirectionalConfig = getDirectionalConfig();
     let {upperRackArray, wordAtTop} = currentDirectionalConfig;
@@ -188,9 +173,6 @@ function toggleFlip() {
     currentDirectionalConfig = getDirectionalConfig(); //＜＜＜ここで、ちゃんとFLIPのCONFIGに変わっているか？
 /*    console.log("Word at Top/Upper Rack Array ", currentDirectionalConfig.wordAtTop, currentDirectionalConfig.upperRackArray); */
     updateDirectionUI();
-    // console.log("4: ", gameState.latestWord);
-    // updateLatestWord();
-    // updateTargetWord();
     updateLatestAndTargetWord();
     updateDeleters();
     console.log("Game Mode: ", gameState.gameDirection, ". Latest Word: ", gameState.latestWord,". Target Word: ", gameState.targetWord);
@@ -360,8 +342,6 @@ function submitMove() {
             updateGame('midRound');
         }
         // emptyTextInputBox();
-        // updateLatestWord();
-        // updateTargetWord();
         updateLatestAndTargetWord();
     // 
     } else {
@@ -380,16 +360,10 @@ function deleteOne(upperOrLower, direction) {
 
     if (array.length > 0) {
         array.pop();
-        if (rack.lastChild) {
-            rack.removeChild(rack.lastChild);   /////lastElementChildじゃなくて良いのか❓
-        }
+        if (rack.lastChild) rack.removeChild(rack.lastChild);   /////lastElementChildじゃなくて良いのか❓
     }
+    else deleteButton.classList.add('invisible');     //redundant!!!!! でもどうするか
 
-    if (array.length === 0) {     //redundant!!!!! でもどうするか
-        deleteButton.classList.add('invisible');
-    }
-    // updateLatestWord();
-    // updateTargetWord();
     updateLatestAndTargetWord();
     gameState.moveCounter--; //When to display?
     console.log("Deleted. Latest:", gameState.latestWord,"; Target:", gameState.targetWord);
