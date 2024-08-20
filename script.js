@@ -84,7 +84,7 @@ function getDirectionalConfig() {
     }
 }
 
-// let currentDirectionalConfig = getDirectionalConfig(); //❓❓❓❓❓
+//let currentDirectionalConfig;
 
 
 //// DEBUGGING: DISPLAY CONTENT OF ARRAYS TO VERIFY
@@ -372,7 +372,6 @@ function updateUI(phase) {
             resultMessage.innerText = "";
             showClass('preRound');
             hideClass('postRound');
-            // updateDeleters();
             break;
             //UPDATE MOVE COUNTER
 
@@ -380,7 +379,6 @@ function updateUI(phase) {
             resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
             hideClass('preRound');
             showClass('postRound');
-            // updateDeleters();
             emptyTextInputBox(); //消しとかないと？でも"BACK"した時
             displayArrays();
             break;
