@@ -175,6 +175,9 @@ body {
 background-color: rgba(0, 180, 0, 0.65);
 } */
 
+
+
+
 #startWordRack { order: 1; }
 #normInputRack { order: 2; flex-direction: column}
 #inputterSet { order: 3; }
@@ -194,14 +197,8 @@ div[data-flip] #endWordRack { order: 1; }
 #flipInputRack[data-flip] { order: 2; flex-direction: column;}
 #endWordRack[data-flip] { order: 1; } */
 
-#normInputRack {
-    /* display: flex; */
-    overflow-y: scroll;
-    max-height: 35vh;
-}
-
- #flipInputRack {
-    /* display: flex; */
+#normInputRack, #flipInputRack {
+    display: flex;
     overflow-y: scroll;
     max-height: 35vh;
 }
