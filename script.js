@@ -142,24 +142,38 @@ function emptyTextInputBox() {
 
 
 ////FUNCTIONS FOR UPDATING LATEST/TARGET WORD ❓❓❓❓
-function updateLatestAndTargetWord() {
-    currentDirectionalConfig = getDirectionalConfig();
-    let {upperRackArray, wordAtTop} = currentDirectionalConfig;
-    let {lowerRackArray, wordAtBottom} = currentDirectionalConfig;
-    gameState.latestWord = upperRackArray.length > 0 ? upperRackArray[upperRackArray.length - 1] : wordAtTop;
-    gameState.targetWord = lowerRackArray.length > 0 ? lowerRackArray[lowerRackArray.length - 1] : wordAtBottom;
-}
+// function updateLatestAndTargetWord() {
+//     currentDirectionalConfig = getDirectionalConfig();
+//     let {upperRackArray, wordAtTop} = currentDirectionalConfig;
+//     let {lowerRackArray, wordAtBottom} = currentDirectionalConfig;
+//     gameState.latestWord = upperRackArray.length > 0 ? upperRackArray[upperRackArray.length - 1] : wordAtTop;
+//     gameState.targetWord = lowerRackArray.length > 0 ? lowerRackArray[lowerRackArray.length - 1] : wordAtBottom;
+// }
 
 ////FUNC: UPDATE UI (AND CONFIG) AFTER TOGGLEFLIP (DELETERSももしや?あと、GAME LOGICとUIを一緒でいいのか)
-function updateDirectionUI() {
-    const isFlipped = gameState.gameDirection === 'flip';
-    const gameplayCont = document.getElementById('gameplayCont');
+// function updateDirectionUI() {
+//     const isFlipped = gameState.gameDirection === 'flip';
+//     const gameplayCont = document.getElementById('gameplayCont');
 
-    // flipInputRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
-    // normInputRack[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
-    gameplayCont[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
+//     gameplayCont[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
+// }
+
+// FUNCTION: Update the latest and target word based on the current directional configuration
+function updateLatestAndTargetWord() {
+    const { upperRackArray, wordAtTop, lowerRackArray, wordAtBottom } = getDirectionalConfig();
+    
+    gameState.latestWord = upperRackArray.length ? upperRackArray.at(-1) : wordAtTop;
+    gameState.targetWord = lowerRackArray.length ? lowerRackArray.at(-1) : wordAtBottom;
 }
 
+// FUNCTION: Update UI direction after toggling flip state
+function updateDirectionUI() {
+    const gameplayCont = document.getElementById('gameplayCont');
+
+    gameState.gameDirection === 'flip'
+        ? gameplayCont.setAttribute('data-flip', '')
+        : gameplayCont.removeAttribute('data-flip');
+}
 
 //FUNC: FLIPPING (AND UPDATING LATEST/TARGET WORDS)
 function toggleFlip() {
