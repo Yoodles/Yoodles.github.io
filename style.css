@@ -211,10 +211,10 @@ div[data-flip] #endWordRack { order: 1; }
 }
 
 [data-layout="rack"] {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
+    /* justify-content: center;
+    align-content: center; */
     max-width: 80%;
     margin: auto;
 }
