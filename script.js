@@ -2,20 +2,17 @@ import { wordPairList } from './words.js';
 import { isTotallyValid } from './word-validity.js';
 
 const gameArea = document.getElementById('gameArea');
-const startWordRack = document.getElementById('startWordRack');
 
+const startWordRack = document.getElementById('startWordRack');
 const normInputRack = document.getElementById('normInputRack'); 
 const flipInputRack = document.getElementById('flipInputRack');
-
 const endWordRack = document.getElementById('endWordRack');
 
 const upperDeleter = document.getElementById('upperDeleter');
 const lowerDeleter = document.getElementById('lowerDeleter');
 
-// let inputWord = document.getElementById('currentInput');
 
 //// INITIAL STATE AT START OF ROUND ////
-// GAME STATE
 export let gameState = {
     wordPair: {
         currentPairIndex: 0, //
@@ -102,7 +99,7 @@ function showOrHideGameArea(which) { //toggleでも
 }
  
 
-// UTILITY FUNCTIONS
+//====UTILITY FUNCTIONS====//
 ////SHOWING & HIDING WHOLE CLASSES//// ✅
 function showClass(className) {
     let elements = document.querySelectorAll('.' + className);
@@ -151,7 +148,6 @@ function updateLatestAndTargetWord() {
     let {lowerRackArray, wordAtBottom} = currentDirectionalConfig;
     gameState.latestWord = upperRackArray.length > 0 ? upperRackArray[upperRackArray.length - 1] : wordAtTop;
     gameState.targetWord = lowerRackArray.length > 0 ? lowerRackArray[lowerRackArray.length - 1] : wordAtBottom;
-    // console.log("Target:", gameState.targetWord);
 }
 
 ////FUNC: UPDATE UI (AND CONFIG) AFTER TOGGLEFLIP (DELETERSももしや?あと、GAME LOGICとUIを一緒でいいのか)
@@ -159,10 +155,8 @@ function updateDirectionUI() {
     const isFlipped = gameState.gameDirection === 'flip';
     const gameplayCont = document.getElementById('gameplayCont');
 
-    // startWordRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
     flipInputRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
     normInputRack[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
-    // endWordRack[isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
     gameplayCont[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
 }
 
@@ -382,7 +376,6 @@ function updateUI(phase) {
             // updateDeleters();
             break;
             //UPDATE MOVE COUNTER
-        /*    console.log("Successfully hidden")*/
 
         case 'postRound':
             resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
@@ -392,12 +385,13 @@ function updateUI(phase) {
             emptyTextInputBox(); //消しとかないと？でも"BACK"した時
             displayArrays();
             break;
+
         case 'midRound':
             showClass('preRound', 'midRound');
             hideClass('postRound');
             //でも'midRound'だと、Deletersが両方出てない場合ダメ=親funcの最後で回収？
-
             break;
+
         default:
             break;
     }
