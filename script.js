@@ -141,23 +141,6 @@ function emptyTextInputBox() {
 }
 
 
-////FUNCTIONS FOR UPDATING LATEST/TARGET WORD ❓❓❓❓
-// function updateLatestAndTargetWord() {
-//     currentDirectionalConfig = getDirectionalConfig();
-//     let {upperRackArray, wordAtTop} = currentDirectionalConfig;
-//     let {lowerRackArray, wordAtBottom} = currentDirectionalConfig;
-//     gameState.latestWord = upperRackArray.length > 0 ? upperRackArray[upperRackArray.length - 1] : wordAtTop;
-//     gameState.targetWord = lowerRackArray.length > 0 ? lowerRackArray[lowerRackArray.length - 1] : wordAtBottom;
-// }
-
-////FUNC: UPDATE UI (AND CONFIG) AFTER TOGGLEFLIP (DELETERSももしや?あと、GAME LOGICとUIを一緒でいいのか)
-// function updateDirectionUI() {
-//     const isFlipped = gameState.gameDirection === 'flip';
-//     const gameplayCont = document.getElementById('gameplayCont');
-
-//     gameplayCont[!isFlipped ? 'removeAttribute' : 'setAttribute']('data-flip', '');
-// }
-
 // FUNCTION: Update the latest and target word based on the current directional configuration
 function updateLatestAndTargetWord() {
     const { upperRackArray, wordAtTop, lowerRackArray, wordAtBottom } = getDirectionalConfig();
@@ -166,7 +149,7 @@ function updateLatestAndTargetWord() {
     gameState.targetWord = lowerRackArray.length ? lowerRackArray.at(-1) : wordAtBottom;
 }
 
-// FUNCTION: Update UI direction after toggling flip state
+// FUNCTION: Update UI direction after toggling flip state (DELETERSももしや?あと、GAME LOGICとUIを一緒でいいのか)
 function updateDirectionUI() {
     const gameplayCont = document.getElementById('gameplayCont');
 
