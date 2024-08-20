@@ -144,7 +144,6 @@ function emptyTextInputBox() {
 // FUNCTION: Update the latest and target word based on the current directional configuration
 function updateLatestAndTargetWord() {
     const { upperRackArray, wordAtTop, lowerRackArray, wordAtBottom } = getDirectionalConfig();
-    
     gameState.latestWord = upperRackArray.length ? upperRackArray.at(-1) : wordAtTop;
     gameState.targetWord = lowerRackArray.length ? lowerRackArray.at(-1) : wordAtBottom;
 }
