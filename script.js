@@ -160,7 +160,7 @@ function updateDirectionUI() {
 //FUNC: FLIPPING (AND UPDATING LATEST/TARGET WORDS)
 function toggleFlip() {
     gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
-    currentDirectionalConfig = getDirectionalConfig(); //＜＜＜ここで、ちゃんとFLIPのCONFIGに変わっているか？
+    let currentDirectionalConfig = getDirectionalConfig(); //＜＜＜ここで、ちゃんとFLIPのCONFIGに変わっているか？
 /*    console.log("Word at Top/Upper Rack Array ", currentDirectionalConfig.wordAtTop, currentDirectionalConfig.upperRackArray); */
     updateDirectionUI();
     updateLatestAndTargetWord();
@@ -206,7 +206,7 @@ function updateMoveCounterUI() {
 //HANDLING THE INPUT
 ////FUNC: ADD INPUT TO RIGHT ARRAYS ❓❓❓❓//　ちゃんとこの時点でconfigが平気か❓❓❓❓ DELETEどこでcall
 function addToCorrectArray(word) {
-    currentDirectionalConfig = getDirectionalConfig();
+    let currentDirectionalConfig = getDirectionalConfig();
     currentDirectionalConfig.upperRackArray.push(word);
     // console.log("upperRackArrayに入ってる言葉の数は", currentDirectionalConfig.upperRackArray.length) 
     if (currentDirectionalConfig.upperRackArray.length === 1) {
@@ -220,7 +220,7 @@ function addToCorrectArray(word) {
 
 //GETTING THE INPUTWORD CONT READY // ❗️❗️❗️❗️❗️ロード後にたくさん作らせとく
 function prepareInputWordCont() {
-    currentDirectionalConfig = getDirectionalConfig();
+    let currentDirectionalConfig = getDirectionalConfig();
     const placeInRack = currentDirectionalConfig.upperRackArray.length;
     console.log("upperRackArray.length: ", currentDirectionalConfig.upperRackArray.length);
     let wordCont;
@@ -287,7 +287,7 @@ function makeTilesFor(word) {
     fillAndShowTiles(word, wordCont);
 
     // Call the highlighting function
-    highlightMatchingLettersBasedOnWords(word, gameState.wordPair.endWord);
+    // highlightMatchingLettersBasedOnWords(word, gameState.wordPair.endWord);
 }
 
 //// GENERATE TILES FOR ROUND'S WORDPAIR //"if preRound""にすれば、argumentもこのfunctionも要らない？
@@ -338,7 +338,7 @@ function updateDeleters() {
         upperDeleter.classList.add('invisible');
         lowerDeleter.classList.add('invisible');
     } else {
-        currentDirectionalConfig = getDirectionalConfig();
+        let currentDirectionalConfig = getDirectionalConfig();
         upperDeleter.classList.toggle('invisible', currentDirectionalConfig.upperRackArray.length === 0);
         lowerDeleter.classList.toggle('invisible', currentDirectionalConfig.lowerRackArray.length === 0);
     }
@@ -453,7 +453,6 @@ function updateGame(action) {
             document.getElementById('currentInput').focus(); //でもsubmitがinvalidだったら？ 
             break;
     };
-    //currentDirectionalConfig?
     document.getElementById('currentInput').focus(); //FOCUS;
 }
 
