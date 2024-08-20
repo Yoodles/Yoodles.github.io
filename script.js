@@ -169,8 +169,10 @@ function toggleFlip() {
     updateGame();
 }
 
-//=====BEST SCORES=====
-////UPDATE BEST SCORE FOR THE ROUND ❗️❗️(CHECK IF BEST SCORE?)
+
+
+//====BEST SCORES====//
+//UPDATE BEST SCORE FOR THE ROUND ❗️❗️(CHECK IF BEST SCORE?)
 function checkAndUpdateBestScoreIndex() { //just at end of round?
     const indexNum = gameState.wordPair.currentPairIndex;
     // Check for existing best score, update it, and return latest best score
@@ -184,7 +186,7 @@ function checkAndUpdateBestScoreIndex() { //just at end of round?
 }
 
 
-////SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
+//SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
 function showLatestBestScore() {
     let bestScoreDisplay = document.getElementById('bestScore');
     let latestBestScore = gameState.wordPair.bestScoreIndex[gameState.wordPair.currentPairIndex] || "--";
@@ -193,16 +195,7 @@ function showLatestBestScore() {
     bestScoreDisplay.innerText = "Low Score: " + latestBestScore;
 }
 
-function updateDeleters() {
-    if (gameState.gamePhase === 'postRound') {
-        upperDeleter.classList.add('invisible');
-        lowerDeleter.classList.add('invisible');
-    } else {
-        currentDirectionalConfig = getDirectionalConfig();
-        upperDeleter.classList.toggle('invisible', currentDirectionalConfig.upperRackArray.length === 0);
-        lowerDeleter.classList.toggle('invisible', currentDirectionalConfig.lowerRackArray.length === 0);
-    }
-}
+
 
 //UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
 function updateMoveCounterUI() {
@@ -227,7 +220,7 @@ function addToCorrectArray(word) {
 
 //GETTING THE INPUTWORD CONT READY // ❗️❗️❗️❗️❗️ロード後にたくさん作らせとく
 function prepareInputWordCont() {
-    currentDirectionalConfig;
+    currentDirectionalConfig = getDirectionalConfig();
     const placeInRack = currentDirectionalConfig.upperRackArray.length;
     console.log("upperRackArray.length: ", currentDirectionalConfig.upperRackArray.length);
     let wordCont;
@@ -293,10 +286,8 @@ function makeTilesFor(word) {
     }
     fillAndShowTiles(word, wordCont);
 
-    // Call the highlighting function after a short delay
-    setTimeout(() => {
-        highlightMatchingLettersBasedOnWords(word, gameState.wordPair.endWord);
-    }, 600); // Adjust based on animation duration
+    // Call the highlighting function
+    highlightMatchingLettersBasedOnWords(word, gameState.wordPair.endWord);
 }
 
 //// GENERATE TILES FOR ROUND'S WORDPAIR //"if preRound""にすれば、argumentもこのfunctionも要らない？
@@ -339,6 +330,18 @@ function submitMove() {
     }
 
     console.log("SUBMITTED. Latest Word: ", gameState.latestWord, "; Target Word: ", gameState.targetWord);
+}
+
+
+function updateDeleters() {
+    if (gameState.gamePhase === 'postRound') {
+        upperDeleter.classList.add('invisible');
+        lowerDeleter.classList.add('invisible');
+    } else {
+        currentDirectionalConfig = getDirectionalConfig();
+        upperDeleter.classList.toggle('invisible', currentDirectionalConfig.upperRackArray.length === 0);
+        lowerDeleter.classList.toggle('invisible', currentDirectionalConfig.lowerRackArray.length === 0);
+    }
 }
 
 //FUNC: DELETE LAST INPUT (x TWO BUTTONS)
