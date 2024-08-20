@@ -84,7 +84,7 @@ function getDirectionalConfig() {
     }
 }
 
-let currentDirectionalConfig = getDirectionalConfig(); //❓❓❓❓❓
+// let currentDirectionalConfig = getDirectionalConfig(); //❓❓❓❓❓
 
 
 //// DEBUGGING: DISPLAY CONTENT OF ARRAYS TO VERIFY
