@@ -198,8 +198,8 @@ function updateDirectionUI() {
 //FUNC: FLIPPING (AND UPDATING LATEST/TARGET WORDS)
 function toggleFlip() {
     gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
-    // let currentDirectionalConfig = getDirectionalConfig(); //＜＜＜ここで、ちゃんとFLIPのCONFIGに変わっているか？
-/*    console.log("Word at Top/Upper Rack Array ", currentDirectionalConfig.wordAtTop, currentDirectionalConfig.upperRackArray); */
+
+    /* console.log("Word at Top/Upper Rack Array ", currentDirectionalConfig.wordAtTop, currentDirectionalConfig.upperRackArray); */
     updateDirectionUI();
     updateLatestAndTargetWord();
     // updateDeleters();
