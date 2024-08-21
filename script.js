@@ -148,27 +148,11 @@ function updateLatestAndTargetWord() {
 }
 
 // FUNCTION: Update UI direction after toggling flip state (DELETERSももしや?あと、GAME LOGICとUIを一緒でいいのか)
-// function updateDirectionUI() {
-//     const gameplayCont = document.getElementById('gameplayCont');
-//     const flipperAndDeleters = document.getElementById('flipperAndDeleters');
-
-//     gameState.gameDirection === 'flip'
-//         ? gameplayCont.setAttribute('data-flip', '')
-//         : gameplayCont.removeAttribute('data-flip');
-
-//     gameState.gameDirection === 'flip'
-//         ? flipperAndDeleters.setAttribute('data-flip', '')
-//         : flipperAndDeleters.removeAttribute('data-flip');
-
-// }
-
-
 function updateDirectionUI() {
     const elementsToUpdate = [
         document.getElementById('gameplayCont'),
         document.getElementById('flipperAndDeleters')
     ];
-
     elementsToUpdate.forEach(element => {
         if (element) {
             gameState.gameDirection === 'flip'
