@@ -191,6 +191,8 @@ div[data-flip] #inputterSet { order: 3; }
 div[data-flip] #flipInputRack { order: 2; flex-direction: column;}
 div[data-flip] #endWordRack { order: 1; }
 
+div[data-flip] button { flex-direction: column-reverse; }
+
 /* #startWordRack[data-flip] { order: 5; }
 #normInputRack[data-flip] { order: 4; flex-direction: column-reverse;}
 #inputterSet[data-flip] { order: 3; }
