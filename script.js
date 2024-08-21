@@ -148,13 +148,36 @@ function updateLatestAndTargetWord() {
 }
 
 // FUNCTION: Update UI direction after toggling flip state (DELETERSももしや?あと、GAME LOGICとUIを一緒でいいのか)
-function updateDirectionUI() {
-    const gameplayCont = document.getElementById('gameplayCont');
+// function updateDirectionUI() {
+//     const gameplayCont = document.getElementById('gameplayCont');
+//     const flipperAndDeleters = document.getElementById('flipperAndDeleters');
 
-    gameState.gameDirection === 'flip'
-        ? gameplayCont.setAttribute('data-flip', '')
-        : gameplayCont.removeAttribute('data-flip');
+//     gameState.gameDirection === 'flip'
+//         ? gameplayCont.setAttribute('data-flip', '')
+//         : gameplayCont.removeAttribute('data-flip');
+
+//     gameState.gameDirection === 'flip'
+//         ? flipperAndDeleters.setAttribute('data-flip', '')
+//         : flipperAndDeleters.removeAttribute('data-flip');
+
+// }
+
+
+function updateDirectionUI() {
+    const elementsToUpdate = [
+        document.getElementById('gameplayCont'),
+        document.getElementById('flipperAndDeleters')
+    ];
+
+    elementsToUpdate.forEach(element => {
+        if (element) {
+            gameState.gameDirection === 'flip'
+                ? element.setAttribute('data-flip', '')
+                : element.removeAttribute('data-flip');
+        }
+    });
 }
+
 
 //FUNC: FLIPPING (AND UPDATING LATEST/TARGET WORDS)
 function toggleFlip() {
@@ -163,7 +186,7 @@ function toggleFlip() {
 /*    console.log("Word at Top/Upper Rack Array ", currentDirectionalConfig.wordAtTop, currentDirectionalConfig.upperRackArray); */
     updateDirectionUI();
     updateLatestAndTargetWord();
-    updateDeleters();
+    // updateDeleters();
     console.log("Game Mode: ", gameState.gameDirection, ". Latest Word: ", gameState.latestWord,". Target Word: ", gameState.targetWord);
     updateGame();
 }
@@ -328,7 +351,7 @@ function submitMove() {
         document.getElementById('currentInput').focus(); //要る？
     }
 
-    console.log("SUBMITTED. Latest Word: ", gameState.latestWord, "; Target Word: ", gameState.targetWord);
+    console.log("WORD SUBMITTED. Latest Word: ", gameState.latestWord, "; Target Word: ", gameState.targetWord);
 }
 
 
@@ -358,7 +381,7 @@ function deleteOne(upperOrLower, direction) {
 
     updateLatestAndTargetWord();
     gameState.moveCounter--; //When to display?
-    console.log("Deleted. Latest:", gameState.latestWord,"; Target:", gameState.targetWord);
+    console.log("Deleted. Latest: ", gameState.latestWord,"; Target: ", gameState.targetWord);
 /*    updateGame('deleteOne'); */
 }
 
