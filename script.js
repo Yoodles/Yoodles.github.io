@@ -140,6 +140,38 @@ function emptyTextInputBox() {
 }
 
 
+//====BEST SCORES====//
+//UPDATE BEST SCORE FOR THE ROUND ❗️❗️(CHECK IF BEST SCORE?)
+function checkAndUpdateBestScoreIndex() { //just at end of round?
+    const indexNum = gameState.wordPair.currentPairIndex;
+    // Check for existing best score, update, and return latest best score
+    //(="If there's no best score for the index no. in bestScoreIndex corresponding to crntPairIndex, or if the moveCounter is lower than it, then the moveCounter shall be the new bestScore in the index")
+    if (!gameState.wordPair.bestScoreIndex[indexNum] || gameState.moveCounter < gameState.wordPair.bestScoreIndex[indexNum]) {
+        gameState.wordPair.bestScoreIndex[indexNum] = gameState.moveCounter;
+
+    /*    return gameState.wordPair.bestScoreIndex[indexNum] || gameState.moveCounter; */
+    }
+    console.log("BestScore: " + gameState.wordPair.bestScoreIndex[indexNum]);
+}
+
+//SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
+function showLatestBestScore() {
+    let bestScoreDisplay = document.getElementById('bestScore');
+    let latestBestScore = gameState.wordPair.bestScoreIndex[gameState.wordPair.currentPairIndex] || "--";
+    console.log("Best Score: ", latestBestScore);
+    ////Animation if updated: if it's POSTROUND (i.e. not start of game) and (moveCounter  < latestBestScore), animation
+    bestScoreDisplay.innerText = "Low Score: " + latestBestScore;
+}
+
+//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
+function updateMoveCounterUI() {
+    document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
+}
+
+
+
+
+
 // FUNCTION: Update the latest and target word based on the current directional configuration
 function updateLatestAndTargetWord() {
     const { upperRackArray, wordAtTop, lowerRackArray, wordAtBottom } = getDirectionalConfig();
@@ -177,36 +209,6 @@ function toggleFlip() {
 
 
 
-//====BEST SCORES====//
-//UPDATE BEST SCORE FOR THE ROUND ❗️❗️(CHECK IF BEST SCORE?)
-function checkAndUpdateBestScoreIndex() { //just at end of round?
-    const indexNum = gameState.wordPair.currentPairIndex;
-    // Check for existing best score, update it, and return latest best score
-    //(="If there's no best score for the index no. in bestScoreIndex corresponding to crntPairIndex, or if the moveCounter is lower than it, then the moveCounter shall be the new bestScore in the index")
-    if (!gameState.wordPair.bestScoreIndex[indexNum] || gameState.moveCounter < gameState.wordPair.bestScoreIndex[indexNum]) {
-        gameState.wordPair.bestScoreIndex[indexNum] = gameState.moveCounter;
-
-    /*    return gameState.wordPair.bestScoreIndex[indexNum] || gameState.moveCounter; */
-    }
-    console.log("BestScore: " + gameState.wordPair.bestScoreIndex[indexNum]);
-}
-
-
-//SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
-function showLatestBestScore() {
-    let bestScoreDisplay = document.getElementById('bestScore');
-    let latestBestScore = gameState.wordPair.bestScoreIndex[gameState.wordPair.currentPairIndex] || "--";
-    console.log("Best Score: ", latestBestScore);
-    ////Animation if updated: if it's POSTROUND (i.e. not start of game) and (moveCounter  < latestBestScore), animation
-    bestScoreDisplay.innerText = "Low Score: " + latestBestScore;
-}
-
-
-
-//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
-function updateMoveCounterUI() {
-    document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
-}
 
 
 //HANDLING THE INPUT
@@ -214,7 +216,7 @@ function updateMoveCounterUI() {
 function addToCorrectArray(word) {
     let currentDirectionalConfig = getDirectionalConfig();
     currentDirectionalConfig.upperRackArray.push(word);
-    // console.log("upperRackArrayに入ってる言葉の数は", currentDirectionalConfig.upperRackArray.length) 
+
     if (currentDirectionalConfig.upperRackArray.length === 1) {
         upperDeleter.classList.remove('invisible');
     }
