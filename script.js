@@ -226,36 +226,6 @@ function addToCorrectArray(word) {
 
 ////GENERATING WORD TILES////
 
-//GETTING THE INPUTWORD CONT READY // ❗️❗️❗️❗️❗️ロード後にたくさん作らせとく
-/*
-function prepareInputWordCont() {
-    let currentDirectionalConfig = getDirectionalConfig();
-    const placeInRack = currentDirectionalConfig.upperRackArray.length;
-    console.log("upperRackArray.length: ", currentDirectionalConfig.upperRackArray.length);
-    let wordCont;
-
-    const rackDivs = currentDirectionalConfig.upperRack.children;
-
-    if (rackDivs && placeInRack < rackDivs.length) {
-        wordCont = rackDivs[placeInRack];
-    } else {
-        wordCont = document.createElement('div');
-        currentDirectionalConfig.upperRack.appendChild(wordCont);
-    }
-
-    // Ensure wordCont is empty before adding new tiles
-    wordCont.innerHTML = '';
-
-    // Prepare 6 empty divs inside wordCont
-    for (let i = 0; i < 6; i++) {
-        let tileCont = document.createElement('div');
-        wordCont.appendChild(tileCont);
-    }
-    wordCont.classList.add('wordCont');
-    return wordCont;
-}
-*/
-
 function highlightMatchingLettersBasedOnWords(inputWord, endWord) {
     const inputTiles = currentDirectionalConfig.upperRack.lastElementChild.querySelectorAll('.tiles');
     const endTiles = endWordRack.querySelectorAll('.tiles');
@@ -294,10 +264,8 @@ function makeTilesFor(word) {
         }
         wordCont.classList.remove('hidden'); /////// ❓❓❓❓❓❓❓
     }
-
 }
 */
-
 
 
 function makeTilesFor(word) {
@@ -320,6 +288,36 @@ function getWordContainer(word) {
     if (word === gameState.wordPair.endWord) return endWordRack;
     return prepareInputWordCont();
 }
+
+//GETTING THE INPUTWORD CONT READY // ❗️❗️❗️❗️❗️ロード後にたくさん作らせとく
+
+/*
+function prepareInputWordCont() {
+    let currentDirectionalConfig = getDirectionalConfig();
+    const placeInRack = currentDirectionalConfig.upperRackArray.length;
+    console.log("upperRackArray.length: ", currentDirectionalConfig.upperRackArray.length);
+    let wordCont;
+
+    const rackDivs = currentDirectionalConfig.upperRack.children;
+
+    if (rackDivs && placeInRack < rackDivs.length) {
+        wordCont = rackDivs[placeInRack];
+    } else {
+        wordCont = document.createElement('div');
+        currentDirectionalConfig.upperRack.appendChild(wordCont);
+    }
+
+    // Ensure wordCont is empty before adding new tiles
+    wordCont.innerHTML = '';
+
+    // Prepare 6 empty divs inside wordCont
+    for (let i = 0; i < 6; i++) {
+        let tileCont = document.createElement('div');
+        wordCont.appendChild(tileCont);
+    }
+    wordCont.classList.add('wordCont');
+    return wordCont;
+}*/
 
 function prepareInputWordCont() {
     const { upperRack, upperRackArray } = getDirectionalConfig();
