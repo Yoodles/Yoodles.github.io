@@ -109,7 +109,7 @@ body {
     justify-content: space-between;
 }
 
-.tiles {
+.tile {
     display: flex;
     justify-content: center;
     align-content: center;

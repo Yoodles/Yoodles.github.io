@@ -117,21 +117,16 @@ function hideClass(className) {
 function emptyInputRacks() {
     // Function to clear the contents of each tile and reset classes
     function clearAndResetWordCont(wordCont) {
-        const tiles = wordCont.querySelectorAll('div');
-        tiles.forEach(tile => {
-            tile.textContent = '';  // Clear text content of each tile
-            tile.classList.remove('tiles');  // Remove 'tiles' class from each tile
+
+        wordCont.querySelectorAll('div').forEach(tile => {
+            tile.textContent = '';  // Clear text on tile
+            tile.classList.remove('tile');  // Remove 'tiles' class from each tile
         });
 
         wordCont.classList.remove('wordCont');  // Remove 'wordCont' class from the word container
     }
 
-    // Get all wordConts in normInputRack and flipInputRack and process them
-    const normWordConts = normInputRack.querySelectorAll('.wordCont');
-    const flipWordConts = flipInputRack.querySelectorAll('.wordCont');
-
-    normWordConts.forEach(clearAndResetWordCont);
-    flipWordConts.forEach(clearAndResetWordCont);
+    document.querySelectorAll('#normInputRack .wordCont, #flipInputRack .wordCont').forEach(clearAndResetWordCont);
 }
 
 ////CLEARING TEXT INPUT BOX
@@ -216,8 +211,8 @@ function toggleFlip() {
 ////GENERATING WORD TILES////
 
 function highlightMatchingLettersBasedOnWords(inputWord, endWord) {
-    const inputTiles = currentDirectionalConfig.upperRack.lastElementChild.querySelectorAll('.tiles');
-    const endTiles = endWordRack.querySelectorAll('.tiles');
+    const inputTiles = currentDirectionalConfig.upperRack.lastElementChild.querySelectorAll('.tile');
+    const endTiles = endWordRack.querySelectorAll('.tile');
 
     for (let i = 0; i < inputWord.length; i++) {
         if (i < endWord.length && inputWord[i].toUpperCase() === endWord[i].toUpperCase()) {
@@ -235,7 +230,7 @@ function makeTilesFor(word) {
     tileConts.forEach((tile, i) => {
         const isVisible = i < word.length;
         tile.textContent = isVisible ? word[i].toUpperCase() : '';
-        tile.classList.toggle('tiles', isVisible);
+        tile.classList.toggle('tile', isVisible);
         tile.classList.toggle('hidden', !isVisible);
         if (isVisible) tile.style.animationDelay = `${i * 0.2}s`;
     });
