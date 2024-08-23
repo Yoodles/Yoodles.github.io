@@ -83,18 +83,18 @@ function getDirectionalConfig() {
         };
     }
 }
-//let currentDirectionalConfig;
 
 
 //// DEBUGGING: DISPLAY CONTENT OF ARRAYS TO VERIFY
-function displayArrays() {
+function logContentOfArrays() {
     console.log('Norm Inputs:', gameState.normInputArray);
     console.log('Flip Inputs:', gameState.flipInputArray);
 }
 
 function showOrHideGameArea(which) { //toggleでも
-    if (which === 'show') gameArea.classList.remove('hidden');
-    else gameArea.classList.add('hidden');    
+    which === 'show'
+        ? gameArea.classList.remove('hidden')
+        : gameArea.classList.add('hidden');    
 }
  
 
@@ -278,7 +278,7 @@ function prepareInputWordCont() {
 
 
 //// GENERATE TILES FOR ROUND'S WORDPAIR //"if preRound""にすれば、argumentもこのfunctionも要らない？
-function makeWordPairTiles() {
+function makeInitialPairTiles() {
     makeTilesFor(gameState.wordPair.startWord);
     makeTilesFor(gameState.wordPair.endWord);
 }
@@ -297,23 +297,16 @@ function submitMove() {
 
         const { upperRackArray } = getDirectionalConfig();
         upperRackArray.push(inputWord);
-        console.log("Upper Array", currentDirectionalConfig.upperRackArray);
+        console.log("Upper Array", upperRackArray);
 
         if (upperRackArray.length === 1) upperDeleter.classList.remove('invisible');
 
         makeTilesFor(inputWord);
 
         // If round complete
-        // updateGame(inputWord === gameState.targetWord ? 'completeRound' : 'midRound');
-
-        // (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
-        //     ? updateGame('completeRound')
-        //     : updateGame('midRound');
-
-        updateGame(inputWord === gameState.targetWord || inputWord === gameState.latestWord
+         (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
             ? updateGame('completeRound')
-            : updateGame('midRound')
-        );
+            : updateGame('midRound');
 
         // emptyTextInputBox();
         updateLatestAndTargetWord(); //要る？
@@ -371,7 +364,7 @@ function updateUI(phase) {
             hideClass('preRound');
             showClass('postRound');
             emptyTextInputBox(); //消しとかないと？でも"BACK"した時
-            displayArrays();
+            // showContentOfArrays();
             break;
 
         case 'midRound':
@@ -425,7 +418,7 @@ function updateGame(action) {
                 updateDirectionUI();
                 updateUI('preRound');
 
-                makeWordPairTiles(); //Animationをリセットするか否か
+                makeInitialPairTiles(); //Animationをリセットするか否か
                 
                 showLatestBestScore(); //ここ？
             }
@@ -451,7 +444,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setInitialPairAndLengths(0);
     setInitialGameState();
 
-    makeWordPairTiles();
+    makeInitialPairTiles();
     showLatestBestScore();
     
     document.getElementById('currentInput').focus();
