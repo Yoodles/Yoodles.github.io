@@ -212,17 +212,6 @@ function toggleFlip() {
 
 
 //HANDLING THE INPUT
-////FUNC: ADD INPUT TO RIGHT ARRAYS ❓❓❓❓//　ちゃんとこの時点でconfigが平気か❓❓❓❓ DELETEどこでcall
-function addToCorrectArray(word) {
-    let currentDirectionalConfig = getDirectionalConfig();
-    currentDirectionalConfig.upperRackArray.push(word);
-
-    if (currentDirectionalConfig.upperRackArray.length === 1) {
-        upperDeleter.classList.remove('invisible');
-    }
-    console.log("Upper Array", currentDirectionalConfig.upperRackArray);
-}
-
 
 ////GENERATING WORD TILES////
 
@@ -265,7 +254,7 @@ function prepareInputWordCont() {
     const { upperRack, upperRackArray } = getDirectionalConfig();
     const placeInRack = upperRackArray.length;
     const rackDivs = upperRack.children;
-    
+
     let wordCont;
 
     if (rackDivs && placeInRack < rackDivs.length) {
@@ -295,9 +284,20 @@ function makeWordPairTiles() {
 }
 
 
+function addToCorrectArray(word) {
+    let currentDirectionalConfig = getDirectionalConfig();
+    currentDirectionalConfig.upperRackArray.push(word);
+
+    if (currentDirectionalConfig.upperRackArray.length === 1) {
+        upperDeleter.classList.remove('invisible');
+    }
+    console.log("Upper Array", currentDirectionalConfig.upperRackArray);
+}
+
+//消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
+
 //FUNC: SUBMITTING A MOVE
 function submitMove() {
-    // Set text box content as inputWord
     let inputWord = document.getElementById('currentInput').value.toLowerCase();
 
     // Check if input is valid...
@@ -308,24 +308,15 @@ function submitMove() {
         addToCorrectArray(inputWord);
         makeTilesFor(inputWord);
 
-        // if (gameState.gamePhase === 'preRound')
-
-        //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
-
         // If round complete
-        if (inputWord === gameState.targetWord || inputWord === gameState.latestWord) {
-            console.log('inputWord matches targetWord');
-            updateGame('completeRound');
-        
-        } else {
-            updateGame('midRound');
-        }
+        (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
+            ? updateGame('completeRound')
+            : updateGame('midRound');
+
         // emptyTextInputBox();
         updateLatestAndTargetWord();
     // 
-    } else {
-        document.getElementById('currentInput').focus(); //要る？
-    }
+    } else document.getElementById('currentInput').focus(); //要る？
 
     console.log("WORD SUBMITTED. Latest Word: ", gameState.latestWord, "; Target Word: ", gameState.targetWord);
 }
@@ -412,7 +403,6 @@ function updateGame(action) {
 
         case 'completeRound':
             gameState.gamePhase = 'postRound';
-            checkAndUpdateBestScoreIndex(); //重複
             console.log("ROUND COMPLETE");
             checkAndUpdateBestScoreIndex(); //SUBMITでやったっけ？
             //INSERT fade-out animation etc.
