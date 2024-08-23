@@ -238,6 +238,35 @@ function highlightMatchingLettersBasedOnWords(inputWord, endWord) {
     }
 }
 
+/*
+function makeTilesFor(word) {
+    let wordCont;
+    if (word === gameState.wordPair.startWord || word === gameState.wordPair.endWord) {
+        wordCont = word === gameState.wordPair.startWord ? startWordRack : endWordRack;
+    } else wordCont = prepareInputWordCont();
+    
+    fillAndShowTiles(word, wordCont);
+
+    function fillAndShowTiles(word, wordCont) {
+        let tileConts = wordCont.querySelectorAll('div');
+    
+        for (let i = 0; i < tileConts.length; i++) {
+            if (i < word.length) {
+                tileConts[i].textContent = word[i].toUpperCase();
+                tileConts[i].classList.add('tiles');
+                tileConts[i].classList.remove('hidden');
+                tileConts[i].style.animationDelay = `${i * 0.2}s`;
+            } else {
+                tileConts[i].textContent = '';
+                tileConts[i].classList.remove('tiles');
+                tileConts[i].classList.add('hidden');
+            }
+        }
+        wordCont.classList.remove('hidden'); /////// ❓❓❓❓❓❓❓
+    }
+}
+*/
+
 
 function makeTilesFor(word) {
     const wordCont = getWordContainer(word);
@@ -260,12 +289,40 @@ function getWordContainer(word) {
     return prepareInputWordCont();
 }
 
-//GETTING THE INPUTWORD CONT READY
+//GETTING THE INPUTWORD CONT READY // ❗️❗️❗️❗️❗️ロード後にたくさん作らせとく
+
+/*
+function prepareInputWordCont() {
+    let currentDirectionalConfig = getDirectionalConfig();
+    const placeInRack = currentDirectionalConfig.upperRackArray.length;
+    console.log("upperRackArray.length: ", currentDirectionalConfig.upperRackArray.length);
+    let wordCont;
+
+    const rackDivs = currentDirectionalConfig.upperRack.children;
+
+    if (rackDivs && placeInRack < rackDivs.length) {
+        wordCont = rackDivs[placeInRack];
+    } else {
+        wordCont = document.createElement('div');
+        currentDirectionalConfig.upperRack.appendChild(wordCont);
+    }
+
+    // Ensure wordCont is empty before adding new tiles
+    wordCont.innerHTML = '';
+
+    // Prepare 6 empty divs inside wordCont
+    for (let i = 0; i < 6; i++) {
+        let tileCont = document.createElement('div');
+        wordCont.appendChild(tileCont);
+    }
+    wordCont.classList.add('wordCont');
+    return wordCont;
+}*/
+
 function prepareInputWordCont() {
     const { upperRack, upperRackArray } = getDirectionalConfig();
     const placeInRack = upperRackArray.length;
     const rackDivs = upperRack.children;
-    
     let wordCont;
 
     if (rackDivs && placeInRack < rackDivs.length) {
