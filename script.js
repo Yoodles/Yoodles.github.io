@@ -90,12 +90,6 @@ function logContentOfArrays() {
     console.log('Norm Inputs:', gameState.normInputArray);
     console.log('Flip Inputs:', gameState.flipInputArray);
 }
-
-function showOrHideGameArea(which) { //toggleでも
-    which === 'show'
-        ? gameArea.classList.remove('hidden')
-        : gameArea.classList.add('hidden');    
-}
  
 
 //====UTILITY FUNCTIONS====//
@@ -113,22 +107,14 @@ function hideClass(className) {
     });
 }
 
+function showOrHideGameArea(which) { //toggleでも
+    which === 'show'
+        ? gameArea.classList.remove('hidden')
+        : gameArea.classList.add('hidden');    
+}
+
+
 ////EMPTYING CONTAINERS and CONTAINER RACKS ❗️❗️❗️❗️❗️❗️
-// function emptyInputRacks() {
-//     // Function to clear the contents of each tile and reset classes
-//     function clearAndResetWordCont(wordCont) {
-
-//         wordCont.querySelectorAll('div').forEach(tile => {
-//             tile.textContent = '';
-//             tile.classList.remove('tile');
-//         });
-
-//         wordCont.classList.remove('wordCont');  // Remove 'wordCont' class from the word container
-//     }
-
-//     document.querySelectorAll('#normInputRack .wordCont, #flipInputRack .wordCont').forEach(clearAndResetWordCont);
-// }
-
 function emptyInputRacks() {
     document.querySelectorAll('#normInputRack .wordCont, #flipInputRack .wordCont').forEach(wordCont => {
         wordCont.querySelectorAll('div').forEach(tile => {
@@ -153,12 +139,9 @@ function checkAndUpdateBestScoreIndex() { //just at end of round?
     //(="If there's no best score for the index no. in bestScoreIndex corresponding to crntPairIndex, or if the moveCounter is lower than it, then the moveCounter shall be the new bestScore in the index")
     if (!gameState.wordPair.bestScoreIndex[indexNum] || gameState.moveCounter < gameState.wordPair.bestScoreIndex[indexNum]) {
         gameState.wordPair.bestScoreIndex[indexNum] = gameState.moveCounter;
-
-    /*    return gameState.wordPair.bestScoreIndex[indexNum] || gameState.moveCounter; */
     }
     console.log("BestScore: " + gameState.wordPair.bestScoreIndex[indexNum]);
 }
-
 //SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
 function showLatestBestScore() {
     let bestScoreDisplay = document.getElementById('bestScore');
@@ -167,13 +150,10 @@ function showLatestBestScore() {
     ////Animation if updated: if it's POSTROUND (i.e. not start of game) and (moveCounter  < latestBestScore), animation
     bestScoreDisplay.innerText = "Low Score: " + latestBestScore;
 }
-
 //UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
 function updateMoveCounterUI() {
     document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
 }
-
-
 
 
 
@@ -204,40 +184,27 @@ function updateDirectionUI() {
 function toggleFlip() {
     gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
 
-    /* console.log("Word at Top/Upper Rack Array ", currentDirectionalConfig.wordAtTop, currentDirectionalConfig.upperRackArray); */
     updateDirectionUI();
     updateLatestAndTargetWord();
-    // updateDeleters();
     console.log("Game Mode: ", gameState.gameDirection, ". Latest Word: ", gameState.latestWord,". Target Word: ", gameState.targetWord);
     updateGame();
 }
 
 
-
+//"if preRound""にすれば、argumentもこのfunctionも要らない？
+function makeInitialPairTiles() {
+    makeTilesFor(gameState.wordPair.startWord);
+    makeTilesFor(gameState.wordPair.endWord);
+}
 
 
 //HANDLING THE INPUT
 
 ////GENERATING WORD TILES////
-
-function highlightMatchingLettersBasedOnWords(inputWord, endWord) {
-    const inputTiles = currentDirectionalConfig.upperRack.lastElementChild.querySelectorAll('.tile');
-    const endTiles = endWordRack.querySelectorAll('.tile');
-
-    for (let i = 0; i < inputWord.length; i++) {
-        if (i < endWord.length && inputWord[i].toUpperCase() === endWord[i].toUpperCase()) {
-            if (inputTiles[i]) inputTiles[i].classList.add('matching-letter');
-            if (endTiles[i]) endTiles[i].classList.add('matching-letter');
-        }
-    }
-}
-
-
 function makeTilesFor(word) {
     const wordCont = getWordContainer(word);
-    const tileConts = wordCont.querySelectorAll('div');
 
-    tileConts.forEach((tile, i) => {
+    wordCont.querySelectorAll('div').forEach((tile, i) => {
         const isVisible = i < word.length;
         tile.textContent = isVisible ? word[i].toUpperCase() : '';
         tile.classList.toggle('tile', isVisible);
@@ -259,7 +226,6 @@ function prepareInputWordCont() {
     const { upperRack, upperRackArray } = getDirectionalConfig();
     const placeInRack = upperRackArray.length;
     const rackDivs = upperRack.children;
-
     let wordCont;
 
     if (rackDivs && placeInRack < rackDivs.length) {
@@ -279,13 +245,6 @@ function prepareInputWordCont() {
 
     wordCont.classList.add('wordCont');
     return wordCont;
-}
-
-
-//// GENERATE TILES FOR ROUND'S WORDPAIR //"if preRound""にすれば、argumentもこのfunctionも要らない？
-function makeInitialPairTiles() {
-    makeTilesFor(gameState.wordPair.startWord);
-    makeTilesFor(gameState.wordPair.endWord);
 }
 
 
@@ -311,9 +270,8 @@ function submitMove() {
         // If round complete
          (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
             ? updateGame('completeRound')
-            : updateGame('midRound');
+            : updateGame();
 
-        // emptyTextInputBox();
         updateLatestAndTargetWord(); //要る？
 
     } else document.getElementById('currentInput').focus();
@@ -322,7 +280,7 @@ function submitMove() {
 }
 
 
-function updateDeleters() {
+function updateDeleterVisibility() {
     if (gameState.gamePhase === 'postRound') {
         upperDeleter.classList.add('invisible');
         lowerDeleter.classList.add('invisible');
@@ -361,6 +319,7 @@ function updateUI(phase) {
             resultMessage.innerText = "";
             showClass('preRound');
             hideClass('postRound');
+            emptyTextInputBox()
             break;
             //UPDATE MOVE COUNTER
 
@@ -373,7 +332,7 @@ function updateUI(phase) {
             break;
 
         case 'midRound':
-            showClass('preRound', 'midRound');
+            showClass('preRound');
             hideClass('postRound');
             //でも'midRound'だと、Deletersが両方出てない場合ダメ=親funcの最後で回収？
             break;
@@ -381,7 +340,7 @@ function updateUI(phase) {
         default:
             break;
     }
-    updateDeleters();
+    updateDeleterVisibility();
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
     console.log("UPDATEUI: Lat/Targ: ", gameState.latestWord, gameState.targetWord);
 }
@@ -393,6 +352,7 @@ function updateGame(action) {
         case 'resetRound': //TRY AGAINを忘れている？❗️❗️ restartに変える
             setInitialGameState(); //includes phase, arrays
             //INSERT fade-out animation etc.
+            
             emptyInputRacks(); //→ "clearPrevInput"? clarify UI; not in updateUI(preRound)?
             
             getDirectionalConfig(); //ここ？letする必要は？？
@@ -419,7 +379,7 @@ function updateGame(action) {
                 setInitialPairAndLengths();
                 setInitialGameState(); //includes Arrays
                 emptyInputRacks(); //??
-                updateDeleters();
+                updateDeleterVisibility();
                 updateDirectionUI();
                 updateUI('preRound');
 
