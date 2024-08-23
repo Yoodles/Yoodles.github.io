@@ -114,19 +114,29 @@ function hideClass(className) {
 }
 
 ////EMPTYING CONTAINERS and CONTAINER RACKS ❗️❗️❗️❗️❗️❗️
+// function emptyInputRacks() {
+//     // Function to clear the contents of each tile and reset classes
+//     function clearAndResetWordCont(wordCont) {
+
+//         wordCont.querySelectorAll('div').forEach(tile => {
+//             tile.textContent = '';
+//             tile.classList.remove('tile');
+//         });
+
+//         wordCont.classList.remove('wordCont');  // Remove 'wordCont' class from the word container
+//     }
+
+//     document.querySelectorAll('#normInputRack .wordCont, #flipInputRack .wordCont').forEach(clearAndResetWordCont);
+// }
+
 function emptyInputRacks() {
-    // Function to clear the contents of each tile and reset classes
-    function clearAndResetWordCont(wordCont) {
-
+    document.querySelectorAll('#normInputRack .wordCont, #flipInputRack .wordCont').forEach(wordCont => {
         wordCont.querySelectorAll('div').forEach(tile => {
-            tile.textContent = '';  // Clear text on tile
-            tile.classList.remove('tile');  // Remove 'tiles' class from each tile
+            tile.textContent = '';
+            tile.classList.remove('tile');
         });
-
-        wordCont.classList.remove('wordCont');  // Remove 'wordCont' class from the word container
-    }
-
-    document.querySelectorAll('#normInputRack .wordCont, #flipInputRack .wordCont').forEach(clearAndResetWordCont);
+        wordCont.classList.remove('wordCont');
+    });
 }
 
 ////CLEARING TEXT INPUT BOX
