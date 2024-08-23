@@ -227,6 +227,7 @@ function addToCorrectArray(word) {
 ////GENERATING WORD TILES////
 
 //GETTING THE INPUTWORD CONT READY // ❗️❗️❗️❗️❗️ロード後にたくさん作らせとく
+/*
 function prepareInputWordCont() {
     let currentDirectionalConfig = getDirectionalConfig();
     const placeInRack = currentDirectionalConfig.upperRackArray.length;
@@ -253,7 +254,7 @@ function prepareInputWordCont() {
     wordCont.classList.add('wordCont');
     return wordCont;
 }
-
+*/
 
 function highlightMatchingLettersBasedOnWords(inputWord, endWord) {
     const inputTiles = currentDirectionalConfig.upperRack.lastElementChild.querySelectorAll('.tiles');
@@ -267,6 +268,7 @@ function highlightMatchingLettersBasedOnWords(inputWord, endWord) {
     }
 }
 
+/*
 function makeTilesFor(word) {
     let wordCont;
     if (word === gameState.wordPair.startWord || word === gameState.wordPair.endWord) {
@@ -294,6 +296,56 @@ function makeTilesFor(word) {
     }
 
 }
+*/
+
+
+
+function makeTilesFor(word) {
+    const wordCont = getWordContainer(word);
+    const tileConts = wordCont.querySelectorAll('div');
+
+    tileConts.forEach((tile, i) => {
+        const isVisible = i < word.length;
+        tile.textContent = isVisible ? word[i].toUpperCase() : '';
+        tile.classList.toggle('tiles', isVisible);
+        tile.classList.toggle('hidden', !isVisible);
+        if (isVisible) tile.style.animationDelay = `${i * 0.2}s`;
+    });
+
+    wordCont.classList.remove('hidden');
+}
+
+function getWordContainer(word) {
+    if (word === gameState.wordPair.startWord) return startWordRack;
+    if (word === gameState.wordPair.endWord) return endWordRack;
+    return prepareInputWordCont();
+}
+
+function prepareInputWordCont() {
+    const { upperRack, upperRackArray } = getDirectionalConfig();
+    const placeInRack = upperRackArray.length;
+    const rackDivs = upperRack.children;
+    let wordCont;
+
+    if (rackDivs && placeInRack < rackDivs.length) {
+        wordCont = rackDivs[placeInRack];
+    } else {
+        wordCont = document.createElement('div');
+        upperRack.appendChild(wordCont);
+    }
+
+    wordCont.innerHTML = ''; // Clear any existing content
+
+    // Prepare 6 empty divs inside wordCont
+    for (let i = 0; i < 6; i++) {
+        const tileCont = document.createElement('div');
+        wordCont.appendChild(tileCont);
+    }
+
+    wordCont.classList.add('wordCont');
+    return wordCont;
+}
+
 
 //// GENERATE TILES FOR ROUND'S WORDPAIR //"if preRound""にすれば、argumentもこのfunctionも要らない？
 function makeWordPairTiles() {
