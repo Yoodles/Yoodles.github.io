@@ -254,24 +254,6 @@ function prepareInputWordCont() {
     return wordCont;
 }
 
-function fillAndShowTiles(word, wordCont) {
-    let tileConts = wordCont.querySelectorAll('div');
-
-    for (let i = 0; i < tileConts.length; i++) {
-        if (i < word.length) {
-            tileConts[i].textContent = word[i].toUpperCase();
-            tileConts[i].classList.add('tiles');
-            tileConts[i].classList.remove('hidden');
-            tileConts[i].style.animationDelay = `${i * 0.2}s`;
-        } else {
-            tileConts[i].textContent = '';
-            tileConts[i].classList.remove('tiles');
-            tileConts[i].classList.add('hidden');
-        }
-    }
-    wordCont.classList.remove('hidden'); /////// ❓❓❓❓❓❓❓
-}
-
 
 function highlightMatchingLettersBasedOnWords(inputWord, endWord) {
     const inputTiles = currentDirectionalConfig.upperRack.lastElementChild.querySelectorAll('.tiles');
@@ -289,13 +271,28 @@ function makeTilesFor(word) {
     let wordCont;
     if (word === gameState.wordPair.startWord || word === gameState.wordPair.endWord) {
         wordCont = word === gameState.wordPair.startWord ? startWordRack : endWordRack;
-    } else {
-        wordCont = prepareInputWordCont();
-    }
+    } else wordCont = prepareInputWordCont();
+    
     fillAndShowTiles(word, wordCont);
 
-    // Call the highlighting function
-    // highlightMatchingLettersBasedOnWords(word, gameState.wordPair.endWord);
+    function fillAndShowTiles(word, wordCont) {
+        let tileConts = wordCont.querySelectorAll('div');
+    
+        for (let i = 0; i < tileConts.length; i++) {
+            if (i < word.length) {
+                tileConts[i].textContent = word[i].toUpperCase();
+                tileConts[i].classList.add('tiles');
+                tileConts[i].classList.remove('hidden');
+                tileConts[i].style.animationDelay = `${i * 0.2}s`;
+            } else {
+                tileConts[i].textContent = '';
+                tileConts[i].classList.remove('tiles');
+                tileConts[i].classList.add('hidden');
+            }
+        }
+        wordCont.classList.remove('hidden'); /////// ❓❓❓❓❓❓❓
+    }
+
 }
 
 //// GENERATE TILES FOR ROUND'S WORDPAIR //"if preRound""にすれば、argumentもこのfunctionも要らない？
