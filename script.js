@@ -284,41 +284,43 @@ function makeWordPairTiles() {
 }
 
 
-function addToCorrectArray(word) {
-    let currentDirectionalConfig = getDirectionalConfig();
-    currentDirectionalConfig.upperRackArray.push(word);
-
-    if (currentDirectionalConfig.upperRackArray.length === 1) {
-        upperDeleter.classList.remove('invisible');
-    }
-    console.log("Upper Array", currentDirectionalConfig.upperRackArray);
-}
-
 //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
 //FUNC: SUBMITTING A MOVE
 function submitMove() {
-    let inputWord = document.getElementById('currentInput').value.toLowerCase();
+    const inputWord = document.getElementById('currentInput').value.toLowerCase();
 
     // Check if input is valid...
     if (isTotallyValid(inputWord, gameState.latestWord)) {
         // gameState.latestWord = inputWord; //...update latestWord...
-        gameState.moveCounter++; //...& the move counter
+        gameState.moveCounter++;
 
-        addToCorrectArray(inputWord);
+        const { upperRackArray } = getDirectionalConfig();
+        upperRackArray.push(inputWord);
+        console.log("Upper Array", currentDirectionalConfig.upperRackArray);
+
+        if (upperRackArray.length === 1) upperDeleter.classList.remove('invisible');
+
         makeTilesFor(inputWord);
 
         // If round complete
-        (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
+        // updateGame(inputWord === gameState.targetWord ? 'completeRound' : 'midRound');
+
+        // (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
+        //     ? updateGame('completeRound')
+        //     : updateGame('midRound');
+
+        updateGame(inputWord === gameState.targetWord || inputWord === gameState.latestWord
             ? updateGame('completeRound')
-            : updateGame('midRound');
+            : updateGame('midRound')
+        );
 
         // emptyTextInputBox();
-        updateLatestAndTargetWord();
-    // 
-    } else document.getElementById('currentInput').focus(); //要る？
+        updateLatestAndTargetWord(); //要る？
 
-    console.log("WORD SUBMITTED. Latest Word: ", gameState.latestWord, "; Target Word: ", gameState.targetWord);
+    } else document.getElementById('currentInput').focus();
+
+    console.log(`WORD SUBMITTED. Latest Word: ${gameState.latestWord}; Target Word: ${gameState.targetWord}`);
 }
 
 

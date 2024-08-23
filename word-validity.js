@@ -81,6 +81,5 @@ export function isTotallyValid(word, word2) {
     if (!isInWordListOrWordPair(word)) {
         return false;
     }
-    console.log("Valid Word!!");
     return true;
 }
