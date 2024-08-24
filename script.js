@@ -212,6 +212,9 @@ function submitMove() {
     const inputWord = document.getElementById('currentInput').value.toLowerCase();
 
     if (isTotallyValid(inputWord, gameState.latestWord)) {
+
+        console.log("It's valid!");
+
         getDirectionalConfig().upperRackArray.push(inputWord);
         makeTilesFor(inputWord);
         gameState.moveCounter++;
