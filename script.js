@@ -381,6 +381,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     updateBestScoreUI();
     
     document.getElementById('currentInput').focus();
+    console.log("PAGE LOAD: Word Pair: ", wordPair.startWord, wordPair.endWord);
     console.log("PAGE LOAD: Latest/Target: ", gameState.latestWord, gameState.targetWord);
     
     // EVENT LISTENERS for BUTTONS
