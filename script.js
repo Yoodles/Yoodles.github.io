@@ -302,11 +302,16 @@ function deleteOne(which) {
         console.log('Before: ', config.rack, config.array);
 
         // const conts = config.rack.querySelectorAll('.wordCont');
-        config.rack.querySelectorAll('.wordCont').forEach(cont => config.rack.lastElementChild?.remove());
+        const conts = config.rack.querySelectorAll('.wordCont');
+        conts.forEach(cont => config.rack.lastElementChild?.remove());
 
         // if (cont && config.rack.lastElementChild) {
         //     config.rack.removeChild(config.rack.lastElementChild);
         // };
+
+        const wordConts = config.rack.querySelectorAll('.wordCont');
+        wordConts[wordConts.length - 1].remove();
+
 
         console.log('After: ', config.rack, config.array);
     }
