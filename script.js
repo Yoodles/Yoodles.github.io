@@ -304,6 +304,7 @@ function deleteOne(upperOrLower, direction) {
     else deleteButton.classList.add('invisible');     //redundant!!!!! でもどうするか
 
     updateLatestAndTargetWord();
+    updateDeleterVisibility('delete');
     gameState.moveCounter--; //When to display?
     console.log("Deleted. Latest: ", gameState.latestWord,"; Target: ", gameState.targetWord);
 /*    updateGame('deleteOne'); */
