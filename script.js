@@ -299,8 +299,13 @@ function deleteOne(which) {
 
     if (config.array.length > 0) {
         config.array.pop();
-        console.log('lastChild', config.rack, config.array);
-        if (config.rack.lastElementChild) config.rack.removeChild(config.rack.lastElementChild);
+        console.log('Before: ', config.rack, config.array);
+
+        if (config.rack.lastElementChild) {
+            config.rack.removeChild(config.rack.lastElementChild);
+        };
+
+        console.log('After: ', config.rack, config.array);
     }
     gameState.moveCounter--;
     updateGame('delete');
