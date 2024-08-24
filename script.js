@@ -301,9 +301,12 @@ function deleteOne(which) {
         config.array.pop();
         console.log('Before: ', config.rack, config.array);
 
-        if (config.rack.lastElementChild) {
-            config.rack.removeChild(config.rack.lastElementChild);
-        };
+        // const conts = config.rack.querySelectorAll('.wordCont');
+        config.rack.querySelectorAll('.wordCont').forEach(cont => cont.lastElementChild?.remove());
+
+        // if (cont && config.rack.lastElementChild) {
+        //     config.rack.removeChild(config.rack.lastElementChild);
+        // };
 
         console.log('After: ', config.rack, config.array);
     }
