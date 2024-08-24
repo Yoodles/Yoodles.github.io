@@ -272,6 +272,10 @@ function submitMove() {
 //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
 function updateDeleterVisibility(action) {
+
+    const normArray = gameState.normInputArray;
+    const flipArray = gameState.flipInputArray;
+
     if (gameState.gamePhase === 'preRound' || gameState.gamePhase === 'postRound') {
         normDeleter.classList.add('invisible');
         flipDeleter.classList.add('invisible');
@@ -279,12 +283,12 @@ function updateDeleterVisibility(action) {
 
     switch (action) {
         case 'submit':
-            if (normInputArray.length === 1) normDeleter.classList.remove('invisible');
-            if (flipInputArray.length === 1) flipDeleter.classList.remove('invisible');
+            if (normArray.length === 1) normDeleter.classList.remove('invisible');
+            if (flipArray.length === 1) flipDeleter.classList.remove('invisible');
             break;
         case 'delete':
-            if (normInputArray.length === 0) normDeleter.classList.add('invisible');
-            if (flipInputArray.length === 0) flipDeleter.classList.add('invisible');
+            if (normArray.length === 0) normDeleter.classList.add('invisible');
+            if (flipArray.length === 0) flipDeleter.classList.add('invisible');
             break;
         default:
             break;
