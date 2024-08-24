@@ -86,7 +86,7 @@ function getDirectionalConfig() {
 
 
 //// DEBUGGING: DISPLAY CONTENT OF ARRAYS TO VERIFY
-function logContentOfArrays() {
+function logArrays() {
     console.log('Norm Inputs:', gameState.normInputArray);
     console.log('Flip Inputs:', gameState.flipInputArray);
 }
@@ -198,8 +198,6 @@ function makeInitialPairTiles() {
 }
 
 
-//HANDLING THE INPUT
-
 ////GENERATING WORD TILES////
 function makeTilesFor(word) {
     const wordCont = getWordContainer(word);
@@ -211,7 +209,7 @@ function makeTilesFor(word) {
         tile.classList.toggle('hidden', !isVisible);
         if (isVisible) tile.style.animationDelay = `${i * 0.2}s`;
     });
-
+    console.log('makeTilesfor called for ' + word);
     wordCont.classList.remove('hidden');
 }
 
