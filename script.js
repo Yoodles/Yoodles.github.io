@@ -271,7 +271,6 @@ function updateDeleterVisibility(action) {
 
     const normArray = gameState.normInputArray;
     const flipArray = gameState.flipInputArray;
-    console.log('updateDeleterVisibility called: ', action);
 
     if (gameState.gamePhase === 'preRound' || gameState.gamePhase === 'postRound') {
         normDeleter.classList.add('invisible');
@@ -300,6 +299,7 @@ function deleteOne(which) {
 
     if (config.array.length > 0) {
         config.array.pop();
+        console.log(config.rack.lastChild);
         if (config.rack.lastChild) config.rack.removeChild(config.rack.lastChild);
     }
     gameState.moveCounter--;
