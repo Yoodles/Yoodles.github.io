@@ -252,7 +252,6 @@ function submitMove() {
     const inputWord = document.getElementById('currentInput').value.toLowerCase();
 
     if (isTotallyValid(inputWord, gameState.latestWord)) {
-        gameState.moveCounter++;
 
         const upperArray = getDirectionalConfig().upperRackArray;
         upperArray.push(inputWord);
@@ -263,12 +262,9 @@ function submitMove() {
             ? updateGame('completeRound')
             : updateGame('submit');
 
-        updateLatestAndTargetWord();
         console.log("Upper Array", upperArray);
 
     } else document.getElementById('currentInput').focus(); //i.e. if isTotallyValid returns "false"
-
-    console.log(`INPUTTED. Latest Word: ${gameState.latestWord}; Target Word: ${gameState.targetWord}`);
 }
 
 
@@ -300,37 +296,49 @@ function updateDeleterVisibility(action) {
 
 //FUNC: DELETE LAST INPUT (x TWO BUTTONS)
 function deleteOne(which) {
-    let deleter, rack, array;
+    let rack, array;
 
     if (which === 'norm') {
-        deleter = normDeleter;
         rack = normInputRack;
         array = gameState.normInputArray;
     } else if (which === 'flip') {
-        deleter = flipDeleter;
         rack = flipInputRack;
         array = gameState.flipInputArray;
     }
 
     if (array.length > 0) {
         array.pop();
-        if (rack.lastChild) rack.removeChild(rack.lastChild);   /////lastElementChildじゃなくて良いのか❓
+        if (rack.lastChild) rack.removeChild(rack.lastChild);
     }
-
-    updateLatestAndTargetWord();
-    updateDeleterVisibility('delete');
-    gameState.moveCounter--; //When to display?
-    console.log("Deleted. Latest: ", gameState.latestWord,"; Target: ", gameState.targetWord);
-/*    updateGame('deleteOne'); */
+    updateGame('delete');
 }
 
 
 function updateGame(action) {
     switch (action) {
         case 'submit':
-            updateDeleterVisibility('submit');
+            gameState.moveCounter++;
+
             emptyTextInputBox();
+            updateLatestAndTargetWord();
+
+            updateDeleterVisibility('submit');
+
+            console.log(`INPUTTED. Latest Word: ${gameState.latestWord}; Target Word: ${gameState.targetWord}`);
+
             break;
+
+        case 'delete':
+            gameState.moveCounter--; //When to display?
+
+            emptyTextInputBox();
+            updateLatestAndTargetWord();
+            updateDeleterVisibility('delete');
+
+            console.log("Deleted. Latest: ", gameState.latestWord,"; Target: ", gameState.targetWord);
+
+            break;
+
 
         case 'completeRound':
             gameState.gamePhase = 'postRound';
@@ -340,8 +348,8 @@ function updateGame(action) {
             resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
             hideClass('preRound');
             showClass('postRound');
+            
             updateDeleterVisibility();
-            emptyTextInputBox(); //消しとかないと？でも"BACK"した時
 
             break;
 
@@ -372,10 +380,6 @@ function updateGame(action) {
                 
                 showLatestBestScore(); //ここ？
             }
-            break;
-
-        case 'deleteOne':
-            updateDeleterVisibility('delete');
             break;
 
         default:
