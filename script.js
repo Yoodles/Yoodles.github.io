@@ -278,7 +278,7 @@ function updateDeleterVisibility(action) {
         flipDeleter.classList.add('invisible');
         return;
     };
-
+    console.log('updateDeleterVisibility called 2: ', action);
     switch (action) {
         case 'submit':
             if (normArray.length === 1) normDeleter.classList.remove('invisible');
