@@ -164,39 +164,6 @@ function updateMoveCounterUI() {
 
 
 
-// FUNCTION: Update the latest and target word based on the current directional configuration
-function updateLatestAndTargetWord() {
-    const { upperRackArray, wordAtTop, lowerRackArray, wordAtBottom } = getDirectionalConfig();
-    gameState.latestWord = upperRackArray.length ? upperRackArray.at(-1) : wordAtTop;
-    gameState.targetWord = lowerRackArray.length ? lowerRackArray.at(-1) : wordAtBottom;
-}
-
-// FUNCTION: Update UI direction after toggling flip state (DELETERSももしや?あと、GAME LOGICとUIを一緒でいいのか)
-function updateDirectionUI() {
-    const elementsToUpdate = [
-        document.getElementById('gameplayCont'),
-        document.getElementById('flipperAndDeleters')
-    ];
-    elementsToUpdate.forEach(element => {
-        if (element) {
-            gameState.gameDirection === 'flip'
-                ? element.setAttribute('data-flip', '')
-                : element.removeAttribute('data-flip');
-        }
-    });
-}
-
-
-//FUNC: FLIPPING (AND UPDATING LATEST/TARGET WORDS)
-function toggleFlip() {
-    gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
-
-    updateDirectionUI();
-    updateLatestAndTargetWord();
-    console.log("Game Mode: ", gameState.gameDirection, ". Latest Word: ", gameState.latestWord,". Target Word: ", gameState.targetWord);
-    updateGame();
-}
-
 
 ////GENERATING WORD TILES////
 function makeTilesFor(word, rack) {
@@ -241,8 +208,6 @@ function prepareInputWordCont() {
     return wordCont;
 }
 
-
-
 //FUNC: SUBMITTING A MOVE
 function submitMove() {
     const inputWord = document.getElementById('currentInput').value.toLowerCase();
@@ -259,6 +224,44 @@ function submitMove() {
 
     } else document.getElementById('currentInput').focus(); //i.e. if isTotallyValid returns "false"
 }
+
+
+
+
+// FUNCTION: Update the latest and target word based on the current directional configuration
+function updateLatestAndTargetWord() {
+    const { upperRackArray, wordAtTop, lowerRackArray, wordAtBottom } = getDirectionalConfig();
+    gameState.latestWord = upperRackArray.length ? upperRackArray.at(-1) : wordAtTop;
+    gameState.targetWord = lowerRackArray.length ? lowerRackArray.at(-1) : wordAtBottom;
+}
+
+// FUNCTION: Update UI direction after toggling flip state (DELETERSももしや?あと、GAME LOGICとUIを一緒でいいのか)
+function updateDirectionUI(direction) {
+    const elementsToUpdate = [
+        document.getElementById('gameplayCont'),
+        document.getElementById('flipperAndDeleters')
+    ];
+
+    elementsToUpdate.forEach(element => {
+        if (element) {
+            if (direction === 'flip') element.setAttribute('data-flip', '')
+            else if (direction === 'norm') element.removeAttribute('data-flip');
+        }
+    });
+}
+
+
+//FUNC: FLIPPING (AND UPDATING LATEST/TARGET WORDS)
+function toggleFlip() {
+    gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
+
+    updateDirectionUI(gameState.gameDirection);
+    updateLatestAndTargetWord();
+    console.log("Game Mode: ", gameState.gameDirection, ". Latest Word: ", gameState.latestWord,". Target Word: ", gameState.targetWord);
+    updateGame();
+}
+
+
 
 
 //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
@@ -313,11 +316,23 @@ function updateUI(stateOrAction) {
         hideClass('preRound');
         showClass('postRound');
         emptyTextInputBox();
+
+        resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
+
+        showLatestBestScore();
     }
     else if (stateOrAction === 'preRound') {
         showClass('preRound');
         hideClass('postRound');
+        updateDirectionUI('norm');
+
         emptyTextInputBox();
+        showLatestBestScore();
+    }
+
+    if (stateOrAction === 'submit' || stateOrAction === 'delete') {
+        emptyTextInputBox();
+        document.getElementById('currentInput').focus();
     }
 }
 
@@ -326,33 +341,25 @@ function updateGame(action) {
         case 'submit':
         case 'delete':
             gameState.gamePhase = 'midRound';
-            emptyTextInputBox();
-            updateLatestAndTargetWord();
-
             updateUI(action);
-            document.getElementById('currentInput').focus();
-
-            console.log(`${action} performed. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
+            updateLatestAndTargetWord();
             break;
 
         case 'completeRound':
             gameState.gamePhase = 'postRound';
-            gameState.resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
-
-            checkAndUpdateBestScoreIndex(); //SUBMITでやったっけ？
-
             updateUI('postRound');
+            checkAndUpdateBestScoreIndex();
 
-            console.log("ROUND COMPLETE");
+            console.log("ROUND COMPLETE!!");
             break;
 
         case 'resetRound': //TRY AGAINを忘れている？❗️❗️ restartに変える
             setInitialGameState(); //includes phase, arrays
-            
             emptyInputRacks(); //→ "clearPrevInput"? clarify UI; not in resetToPreroundUI()?
             
             getDirectionalConfig(); //ここ？letする必要は？？
-            showLatestBestScore(); //???
+
+            updateUI('preRound');
 
             break;
 
@@ -365,20 +372,21 @@ function updateGame(action) {
                 setInitialPairAndLengths();
 
                 setInitialGameState(); //includes Arrays
-                emptyInputRacks(); //??
+                emptyInputRacks();
 
-                updateDirectionUI();
+                updateUI('preRound');
 
-                makeInitialPairTiles(); //Animationをリセットするか否か
-                
-                showLatestBestScore(); //ここ？
+                makeInitialPairTiles(); //Animationをリセットするか否か                
             }
             break;
     };
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 
-    console.log("UPDATEGAME: Latest/Targest: ", gameState.latestWord, gameState.targetWord);
     document.getElementById('currentInput').focus(); //FOCUS;
+
+
+    console.log(`${action} performed. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
+
 }
 
 
