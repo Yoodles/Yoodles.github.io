@@ -303,15 +303,15 @@ function deleteOne(which) {
     updateGame('delete');
 }
 
-function updateUI(state) {
-    updateDeleterVisibility(action);
+function updateUI(stateOrAction) {
+    updateDeleterVisibility(stateOrAction);
 
-    if (state === 'postRound') {
+    if (stateOrAction === 'postRound') {
         hideClass('preRound');
         showClass('postRound');
         emptyTextInputBox();
     }
-    else if (state === 'preRound') {
+    else if (stateOrAction === 'preRound') {
         showClass('preRound');
         hideClass('postRound');
         emptyTextInputBox();
@@ -326,7 +326,7 @@ function updateGame(action) {
             emptyTextInputBox();
             updateLatestAndTargetWord();
 
-            updateUI();
+            updateUI(action);
             document.getElementById('currentInput').focus();
 
             console.log(`${action} performed. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
