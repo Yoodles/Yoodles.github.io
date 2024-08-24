@@ -110,8 +110,6 @@ function updateMoveCounterUI() {
 }
 
 
-
-
 ////GENERATING WORD TILES////
 function makeTilesFor(word, rack) {
     let wordCont;
@@ -246,7 +244,6 @@ function updateDeleters(action) {
 }
 
 
-//FUNC: DELETE LAST INPUT (x TWO BUTTONS)
 function deleteMove(which) {
     const config = which === 'norm'
         ? { rack: normInputRack, array: gameState.normInputArray }
@@ -327,20 +324,22 @@ function updateGame(action) {
 
         // SKIP ROUNDとの違い：if postRoundだったらpreRoundを消す？？ リストの長さと合うか確認 // TRY AGAINを忘れている？❗️❗️ restartに変える
         case 'nextRound':
+            resetGameState();
             wordPair.currentPairIndex++;
             setWordPairAndLengths();
+            updateUI('preRound');
             buildWordPairTiles();
+            break;
+
         case 'resetRound':
             resetGameState();
 
-            
             console.log("RESET: Word Pair: ", wordPair.startWord, wordPair.endWord);
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             updateUI('preRound');
             break;
     };
     
-
     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
 }
 
