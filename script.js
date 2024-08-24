@@ -22,8 +22,6 @@ export let gameState = { ...initialGameState };
 
 function resetGameState() {
     gameState = { ...initialGameState };
-    // gameState.latestWord = wordPair.startWord;
-    // gameState.targetWord = wordPair.endWord;
 }
 
 export let wordPair = {
@@ -46,6 +44,9 @@ function setWordPairAndLengths() {
 
         wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
         wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
+
+        gameState.latestWord = wordPair.startWord;
+        gameState.targetWord = wordPair.endWord;
     } else {
         document.getElementById('gameArea').innerText = "All Rounds Completed!";
     }
@@ -260,7 +261,10 @@ function deleteMove(which) {
     if (wordConts) wordConts[wordConts.length - 1].remove();
 
     gameState.moveCounter--;
-    updateGame('delete');
+
+    latestWord !== targetWord
+        ? updateGame('delete')
+        : updateGame('completeRound');
 
     console.log('After: ', config.rack, config.array);
 
@@ -319,6 +323,7 @@ function updateGame(action) {
         case 'nextRound':
             wordPair.currentPairIndex++;
             setWordPairAndLengths();
+
             buildWordPairTiles();
         case 'resetRound': 
             resetGameState();
@@ -334,15 +339,13 @@ function updateGame(action) {
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD　//❓❓❓いつconfigは？ 最初にgameAreaを「hidden」にしておく
 document.addEventListener('DOMContentLoaded', (event) => {
 
+    resetGameState();
     setWordPairAndLengths(0);
     buildWordPairTiles();
 
-    resetGameState();
-    updateLatestAndTargetWord();
-
+    checkAndUpdateBestScoreIndex();
     updateBestScoreUI();
     
-    document.getElementById('currentInput').focus();
     console.log("PAGE LOAD: Word Pair: ", wordPair.startWord, wordPair.endWord);
     console.log("PAGE LOAD: Latest/Target: ", gameState.latestWord, gameState.targetWord);
     
