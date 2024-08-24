@@ -272,7 +272,7 @@ function updateDeleterVisibility(action) {
     const normArray = gameState.normInputArray;
     const flipArray = gameState.flipInputArray;
     console.log('updateDeleterVisibility called: ', action);
-    
+
     if (gameState.gamePhase === 'preRound' || gameState.gamePhase === 'postRound') {
         normDeleter.classList.add('invisible');
         flipDeleter.classList.add('invisible');
@@ -311,6 +311,7 @@ function updateGame(action) {
     switch (action) {   
         case 'submit':
         case 'delete':
+            gameState.gamePhase = 'midRound';
             emptyTextInputBox();
             updateLatestAndTargetWord();
             updateDeleterVisibility(action);
