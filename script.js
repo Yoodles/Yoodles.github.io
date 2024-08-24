@@ -42,7 +42,7 @@ function resetGameState() {
 
 
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️⬇️
-// function setInitialPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL rounds completed"は"NEXTROUND"の場合オンリー
+// function setWordPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL rounds completed"は"NEXTROUND"の場合オンリー
 //     index = wordPair.currentPairIndex;
 //     if (wordPair.currentPairIndex < wordPairList.length) {
 
@@ -56,7 +56,7 @@ function resetGameState() {
 //     }
 // }
 
-function setInitialPairAndLengths() {
+function setWordPairAndLengths() {
     const index = wordPair.currentPairIndex;
 
     if (index < wordPairList.length) {
@@ -72,7 +72,7 @@ function setInitialPairAndLengths() {
 
 
 //"if preRound""にすれば、argumentもこのfunctionも要らない？
-function makeInitialPairTiles() {
+function buildWordPairTiles() {
     makeTilesFor(wordPair.startWord, startWordRack);
     makeTilesFor(wordPair.endWord, endWordRack);
 }
@@ -358,8 +358,8 @@ function updateGame(action) {
 
             // Otherwise... 
             wordPair.currentPairIndex++;
-            setInitialPairAndLengths();
-            makeInitialPairTiles();
+            setWordPairAndLengths();
+            buildWordPairTiles();
         case 'resetRound': 
             resetGameState();
             updateUI('preRound');
@@ -373,8 +373,8 @@ function updateGame(action) {
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD　//❓❓❓いつconfigは？ 最初にgameAreaを「hidden」にしておく
 document.addEventListener('DOMContentLoaded', (event) => {
 
-    setInitialPairAndLengths(0);
-    makeInitialPairTiles();
+    setWordPairAndLengths(0);
+    buildWordPairTiles();
 
     resetGameState();
 
