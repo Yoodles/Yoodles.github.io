@@ -47,7 +47,7 @@ function setWordPairAndLengths() {
         wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
         wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
     } else {
-        document.getElementById('gameArea').innerText = "All Rounds Completed!";
+        document.getElementById('gameArea').innerText = "No Word Pair Found!";
     }
 }
 
@@ -208,6 +208,7 @@ function updateLatestAndTargetWord() {
     gameState.targetWord = lowerRackArray.length ? lowerRackArray.at(-1) : wordAtBottom;
 }
 
+
 function updateDirectionUI(direction) {
     const elementsToUpdate = [
         document.getElementById('gameplayCont'),
@@ -279,6 +280,9 @@ function deleteMove(which) {
 }
 
 function updateUI(stateOrAction) {
+    if (stateOrAction === 'no rounds left') {
+        return document.getElementById('gameArea').innerText = "All rounds completed!";
+    }
 
     if (stateOrAction === 'postRound') {
         hideClass('preRound');
@@ -307,21 +311,24 @@ function updateGame(action) {
         case 'submit':
         case 'delete':
             gameState.gamePhase = 'midRound';
-            updateLatestAndTargetWord();
             updateUI(action);
+            updateLatestAndTargetWord();
             break;
 
         case 'completeRound':
             gameState.gamePhase = 'postRound';
+            updateUI('postRound');
             updateLatestAndTargetWord();
             checkAndUpdateBestScoreIndex();
-
-            updateUI('postRound');
             console.log("ROUND COMPLETE!!");
             break;
 
         // SKIP ROUNDとの違い：if postRoundだったらpreRoundを消す？？ リストの長さと合うか確認 // TRY AGAINを忘れている？❗️❗️ restartに変える
         case 'nextRound':
+            // If there are none left, quit
+            if (wordPair.currentPairIndex === wordPairList.length - 1) return updateUI('no rounds left');
+
+            // Otherwise... 
             wordPair.currentPairIndex++;
             setWordPairAndLengths();
             buildWordPairTiles();
