@@ -334,8 +334,8 @@ function updateGame(action) {
             buildWordPairTiles();
 
         case 'resetRound':
-            console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             resetGameState();
+            updateLatestAndTargetWord();
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             updateUI('preRound');
             break;
