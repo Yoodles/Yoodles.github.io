@@ -36,9 +36,8 @@ const initialGameState = {
 
 export let gameState = { ...initialGameState };
 
-function setInitialGameState() {
+function resetGameState() {
     gameState = { ...initialGameState };
-    updateLatestAndTargetWord();
 }
 
 
@@ -139,7 +138,7 @@ function checkAndUpdateBestScoreIndex() { //just at end of round?
 }
 
 //SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
-function showLatestBestScore() {
+function updateBestScoreUI() {
     let bestScoreDisplay = document.getElementById('bestScore');
     let latestBestScore = wordPair.bestScoreIndex[wordPair.currentPairIndex] || "--";
     console.log("Best Score: ", latestBestScore);
@@ -227,7 +226,7 @@ function updateLatestAndTargetWord() {
     gameState.targetWord = lowerRackArray.length ? lowerRackArray.at(-1) : wordAtBottom;
 }
 
-// FUNCTION: Update UI direction after toggling flip state (DELETERSももしや?あと、GAME LOGICとUIを一緒でいいのか)
+
 function updateDirectionUI(direction) {
     const elementsToUpdate = [
         document.getElementById('gameplayCont'),
@@ -242,8 +241,6 @@ function updateDirectionUI(direction) {
     });
 }
 
-
-//FUNC: FLIPPING (AND UPDATING LATEST/TARGET WORDS)
 function toggleFlip() {
     gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
 
@@ -252,8 +249,6 @@ function toggleFlip() {
     console.log("Game Mode: ", gameState.gameDirection, ". Latest Word: ", gameState.latestWord,". Target Word: ", gameState.targetWord);
     updateGame();
 }
-
-
 
 
 //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
@@ -283,7 +278,7 @@ function updateDeleterVisibility(action) {
 
 
 //FUNC: DELETE LAST INPUT (x TWO BUTTONS)
-function deleteOne(which) {
+function deleteMove(which) {
     const config = which === 'norm'
         ? { rack: normInputRack, array: gameState.normInputArray }
         : { rack: flipInputRack, array: gameState.flipInputArray };
@@ -314,7 +309,7 @@ function updateUI(stateOrAction) {
         resetInputRackUI();
     }
 
-    showLatestBestScore();
+    updateBestScoreUI();
 
     if (stateOrAction === 'submit' || stateOrAction === 'delete') {
         document.getElementById('currentInput').focus();
@@ -349,9 +344,9 @@ function updateGame(action) {
             // Otherwise... 
             wordPair.currentPairIndex++;
             setInitialPairAndLengths();
-            makeInitialPairTiles(); //Animationをリセットするか？
+            makeInitialPairTiles();
         case 'resetRound': 
-            setInitialGameState(); // has to be AFTER setInitialPair
+            resetGameState();
             updateUI('preRound');
             break;
 
@@ -364,13 +359,14 @@ function updateGame(action) {
 document.addEventListener('DOMContentLoaded', (event) => {
 
     setInitialPairAndLengths(0);
-    setInitialGameState();
-
     makeInitialPairTiles();
-    showLatestBestScore();
+
+    resetGameState();
+
+    updateBestScoreUI();
     
     document.getElementById('currentInput').focus();
-    // console.log("PAGE LOAD: Latest/Target: ", gameState.latestWord, gameState.targetWord);
+    console.log("PAGE LOAD: Latest/Target: ", gameState.latestWord, gameState.targetWord);
     
     // EVENT LISTENERS for BUTTONS
     document.getElementById('toggleFlip').addEventListener('click', function() {
@@ -392,10 +388,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     updateGame('resetRound');
                     break;
                 case 'normDeleter':
-                    deleteOne('norm');
+                    deleteMove('norm');
                     break;
                 case 'flipDeleter':
-                    deleteOne('flip');
+                    deleteMove('flip');
                     break;
                 default:
             }
