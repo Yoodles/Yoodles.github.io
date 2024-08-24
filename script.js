@@ -41,14 +41,9 @@ function setInitialGameState() {   // 🚨
     gameState.flipInputArray = [];
     gameState.gamePhase = 'preRound';
     gameState.resultMessage = '';
-    resetToPreroundUI();
+    updateUI('preRound');
 }
 
-function resetToPreroundUI() {
-    showClass('preRound');
-    hideClass('postRound');
-    emptyTextInputBox();
-}
 
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️⬇️
 function setInitialPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL rounds completed"は"NEXTROUND"の場合オンリー
@@ -153,6 +148,7 @@ function checkAndUpdateBestScoreIndex() { //just at end of round?
     }
     console.log("BestScore: " + gameState.wordPair.bestScoreIndex[indexNum]);
 }
+
 //SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
 function showLatestBestScore() {
     let bestScoreDisplay = document.getElementById('bestScore');
@@ -268,24 +264,21 @@ function submitMove() {
 //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
 function updateDeleterVisibility(action) {
-
     const normArray = gameState.normInputArray;
     const flipArray = gameState.flipInputArray;
 
-    if (gameState.gamePhase === 'preRound' || gameState.gamePhase === 'postRound') {
-        normDeleter.classList.add('invisible');
-        flipDeleter.classList.add('invisible');
-        return;
-    };
-    console.log('updateDeleterVisibility called 2: ', action);
-    switch (action) {
-        case 'submit':
+    switch (true) {
+
+        case gameState.gamePhase === 'preRound':
+        case gameState.gamePhase === 'postRound':
+        case action === 'delete' && normArray.length === 0 || action === 'delete' && flipArray.length === 0:
+            normDeleter.classList.add('invisible');
+            flipDeleter.classList.add('invisible');
+            break;
+
+        case action === 'submit':
             if (normArray.length === 1) normDeleter.classList.remove('invisible');
             if (flipArray.length === 1) flipDeleter.classList.remove('invisible');
-            break;
-        case 'delete':
-            if (normArray.length === 0) normDeleter.classList.add('invisible');
-            if (flipArray.length === 0) flipDeleter.classList.add('invisible');
             break;
     }
 }
@@ -310,6 +303,20 @@ function deleteOne(which) {
     updateGame('delete');
 }
 
+function updateUI(state) {
+    updateDeleterVisibility(action);
+
+    if (state === 'postRound') {
+        hideClass('preRound');
+        showClass('postRound');
+        emptyTextInputBox();
+    }
+    else if (state === 'preRound') {
+        showClass('preRound');
+        hideClass('postRound');
+        emptyTextInputBox();
+    }
+}
 
 function updateGame(action) {
     switch (action) {   
@@ -318,7 +325,8 @@ function updateGame(action) {
             gameState.gamePhase = 'midRound';
             emptyTextInputBox();
             updateLatestAndTargetWord();
-            updateDeleterVisibility(action);
+
+            updateUI();
             document.getElementById('currentInput').focus();
 
             console.log(`${action} performed. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
@@ -326,12 +334,11 @@ function updateGame(action) {
 
         case 'completeRound':
             gameState.gamePhase = 'postRound';
+            gameState.resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
+
             checkAndUpdateBestScoreIndex(); //SUBMITでやったっけ？
-            resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
-            hideClass('preRound');
-            showClass('postRound');
-            
-            updateDeleterVisibility();
+
+            updateUI('postRound');
 
             console.log("ROUND COMPLETE");
             break;
