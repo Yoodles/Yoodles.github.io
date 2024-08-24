@@ -271,7 +271,8 @@ function updateDeleterVisibility(action) {
 
     const normArray = gameState.normInputArray;
     const flipArray = gameState.flipInputArray;
-
+    console.log('updateDeleterVisibility called: ', action);
+    
     if (gameState.gamePhase === 'preRound' || gameState.gamePhase === 'postRound') {
         normDeleter.classList.add('invisible');
         flipDeleter.classList.add('invisible');
@@ -307,32 +308,31 @@ function deleteOne(which) {
 
 
 function updateGame(action) {
-    switch (action) {
+    switch (action) {   
         case 'submit':
         case 'delete':
             emptyTextInputBox();
             updateLatestAndTargetWord();
             updateDeleterVisibility(action);
+            document.getElementById('currentInput').focus();
 
             console.log(`${action} performed. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             break;
 
         case 'completeRound':
             gameState.gamePhase = 'postRound';
-            console.log("ROUND COMPLETE");
             checkAndUpdateBestScoreIndex(); //SUBMITでやったっけ？
-            //INSERT fade-out animation etc.
             resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
             hideClass('preRound');
             showClass('postRound');
             
             updateDeleterVisibility();
 
+            console.log("ROUND COMPLETE");
             break;
 
         case 'resetRound': //TRY AGAINを忘れている？❗️❗️ restartに変える
             setInitialGameState(); //includes phase, arrays
-            //INSERT fade-out animation etc.
             
             emptyInputRacks(); //→ "clearPrevInput"? clarify UI; not in resetToPreroundUI()?
             
@@ -348,19 +348,16 @@ function updateGame(action) {
             } else {
                 gameState.wordPair.currentPairIndex++;
                 setInitialPairAndLengths();
+
                 setInitialGameState(); //includes Arrays
                 emptyInputRacks(); //??
-                updateDeleterVisibility();
+
                 updateDirectionUI();
 
                 makeInitialPairTiles(); //Animationをリセットするか否か
                 
                 showLatestBestScore(); //ここ？
             }
-            break;
-
-        default:
-            document.getElementById('currentInput').focus(); //でもsubmitがinvalidだったら？ 
             break;
     };
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
