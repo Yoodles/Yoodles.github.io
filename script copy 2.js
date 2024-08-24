@@ -32,18 +32,18 @@ const flipDeleter = document.getElementById('flipDeleter');
 //     resultMessage: ''
 // }
 
-// function setInitialGameState() {   // 🚨 
-//     gameState.latestWord = gameState.wordPair.startWord;
-//     gameState.targetWord = gameState.wordPair.endWord;
-//     gameState.gameDirection = 'norm';
-//     gameState.moveCounter = 0;
-//     gameState.normInputArray = [];
-//     gameState.flipInputArray = [];
-//     gameState.gamePhase = 'preRound';
-//     gameState.resultMessage = '';
-// }
+function setInitialGameState() {   // 🚨 
+    gameState.latestWord = gameState.wordPair.startWord;
+    gameState.targetWord = gameState.wordPair.endWord;
+    gameState.gameDirection = 'norm';
+    gameState.moveCounter = 0;
+    gameState.normInputArray = [];
+    gameState.flipInputArray = [];
+    gameState.gamePhase = 'preRound';
+    gameState.resultMessage = '';
+}
 
-export let wordPair = {
+const wordPair = {
     currentPairIndex: 0,
     startWord: '',
     endWord: '',
@@ -72,14 +72,14 @@ function setInitialGameState() {
 
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️⬇️
 function setInitialPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL rounds completed"は"NEXTROUND"の場合オンリー
-    index = wordPair.currentPairIndex;
-    if (wordPair.currentPairIndex < wordPairList.length) {
+    index = gameState.wordPair.currentPairIndex;
+    if (gameState.wordPair.currentPairIndex < wordPairList.length) {
 
-        wordPair.startWord = wordPairList[index].start;
-        wordPair.endWord = wordPairList[index].end;
+        gameState.wordPair.startWord = wordPairList[index].start;
+        gameState.wordPair.endWord = wordPairList[index].end;
 
-        wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
-        wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
+        gameState.wordPair.maxLength = Math.max(gameState.wordPair.startWord.length, gameState.wordPair.endWord.length) + 1;
+        gameState.wordPair.minLength = Math.max(Math.min(gameState.wordPair.startWord.length, gameState.wordPair.endWord.length) - 1, 3);
     } else {
         document.getElementById('gameArea').innerText = "No Word Pair Found!";
     }
@@ -87,8 +87,8 @@ function setInitialPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL 
 
 //"if preRound""にすれば、argumentもこのfunctionも要らない？
 function makeInitialPairTiles() {
-    makeTilesFor(wordPair.startWord, startWordRack);
-    makeTilesFor(wordPair.endWord, endWordRack);
+    makeTilesFor(gameState.wordPair.startWord, startWordRack);
+    makeTilesFor(gameState.wordPair.endWord, endWordRack);
 }
 
 // DIRECTIONAL CONFIGURATIONS
@@ -97,8 +97,8 @@ function getDirectionalConfig() {
         return {
             upperRack: normInputRack,
             lowerRack: flipInputRack,
-            wordAtTop: wordPair.startWord,
-            wordAtBottom: wordPair.endWord,
+            wordAtTop: gameState.wordPair.startWord,
+            wordAtBottom: gameState.wordPair.endWord,
             upperRackArray: gameState.normInputArray,
             lowerRackArray: gameState.flipInputArray,
         };
@@ -106,8 +106,8 @@ function getDirectionalConfig() {
         return {
             upperRack: flipInputRack,
             lowerRack: normInputRack,
-            wordAtTop: wordPair.endWord,
-            wordAtBottom: wordPair.startWord,
+            wordAtTop: gameState.wordPair.endWord,
+            wordAtBottom: gameState.wordPair.startWord,
             upperRackArray: gameState.flipInputArray,
             lowerRackArray: gameState.normInputArray,
         };
@@ -157,19 +157,19 @@ function emptyTextInputBox() {
 //====BEST SCORES====//
 //UPDATE BEST SCORE FOR THE ROUND ❗️❗️(CHECK IF BEST SCORE?)
 function checkAndUpdateBestScoreIndex() { //just at end of round?
-    const indexNum = wordPair.currentPairIndex;
+    const indexNum = gameState.wordPair.currentPairIndex;
     // Check for existing best score, update, and return latest best score
     //(="If there's no best score for the index no. in bestScoreIndex corresponding to crntPairIndex, or if the moveCounter is lower than it, then the moveCounter shall be the new bestScore in the index")
-    if (!wordPair.bestScoreIndex[indexNum] || gameState.moveCounter < wordPair.bestScoreIndex[indexNum]) {
-        wordPair.bestScoreIndex[indexNum] = gameState.moveCounter;
+    if (!gameState.wordPair.bestScoreIndex[indexNum] || gameState.moveCounter < gameState.wordPair.bestScoreIndex[indexNum]) {
+        gameState.wordPair.bestScoreIndex[indexNum] = gameState.moveCounter;
     }
-    console.log("BestScore: " + wordPair.bestScoreIndex[indexNum]);
+    console.log("BestScore: " + gameState.wordPair.bestScoreIndex[indexNum]);
 }
 
 //SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
 function showLatestBestScore() {
     let bestScoreDisplay = document.getElementById('bestScore');
-    let latestBestScore = wordPair.bestScoreIndex[wordPair.currentPairIndex] || "--";
+    let latestBestScore = gameState.wordPair.bestScoreIndex[gameState.wordPair.currentPairIndex] || "--";
     console.log("Best Score: ", latestBestScore);
     ////Animation if updated: if it's POSTROUND (i.e. not start of game) and (moveCounter  < latestBestScore), animation
     bestScoreDisplay.innerText = "Low Score: " + latestBestScore;
@@ -369,10 +369,10 @@ function updateGame(action) {
         // SKIP ROUNDとの違い：if postRoundだったらpreRoundを消す？？ リストの長さと合うか確認 // TRY AGAINを忘れている？❗️❗️ restartに変える
         case 'nextRound':
             // If there are none left, quit
-            if (wordPair.currentPairIndex === wordPairList.length - 1) return updateUI('no rounds left');
+            if (gameState.wordPair.currentPairIndex === wordPairList.length - 1) return updateUI('no rounds left');
 
             // Otherwise... 
-            wordPair.currentPairIndex++;
+            gameState.wordPair.currentPairIndex++;
             setInitialPairAndLengths();
             makeInitialPairTiles(); //Animationをリセットするか？
         case 'resetRound': 

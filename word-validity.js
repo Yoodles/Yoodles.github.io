@@ -1,5 +1,5 @@
 import { wordList } from './words.js';
-import { gameState } from './script.js';
+import { wordPair } from './script.js';
 
 //=====MOVES====✅
 
@@ -47,12 +47,12 @@ export function isTotallyValid(word, word2) {
             alert("Don't be shy, have a try.");
             return false;
         }
-        if (word.length < gameState.wordPair.minLength) {
-            alert("Minimum length is " + gameState.wordPair.minLength + " letters.");
+        if (word.length < wordPair.minLength) {
+            alert("Minimum length is " + wordPair.minLength + " letters.");
             return false;
         }
-        if (word.length > gameState.wordPair.maxLength) {
-            alert("Maximum length is " + gameState.wordPair.maxLength + " letters.");
+        if (word.length > wordPair.maxLength) {
+            alert("Maximum length is " + wordPair.maxLength + " letters.");
             return false;
         }
         return true;
@@ -61,7 +61,7 @@ export function isTotallyValid(word, word2) {
     //IS IS IN EITHER WORDLIST OR ONE OF THE STARTING PAIR ❓❓startWordとendWordおけ❓❓
     function isInWordListOrWordPair(word) {
         let length = word.length;
-        if ((word === gameState.wordPair.startWord) || (word === gameState.wordPair.endWord)) {
+        if ((word === wordPair.startWord) || (word === wordPair.endWord)) {
             return true;
         } else if (wordList[length] && wordList[length].has(word)) {
             return true;
