@@ -222,7 +222,7 @@ function updateDirectionUI(direction) {
 
 //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
-function updateDeleterVisibility(action) {
+function updateDeleters(action) {
     const normArray = gameState.normInputArray;
     const flipArray = gameState.flipInputArray;
     const normDeleter = document.getElementById('normDeleter');
@@ -288,7 +288,7 @@ function updateUI(stateOrAction) {
         updateDirectionUI(gameState.gameDirection);
     }
 
-    updateDeleterVisibility(stateOrAction);
+    updateDeleters(stateOrAction);
 
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
@@ -338,6 +338,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     buildWordPairTiles();
 
     resetGameState();
+    updateLatestAndTargetWord();
 
     updateBestScoreUI();
     
