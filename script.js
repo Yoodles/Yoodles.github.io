@@ -35,21 +35,7 @@ export let wordPair = {
 }
 
 
-//FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️⬇️
-// function setWordPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL rounds completed"は"NEXTROUND"の場合オンリー
-//     index = wordPair.currentPairIndex;
-//     if (wordPair.currentPairIndex < wordPairList.length) {
-
-//         wordPair.startWord = wordPairList[index].start;
-//         wordPair.endWord = wordPairList[index].end;
-
-//         wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
-//         wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
-//     } else {
-//         document.getElementById('gameArea').innerText = "No Word Pair Found!";
-//     }
-// }
-
+//FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️
 function setWordPairAndLengths() {
     const index = wordPair.currentPairIndex;
 
@@ -105,13 +91,6 @@ function hideClass(className) {
     const elems = document.querySelectorAll('.' + className);
     elems.forEach(el => el.classList.add('hidden'));
 }
-
-function showOrHideGameArea(which) { //toggleでも
-    which === 'show'
-        ? gameArea.classList.remove('hidden')
-        : gameArea.classList.add('hidden');    
-}
-
 
 ////EMPTYING CONTAINERS and CONTAINER RACKS ❗️❗️❗️❗️❗️❗️
 function resetInputRackUI() {
@@ -303,7 +282,9 @@ function deleteMove(which) {
 }
 
 function updateUI(stateOrAction) {
-    if (stateOrAction === 'no rounds left') return gameArea.innerText = "All rounds completed!";
+    if (stateOrAction === 'no rounds left') {
+        return document.getElementById('gameArea').innerText = "All rounds completed!";
+    }
 
     if (stateOrAction === 'postRound') {
         hideClass('preRound');
@@ -410,5 +391,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
     document.getElementById('currentInput').focus(); //FOCUS;
-    showOrHideGameArea('show');
+    showClass('gameArea');
 });
