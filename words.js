@@ -2,6 +2,7 @@ const wordPairsStr = `tree fret
 oil water
 trump biden
 joe lloyd
+couch sofa
 right party
 black white
 boys men
