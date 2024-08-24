@@ -93,7 +93,6 @@ function checkAndUpdateBestScoreIndex() { //just at end of round?
     if (!wordPair.bestScoreIndex[indexNum] || gameState.moveCounter < wordPair.bestScoreIndex[indexNum]) {
         wordPair.bestScoreIndex[indexNum] = gameState.moveCounter;
     }
-    console.log("BestScore: " + wordPair.bestScoreIndex[indexNum]);
 }
 
 //SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
@@ -280,8 +279,6 @@ function updateUI(stateOrAction) {
         emptyTextInputBox();
 
     }
-
-
 
     updateBestScoreUI();
 
