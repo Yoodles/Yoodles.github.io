@@ -22,7 +22,9 @@ const initialGameState = {
 export let gameState = { ...initialGameState };
 
 function resetGameState() {
-    gameState = { ...initialGameState }
+    gameState = { ...initialGameState };
+    gameState.latestWord = wordPair.startWord;
+    gameState.targetWord = wordPair.endWord;
 }
 
 export let wordPair = {
@@ -123,12 +125,12 @@ function checkAndUpdateBestScoreIndex() { //just at end of round?
 
 //SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
 function updateBestScoreUI() {
-    let bestScoreDisplay = document.getElementById('bestScore');
-    let latestBestScore = wordPair.bestScoreIndex[wordPair.currentPairIndex] || "--";
+    const bestScoreDisplay = document.getElementById('bestScore');
+    const latestBestScore = wordPair.bestScoreIndex[wordPair.currentPairIndex] || "--";
     console.log("Best Score: ", latestBestScore);
-    ////Animation if updated: if it's POSTROUND (i.e. not start of game) and (moveCounter  < latestBestScore), animation
-    bestScoreDisplay.innerText = "Low Score: " + latestBestScore;
+    bestScoreDisplay.innerText = "Best Score: " + latestBestScore;
 }
+
 //UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
 function updateMoveCounterUI() {
     document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
@@ -185,9 +187,6 @@ function submitMove() {
     const inputWord = document.getElementById('currentInput').value.toLowerCase();
 
     if (isTotallyValid(inputWord, gameState.latestWord)) {
-
-        console.log("It's valid!");
-
         getDirectionalConfig().upperRackArray.push(inputWord);
         makeTilesFor(inputWord);
         gameState.moveCounter++;
@@ -320,6 +319,7 @@ function updateGame(action) {
         case 'completeRound':
             gameState.gamePhase = 'postRound';
             updateUI('postRound');
+            updateLatestAndTargetWord();
             checkAndUpdateBestScoreIndex();
             console.log("ROUND COMPLETE!!");
             break;
