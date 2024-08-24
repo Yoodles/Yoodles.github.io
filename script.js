@@ -272,12 +272,12 @@ function submitMove() {
 //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
 function updateDeleterVisibility(action) {
+    if (gameState.gamePhase === 'preRound' || gameState.gamePhase === 'postRound') {
+        normDeleter.classList.add('invisible');
+        flipDeleter.classList.add('invisible');
+    };
+
     switch (action) {
-        default:
-            if (gameState.gamePhase === 'preRound' || gameState.gamePhase === 'postRound') {
-                normDeleter.classList.add('invisible');
-                flipDeleter.classList.add('invisible');
-            };
         case 'submit':
             if (normInputArray.length === 1) normDeleter.classList.remove('invisible');
             if (flipInputArray.length === 1) flipDeleter.classList.remove('invisible');
@@ -285,6 +285,8 @@ function updateDeleterVisibility(action) {
         case 'delete':
             if (normInputArray.length === 0) normDeleter.classList.add('invisible');
             if (flipInputArray.length === 0) flipDeleter.classList.add('invisible');
+            break;
+        default:
             break;
     }
 }
