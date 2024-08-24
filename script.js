@@ -355,7 +355,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     console.log("PAGE LOAD: Latest/Target: ", gameState.latestWord, gameState.targetWord);
     
     //EVENT LISTENERS for BUTTONS
-    document.getElementById('toggleFlip').addEventListener('click', updateGame('flip'));
+    document.getElementById('toggleFlip').addEventListener('click', function(event) {
+        updateGame('flip');
+    })
     document.addEventListener('click', function(event) {
         if (event.target.tagName === 'BUTTON' && event.target.id) {
             switch(event.target.id) {
