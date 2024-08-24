@@ -360,7 +360,6 @@ function updateGame(action) {
             break;
 
         default:
-            updateMoveCounterUI(); //submitMoveの場合だけこっちかsubmitMoveで。他はupdateUIの共通エンディング
             document.getElementById('currentInput').focus(); //でもsubmitがinvalidだったら？ 
             break;
     };
