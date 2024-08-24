@@ -299,7 +299,7 @@ function deleteOne(which) {
 
     if (config.array.length > 0) {
         config.array.pop();
-        console.log(config.rack.lastChild);
+        console.log('lastChild', config.rack.lastChild);
         if (config.rack.lastChild) config.rack.removeChild(config.rack.lastChild);
     }
     gameState.moveCounter--;
