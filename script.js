@@ -330,12 +330,11 @@ function updateGame(action) {
             wordPair.currentPairIndex++;
             setWordPairAndLengths();
             buildWordPairTiles();
-            console.log("NEXT: Word Pair: ", wordPair.startWord, wordPair.endWord);
-
         case 'resetRound':
             resetGameState();
-            console.log("RESET: Word Pair: ", wordPair.startWord, wordPair.endWord);
 
+            
+            console.log("RESET: Word Pair: ", wordPair.startWord, wordPair.endWord);
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             updateUI('preRound');
             break;
