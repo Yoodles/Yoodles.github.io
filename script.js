@@ -193,14 +193,17 @@ function toggleFlip() {
 
 //"if preRound""にすれば、argumentもこのfunctionも要らない？
 function makeInitialPairTiles() {
-    makeTilesFor(gameState.wordPair.startWord);
-    makeTilesFor(gameState.wordPair.endWord);
+    makeTilesFor(gameState.wordPair.startWord, startWordRack);
+    makeTilesFor(gameState.wordPair.endWord, endWordRack);
 }
 
 
 ////GENERATING WORD TILES////
-function makeTilesFor(word) {
-    const wordCont = getWordContainer(word);
+function makeTilesFor(word, rack) {
+    let wordCont;
+    if (rack === startWordRack) wordCont = startWordRack;
+    else if (rack === endWordRack) wordCont = endWordRack;
+    else wordCont = prepareInputWordCont();
 
     wordCont.querySelectorAll('div').forEach((tile, i) => {
         const isVisible = i < word.length;
@@ -213,8 +216,8 @@ function makeTilesFor(word) {
 }
 
 function getWordContainer(word) {
-    if (word === gameState.wordPair.startWord) return startWordRack;
-    if (word === gameState.wordPair.endWord) return endWordRack;
+    // if (word === gameState.wordPair.startWord) return startWordRack;
+    // if (word === gameState.wordPair.endWord) return endWordRack;
     console.log('getWordContainer called for ' + word);
 
     return prepareInputWordCont();
