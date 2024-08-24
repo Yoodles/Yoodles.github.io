@@ -302,11 +302,11 @@ function deleteOne(which) {
     if (which === 'norm') {
         deleter = normDeleter;
         rack = normInputRack;
-        array = normInputArray;
+        array = gameState.normInputArray;
     } else if (which === 'flip') {
         deleter = flipDeleter;
         rack = flipInputRack;
-        array = flipInputArray;
+        array = gameState.flipInputArray;
     }
 
     if (array.length > 0) {
