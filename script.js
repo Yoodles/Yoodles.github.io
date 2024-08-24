@@ -99,7 +99,6 @@ function checkAndUpdateBestScoreIndex() { //just at end of round?
 function updateBestScoreUI() {
     const bestScoreDisplay = document.getElementById('bestScore');
     const latestBestScore = wordPair.bestScoreIndex[wordPair.currentPairIndex] || "--";
-    console.log("Best Score: ", latestBestScore);
     bestScoreDisplay.innerText = "Best Score: " + latestBestScore;
 }
 
@@ -331,7 +330,6 @@ function updateGame(action) {
         case 'resetRound':
             resetGameState();
 
-            console.log("RESET: Word Pair: ", wordPair.startWord, wordPair.endWord);
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             updateUI('preRound');
             break;
