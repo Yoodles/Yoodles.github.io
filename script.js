@@ -38,6 +38,7 @@ export let gameState = { ...initialGameState };
 
 function setInitialGameState() {
     gameState = { ...initialGameState };
+    updateLatestAndTargetWord();
 }
 
 
