@@ -41,8 +41,14 @@ function setInitialGameState() {   // 🚨
     gameState.flipInputArray = [];
     gameState.gamePhase = 'preRound';
     gameState.resultMessage = '';
+    resetToPreroundUI();
 }
 
+function resetToPreroundUI() {
+    showClass('preRound');
+    hideClass('postRound');
+    emptyTextInputBox();
+}
 
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️⬇️
 function setInitialPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL rounds completed"は"NEXTROUND"の場合オンリー
@@ -319,16 +325,6 @@ function deleteOne(which) {
 }
 
 
-// FUNCTION TO UPDATE GAME
-// UPDATING UI
-function resetToPreroundUI() {
-    resultMessage.innerText = "";
-    showClass('preRound');
-    hideClass('postRound');
-    emptyTextInputBox();
-}
-
-
 function updateGame(action) {
     switch (action) {
         case 'submit':
@@ -356,7 +352,6 @@ function updateGame(action) {
             emptyInputRacks(); //→ "clearPrevInput"? clarify UI; not in resetToPreroundUI()?
             
             getDirectionalConfig(); //ここ？letする必要は？？
-            resetToPreroundUI();
             showLatestBestScore(); //???
 
             break;
@@ -372,7 +367,6 @@ function updateGame(action) {
                 emptyInputRacks(); //??
                 updateDeleterVisibility();
                 updateDirectionUI();
-                resetToPreroundUI();
 
                 makeInitialPairTiles(); //Animationをリセットするか否か
                 
