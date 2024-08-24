@@ -71,17 +71,17 @@ export function isTotallyValid(word, word2) {
         }
     };
 
-    console.log(wordPair.startWord);
-
-
     if (!isValidLength(word)) {
+        console.log('not valid length');
         return false;
     };
     if (!isOneMoveApart(word, word2)) {
+        console.log('not one move apart');
         alert("You can't do that!");
         return false;
     };
     if (!isInWordListOrWordPair(word)) {
+        console.log('not in wordlist or wordPair');
         return false;
     }
     return true;

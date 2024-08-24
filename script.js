@@ -14,17 +14,6 @@ const flipDeleter = document.getElementById('flipDeleter');
 
 //// INITIAL STATE AT START OF ROUND ////
 
-// function setInitialGameState() {   // 🚨 
-//     gameState.latestWord = gameState.wordPair.startWord;
-//     gameState.targetWord = gameState.wordPair.endWord;
-//     gameState.gameDirection = 'norm';
-//     gameState.moveCounter = 0;
-//     gameState.normInputArray = [];
-//     gameState.flipInputArray = [];
-//     gameState.gamePhase = 'preRound';
-//     gameState.resultMessage = '';
-// }
-
 export let wordPair = {
     currentPairIndex: 0,
     startWord: '',
