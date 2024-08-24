@@ -302,33 +302,25 @@ function deleteOne(which) {
 function updateUI(stateOrAction) {
     if (stateOrAction === 'no rounds left') return gameArea.innerText = "All rounds completed!";
 
-    updateDeleterVisibility(stateOrAction);
-
     if (stateOrAction === 'postRound') {
         hideClass('preRound');
         showClass('postRound');
-        emptyTextInputBox();
-
         resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
-
-        showLatestBestScore();
-    }
-    else if (stateOrAction === 'preRound') {
+    } else if (stateOrAction === 'preRound') {
         showClass('preRound');
         hideClass('postRound');
         updateDirectionUI('norm');
-
         resetInputRackUI();
-
-        emptyTextInputBox();
-        showLatestBestScore();
     }
 
+    showLatestBestScore();
+
     if (stateOrAction === 'submit' || stateOrAction === 'delete') {
-        emptyTextInputBox();
         document.getElementById('currentInput').focus();
     }
 
+    updateDeleterVisibility(stateOrAction);
+    emptyTextInputBox();
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
 
