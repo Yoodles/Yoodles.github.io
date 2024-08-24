@@ -69,6 +69,13 @@ function hideClass(className) {
     const elems = document.querySelectorAll('.' + className);
     elems.forEach(el => el.classList.add('hidden'));
 }
+function focusTextInputBox() {
+    document.getElementById('currentInput').focus();
+}
+
+function emptyTextInputBox() {
+    document.getElementById('currentInput').value = '';
+}
 
 ////EMPTYING CONTAINERS and CONTAINER RACKS ❗️❗️❗️❗️❗️❗️
 function resetInputRackUI() {
@@ -80,12 +87,6 @@ function resetInputRackUI() {
         wordCont.classList.remove('wordCont');
     });
 }
-
-////CLEARING TEXT INPUT BOX
-function emptyTextInputBox() {
-    document.getElementById('currentInput').value = '';
-}
-
 
 //====BEST SCORES====//
 //UPDATE BEST SCORE FOR THE ROUND ❗️❗️(CHECK IF BEST SCORE?)
@@ -172,7 +173,7 @@ function submitMove() {
             ? updateGame('completeRound')
             : updateGame('submit');
 
-    } else document.getElementById('currentInput').focus(); //i.e. if isTotallyValid returns "false"
+    } else focusTextInputBox(); //i.e. if isTotallyValid returns "false"
 }
 
 
@@ -292,7 +293,7 @@ function updateUI(stateOrAction) {
     updateBestScoreUI();
 
     if (stateOrAction === 'submit' || stateOrAction === 'delete') {
-        document.getElementById('currentInput').focus();
+        focusTextInputBox();
         emptyTextInputBox();
 
     } else if (stateOrAction === 'flip') {
@@ -393,6 +394,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             submitMove();
         }
     });
-    document.getElementById('currentInput').focus(); //FOCUS;
+    focusTextInputBox();
     showClass('gameArea');
 });
