@@ -7,7 +7,6 @@ const flipInputRack = document.getElementById('flipInputRack');
 const endWordRack = document.getElementById('endWordRack');
 
 //// INITIAL STATE AT START OF ROUND ////
-
 const initialGameState = {
     gamePhase: 'preRound',
     gameDirection: 'norm',
@@ -52,8 +51,6 @@ function setWordPairAndLengths() {
     }
 }
 
-
-//"if preRound""にすれば、argumentもこのfunctionも要らない？
 function buildWordPairTiles() {
     makeTilesFor(wordPair.startWord, startWordRack);
     makeTilesFor(wordPair.endWord, endWordRack);
@@ -72,7 +69,6 @@ function hideClass(className) {
 function focusTextInputBox() {
     document.getElementById('currentInput').focus();
 }
-
 function emptyTextInputBox() {
     document.getElementById('currentInput').value = '';
 }
