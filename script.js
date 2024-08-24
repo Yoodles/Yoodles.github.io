@@ -313,6 +313,7 @@ function updateGame(action) {
             gameState.gamePhase = 'midRound';
         case 'flip':
             updateUI(action);
+            updateLatestAndTargetWord();
             break;
 
         case 'completeRound':
@@ -320,6 +321,7 @@ function updateGame(action) {
             checkAndUpdateBestScoreIndex();
 
             updateUI('postRound');
+            updateLatestAndTargetWord();
             console.log("ROUND COMPLETE!!");
             break;
 
@@ -334,12 +336,11 @@ function updateGame(action) {
             resetGameState();
             console.log("RESET: Word Pair: ", wordPair.startWord, wordPair.endWord);
 
-            updateLatestAndTargetWord();
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             updateUI('preRound');
             break;
     };
-    updateLatestAndTargetWord();
+    
 
     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
 }
