@@ -2,15 +2,10 @@ import { wordPairList } from './words.js';
 import { isTotallyValid } from './word-validity.js';
 
 const gameArea = document.getElementById('gameArea');
-
 const startWordRack = document.getElementById('startWordRack');
 const normInputRack = document.getElementById('normInputRack'); 
 const flipInputRack = document.getElementById('flipInputRack');
 const endWordRack = document.getElementById('endWordRack');
-
-const normDeleter = document.getElementById('normDeleter');
-const flipDeleter = document.getElementById('flipDeleter');
-
 
 //// INITIAL STATE AT START OF ROUND ////
 
@@ -271,6 +266,8 @@ function toggleFlip() {
 function updateDeleterVisibility(action) {
     const normArray = gameState.normInputArray;
     const flipArray = gameState.flipInputArray;
+    const normDeleter = document.getElementById('normDeleter');
+    const flipDeleter = document.getElementById('flipDeleter');
 
     switch (true) {
         case gameState.gamePhase === 'preRound':
@@ -384,11 +381,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     console.log("PAGE LOAD: Word Pair: ", wordPair.startWord, wordPair.endWord);
     console.log("PAGE LOAD: Latest/Target: ", gameState.latestWord, gameState.targetWord);
     
-    // EVENT LISTENERS for BUTTONS
-    document.getElementById('toggleFlip').addEventListener('click', function() {
-        toggleFlip();
-    });
-    
+    //EVENT LISTENERS for BUTTONS
+    document.getElementById('toggleFlip').addEventListener('click', toggleFlip);
     document.addEventListener('click', function(event) {
         if (event.target.tagName === 'BUTTON' && event.target.id) {
             switch(event.target.id) {
@@ -422,5 +416,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
     document.getElementById('currentInput').focus(); //FOCUS;
     showOrHideGameArea('show');
-    //THEN, REVEAL. (toggle) document.getElementById('gameArea').classList.remove('hidden');
 });
