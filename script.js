@@ -41,7 +41,6 @@ function setInitialGameState() {   // 🚨
     gameState.flipInputArray = [];
     gameState.gamePhase = 'preRound';
     gameState.resultMessage = '';
-    updateUI('preRound');
 }
 
 
@@ -58,8 +57,6 @@ function setInitialPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL 
     } else {
         document.getElementById('gameArea').innerText = "No Word Pair Found!";
     }
-/*    console.log("INsetInitialPairAndLengths: PairIndex; start; end; Max.; Min.:", gameState.wordPair.currentPairIndex, gameState.wordPair.startWord, gameState.wordPair.endWord, gameState.wordPair.maxLength, gameState.wordPair.minLength);
-*/
 }
 
 //"if preRound""にすれば、argumentもこのfunctionも要らない？
@@ -91,12 +88,6 @@ function getDirectionalConfig() {
     }
 }
 
-//// DEBUGGING: DISPLAY CONTENT OF ARRAYS TO VERIFY
-function logArrays() {
-    console.log('Norm Inputs:', gameState.normInputArray);
-    console.log('Flip Inputs:', gameState.flipInputArray);
-}
- 
 
 //====UTILITY FUNCTIONS====//
 ////SHOWING & HIDING WHOLE CLASSES//// ✅
@@ -121,7 +112,7 @@ function showOrHideGameArea(which) { //toggleでも
 
 
 ////EMPTYING CONTAINERS and CONTAINER RACKS ❗️❗️❗️❗️❗️❗️
-function emptyInputRacks() {
+function resetInputRackUI() {
     document.querySelectorAll('#normInputRack .wordCont, #flipInputRack .wordCont').forEach(wordCont => {
         wordCont.querySelectorAll('div').forEach(tile => {
             tile.textContent = '';
@@ -298,18 +289,19 @@ function deleteOne(which) {
 
     const wordConts = config.rack.querySelectorAll('.wordCont');
 
-    console.log('Before: ', config.rack, config.array);
-
     if (config.array.length > 0) config.array.pop();
     if (wordConts) wordConts[wordConts.length - 1].remove();
 
-    console.log('After: ', config.rack, config.array);
-
     gameState.moveCounter--;
     updateGame('delete');
+
+    console.log('After: ', config.rack, config.array);
+
 }
 
 function updateUI(stateOrAction) {
+    if (stateOrAction === 'no rounds left') return gameArea.innerText = "All rounds completed!";
+
     updateDeleterVisibility(stateOrAction);
 
     if (stateOrAction === 'postRound') {
@@ -326,6 +318,8 @@ function updateUI(stateOrAction) {
         hideClass('postRound');
         updateDirectionUI('norm');
 
+        resetInputRackUI();
+
         emptyTextInputBox();
         showLatestBestScore();
     }
@@ -334,6 +328,8 @@ function updateUI(stateOrAction) {
         emptyTextInputBox();
         document.getElementById('currentInput').focus();
     }
+
+    updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
 
 function updateGame(action) {
@@ -349,44 +345,25 @@ function updateGame(action) {
             gameState.gamePhase = 'postRound';
             updateUI('postRound');
             checkAndUpdateBestScoreIndex();
-
             console.log("ROUND COMPLETE!!");
             break;
 
-        case 'resetRound': //TRY AGAINを忘れている？❗️❗️ restartに変える
-            setInitialGameState(); //includes phase, arrays
-            emptyInputRacks(); //→ "clearPrevInput"? clarify UI; not in resetToPreroundUI()?
-            
-            getDirectionalConfig(); //ここ？letする必要は？？
+        // SKIP ROUNDとの違い：if postRoundだったらpreRoundを消す？？ リストの長さと合うか確認 // TRY AGAINを忘れている？❗️❗️ restartに変える
+        case 'nextRound':
+            // If there are none left, quit
+            if (gameState.wordPair.currentPairIndex === wordPairList.length - 1) return updateUI('no rounds left');
 
+            // Otherwise... 
+            gameState.wordPair.currentPairIndex++;
+            setInitialPairAndLengths();
+            makeInitialPairTiles(); //Animationをリセットするか？
+        case 'resetRound': 
+            setInitialGameState(); // has to be AFTER setInitialPair
             updateUI('preRound');
-
             break;
 
-        // NEXT ROUND or SKIP ROUND ❗️違い：if postRoundだったらpreRoundに消す  ❗️❗️ リストの長さと計算合うか確認
-        case 'goToNextRound':
-            if (gameState.wordPair.currentPairIndex === wordPairList.length - 1) {
-                document.getElementById('gameArea').innerText = "All rounds completed!"; //🚨 
-            } else {
-                gameState.wordPair.currentPairIndex++;
-                setInitialPairAndLengths();
-
-                setInitialGameState(); //includes Arrays
-                emptyInputRacks();
-
-                updateUI('preRound');
-
-                makeInitialPairTiles(); //Animationをリセットするか否か                
-            }
-            break;
     };
-    updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
-
-    document.getElementById('currentInput').focus(); //FOCUS;
-
-
     console.log(`${action} performed. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
-
 }
 
 
@@ -415,7 +392,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     break;
                 case 'nextRound':
                 case 'skipRound':
-                    updateGame('goToNextRound');
+                    updateGame('nextRound');
                     break;                 
                 case 'resetRound':
                 case 'tryAgain':
