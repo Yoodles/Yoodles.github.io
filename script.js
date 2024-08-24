@@ -25,7 +25,7 @@ export let gameState = {
     gamePhase: 'preRound', //
     gameDirection: 'norm', //
     moveCounter: 0, //
-    normInputArray: [], //❓❓❓❓❓❓
+    normInputArray: [],
     flipInputArray: [],
     latestWord: '',
     targetWord: '',
@@ -59,6 +59,12 @@ function setInitialPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL 
     }
 /*    console.log("INsetInitialPairAndLengths: PairIndex; start; end; Max.; Min.:", gameState.wordPair.currentPairIndex, gameState.wordPair.startWord, gameState.wordPair.endWord, gameState.wordPair.maxLength, gameState.wordPair.minLength);
 */
+}
+
+//"if preRound""にすれば、argumentもこのfunctionも要らない？
+function makeInitialPairTiles() {
+    makeTilesFor(gameState.wordPair.startWord, startWordRack);
+    makeTilesFor(gameState.wordPair.endWord, endWordRack);
 }
 
 // DIRECTIONAL CONFIGURATIONS
@@ -190,13 +196,6 @@ function toggleFlip() {
 }
 
 
-//"if preRound""にすれば、argumentもこのfunctionも要らない？
-function makeInitialPairTiles() {
-    makeTilesFor(gameState.wordPair.startWord, startWordRack);
-    makeTilesFor(gameState.wordPair.endWord, endWordRack);
-}
-
-
 ////GENERATING WORD TILES////
 function makeTilesFor(word, rack) {
     let wordCont;
@@ -217,18 +216,18 @@ function makeTilesFor(word, rack) {
 //GETTING THE INPUTWORD CONT READY
 function prepareInputWordCont() {
     const { upperRack, upperRackArray } = getDirectionalConfig();
-    const placeInRack = upperRackArray.length;
-    const rackDivs = upperRack.children;
+    const howManyInArray = upperRackArray.length;
+    const wordsInRack = upperRack.children;
     let wordCont;
 
-    if (rackDivs && placeInRack < rackDivs.length) {
-        wordCont = rackDivs[placeInRack];
+    if (wordsInRack && howManyInArray < wordsInRack.length) {
+        wordCont = wordsInRack[howManyInArray];
     } else {
         wordCont = document.createElement('div');
         upperRack.appendChild(wordCont);
     }
 
-    wordCont.innerHTML = ''; // Clear any existing content
+    wordCont.innerHTML = ''; // Clear word container
 
     // Prepare 6 empty divs inside wordCont
     for (let i = 0; i < 6; i++) {
@@ -260,10 +259,11 @@ function submitMove() {
             ? updateGame('completeRound')
             : updateGame();
 
-        updateLatestAndTargetWord(); //要る？
+        updateLatestAndTargetWord();
+        updateDeleterVisibility('submit');
         console.log("Upper Array", upperArray);
 
-    } else document.getElementById('currentInput').focus();
+    } else document.getElementById('currentInput').focus(); //i.e. if isTotallyValid returns "false"
 
     console.log(`INPUTTED. Latest Word: ${gameState.latestWord}; Target Word: ${gameState.targetWord}`);
 }
@@ -271,17 +271,24 @@ function submitMove() {
 
 //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
-
-function updateDeleterVisibility() {
-    if (gameState.gamePhase === 'postRound') {
-        normDeleter.classList.add('invisible');
-        flipDeleter.classList.add('invisible');
-    } else {
-        let currentDirectionalConfig = getDirectionalConfig();
-        normDeleter.classList.toggle('invisible', gameState.normInputArray.length === 0);
-        flipDeleter.classList.toggle('invisible', gameState.flipInputArray.length === 0);
+function updateDeleterVisibility(action) {
+    switch (action) {
+        case 'submit':
+            if (normInputArray.length === 1) normDeleter.classList.remove('invisible');
+            if (flipInputArray.length === 1) flipDeleter.classList.remove('invisible');
+            break;
+        case 'delete':
+            if (normInputArray.length === 0) normDeleter.classList.add('invisible');
+            if (flipInputArray.length === 0) flipDeleter.classList.add('invisible');
+            break;
+        case 'preOrPostRound':
+            normDeleter.classList.add('invisible');
+            flipDeleter.classList.add('invisible');
+        default:
+            break;
     }
 }
+
 
 //FUNC: DELETE LAST INPUT (x TWO BUTTONS)
 function deleteOne(upperOrLower, direction) {
@@ -360,7 +367,6 @@ function updateGame(action) {
             //INSERT fade-out animation etc.
             updateUI('postRound');  //❓❓❓❓
             break;
-
 
         // NEXT ROUND or SKIP ROUND ❗️違い：if postRoundだったらpreRoundに消す  ❗️❗️ リストの長さと計算合うか確認
         case 'goToNextRound':
