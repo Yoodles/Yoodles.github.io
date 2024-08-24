@@ -275,19 +275,26 @@ function updateUI(stateOrAction) {
     if (stateOrAction === 'postRound') {
         hideClass('preRound');
         showClass('postRound');
+        emptyTextInputBox();
+
         resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
     } else if (stateOrAction === 'preRound') {
         showClass('preRound');
         hideClass('postRound');
         updateDirectionUI('norm');
         resetInputRackUI();
+        emptyTextInputBox();
+
     }
+
+
 
     updateBestScoreUI();
 
     if (stateOrAction === 'submit' || stateOrAction === 'delete') {
         document.getElementById('currentInput').focus();
         emptyTextInputBox();
+
     } else if (stateOrAction === 'flip') {
         updateDirectionUI(gameState.gameDirection);
     }
