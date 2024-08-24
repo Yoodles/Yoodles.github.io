@@ -297,24 +297,15 @@ function deleteOne(which) {
         ? { rack: normInputRack, array: gameState.normInputArray }
         : { rack: flipInputRack, array: gameState.flipInputArray };
 
-    if (config.array.length > 0) {
-        config.array.pop();
-        console.log('Before: ', config.rack, config.array);
+    const wordConts = config.rack.querySelectorAll('.wordCont');
 
-        // const conts = config.rack.querySelectorAll('.wordCont');
-        const conts = config.rack.querySelectorAll('.wordCont');
-        conts.forEach(cont => config.rack.lastElementChild?.remove());
+    console.log('Before: ', config.rack, config.array);
 
-        // if (cont && config.rack.lastElementChild) {
-        //     config.rack.removeChild(config.rack.lastElementChild);
-        // };
+    if (config.array.length > 0) config.array.pop();
+    if (wordConts) wordConts[wordConts.length - 1].remove();
 
-        const wordConts = config.rack.querySelectorAll('.wordCont');
-        wordConts[wordConts.length - 1].remove();
+    console.log('After: ', config.rack, config.array);
 
-
-        console.log('After: ', config.rack, config.array);
-    }
     gameState.moveCounter--;
     updateGame('delete');
 }
