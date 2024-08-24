@@ -351,15 +351,14 @@ function updateGame(action) {
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD　//❓❓❓いつconfigは？ 最初にgameAreaを「hidden」にしておく
 document.addEventListener('DOMContentLoaded', (event) => {
 
-    resetGameState();
+    // resetGameState();
     setWordPairAndLengths(0);
     buildWordPairTiles();
 
     checkAndUpdateBestScoreIndex();
     updateBestScoreUI();
     
-    console.log("PAGE LOAD: Word Pair: ", wordPair.startWord, wordPair.endWord);
-    console.log("PAGE LOAD: Latest/Target: ", gameState.latestWord, gameState.targetWord);
+    console.log("PAGE LOAD: Word Pair: ", wordPair.startWord, wordPair.endWord, "Latest/Target: ", gameState.latestWord, gameState.targetWord);
     
     //EVENT LISTENERS for BUTTONS
     document.getElementById('toggleFlip').addEventListener('click', toggleFlip);
