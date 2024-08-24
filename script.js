@@ -8,8 +8,8 @@ const normInputRack = document.getElementById('normInputRack');
 const flipInputRack = document.getElementById('flipInputRack');
 const endWordRack = document.getElementById('endWordRack');
 
-const upperDeleter = document.getElementById('upperDeleter');
-const lowerDeleter = document.getElementById('lowerDeleter');
+const normDeleter = document.getElementById('normDeleter');
+const flipDeleter = document.getElementById('flipDeleter');
 
 
 //// INITIAL STATE AT START OF ROUND ////
@@ -83,7 +83,6 @@ function getDirectionalConfig() {
         };
     }
 }
-
 
 //// DEBUGGING: DISPLAY CONTENT OF ARRAYS TO VERIFY
 function logArrays() {
@@ -215,14 +214,6 @@ function makeTilesFor(word, rack) {
     wordCont.classList.remove('hidden');
 }
 
-function getWordContainer(word) {
-    // if (word === gameState.wordPair.startWord) return startWordRack;
-    // if (word === gameState.wordPair.endWord) return endWordRack;
-    console.log('getWordContainer called for ' + word);
-
-    return prepareInputWordCont();
-}
-
 //GETTING THE INPUTWORD CONT READY
 function prepareInputWordCont() {
     const { upperRack, upperRackArray } = getDirectionalConfig();
@@ -250,24 +241,19 @@ function prepareInputWordCont() {
 }
 
 
-//消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
 //FUNC: SUBMITTING A MOVE
 function submitMove() {
     const inputWord = document.getElementById('currentInput').value.toLowerCase();
 
-    // Check if input is valid...
     if (isTotallyValid(inputWord, gameState.latestWord)) {
-        // gameState.latestWord = inputWord; //...update latestWord...
         gameState.moveCounter++;
 
-        const { upperRackArray } = getDirectionalConfig();
-        upperRackArray.push(inputWord);
-        console.log("Upper Array", upperRackArray);
-
-        if (upperRackArray.length === 1) upperDeleter.classList.remove('invisible');
-
+        const upperArray = getDirectionalConfig().upperRackArray;
+        upperArray.push(inputWord);
         makeTilesFor(inputWord);
+
+        // if (upperArray.length === 1) normDeleter.classList.remove('invisible');
 
         // If round complete
          (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
@@ -275,27 +261,31 @@ function submitMove() {
             : updateGame();
 
         updateLatestAndTargetWord(); //要る？
+        console.log("Upper Array", upperArray);
 
     } else document.getElementById('currentInput').focus();
 
-    console.log(`WORD SUBMITTED. Latest Word: ${gameState.latestWord}; Target Word: ${gameState.targetWord}`);
+    console.log(`INPUTTED. Latest Word: ${gameState.latestWord}; Target Word: ${gameState.targetWord}`);
 }
+
+
+//消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
 
 function updateDeleterVisibility() {
     if (gameState.gamePhase === 'postRound') {
-        upperDeleter.classList.add('invisible');
-        lowerDeleter.classList.add('invisible');
+        normDeleter.classList.add('invisible');
+        flipDeleter.classList.add('invisible');
     } else {
         let currentDirectionalConfig = getDirectionalConfig();
-        upperDeleter.classList.toggle('invisible', currentDirectionalConfig.upperRackArray.length === 0);
-        lowerDeleter.classList.toggle('invisible', currentDirectionalConfig.lowerRackArray.length === 0);
+        normDeleter.classList.toggle('invisible', gameState.normInputArray.length === 0);
+        flipDeleter.classList.toggle('invisible', gameState.flipInputArray.length === 0);
     }
 }
 
 //FUNC: DELETE LAST INPUT (x TWO BUTTONS)
 function deleteOne(upperOrLower, direction) {
-    let deleteButton = upperOrLower === 'upper' ? upperDeleter : lowerDeleter;
+    let deleteButton = upperOrLower === 'upper' ? normDeleter : flipDeleter;
 
     let rack = (direction === 'norm') ? normInputRack : flipInputRack;
     let array = (direction === 'norm') ? gameState.normInputArray : gameState.flipInputArray;
@@ -392,7 +382,7 @@ function updateGame(action) {
             break;
 
         case 'deleteOne':
-            updateUI('delete') //????
+            updateUI('delete');
             break;
 
         default:
@@ -436,10 +426,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 case 'tryAgain':
                     updateGame('resetRound');
                     break;
-                case 'upperDeleter':
+                case 'normDeleter':
                     deleteOne('upper', gameState.gameDirection === 'norm' ? 'norm' : 'flip');
                     break;
-                case 'lowerDeleter':
+                case 'flipDeleter':
                     deleteOne('lower', gameState.gameDirection === 'norm' ? 'flip' : 'norm');
                     break;
                 default:
