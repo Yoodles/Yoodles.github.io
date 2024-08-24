@@ -252,8 +252,6 @@ function submitMove() {
         upperArray.push(inputWord);
         makeTilesFor(inputWord);
 
-        // if (upperArray.length === 1) normDeleter.classList.remove('invisible');
-
         // If round complete
          (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
             ? updateGame('completeRound')
@@ -278,6 +276,7 @@ function updateDeleterVisibility(action) {
     if (gameState.gamePhase === 'preRound' || gameState.gamePhase === 'postRound') {
         normDeleter.classList.add('invisible');
         flipDeleter.classList.add('invisible');
+        return;
     };
 
     switch (action) {
@@ -288,8 +287,6 @@ function updateDeleterVisibility(action) {
         case 'delete':
             if (normArray.length === 0) normDeleter.classList.add('invisible');
             if (flipArray.length === 0) flipDeleter.classList.add('invisible');
-            break;
-        default:
             break;
     }
 }
@@ -324,29 +321,11 @@ function deleteOne(which) {
 
 // FUNCTION TO UPDATE GAME
 // UPDATING UI
-function updateUI(phase) {
-    switch (phase) {
-        case 'preRound':   ///これだとゲーム中にupdateUIを使えない?
-            resultMessage.innerText = "";
-            showClass('preRound');
-            hideClass('postRound');
-            emptyTextInputBox()
-            break;
-            //UPDATE MOVE COUNTER
-
-        case 'postRound':
-            resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
-            hideClass('preRound');
-            showClass('postRound');
-            updateDeleterVisibility();
-            emptyTextInputBox(); //消しとかないと？でも"BACK"した時
-            // showContentOfArrays();
-            break;
-        default:
-            break;
-    }
-    updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
-    console.log("UPDATEUI: Lat/Targ: ", gameState.latestWord, gameState.targetWord);
+function resetToPreroundUI() {
+    resultMessage.innerText = "";
+    showClass('preRound');
+    hideClass('postRound');
+    emptyTextInputBox();
 }
 
 
@@ -362,17 +341,22 @@ function updateGame(action) {
             console.log("ROUND COMPLETE");
             checkAndUpdateBestScoreIndex(); //SUBMITでやったっけ？
             //INSERT fade-out animation etc.
-            updateUI('postRound');
+            resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
+            hideClass('preRound');
+            showClass('postRound');
+            updateDeleterVisibility();
+            emptyTextInputBox(); //消しとかないと？でも"BACK"した時
+
             break;
 
         case 'resetRound': //TRY AGAINを忘れている？❗️❗️ restartに変える
             setInitialGameState(); //includes phase, arrays
             //INSERT fade-out animation etc.
             
-            emptyInputRacks(); //→ "clearPrevInput"? clarify UI; not in updateUI(preRound)?
+            emptyInputRacks(); //→ "clearPrevInput"? clarify UI; not in resetToPreroundUI()?
             
             getDirectionalConfig(); //ここ？letする必要は？？
-            updateUI('preRound');
+            resetToPreroundUI();
             showLatestBestScore(); //???
 
             break;
@@ -388,7 +372,7 @@ function updateGame(action) {
                 emptyInputRacks(); //??
                 updateDeleterVisibility();
                 updateDirectionUI();
-                updateUI('preRound');
+                resetToPreroundUI();
 
                 makeInitialPairTiles(); //Animationをリセットするか否か
                 
@@ -397,7 +381,7 @@ function updateGame(action) {
             break;
 
         case 'deleteOne':
-            updateUI('delete');
+            updateDeleterVisibility('delete');
             break;
 
         default:
@@ -405,6 +389,9 @@ function updateGame(action) {
             document.getElementById('currentInput').focus(); //でもsubmitがinvalidだったら？ 
             break;
     };
+    updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
+
+    console.log("UPDATEGAME: Latest/Targest: ", gameState.latestWord, gameState.targetWord);
     document.getElementById('currentInput').focus(); //FOCUS;
 }
 
