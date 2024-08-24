@@ -268,12 +268,15 @@ function updateDeleterVisibility(action) {
     const flipArray = gameState.flipInputArray;
 
     switch (true) {
-
         case gameState.gamePhase === 'preRound':
         case gameState.gamePhase === 'postRound':
-        case action === 'delete' && normArray.length === 0 || action === 'delete' && flipArray.length === 0:
             normDeleter.classList.add('invisible');
             flipDeleter.classList.add('invisible');
+            break;
+
+        case action === 'delete':
+            if (normArray.length === 0) normDeleter.classList.add('invisible');
+            else if (flipArray.length === 0) flipDeleter.classList.add('invisible');
             break;
 
         case action === 'submit':
