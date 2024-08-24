@@ -255,7 +255,7 @@ function deleteMove(which) {
 
     gameState.moveCounter--;
 
-    latestWord !== targetWord
+    gameState.latestWord !== gameState.targetWord
         ? updateGame('delete')
         : updateGame('completeRound');
 
