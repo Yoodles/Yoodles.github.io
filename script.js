@@ -13,24 +13,6 @@ const flipDeleter = document.getElementById('flipDeleter');
 
 
 //// INITIAL STATE AT START OF ROUND ////
-// export let gameState = {
-//     wordPair: {
-//         currentPairIndex: 0, //
-//         startWord: '', //
-//         endWord: '', //
-//         maxLength: 6, //
-//         minLength: 3, //
-//         bestScoreIndex: {}
-//     },
-//     gamePhase: 'preRound', //
-//     gameDirection: 'norm', //
-//     moveCounter: 0, //
-//     normInputArray: [],
-//     flipInputArray: [],
-//     latestWord: '',
-//     targetWord: '',
-//     resultMessage: ''
-// }
 
 // function setInitialGameState() {   // 🚨 
 //     gameState.latestWord = gameState.wordPair.startWord;
