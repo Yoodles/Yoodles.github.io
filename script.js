@@ -42,10 +42,24 @@ function resetGameState() {
 
 
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️⬇️
-function setInitialPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL rounds completed"は"NEXTROUND"の場合オンリー
-    index = wordPair.currentPairIndex;
-    if (wordPair.currentPairIndex < wordPairList.length) {
+// function setInitialPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL rounds completed"は"NEXTROUND"の場合オンリー
+//     index = wordPair.currentPairIndex;
+//     if (wordPair.currentPairIndex < wordPairList.length) {
 
+//         wordPair.startWord = wordPairList[index].start;
+//         wordPair.endWord = wordPairList[index].end;
+
+//         wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
+//         wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
+//     } else {
+//         document.getElementById('gameArea').innerText = "No Word Pair Found!";
+//     }
+// }
+
+function setInitialPairAndLengths() {
+    const index = wordPair.currentPairIndex;
+
+    if (index < wordPairList.length) {
         wordPair.startWord = wordPairList[index].start;
         wordPair.endWord = wordPairList[index].end;
 
@@ -55,6 +69,7 @@ function setInitialPairAndLengths(index) { //❗️❗️❗️❗️❗️"ALL 
         document.getElementById('gameArea').innerText = "No Word Pair Found!";
     }
 }
+
 
 //"if preRound""にすれば、argumentもこのfunctionも要らない？
 function makeInitialPairTiles() {
