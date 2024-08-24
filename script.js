@@ -257,10 +257,9 @@ function submitMove() {
         // If round complete
          (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
             ? updateGame('completeRound')
-            : updateGame();
+            : updateGame('submit');
 
         updateLatestAndTargetWord();
-        updateDeleterVisibility('submit');
         console.log("Upper Array", upperArray);
 
     } else document.getElementById('currentInput').focus(); //i.e. if isTotallyValid returns "false"
@@ -297,17 +296,23 @@ function updateDeleterVisibility(action) {
 
 
 //FUNC: DELETE LAST INPUT (x TWO BUTTONS)
-function deleteOne(upperOrLower, direction) {
-    let deleteButton = upperOrLower === 'upper' ? normDeleter : flipDeleter;
+function deleteOne(which) {
+    let deleter, rack, array;
 
-    let rack = (direction === 'norm') ? normInputRack : flipInputRack;
-    let array = (direction === 'norm') ? gameState.normInputArray : gameState.flipInputArray;
+    if (which === 'norm') {
+        deleter = normDeleter;
+        rack = normInputRack;
+        array = normInputArray;
+    } else if (which === 'flip') {
+        deleter = flipDeleter;
+        rack = flipInputRack;
+        array = flipInputArray;
+    }
 
     if (array.length > 0) {
         array.pop();
         if (rack.lastChild) rack.removeChild(rack.lastChild);   /////lastElementChildじゃなくて良いのか❓
     }
-    else deleteButton.classList.add('invisible');     //redundant!!!!! でもどうするか
 
     updateLatestAndTargetWord();
     updateDeleterVisibility('delete');
@@ -333,20 +338,13 @@ function updateUI(phase) {
             resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
             hideClass('preRound');
             showClass('postRound');
+            updateDeleterVisibility();
             emptyTextInputBox(); //消しとかないと？でも"BACK"した時
             // showContentOfArrays();
             break;
-
-        case 'midRound':
-            showClass('preRound');
-            hideClass('postRound');
-            //でも'midRound'だと、Deletersが両方出てない場合ダメ=親funcの最後で回収？
-            break;
-
         default:
             break;
     }
-    updateDeleterVisibility();
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
     console.log("UPDATEUI: Lat/Targ: ", gameState.latestWord, gameState.targetWord);
 }
@@ -354,6 +352,18 @@ function updateUI(phase) {
 
 function updateGame(action) {
     switch (action) {
+        case 'submit':
+            updateDeleterVisibility('submit');
+            emptyTextInputBox();
+            break;
+
+        case 'completeRound':
+            gameState.gamePhase = 'postRound';
+            console.log("ROUND COMPLETE");
+            checkAndUpdateBestScoreIndex(); //SUBMITでやったっけ？
+            //INSERT fade-out animation etc.
+            updateUI('postRound');
+            break;
 
         case 'resetRound': //TRY AGAINを忘れている？❗️❗️ restartに変える
             setInitialGameState(); //includes phase, arrays
@@ -365,14 +375,6 @@ function updateGame(action) {
             updateUI('preRound');
             showLatestBestScore(); //???
 
-            break;
-
-        case 'completeRound':
-            gameState.gamePhase = 'postRound';
-            console.log("ROUND COMPLETE");
-            checkAndUpdateBestScoreIndex(); //SUBMITでやったっけ？
-            //INSERT fade-out animation etc.
-            updateUI('postRound');  //❓❓❓❓
             break;
 
         // NEXT ROUND or SKIP ROUND ❗️違い：if postRoundだったらpreRoundに消す  ❗️❗️ リストの長さと計算合うか確認
@@ -399,7 +401,6 @@ function updateGame(action) {
             break;
 
         default:
-            emptyTextInputBox();
             updateMoveCounterUI(); //submitMoveの場合だけこっちかsubmitMoveで。他はupdateUIの共通エンディング
             document.getElementById('currentInput').focus(); //でもsubmitがinvalidだったら？ 
             break;
@@ -440,10 +441,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     updateGame('resetRound');
                     break;
                 case 'normDeleter':
-                    deleteOne('upper', gameState.gameDirection === 'norm' ? 'norm' : 'flip');
+                    deleteOne('norm');
                     break;
                 case 'flipDeleter':
-                    deleteOne('lower', gameState.gameDirection === 'norm' ? 'flip' : 'norm');
+                    deleteOne('flip');
                     break;
                 default:
             }
