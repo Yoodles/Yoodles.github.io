@@ -5,6 +5,9 @@ import { wordPair } from './script.js';
 
 ////FUNC: CHECK IF 2 WORDS ARE A TWEAK, SCRAMBLE, OR ADD/REMOVE APART ✅
 function isOneMoveApart(word1, word2) {
+
+    console.log('isOneMoveApart called!');
+
     function isTweak(word1, word2) {
         if (word1.length !== word2.length) return false;
         let diffCount = 0;
@@ -72,7 +75,6 @@ export function isTotallyValid(word, word2) {
     };
 
     if (!isValidLength(word)) {
-        console.log('not valid length');
         return false;
     };
     if (!isOneMoveApart(word, word2)) {
