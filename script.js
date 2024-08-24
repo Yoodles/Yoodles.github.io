@@ -302,7 +302,7 @@ function deleteOne(which) {
         console.log('Before: ', config.rack, config.array);
 
         // const conts = config.rack.querySelectorAll('.wordCont');
-        config.rack.querySelectorAll('.wordCont').forEach(cont => cont.lastElementChild?.remove());
+        config.rack.querySelectorAll('.wordCont').forEach(cont => config.rack.lastElementChild?.remove());
 
         // if (cont && config.rack.lastElementChild) {
         //     config.rack.removeChild(config.rack.lastElementChild);
