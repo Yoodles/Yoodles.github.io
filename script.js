@@ -9,15 +9,6 @@ const endWordRack = document.getElementById('endWordRack');
 
 //// INITIAL STATE AT START OF ROUND ////
 
-export let wordPair = {
-    currentPairIndex: 0,
-    startWord: '',
-    endWord: '',
-    maxLength: 6,
-    minLength: 3,
-    bestScoreIndex: {}
-}
-
 const initialGameState = {
     gamePhase: 'preRound',
     gameDirection: 'norm',
@@ -28,11 +19,19 @@ const initialGameState = {
     targetWord: '',
     resultMessage: ''
 };
-
 export let gameState = { ...initialGameState };
 
 function resetGameState() {
-    gameState = { ...initialGameState };
+    gameState = { ...initialGameState }
+}
+
+export let wordPair = {
+    currentPairIndex: 0,
+    startWord: '',
+    endWord: '',
+    maxLength: 6,
+    minLength: 3,
+    bestScoreIndex: {}
 }
 
 
@@ -99,16 +98,12 @@ function getDirectionalConfig() {
 //====UTILITY FUNCTIONS====//
 ////SHOWING & HIDING WHOLE CLASSES//// ✅
 function showClass(className) {
-    let elements = document.querySelectorAll('.' + className);
-    elements.forEach(function(element) {
-        element.classList.remove('hidden');
-    });
+    const elems = document.querySelectorAll('.' + className);
+    elems.forEach(el => el.classList.remove('hidden'));
 }
 function hideClass(className) {
-    let elements = document.querySelectorAll('.' + className);
-    elements.forEach(function(element) {
-        element.classList.add('hidden');
-    });
+    const elems = document.querySelectorAll('.' + className);
+    elems.forEach(el => el.classList.add('hidden'));
 }
 
 function showOrHideGameArea(which) { //toggleでも
