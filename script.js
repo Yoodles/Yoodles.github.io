@@ -285,40 +285,32 @@ function updateUI(stateOrAction) {
 
     if (stateOrAction === 'submit' || stateOrAction === 'delete') {
         document.getElementById('currentInput').focus();
+        emptyTextInputBox();
+    } else if (stateOrAction === 'flip') {
+        updateDirectionUI(gameState.gameDirection);
     }
 
     updateDeleterVisibility(stateOrAction);
-    emptyTextInputBox();
+
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
 
-
-// function toggleFlip() {
-//     gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
-
-//     updateDirectionUI(gameState.gameDirection);
-//     updateLatestAndTargetWord();
-//     updateGame();
-// }
+function toggleFlip() {
+    gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
+    updateGame('flip');
+}
 
 function updateGame(action) {
     switch (action) {   
         case 'submit':
         case 'delete':
             gameState.gamePhase = 'midRound';
-            updateLatestAndTargetWord();
-            updateUI(action);
-            break;
-
         case 'flip':
-            gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
-            updateDirectionUI(gameState.gameDirection);
-            updateLatestAndTargetWord();
+            updateUI(action);
             break;
 
         case 'completeRound':
             gameState.gamePhase = 'postRound';
-            updateLatestAndTargetWord();
             checkAndUpdateBestScoreIndex();
 
             updateUI('postRound');
@@ -334,8 +326,9 @@ function updateGame(action) {
             resetGameState();
             updateUI('preRound');
             break;
-
     };
+    updateLatestAndTargetWord();
+
     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
 }
 
@@ -355,9 +348,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     console.log("PAGE LOAD: Latest/Target: ", gameState.latestWord, gameState.targetWord);
     
     //EVENT LISTENERS for BUTTONS
-    document.getElementById('toggleFlip').addEventListener('click', function(event) {
-        updateGame('flip');
-    })
+    document.getElementById('toggleFlip').addEventListener('click', toggleFlip);
     document.addEventListener('click', function(event) {
         if (event.target.tagName === 'BUTTON' && event.target.id) {
             switch(event.target.id) {
