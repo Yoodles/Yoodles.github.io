@@ -252,17 +252,14 @@ function submitMove() {
     const inputWord = document.getElementById('currentInput').value.toLowerCase();
 
     if (isTotallyValid(inputWord, gameState.latestWord)) {
-
-        const upperArray = getDirectionalConfig().upperRackArray;
-        upperArray.push(inputWord);
+        getDirectionalConfig().upperRackArray.push(inputWord);
         makeTilesFor(inputWord);
+        gameState.moveCounter++;
 
         // If round complete
          (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
             ? updateGame('completeRound')
             : updateGame('submit');
-
-        console.log("Upper Array", upperArray);
 
     } else document.getElementById('currentInput').focus(); //i.e. if isTotallyValid returns "false"
 }
@@ -296,20 +293,15 @@ function updateDeleterVisibility(action) {
 
 //FUNC: DELETE LAST INPUT (x TWO BUTTONS)
 function deleteOne(which) {
-    let rack, array;
+    const config = which === 'norm'
+        ? { rack: normInputRack, array: gameState.normInputArray }
+        : { rack: flipInputRack, array: gameState.flipInputArray };
 
-    if (which === 'norm') {
-        rack = normInputRack;
-        array = gameState.normInputArray;
-    } else if (which === 'flip') {
-        rack = flipInputRack;
-        array = gameState.flipInputArray;
+    if (config.array.length > 0) {
+        config.array.pop();
+        if (config.rack.lastChild) config.rack.removeChild(config.rack.lastChild);
     }
-
-    if (array.length > 0) {
-        array.pop();
-        if (rack.lastChild) rack.removeChild(rack.lastChild);
-    }
+    gameState.moveCounter--;
     updateGame('delete');
 }
 
@@ -317,28 +309,13 @@ function deleteOne(which) {
 function updateGame(action) {
     switch (action) {
         case 'submit':
-            gameState.moveCounter++;
-
-            emptyTextInputBox();
-            updateLatestAndTargetWord();
-
-            updateDeleterVisibility('submit');
-
-            console.log(`INPUTTED. Latest Word: ${gameState.latestWord}; Target Word: ${gameState.targetWord}`);
-
-            break;
-
         case 'delete':
-            gameState.moveCounter--; //When to display?
-
             emptyTextInputBox();
             updateLatestAndTargetWord();
-            updateDeleterVisibility('delete');
+            updateDeleterVisibility(action);
 
-            console.log("Deleted. Latest: ", gameState.latestWord,"; Target: ", gameState.targetWord);
-
+            console.log(`${action} performed. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             break;
-
 
         case 'completeRound':
             gameState.gamePhase = 'postRound';
