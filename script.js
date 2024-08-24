@@ -323,10 +323,13 @@ function updateGame(action) {
         case 'nextRound':
             wordPair.currentPairIndex++;
             setWordPairAndLengths();
-
+            console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             buildWordPairTiles();
-        case 'resetRound': 
+
+        case 'resetRound':
+            console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             resetGameState();
+            console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             updateUI('preRound');
             break;
     };
