@@ -264,33 +264,34 @@ function deleteMove(which) {
 
 function updateUI(stateOrAction) {
 
-    if (stateOrAction === 'postRound') {
-        hideClass('preRound');
-        showClass('postRound');
-        emptyTextInputBox();
-
-        resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
-    } else if (stateOrAction === 'preRound') {
-        showClass('preRound');
-        hideClass('postRound');
-        updateDirectionUI('norm');
-        resetInputRackUI();
-        emptyTextInputBox();
-
-    }
-
     updateBestScoreUI();
 
-    if (stateOrAction === 'submit' || stateOrAction === 'delete') {
-        focusTextInputBox();
-        emptyTextInputBox();
-
-    } else if (stateOrAction === 'flip') {
-        updateDirectionUI(gameState.gameDirection);
+    switch (stateOrAction) {
+        case 'postRound':
+            hideClass('preRound');
+            showClass('postRound');
+            emptyTextInputBox();
+            updateDeleters(stateOrAction); //??
+            resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
+            break;
+        case 'preRound':
+            showClass('preRound');
+            hideClass('postRound');
+            updateDeleters(stateOrAction); //??
+            updateDirectionUI('norm');
+            resetInputRackUI();
+            emptyTextInputBox();
+            break;
+        case 'submit':
+        case 'delete':
+            focusTextInputBox();
+            emptyTextInputBox();
+            updateDeleters(stateOrAction);
+            break;
+        case 'flip':
+            updateDirectionUI(gameState.gameDirection);
+            break;
     }
-
-    updateDeleters(stateOrAction);
-
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
 
