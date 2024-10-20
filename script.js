@@ -123,6 +123,7 @@ function makeTilesFor(word, rack) {
         if (isVisible) tile.style.animationDelay = `${i * 0.2}s`;
     });
     wordCont.classList.remove('hidden');
+    wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 }
 
 //GETTING THE INPUTWORD CONT READY
