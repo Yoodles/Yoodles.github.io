@@ -260,7 +260,6 @@ function deleteMove(which) {
         : updateGame('completeRound');
 
     console.log('After: ', config.rack, config.array);
-
 }
 
 function updateUI(stateOrAction) {
@@ -305,7 +304,7 @@ function updateGame(action) {
     switch (action) {   
         case 'submit':
         case 'delete':
-            // gameState.gamePhase = 'midRound';
+            gameState.gamePhase = 'midRound';
             // updateUI(action);
         case 'flip':
             updateUI(action);
