@@ -322,7 +322,6 @@ function updateGame(action) {
         // SKIP ROUNDとの違い：if postRoundだったらpreRoundを消す？？ リストの長さと合うか確認 // TRY AGAINを忘れている？❗️❗️ restartに変える
         case 'nextRound':
             resetGameState();
-            gameState.gamePhase = 'preRound';
             wordPair.currentPairIndex++;
             setWordPairAndLengths();
             updateUI('preRound');
