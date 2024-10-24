@@ -223,18 +223,28 @@ function updateDeleters(action) {
     const normDeleter = document.getElementById('normDeleter');
     const flipDeleter = document.getElementById('flipDeleter');
 
-    switch (action) {
-        case 'reset':
+
+    if (!action) {
+        if gameState.gamePhase === 'preRound':
+            case gameState.gamePhase === 'postRound':
+                normDeleter.classList.add('invisible');
+                flipDeleter.classList.add('invisible');
+                break;
+    }
+
+    switch (true) {
+        case gameState.gamePhase === 'preRound':
+        case gameState.gamePhase === 'postRound':
             normDeleter.classList.add('invisible');
             flipDeleter.classList.add('invisible');
             break;
 
-        case 'delete':
+        case action === 'delete':
             if (normArray.length === 0) normDeleter.classList.add('invisible');
             else if (flipArray.length === 0) flipDeleter.classList.add('invisible');
             break;
 
-        case 'submit':
+        case action === 'submit':
             if (normArray.length === 1) normDeleter.classList.remove('invisible');
             if (flipArray.length === 1) flipDeleter.classList.remove('invisible');
             break;
