@@ -270,13 +270,13 @@ function updateUI(stateOrAction) {
             hideClass('preRound');
             showClass('postRound');
             emptyTextInputBox();
-            updateDeleters(stateOrAction); //??
+            updateDeleters('reset'); //??
             resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
             break;
         case 'preRound':
             showClass('preRound');
             hideClass('postRound');
-            updateDeleters(stateOrAction); //??
+            updateDeleters('reset'); //??
             updateDirectionUI('norm');
             resetInputRackUI();
             emptyTextInputBox();
