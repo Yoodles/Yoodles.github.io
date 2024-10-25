@@ -325,6 +325,7 @@ function updateUI(stateOrAction) {
 function updateGame(action) {
     switch (action) {   
         case 'submit':
+            gameState.gamePhase = 'midRound';
         case 'delete':
         case 'flip':
             updateUI(action);
