@@ -292,21 +292,6 @@ function updateUI(stateOrAction) {
     updateBestScoreUI();
 
     switch (stateOrAction) {
-        // case 'postRound':
-        //     hideClass('preRound');
-        //     showClass('postRound');
-        //     emptyTextInputBox();
-        //     updateDeleters('reset'); //??
-        //     resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
-        //     break;
-        // case 'preRound':
-        //     showClass('preRound');
-        //     hideClass('postRound');
-        //     updateDeleters('reset'); //??
-        //     updateDirectionUI('norm');
-        //     resetInputRackUI();
-        //     emptyTextInputBox();
-        //     break;
         case 'submit':
         case 'delete':
             focusTextInputBox();
