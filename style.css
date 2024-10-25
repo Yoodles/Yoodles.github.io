@@ -418,6 +418,10 @@ button:hover {
     border-color: rgba(255, 246, 85, 0.5);
 }
 
+#resultMessage {
+    display: block;
+}
+
 #resultPanel div {
     position: absolute;
     bottom: 5%;
