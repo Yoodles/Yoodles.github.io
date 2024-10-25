@@ -273,6 +273,7 @@ function updateUI(stateOrAction) {
 
     if (gameState.gamePhase === 'preRound') {
         showClass('inputter');
+        showClass('moveCounter');
         hideClass('result');
         updateDeleters('reset'); //??
         updateDirectionUI('norm');
@@ -342,6 +343,10 @@ function updateGame(action) {
 
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             updateUI();
+            break;
+
+        case 'goBack':
+            gameState.gamePhase = 'midRound';
             break;
     };
     
