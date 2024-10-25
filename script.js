@@ -336,13 +336,11 @@ function updateGame(action) {
             gameState.gamePhase = 'postRound';
             checkAndUpdateBestScoreIndex();
 
-            // updateUI('postRound');
             updateUI();
             updateLatestAndTargetWord();
             console.log("ROUND COMPLETE!!");
             break;
 
-        // SKIP ROUNDとの違い：if postRoundだったらpreRoundを消す？？ リストの長さと合うか確認 // TRY AGAINを忘れている？❗️❗️ restartに変える
         case 'nextRound':
             resetGameState();
             wordPair.currentPairIndex++;
@@ -354,6 +352,7 @@ function updateGame(action) {
 
         case 'resetRound':
             resetGameState();
+            updateLatestAndTargetWord();
 
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             updateUI();
