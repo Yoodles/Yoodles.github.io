@@ -270,7 +270,7 @@ function deleteMove(which) {
 
 function updateUI(stateOrAction) {
 
-    console.log(gameState.gamePhase);
+    console.log('gamePhase: ', gameState.gamePhase);
 
     if (gameState.gamePhase === 'preRound') {
         showClass('inputter');
