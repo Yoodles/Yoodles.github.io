@@ -328,21 +328,14 @@ function updateGame(action) {
             break;
 
         case 'nextRound':
-            resetGameState();
             wordPair.currentPairIndex++;
-            setWordPairAndLengths();
-            // updateUI('preRound');
-            updateUI();
-            buildWordPairTiles();
-            break;
-
         case 'resetRound':
             resetGameState();
             setWordPairAndLengths();
-            // updateLatestAndTargetWord();
-
-            console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             updateUI();
+            buildWordPairTiles();
+            
+            console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             break;
 
         case 'goBack':
@@ -357,7 +350,6 @@ function updateGame(action) {
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD　//❓❓❓いつconfigは？ 最初にgameAreaを「hidden」にしておく
 document.addEventListener('DOMContentLoaded', (event) => {
 
-    // resetGameState();
     setWordPairAndLengths(0);
     buildWordPairTiles();
 
