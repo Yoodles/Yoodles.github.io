@@ -163,7 +163,7 @@ function submitMove() {
 
         // If round complete
          (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
-            ? updateGame('completeRound')
+            ? updateGame('roundComplete')
             : updateGame('submit');
 
     } else focusTextInputBox(); //i.e. if isTotallyValid returns "false"
@@ -215,6 +215,12 @@ function updateDirectionUI(direction) {
     });
 }
 
+function toggleFlip() {
+    gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
+    updateGame('flip');
+}
+
+
 //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
 function updateDeleters(action) {
@@ -256,7 +262,7 @@ function deleteMove(which) {
 
     gameState.latestWord !== gameState.targetWord
         ? updateGame('delete')
-        : updateGame('completeRound');
+        : updateGame('roundComplete');
 
     console.log('After: ', config.rack, config.array);
 }
@@ -294,10 +300,6 @@ function updateUI(stateOrAction) {
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
 
-function toggleFlip() {
-    gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
-    updateGame('flip');
-}
 
 function updateGame(action) {
     switch (action) {   
@@ -308,11 +310,12 @@ function updateGame(action) {
             updateLatestAndTargetWord();
             break;
 
-        case 'completeRound':
+        case 'roundComplete':
             gameState.gamePhase = 'postRound';
             checkAndUpdateBestScoreIndex();
 
-            updateUI('postRound');
+            // updateUI('postRound');
+            updateUI();
             updateLatestAndTargetWord();
             console.log("ROUND COMPLETE!!");
             break;
