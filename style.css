@@ -223,6 +223,12 @@ div[data-flip] #endWordRack { order: 1; }
 }
 
 
+#resultPanel {
+    background-color: white;
+    width: 120%;
+    height: 100px;
+}
+
 #inputterSet {
     display: flex;
     position: relative;
