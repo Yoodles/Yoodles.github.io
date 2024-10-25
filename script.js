@@ -371,8 +371,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     updateGame('nextRound');
                     break;                 
                 case 'resetRound':
-                case 'tryAgain':
+                case 'retryRound':
                     updateGame('resetRound');
+                    break;
+                case 'goBackOne':
+                    deleteMove();
                     break;
                 case 'normDeleter':
                     deleteMove('norm');
