@@ -286,6 +286,7 @@ function updateUI(stateOrAction) {
         // hideClass('inputter');
         hideClass('moveCounter');
         // showClass('result-panel');
+        console.log('post!!');
         emptyTextInputBox();
         updateDeleters('reset'); //??
         resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
