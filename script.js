@@ -303,8 +303,6 @@ function updateGame(action) {
     switch (action) {   
         case 'submit':
         case 'delete':
-            // gameState.gamePhase = 'midRound';
-            // updateUI(action);
         case 'flip':
             updateUI(action);
             updateLatestAndTargetWord();
