@@ -338,7 +338,8 @@ function updateGame(action) {
 
         case 'resetRound':
             resetGameState();
-            updateLatestAndTargetWord();
+            setWordPairAndLengths();
+            // updateLatestAndTargetWord();
 
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             updateUI();
