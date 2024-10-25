@@ -269,26 +269,43 @@ function deleteMove(which) {
 
 function updateUI(stateOrAction) {
 
-
     console.log(gameState.gamePhase);
+
+    if (gameState.gamePhase === 'preRound') {
+        showClass('preRound');
+        hideClass('postRound');
+        updateDeleters('reset'); //??
+        updateDirectionUI('norm');
+        resetInputRackUI();
+        emptyTextInputBox();
+    }
+
+    else if (gameState.gamePhase === 'postRound') {
+        hideClass('preRound');
+        showClass('postRound');
+        emptyTextInputBox();
+        updateDeleters('reset'); //??
+        resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
+    }
+
     updateBestScoreUI();
 
     switch (stateOrAction) {
-        case 'postRound':
-            hideClass('preRound');
-            showClass('postRound');
-            emptyTextInputBox();
-            updateDeleters('reset'); //??
-            resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
-            break;
-        case 'preRound':
-            showClass('preRound');
-            hideClass('postRound');
-            updateDeleters('reset'); //??
-            updateDirectionUI('norm');
-            resetInputRackUI();
-            emptyTextInputBox();
-            break;
+        // case 'postRound':
+        //     hideClass('preRound');
+        //     showClass('postRound');
+        //     emptyTextInputBox();
+        //     updateDeleters('reset'); //??
+        //     resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
+        //     break;
+        // case 'preRound':
+        //     showClass('preRound');
+        //     hideClass('postRound');
+        //     updateDeleters('reset'); //??
+        //     updateDirectionUI('norm');
+        //     resetInputRackUI();
+        //     emptyTextInputBox();
+        //     break;
         case 'submit':
         case 'delete':
             focusTextInputBox();
@@ -297,6 +314,8 @@ function updateUI(stateOrAction) {
             break;
         case 'flip':
             updateDirectionUI(gameState.gameDirection);
+            break;
+        default:
             break;
     }
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
