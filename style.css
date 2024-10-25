@@ -223,16 +223,6 @@ div[data-flip] #endWordRack { order: 1; }
 }
 
 
-#resultPanel {
-    background-color: rgba(255, 255, 255, 0.5);
-    position: absolute;
-    z-index: 10;
-    width: 150%;
-    height: 130px;
-    border: solid 2px;
-    font-size: 18px;
-}
-
 #inputterSet {
     display: flex;
     position: relative;
@@ -418,20 +408,32 @@ button:hover {
     border-color: rgba(255, 246, 85, 0.5);
 }
 
+#goBackOne {width: 25vw}
+
 /* #resultMessage {
     display: block;
 } */
 
+
 #resultPanel {
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    z-index: 10;
+    width: 150%;
+    height: 130px;
+    border: solid 1.2px;
+    border-radius: 5px;
+    font-size: 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 }
 
+
 #resultButtons {
-    bottom: 5%;
-    width: 100%;
+    /* bottom: 5%; */
+    /* width: 100%; */
 }
 
 #resultPanel button {
