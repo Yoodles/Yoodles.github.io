@@ -283,7 +283,7 @@ function updateUI(stateOrAction) {
         emptyTextInputBox();
     }
     else if (gameState.gamePhase === 'postRound') {
-        hideClass('inputter');
+        // hideClass('inputter');
         hideClass('moveCounter');
         // showClass('result-panel');
         resultPanel.classList.add('complete');
