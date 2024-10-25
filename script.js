@@ -249,13 +249,11 @@ function updateDeleters(action) {
 
 
 function deleteMove(which) {
-    const dirConfig = which === 'norm'
+    let dirConfig = which === 'norm'
         ? { rack: normInputRack, array: gameState.normInputArray }
         : { rack: flipInputRack, array: gameState.flipInputArray };
 
-    const wordConts = dirConfig.rack.querySelectorAll('.wordCont');
-
-
+    let wordConts = dirConfig.rack.querySelectorAll('.wordCont');
 
     if (dirConfig.array.length > 0) dirConfig.array.pop();
     if (wordConts) wordConts[wordConts.length - 1].remove();
