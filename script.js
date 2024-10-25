@@ -5,6 +5,7 @@ const startWordRack = document.getElementById('startWordRack');
 const normInputRack = document.getElementById('normInputRack'); 
 const flipInputRack = document.getElementById('flipInputRack');
 const endWordRack = document.getElementById('endWordRack');
+const resultPanel = document.getElementById('resultPanel');
 
 //// INITIAL STATE AT START OF ROUND ////
 const initialGameState = {
@@ -274,7 +275,8 @@ function updateUI(stateOrAction) {
     if (gameState.gamePhase === 'preRound') {
         showClass('inputter');
         showClass('moveCounter');
-        hideClass('result');
+        // hideClass('result-panel');
+        resultPanel.classList.remove('complete');
         updateDeleters('reset'); //??
         updateDirectionUI('norm');
         resetInputRackUI();
@@ -283,7 +285,8 @@ function updateUI(stateOrAction) {
     else if (gameState.gamePhase === 'postRound') {
         hideClass('inputter');
         hideClass('moveCounter');
-        showClass('result');
+        // showClass('result-panel');
+        resultPanel.classList.add('complete');
         emptyTextInputBox();
         updateDeleters('reset'); //??
         resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
