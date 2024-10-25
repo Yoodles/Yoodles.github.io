@@ -241,8 +241,8 @@ function updateDeleters(action) {
             break;
 
         case 'submit':
-            if (normArray.length === 1) normDeleter.classList.remove('invisible');
-            if (flipArray.length === 1) flipDeleter.classList.remove('invisible');
+            if (normArray.length > 0) normDeleter.classList.remove('invisible');
+            if (flipArray.length > 0) flipDeleter.classList.remove('invisible');
             break;
     }
 }
