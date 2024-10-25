@@ -269,6 +269,8 @@ function deleteMove(which) {
 
 function updateUI(stateOrAction) {
 
+
+    console.log(gameState.gamePhase);
     updateBestScoreUI();
 
     switch (stateOrAction) {
@@ -325,7 +327,8 @@ function updateGame(action) {
             resetGameState();
             wordPair.currentPairIndex++;
             setWordPairAndLengths();
-            updateUI('preRound');
+            // updateUI('preRound');
+            updateUI();
             buildWordPairTiles();
             break;
 
@@ -333,7 +336,7 @@ function updateGame(action) {
             resetGameState();
 
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
-            updateUI('preRound');
+            updateUI();
             break;
     };
     
