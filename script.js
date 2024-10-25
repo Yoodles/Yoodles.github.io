@@ -272,8 +272,8 @@ function updateUI(stateOrAction) {
     console.log(gameState.gamePhase);
 
     if (gameState.gamePhase === 'preRound') {
-        showClass('preRound');
-        hideClass('postRound');
+        showClass('inputter');
+        hideClass('result');
         updateDeleters('reset'); //??
         updateDirectionUI('norm');
         resetInputRackUI();
@@ -281,8 +281,9 @@ function updateUI(stateOrAction) {
     }
 
     else if (gameState.gamePhase === 'postRound') {
-        hideClass('preRound');
-        showClass('postRound');
+        hideClass('inputter');
+        hideClass('moveCounter');
+        showClass('result');
         emptyTextInputBox();
         updateDeleters('reset'); //??
         resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";

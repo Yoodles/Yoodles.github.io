@@ -17,6 +17,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    max-width: 500px;
     min-height: 100vh;
     /* overflow-y: scroll; */
     align-items: center;
