@@ -286,7 +286,7 @@ function updateUI(stateOrAction) {
         showClass('result');
         emptyTextInputBox();
         updateDeleters('reset'); //??
-        resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!";
+        resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
     }
 
     updateBestScoreUI();
