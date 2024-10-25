@@ -286,10 +286,10 @@ function updateUI(stateOrAction) {
         // hideClass('inputter');
         hideClass('moveCounter');
         // showClass('result-panel');
-        resultPanel.classList.add('complete');
         emptyTextInputBox();
         updateDeleters('reset'); //??
         resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
+        resultPanel.classList.add('complete');
     }
 
     updateBestScoreUI();
