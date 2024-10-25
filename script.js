@@ -280,7 +280,6 @@ function updateUI(stateOrAction) {
         resetInputRackUI();
         emptyTextInputBox();
     }
-
     else if (gameState.gamePhase === 'postRound') {
         hideClass('inputter');
         hideClass('moveCounter');
