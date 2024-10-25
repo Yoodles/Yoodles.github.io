@@ -375,6 +375,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     updateGame('resetRound');
                     break;
                 case 'goBackOne':
+                    console.log('go back pressed');
                     deleteMove();
                     break;
                 case 'normDeleter':
