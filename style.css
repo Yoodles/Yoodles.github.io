@@ -418,12 +418,18 @@ button:hover {
     border-color: rgba(255, 246, 85, 0.5);
 }
 
-#resultMessage {
+/* #resultMessage {
     display: block;
+} */
+
+#resultPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-#resultPanel div {
-    position: absolute;
+#resultButtons {
     bottom: 5%;
     width: 100%;
 }
