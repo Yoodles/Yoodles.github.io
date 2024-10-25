@@ -249,13 +249,15 @@ function updateDeleters(action) {
 
 
 function deleteMove(which) {
-    const config = which === 'norm'
+    const dirConfig = which === 'norm'
         ? { rack: normInputRack, array: gameState.normInputArray }
         : { rack: flipInputRack, array: gameState.flipInputArray };
 
-    const wordConts = config.rack.querySelectorAll('.wordCont');
+    const wordConts = dirConfig.rack.querySelectorAll('.wordCont');
 
-    if (config.array.length > 0) config.array.pop();
+
+
+    if (dirConfig.array.length > 0) dirConfig.array.pop();
     if (wordConts) wordConts[wordConts.length - 1].remove();
 
     gameState.moveCounter--;
@@ -264,7 +266,7 @@ function deleteMove(which) {
         ? updateGame('delete')
         : updateGame('roundComplete');
 
-    console.log('After: ', config.rack, config.array);
+    console.log('After: ', dirConfig.rack, dirConfig.array);
 }
 
 function updateUI(stateOrAction) {
