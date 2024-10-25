@@ -311,9 +311,9 @@ function updateUI(stateOrAction) {
 function updateGame(action) {
     switch (action) {   
         case 'submit':
+        case 'flip':
             gameState.gamePhase = 'midRound';
         case 'delete':
-        case 'flip':
             updateUI(action);
             updateLatestAndTargetWord();
             break;
