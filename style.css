@@ -166,7 +166,7 @@ body {
     margin-right: auto;
 }
 
-.inputRack .wordCont {
+/* .inputRack .wordCont {
     transform: translateY(100%);
     opacity: 0;
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -175,7 +175,7 @@ body {
 .inputRack .wordCont.show {
     transform: translateY(0);
     opacity: 1;
-}
+} */
 
 
 #inputterRack {
@@ -193,6 +193,9 @@ body {
 #normInputRack, #flipInputRack {
     position: relative;
     display: flex;
+
+    flex-direction: column-reverse; /* Stack words from the bottom upwards */
+    transition: transform 0.5s ease-in-out; /* Animation for upward sliding */
 
 }
 
