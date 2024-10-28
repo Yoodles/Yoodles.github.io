@@ -126,12 +126,15 @@ function makeTilesFor(word, rack) {
     });
     wordCont.classList.remove('hidden');
 
-    // Append the new word container at the bottom of the rack
-    rack.appendChild(wordCont);
 
-    // Increment the upward shift by 11.4vw for each new word
-    currentOffset += 11.4;
-    rack.style.transform = `translateY(-${currentOffset}vw)`;
+    if (rack !== startWordRack && rack !== endWordRack) {
+        // Append the new word container at the bottom of the rack
+        rack.appendChild(wordCont);
+
+        // Increment the upward shift by 11.4vw for each new word
+        currentOffset += 11.4;
+        rack.style.transform = `translateY(-${currentOffset}vw)`;
+    }
 
     wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 }
