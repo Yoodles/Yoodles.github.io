@@ -1,10 +1,10 @@
 import { wordPairList } from './words.js';
 import { isTotallyValid } from './word-validity.js';
 
-const startWordRack = document.getElementById('startWordRack');
+const startWordRack = document.getElementById('startWord');
 const normInputRack = document.getElementById('normInputRack'); 
 const flipInputRack = document.getElementById('flipInputRack');
-const endWordRack = document.getElementById('endWordRack');
+const endWordRack = document.getElementById('endWord');
 const resultPanel = document.getElementById('resultPanel');
 
 //// INITIAL STATE AT START OF ROUND ////

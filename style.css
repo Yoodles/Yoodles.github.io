@@ -167,39 +167,32 @@ body {
     margin-right: auto;
 }
 
-#startWordRack, #endWordRack {
+#startWord, #endWord {
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
-/* 
-#endWordRack div {
-background-color: rgba(0, 180, 0, 0.65);
-} */
 
 
 
+#startWord { order: 1; }
+#inputterRack { order: 2; }
+#endWord { order: 3; }
 
-#startWordRack { order: 1; }
-#normInputRack { order: 2; flex-direction: column}
-#inputterSet { order: 3; }
-#flipInputRack { order: 4; flex-direction: column-reverse; }
-#endWordRack { order: 5; }
+#normInputRack { order: 1; flex-direction: column}
+#inputterSet { order: 2; }
+#flipInputRack { order: 3; flex-direction: column-reverse; }
 
 
-div[data-flip] #startWordRack { order: 5; }
+
+div[data-flip] #startWord { order: 5; }
 div[data-flip] #normInputRack { order: 4; flex-direction: column-reverse;}
 div[data-flip] #inputterSet { order: 3; }
 div[data-flip] #flipInputRack { order: 2; flex-direction: column;}
-div[data-flip] #endWordRack { order: 1; }
+div[data-flip] #endWord { order: 1; }
 
 #flipperAndDeleters[data-flip] { flex-direction: column-reverse; }
 
-/* #startWordRack[data-flip] { order: 5; }
-#normInputRack[data-flip] { order: 4; flex-direction: column-reverse;}
-#inputterSet[data-flip] { order: 3; }
-#flipInputRack[data-flip] { order: 2; flex-direction: column;}
-#endWordRack[data-flip] { order: 1; } */
 
 #normInputRack, #flipInputRack {
     display: flex;
