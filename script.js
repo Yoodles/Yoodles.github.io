@@ -399,6 +399,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             submitMove();
         }
     });
-    focusTextInputBox();
+    // focusTextInputBox();
     showClass('gameArea');
 });
