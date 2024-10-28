@@ -102,7 +102,7 @@ body {
     position: relative;
     width: fit-content;
     min-height: 30%;
-    max-height: 80%;
+    max-height: 80vh;
     max-width: 80vw;
     padding-bottom: 7vh;
     
@@ -166,15 +166,35 @@ body {
     margin-right: auto;
 }
 
+.inputRack .wordCont {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.inputRack .wordCont.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
 
 #inputterRack {
     display: flex;
+    position: relative;
+    overflow: hidden;
     flex-direction: column;
+    /* overflow: scroll; */
 }
 
 #startWord { order: 1; }
 #inputterRack { order: 2; }
 #endWord { order: 3; }
+
+#normInputRack, #flipInputRack {
+    position: relative;
+    display: flex;
+
+}
 
 #normInputRack { order: 1; flex-direction: column}
 #inputterSet { order: 2; }

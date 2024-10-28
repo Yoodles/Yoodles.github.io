@@ -110,12 +110,32 @@ function updateMoveCounterUI() {
 
 
 ////GENERATING WORD TILES////
+// function makeTilesFor(word, rack) {
+//     let wordCont;
+//     if (rack === startWordRack) wordCont = startWordRack;
+//     else if (rack === endWordRack) wordCont = endWordRack;
+//     else wordCont = prepareInputWordCont();
+
+//     wordCont.querySelectorAll('div').forEach((tile, i) => {
+//         const isVisible = i < word.length;
+//         tile.textContent = isVisible ? word[i].toUpperCase() : '';
+//         tile.classList.toggle('tile', isVisible);
+//         tile.classList.toggle('hidden', !isVisible);
+//         if (isVisible) tile.style.animationDelay = `${i * 0.2}s`;
+//     });
+//     wordCont.classList.remove('hidden');
+//     wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
+// }
+
 function makeTilesFor(word, rack) {
     let wordCont;
+    
+    // Check which rack to use (start, end, or normal input)
     if (rack === startWordRack) wordCont = startWordRack;
     else if (rack === endWordRack) wordCont = endWordRack;
-    else wordCont = prepareInputWordCont();
-
+    else wordCont = prepareInputWordCont(); // Create new word container for input
+    
+    // Update the content of the word container
     wordCont.querySelectorAll('div').forEach((tile, i) => {
         const isVisible = i < word.length;
         tile.textContent = isVisible ? word[i].toUpperCase() : '';
@@ -123,9 +143,25 @@ function makeTilesFor(word, rack) {
         tile.classList.toggle('hidden', !isVisible);
         if (isVisible) tile.style.animationDelay = `${i * 0.2}s`;
     });
+    
     wordCont.classList.remove('hidden');
-    wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
+    
+    // Append the new word container at the bottom of the rack
+    rack.appendChild(wordCont);
+
+    // Trigger the sliding effect for all word containers
+    let allWords = rack.querySelectorAll('.wordCont'); // All word containers in the rack
+
+    allWords.forEach((wordElement, index) => {
+        setTimeout(() => {
+            wordElement.classList.add('show'); // Apply the show class for the upward animation
+        }, index * 100); // Stagger the animation for a smoother effect
+    });
+
+    // Scroll to the new word to ensure visibility (smooth scroll)
+    wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
+
 
 //GETTING THE INPUTWORD CONT READY
 function prepareInputWordCont() {
