@@ -108,7 +108,7 @@ body {
     
     margin-top: auto; /*足してみた*/
     margin-bottom: auto; /*足してみた*/
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .tile {
