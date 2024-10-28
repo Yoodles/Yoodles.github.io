@@ -101,11 +101,10 @@ body {
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    height: fit-content;
-    transition: height 0.5s ease-out;
+    /* height: fit-content; */
+    transition: height 0.8s ease-out;
     width: fit-content;
     align-content: center;
-    min-height: 85%;
     max-height: 80vh;
     max-width: 80vw;
     padding: 0 8vh;
