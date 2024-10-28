@@ -108,6 +108,7 @@ function updateMoveCounterUI() {
     document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
 }
 
+let currentOffset = 0;
 
 ////GENERATING WORD TILES////
 function makeTilesFor(word, rack) {
@@ -124,8 +125,17 @@ function makeTilesFor(word, rack) {
         if (isVisible) tile.style.animationDelay = `${i * 0.2}s`;
     });
     wordCont.classList.remove('hidden');
+
+    // Append the new word container at the bottom of the rack
+    rack.appendChild(wordCont);
+
+    // Increment the upward shift by 11.4vw for each new word
+    currentOffset += 11.4;
+    rack.style.transform = `translateY(-${currentOffset}vw)`;
+
     wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 }
+
 
 
 //GETTING THE INPUTWORD CONT READY
