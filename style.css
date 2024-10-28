@@ -40,7 +40,7 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
-    min-height: 7vh;
+    min-height: 8vh;
     justify-content: center;
     /* background-color: hwb(0 100% 0% / 0.68); */
     background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 200%);
@@ -48,14 +48,15 @@ body {
     z-index: 999;
 }
 
-#footer div {
+#footer > div {
     display: inline-flex;
     width: 98vw;
-    /* margin-inline: 1.5vw; */
+    height:8vh;
     justify-content: center;
-    /* position: relative; */
-    /* margin-inline: auto; */
 }
+
+
+
 #movesCont {
     /* margin-top: 3vh;
     margin-bottom: 1.2vh; */
@@ -64,8 +65,7 @@ body {
     flex-direction: column;
     font-size: 4vw;
     font-weight: 200;
-    margin-left: auto;
-    margin-right: auto;    
+    margin: auto;   
 }
 #movesCont div {
     width: 100%
@@ -100,15 +100,13 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
+    height: fit-content;
+    transition: height 0.5s ease-out;
     width: fit-content;
     min-height: 30%;
     max-height: 80vh;
     max-width: 80vw;
-    padding-bottom: 7vh;
-    
-    margin-top: auto; /*足してみた*/
-    margin-bottom: auto; /*足してみた*/
-    /* justify-content: space-between; */
+    padding: 0 8vh;
 }
 
 .tile {
@@ -181,7 +179,7 @@ body {
 #inputterRack {
     display: flex;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
     flex-direction: column;
     /* overflow: scroll; */
 }
