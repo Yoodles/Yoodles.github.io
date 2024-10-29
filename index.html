@@ -22,6 +22,16 @@
 
 <div id="gameArea" class="gameArea hidden">
     
+    <div id="overlayer"></div>
+    <div id="resultPanel" class="result-panel">
+        <div id="resultMessage" class="result">Completed in 200 moves!<br>You know words good!</div>
+        <div id="resultButtons">
+            <button id="retryRound">RETRY</button>
+            <button id="goBackOne">UNDO</button>
+            <button id="nextRound">NEXT</button>
+        </div>
+    </div>
+
     <div id="gameplayCont">
         
         <div id="startWord" data-layout="stack" class="wordCont setWord">
@@ -56,16 +66,6 @@
             </div>
 
             <div id="inputterSet" data-layout="stack" class="inputter">
-                <div id="resultPanel" class="result-panel">
-                    <div id="resultMessage" class="result">Completed in 200 moves!<br>You know words good!</div>
-                    <div id="resultButtons">
-                        <button id="retryRound">RETRY</button>
-                        <button id="goBackOne">UNDO</button>
-                        <button id="nextRound">NEXT</button>
-                    </div>
-
-                </div>
-
                 <div id="flipperAndDeleters">
                     <button id="normDeleter" class="deleters invisible">x</button>
                     <button id="toggleFlip" type="button">
