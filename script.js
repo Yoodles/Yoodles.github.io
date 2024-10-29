@@ -9,7 +9,7 @@ const resultPanel = document.getElementById('resultPanel');
 
 //// INITIAL STATE AT START OF ROUND ////
 const initialGameState = {
-    gamePhase: 'preRound',
+    gamePhase: 'pre',
     gameDirection: 'norm',
     moveCounter: 0,
     normInputArray: [],
@@ -127,14 +127,14 @@ function makeTilesFor(word, rack) {
     wordCont.classList.remove('hidden');
 
 
-    if (rack !== startWordRack && rack !== endWordRack) {
-        // Append the new word container at the bottom of the rack
-        rack.appendChild(wordCont);
+    // if (rack !== startWordRack && rack !== endWordRack) {
+    //     // Append the new word container at the bottom of the rack
+    //     rack.appendChild(wordCont);
 
-        // Increment the upward shift by 11.4vw for each new word
-        currentOffset += 11.4;
-        rack.style.transform = `translateY(-${currentOffset}vw)`;
-    }
+    //     // Increment the upward shift by 11.4vw for each new word
+    //     currentOffset += 11.4;
+    //     rack.style.transform = `translateY(-${currentOffset}vw)`;
+    // }
 
     wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 }
@@ -286,20 +286,17 @@ function updateUI(stateOrAction) {
 
     console.log('gamePhase: ', gameState.gamePhase);
 
-    if (gameState.gamePhase === 'preRound') {
+    if (gameState.gamePhase === 'pre') {
         showClass('inputter');
         showClass('moveCounter');
-        // hideClass('result-panel');
         resultPanel.classList.remove('complete');
         updateDeleters('reset'); //??
         updateDirectionUI('norm');
         resetInputRackUI();
         emptyTextInputBox();
     }
-    else if (gameState.gamePhase === 'postRound') {
-        // hideClass('inputter');
+    else if (gameState.gamePhase === 'post') {
         hideClass('moveCounter');
-        // showClass('result-panel');
         console.log('post!!');
         emptyTextInputBox();
         updateDeleters('reset'); //??
@@ -322,6 +319,7 @@ function updateUI(stateOrAction) {
         default:
             break;
     }
+    focusTextInputBox();
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
 
@@ -330,14 +328,14 @@ function updateGame(action) {
     switch (action) {   
         case 'submit':
         case 'flip':
-            gameState.gamePhase = 'midRound';
+            gameState.gamePhase = 'mid';
         case 'delete':
             updateUI(action);
             updateLatestAndTargetWord();
             break;
 
         case 'roundComplete':
-            gameState.gamePhase = 'postRound';
+            gameState.gamePhase = 'post';
             checkAndUpdateBestScoreIndex();
 
             updateUI();
@@ -357,7 +355,7 @@ function updateGame(action) {
             break;
 
         case 'goBack':
-            gameState.gamePhase = 'midRound';
+            gameState.gamePhase = 'mid';
             break;
     };
     
