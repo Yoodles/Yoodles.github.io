@@ -250,32 +250,7 @@ function toggleFlip() {
 
 //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
-// function updateDeleters(action) {
-//     const normArray = gameState.normInputArray;
-//     const flipArray = gameState.flipInputArray;
-//     const normDeleter = document.getElementById('normDeleter');
-//     const flipDeleter = document.getElementById('flipDeleter');
-
-//     switch (action) {
-//         case 'reset':
-//             normDeleter.classList.add('invisible');
-//             flipDeleter.classList.add('invisible');
-//             break;
-
-//         case 'delete':
-//             if (normArray.length === 0) normDeleter.classList.add('invisible');
-//             else if (flipArray.length === 0) flipDeleter.classList.add('invisible');
-//             break;
-
-//         case 'submit':
-//             if (normArray.length > 0) normDeleter.classList.remove('invisible');
-//             if (flipArray.length > 0) flipDeleter.classList.remove('invisible');
-//             break;
-//     }
-// }
-
-
-function updateDeleters(action) {
+function updateDeleters() {
     const normDeleter = document.getElementById('normDeleter');
     const flipDeleter = document.getElementById('flipDeleter');
 
@@ -291,6 +266,9 @@ function updateDeleters(action) {
 
 
 function deleteMove(which) {
+    // let dirConfig = which === 'norm'
+    //     ? { rack: normInputRack, array: gameState.normInputArray }
+    //     : { rack: flipInputRack, array: gameState.flipInputArray };
 
     let dirConfig;
     switch (which) {
@@ -325,7 +303,7 @@ function updateUI(stateOrAction) {
 
     if (gameState.gamePhase === 'pre') {
         removeClass('post', 'complete');
-        updateDeleters('reset'); //??
+        updateDeleters();
         updateDirectionUI('norm');
         clearInputUI();
         emptyTextInputBox();
@@ -341,7 +319,7 @@ function updateUI(stateOrAction) {
         case 'delete':
             focusTextInputBox();
             emptyTextInputBox();
-            updateDeleters(stateOrAction);
+            updateDeleters();
             break;
         case 'flip':
             updateDirectionUI(gameState.gameDirection);
@@ -378,6 +356,7 @@ function updateGame(action) {
         case 'nextRound':
             wordPair.currentPairIndex++;
         case 'resetRound':
+
             resetGameState();
             setWordPairAndLengths();
             updateUI();
@@ -388,9 +367,9 @@ function updateGame(action) {
 
         case 'goBackOne':
             gameState.gamePhase = 'mid';
+
             deleteMove('top');
-            overlayer.classList.remove('complete');
-            resultPanel.classList.remove('complete');
+            removeClass('post', 'complete');
             break;
     };
     
