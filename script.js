@@ -69,6 +69,16 @@ function hideClass(className) {
     const elems = document.querySelectorAll('.' + className);
     elems.forEach(el => el.classList.add('hidden'));
 }
+
+function addClass(className, classToAdd) {
+    const elems = document.querySelectorAll('.' + className);
+    elems.forEach(el => el.classList.add(classToAdd));
+}
+function removeClass(className, classToRemove) {
+    const elems = document.querySelectorAll('.' + className);
+    elems.forEach(el => el.classList.remove(classToRemove));
+}
+
 function focusTextInputBox() {
     document.getElementById('currentInput').focus();
 }
@@ -266,9 +276,22 @@ function updateDeleters(action) {
 
 
 function deleteMove(which) {
-    let dirConfig = which === 'norm'
-        ? { rack: normInputRack, array: gameState.normInputArray }
-        : { rack: flipInputRack, array: gameState.flipInputArray };
+    // let dirConfig = which === 'norm'
+    //     ? { rack: normInputRack, array: gameState.normInputArray }
+    //     : { rack: flipInputRack, array: gameState.flipInputArray };
+
+    let dirConfig;
+    switch (which) {
+        case 'norm':
+            dirConfig = {rack: normInputRack, array: gameState.normInputArray};
+            break;
+        case 'flip':
+            dirConfig = {rack: flipInputRack, array: gameState.flipInputArray};
+            break;
+        case 'top':
+            dirConfig = {rack: normInputRack, array: gameState.normInputArray};
+            break;
+    }
 
     let wordConts = dirConfig.rack.querySelectorAll('.wordCont');
 
@@ -289,7 +312,7 @@ function updateUI(stateOrAction) {
     console.log('gamePhase: ', gameState.gamePhase);
 
     if (gameState.gamePhase === 'pre') {
-        showClass('inputter');
+        // showClass('inputter');
         showClass('moveCounter');
         overlayer.classList.remove('complete');
         resultPanel.classList.remove('complete');
@@ -301,8 +324,8 @@ function updateUI(stateOrAction) {
     else if (gameState.gamePhase === 'post') {
         hideClass('moveCounter');
         console.log('post!!');
-        emptyTextInputBox();
-        updateDeleters('reset'); //??
+        // emptyTextInputBox();
+        // updateDeleters('reset'); //??
         resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
         overlayer.classList.add('complete');
         resultPanel.classList.add('complete');
@@ -358,8 +381,11 @@ function updateGame(action) {
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             break;
 
-        case 'goBack':
+        case 'goBackOne':
             gameState.gamePhase = 'mid';
+            deleteMove('top');
+            overlayer.classList.remove('complete');
+            resultPanel.classList.remove('complete');
             break;
     };
     
@@ -396,7 +422,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     break;
                 case 'goBackOne':
                     console.log('go back pressed');
-                    deleteMove();
+                    updateGame('goBackOne');
                     break;
                 case 'normDeleter':
                     deleteMove('norm');
