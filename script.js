@@ -87,7 +87,7 @@ function emptyTextInputBox() {
 }
 
 ////EMPTYING CONTAINERS and CONTAINER RACKS ❗️❗️❗️❗️❗️❗️
-function resetInputRackUI() {
+function clearInputUI() {
     document.querySelectorAll('#normInputRack .wordCont, #flipInputRack .wordCont').forEach(wordCont => {
         wordCont.querySelectorAll('div').forEach(tile => {
             tile.textContent = '';
@@ -120,7 +120,7 @@ function updateMoveCounterUI() {
     document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
 }
 
-let currentOffset = 0;
+// let currentOffset = 0;
 
 ////GENERATING WORD TILES////
 function makeTilesFor(word, rack) {
@@ -250,35 +250,47 @@ function toggleFlip() {
 
 //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
+// function updateDeleters(action) {
+//     const normArray = gameState.normInputArray;
+//     const flipArray = gameState.flipInputArray;
+//     const normDeleter = document.getElementById('normDeleter');
+//     const flipDeleter = document.getElementById('flipDeleter');
+
+//     switch (action) {
+//         case 'reset':
+//             normDeleter.classList.add('invisible');
+//             flipDeleter.classList.add('invisible');
+//             break;
+
+//         case 'delete':
+//             if (normArray.length === 0) normDeleter.classList.add('invisible');
+//             else if (flipArray.length === 0) flipDeleter.classList.add('invisible');
+//             break;
+
+//         case 'submit':
+//             if (normArray.length > 0) normDeleter.classList.remove('invisible');
+//             if (flipArray.length > 0) flipDeleter.classList.remove('invisible');
+//             break;
+//     }
+// }
+
+
 function updateDeleters(action) {
-    const normArray = gameState.normInputArray;
-    const flipArray = gameState.flipInputArray;
     const normDeleter = document.getElementById('normDeleter');
     const flipDeleter = document.getElementById('flipDeleter');
 
-    switch (action) {
-        case 'reset':
-            normDeleter.classList.add('invisible');
-            flipDeleter.classList.add('invisible');
-            break;
-
-        case 'delete':
-            if (normArray.length === 0) normDeleter.classList.add('invisible');
-            else if (flipArray.length === 0) flipDeleter.classList.add('invisible');
-            break;
-
-        case 'submit':
-            if (normArray.length > 0) normDeleter.classList.remove('invisible');
-            if (flipArray.length > 0) flipDeleter.classList.remove('invisible');
-            break;
-    }
+    gameState.normInputArray.length < 1
+        ? normDeleter.classList.add('invisible')
+        : normDeleter.classList.remove('invisible');
+            
+    gameState.flipInputArray.length < 1
+        ? flipDeleter.classList.add('invisible')
+        : flipDeleter.classList.remove('invisible');
 }
 
 
+
 function deleteMove(which) {
-    // let dirConfig = which === 'norm'
-    //     ? { rack: normInputRack, array: gameState.normInputArray }
-    //     : { rack: flipInputRack, array: gameState.flipInputArray };
 
     let dirConfig;
     switch (which) {
@@ -312,26 +324,17 @@ function updateUI(stateOrAction) {
     console.log('gamePhase: ', gameState.gamePhase);
 
     if (gameState.gamePhase === 'pre') {
-        // showClass('inputter');
-        showClass('moveCounter');
-        overlayer.classList.remove('complete');
-        resultPanel.classList.remove('complete');
+        removeClass('post', 'complete');
         updateDeleters('reset'); //??
         updateDirectionUI('norm');
-        resetInputRackUI();
+        clearInputUI();
         emptyTextInputBox();
     }
     else if (gameState.gamePhase === 'post') {
-        hideClass('moveCounter');
-        console.log('post!!');
-        // emptyTextInputBox();
-        // updateDeleters('reset'); //??
+        emptyTextInputBox();
         resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
-        overlayer.classList.add('complete');
-        resultPanel.classList.add('complete');
+        addClass('post', 'complete');
     }
-
-    updateBestScoreUI();
 
     switch (stateOrAction) {
         case 'submit':
@@ -346,6 +349,8 @@ function updateUI(stateOrAction) {
         default:
             break;
     }
+
+    updateBestScoreUI();
     focusTextInputBox();
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
