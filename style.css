@@ -154,7 +154,7 @@ body {
 
 
 
-#overlayer {
+.overlayer {
     display: none;
     position: fixed;
     background-color: #ffffff9e;
@@ -162,7 +162,8 @@ body {
     height: 100%;
     z-index: 80;
 }
-#overlayer.complete {display: block;}
+.overlayer.loading {display: block; background-color: #ffffff}
+.overlayer.complete {display: block;}
 
 
 

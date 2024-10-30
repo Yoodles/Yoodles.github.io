@@ -5,9 +5,7 @@ const startWordRack = document.getElementById('startWord');
 const normInputRack = document.getElementById('normInputRack'); 
 const flipInputRack = document.getElementById('flipInputRack');
 const endWordRack = document.getElementById('endWord');
-const overlayer = document.getElementById('overlayer');
 
-const resultPanel = document.getElementById('resultPanel');
 
 //// INITIAL STATE AT START OF ROUND ////
 const initialGameState = {
@@ -426,5 +424,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
     // focusTextInputBox();
-    showClass('gameArea');
+    // showClass('gameArea');
+    removeClass('overlayer', 'loading');
 });
