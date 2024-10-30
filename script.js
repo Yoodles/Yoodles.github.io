@@ -354,7 +354,7 @@ function updateUI(stateOrAction) {
     }
 
     updateBestScoreUI();
-    focusTextInputBox();
+    // focusTextInputBox();
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
 
