@@ -31,21 +31,23 @@ body {
     align-content: center;
     z-index: 1000;
     margin: 0;
+    /* padding: 2vw; */
 }
 
 #header button {
     width: 15vw;
     height: 15vw;
-
+    margin: 2vw;
 }
 
 #movesCont {
     display: inline-flex;
-    width: 100vw;
+    height: fit-content;
+    width: 100%;
     justify-content: space-between;
     font-size: 4vw;
     font-weight: 200;
-    margin: auto;   
+    margin: auto 2vw;
 }
  
 #gameName {
@@ -88,6 +90,28 @@ body {
     padding: 0 8vh;
     margin: auto;
 }
+
+
+button {
+    font-family: 'Raleway', sans-serif;
+    font-size: 3.5vw;
+    font-weight: 300;
+    justify-content: center;
+    text-align: center;
+    width: 14vw;
+    border-radius: 0.42vw;
+    cursor: pointer;
+    border: solid;
+    border-width: 0.07vw;
+    /* margin: 2vw; */
+}
+
+button:hover {
+    filter: brightness(80%);
+    transform: scale(1.1);
+/*    background-color: */
+}
+
 
 .tile {
     display: flex;
@@ -358,25 +382,6 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 
 
 
-button {
-    font-family: 'Raleway', sans-serif;
-    font-size: 3.5vw;
-    font-weight: 300;
-    justify-content: center;
-    text-align: center;
-    width: 14vw;
-    border-radius: 0.42vw;
-    cursor: pointer;
-    border: solid;
-    border-width: 0.07vw;
-    margin: 2vw;
-}
-
-button:hover {
-    filter: brightness(80%);
-    transform: scale(1.1);
-/*    background-color: */
-}
 
 
 #submitMove {
