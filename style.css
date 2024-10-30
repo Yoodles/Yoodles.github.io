@@ -21,7 +21,6 @@ body {
     width: 100vw;
     height: calc(var(--vh, 1vh) * 100); /* Full viewport height based on custom property */
     
-
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -63,7 +62,8 @@ button:hover {
     grid-template-columns: 1fr auto 1fr;
     grid-template-rows: auto auto;
     flex-direction: column;
-    gap: 10px;
+    /* gap: 10px; */
+
     width: 100vw;
     max-width: 500px;
     height: 10vh;
@@ -71,7 +71,7 @@ button:hover {
     align-content: center;
     align-items: center;
     z-index: 1000;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     border: lightgrey solid 0.5px;
     /* padding: 2vw; */
 }
