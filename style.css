@@ -34,23 +34,25 @@ body {
 
 button {
     font-family: 'Raleway', sans-serif;
+
+    cursor: pointer;
+
+    margin: 2vw;
+    border: solid 0.1vw;
+    border-radius: 0.42vw;
+
+    width: 14vw;
+
     color: black;
     font-size: 3.5vw;
     font-weight: 300;
     justify-content: center;
     text-align: center;
-    width: 14vw;
-    border-radius: 0.42vw;
-    cursor: pointer;
-    border: solid;
-    border-width: 0.07vw;
-    /* margin: 2vw; */
+    
 }
-
 button:hover {
     filter: brightness(80%);
     transform: scale(1.1);
-/*    background-color: */
 }
 
 
@@ -161,7 +163,10 @@ button:hover {
 
 button.key {
     flex: 1;
-    height: 7.5vh;
+
+    margin: 0;
+    height: 7vh;
+    max-width: 7vw;
     background-color: #d3d3d3;
     border: none;
     border-radius: 4px;
@@ -170,8 +175,7 @@ button.key {
     color: black;
     cursor: pointer;
     transition: background-color 0.2s;
-    max-width: 7vw;
-    margin: 0;
+
 }
 .key.special {flex: 1.5; max-width: 15%;}
 .key:active {background-color: #a9a9a9;}
