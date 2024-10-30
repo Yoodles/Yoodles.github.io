@@ -406,9 +406,20 @@ function updateGame(action) {
 }
 
 
-// INITIALIZE GAME DISPLAY AFTER GAMELOAD　//❓❓❓いつconfigは？ 最初にgameAreaを「hidden」にしておく
+// INITIALIZE GAME DISPLAY AFTER GAMELOAD　//
 document.addEventListener('DOMContentLoaded', (event) => {
 
+    // Function to set custom --vh unit based on viewport height
+    function setVhUnit() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    // Call setVhUnit on load + add listener to adjust --vh on resize
+    setVhUnit();
+    window.addEventListener('resize', setVhUnit);
+
+    
     setWordPairAndLengths(0);
     buildWordPairTiles();
 
@@ -478,3 +489,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Initialize
     removeClass('overlayer', 'loading');
 });
+
+
+function setVhUnit() {
+    // Calculate the correct viewport height
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Set on load and resize
+window.addEventListener('load', setVhUnit);
+window.addEventListener('resize', setVhUnit);
