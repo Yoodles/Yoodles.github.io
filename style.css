@@ -58,12 +58,10 @@ body {
 #gameName {
     grid-column: 2;
     grid-row: span 2;
-    flex-direction: column;
-    /* display: inline-flex; */
+    display: inline-flex;
     max-width: 90px;
+    justify-content: center;
     align-items: center;
-    /* margin-top: 1.2vw; */
-    /* margin-bottom: 1.2vw; */
     transform: translateX(-1.2vw);
 }
 
@@ -73,6 +71,17 @@ body {
     justify-self: end;
 }
 
+#moveCounter {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+}
+
+#bestScore {
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: end;
+}
 
 #gameArea {    
     display: flex;
