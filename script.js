@@ -16,6 +16,7 @@ const initialGameState = {
     flipInputArray: [],
     latestWord: '',
     targetWord: '',
+    latestMove: '',
     resultMessage: ''
 };
 export let gameState = { ...initialGameState };
@@ -261,16 +262,16 @@ function toggleFlip() {
 //消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
 
 function updateDeleters() {
-    const normDeleter = document.getElementById('normDeleter');
-    const flipDeleter = document.getElementById('flipDeleter');
+    const deleteNorm = document.getElementById('normDeleter');
+    const deleteFlip = document.getElementById('flipDeleter');
 
     gameState.normInputArray.length < 1
-        ? normDeleter.classList.add('invisible')
-        : normDeleter.classList.remove('invisible');
+        ? deleteNorm.classList.add('invisible')
+        : deleteNorm.classList.remove('invisible');
             
     gameState.flipInputArray.length < 1
-        ? flipDeleter.classList.add('invisible')
-        : flipDeleter.classList.remove('invisible');
+        ? deleteFlip.classList.add('invisible')
+        : deleteFlip.classList.remove('invisible');
 }
 
 
@@ -280,6 +281,7 @@ function deleteMove(which) {
     //     ? { rack: normInputRack, array: gameState.normInputArray }
     //     : { rack: flipInputRack, array: gameState.flipInputArray };
 
+    console.log('pressed', which);
     let dirConfig;
     switch (which) {
         case 'norm':
@@ -304,7 +306,7 @@ function deleteMove(which) {
         ? updateGame('delete')
         : updateGame('complete');
 
-    console.log('After: ', dirConfig.rack, dirConfig.array);
+    // console.log('After: ', dirConfig.rack, dirConfig.array);
 }
 
 function updateUI(stateOrAction) {
@@ -349,6 +351,19 @@ function updateUI(stateOrAction) {
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
 
+function goBackOne() {
+    switch (gameState.latestMove) {
+        case 'submit':
+            deleteMove('top');
+            break;
+        case 'delete-norm':
+            break;
+        case 'delete-flip':
+            break;
+    }
+    updateGame('goBackOne');
+}
+
 
 function updateGame(action) {
     switch (action) {   
@@ -384,7 +399,7 @@ function updateGame(action) {
         case 'goBackOne':
             gameState.gamePhase = 'mid';
 
-            deleteMove('top');
+            // deleteMove('top');
             removeClass('post', 'complete');
             break;
     };
@@ -422,13 +437,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     updateGame('resetRound');
                     break;
                 case 'goBackOne':
-                    console.log('go back pressed');
-                    updateGame('goBackOne');
+                    console.log('***GO BACK PRESSED');
+                    goBackOne();
                     break;
-                case 'normDeleter':
+                case 'delNorm':
+                    console.log('***DELETE PRESSED');
                     deleteMove('norm');
                     break;
-                case 'flipDeleter':
+                case 'delFlip':
                     deleteMove('flip');
                     break;
                 default:
