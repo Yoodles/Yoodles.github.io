@@ -67,6 +67,7 @@ button:hover {
 #header button {
     width: 15vw;
     height: 15vw;
+    max-height: 50px;
     margin: 2vw;
 }
 
@@ -92,17 +93,9 @@ button:hover {
     justify-self: end;
 }
 
-#moveCounter {
-    grid-column: 1;
-    grid-row: 2;
-    justify-self: start;
-}
-
-#bestScore {
-    grid-column: 3;
-    grid-row: 2;
-    justify-self: end;
-}
+#moveCounter, #bestScore {font-size: 4.5vw; margin: 2vw;}
+#moveCounter {grid-column: 1; grid-row: 2; justify-self: start;}
+#bestScore {grid-column: 3; grid-row: 2; justify-self: end;}
 
 #gameArea {    
     display: flex;
@@ -134,6 +127,44 @@ button:hover {
     margin: auto;
 }
 
+
+#keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100vw;
+    max-width: 500px;
+    max-height: 30vh;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.key-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+button.key {
+    flex: 1;
+    /* width: 50px; */
+    height: 8vh;
+    background-color: #d3d3d3;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    max-width: 7vw;
+    margin: 0;
+}
+.key.special {flex: 1.5; max-width: 15%;}
+.key:active {background-color: #a9a9a9;}
+.key.correct {background-color: #6aa84f; color: white;}
+.key.present {background-color: #ffd966; color: white;}
+.key.absent {background-color: #999999; color: white;}
 
 
 .tile {
@@ -466,61 +497,3 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 
    
 
-
-
-.keyboard {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100vw;
-    max-width: 500px;
-    max-height: 30vh;
-    padding: 0 10px;
-    box-sizing: border-box;
-}
-
-.key-row {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-button.key {
-    flex: 1;
-    /* width: 50px; */
-    height: 8vh;
-    background-color: #d3d3d3;
-    border: none;
-    border-radius: 4px;
-    font-size: 1em;
-    font-weight: bold;
-    color: black;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    max-width: 7vw;
-    margin: 0;
-}
-
-.key.special {
-    flex: 1.5;
-    max-width: 15%;
-}
-
-.key:active {
-    background-color: #a9a9a9;
-}
-
-.key.correct {
-    background-color: #6aa84f;
-    color: white;
-}
-
-.key.present {
-    background-color: #ffd966;
-    color: white;
-}
-
-.key.absent {
-    background-color: #999999;
-    color: white;
-}
