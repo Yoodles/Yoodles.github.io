@@ -196,7 +196,8 @@ function submitMove() {
             ? updateGame('complete')
             : updateGame('submit');
 
-    } else focusTextInputBox(); //i.e. if isTotallyValid returns "false"
+    }
+    // else focusTextInputBox(); //i.e. if isTotallyValid returns "false"
 }
 
 
@@ -335,7 +336,7 @@ function updateUI(stateOrAction) {
     switch (stateOrAction) {
         case 'submit':
         case 'delete':
-            focusTextInputBox();
+            // focusTextInputBox();
             emptyTextInputBox();
             updateDeleters();
             break;
@@ -475,6 +476,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
     // Initialize
-    // focusTextInputBox();
     removeClass('overlayer', 'loading');
 });
