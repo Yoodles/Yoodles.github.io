@@ -84,14 +84,14 @@ button:hover {
     box-sizing: border-box;
 }
 
-#resetRound {grid-column: 1; grid-row: 1; justify-self: start;}
-#skipRound {grid-column: 3; grid-row: 1; justify-self: end;} 
+#resetRound {grid-column: 1; justify-self: start;}
+#skipRound {grid-column: 3; justify-self: end;} 
 
 #gameName {
     grid-column: 2;
-    grid-row: span 2;
     display: inline-flex;
-    max-width: 90px;
+    max-height: 10vh;
+    max-width: 70vw;
     justify-content: center;
     align-items: center;
     /* transform: translateX(-1.2vw); */
