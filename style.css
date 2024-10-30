@@ -1,8 +1,13 @@
+
 @font-face {
     font-family: 'Raleway';
     src: url('../fonts/Raleway-VariableFont_wght.ttf') format('truetype');
     font-weight: 100 900;
     font-style: normal;
+}
+
+:root {
+    --vh: 1vh;
 }
 
 p {
@@ -21,6 +26,8 @@ body {
     height: 100vh;
     align-items: center;
     margin: 0;
+    height: calc(var(--vh, 1vh) * 100); /* Full viewport height based on custom property */
+    overflow: hidden; /* Prevents any overflow outside of the container */
 }
 
 
