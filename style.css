@@ -84,12 +84,9 @@ button:hover {
     box-sizing: border-box;
 }
 
-#resetRound {
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: start;
-}
- 
+#resetRound {grid-column: 1; grid-row: 1; justify-self: start;}
+#skipRound {grid-column: 3; grid-row: 1; justify-self: end;} 
+
 #gameName {
     grid-column: 2;
     grid-row: span 2;
@@ -101,13 +98,7 @@ button:hover {
 
 }
 
-#skipRound {
-    grid-column: 3;
-    grid-row: 1;
-    justify-self: end;
-}
-
-#moveCounter, #bestScore {font-size: 4.5vw; margin: 2vw;}
+#moveCounter, #bestScore {font-size: 3vw;}
 #moveCounter {grid-column: 1; grid-row: 2; justify-self: start;}
 #bestScore {grid-column: 3; grid-row: 2; justify-self: end;}
 
