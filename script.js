@@ -2,15 +2,15 @@ import { wordPairList } from './words.js';
 import { isTotallyValid } from './word-validity.js';
 
 const startWordRack = document.getElementById('startWord');
-const normInputRack = document.getElementById('normInputRack'); 
-const flipInputRack = document.getElementById('flipInputRack');
+const normRack = document.getElementById('normRack'); 
+const flipRack = document.getElementById('flipRack');
 const endWordRack = document.getElementById('endWord');
 
 
 //// INITIAL STATE AT START OF ROUND ////
-const initialGameState = {
-    gamePhase: 'pre',
-    gameDirection: 'norm',
+const initialGameState = () => ({
+    phase: 'pre',
+    direction: 'norm',
     moveCounter: 0,
     normInputArray: [],
     flipInputArray: [],
@@ -18,12 +18,14 @@ const initialGameState = {
     targetWord: '',
     latestMove: '',
     resultMessage: ''
-};
-export let gameState = { ...initialGameState };
+});
+
+export let gameState = initialGameState();
 
 function resetGameState() {
-    gameState = { ...initialGameState };
+    gameState = initialGameState();
 }
+
 
 export let wordPair = {
     currentPairIndex: 0,
@@ -59,15 +61,6 @@ function buildWordPairTiles() {
 }
 
 //====UTILITY FUNCTIONS====//
-////SHOWING & HIDING WHOLE CLASSES//// ✅
-function showClass(className) {
-    const elems = document.querySelectorAll('.' + className);
-    elems.forEach(el => el.classList.remove('hidden'));
-}
-function hideClass(className) {
-    const elems = document.querySelectorAll('.' + className);
-    elems.forEach(el => el.classList.add('hidden'));
-}
 
 function addClass(className, classToAdd) {
     const elems = document.querySelectorAll('.' + className);
@@ -85,21 +78,19 @@ function emptyTextInputBox() {
     document.getElementById('currentInput').value = '';
 }
 
-function logArrays() {
+function logArrays(when) {
     const normInputArray = gameState.normInputArray;
     const flipInputArray = gameState.flipInputArray;
 
-    console.log("normInputArray Contents:", normInputArray);
-    console.log("normInputArray Number of Items:", normInputArray.length);
-    
-    console.log("flipInputArray Contents:", flipInputArray);
-    console.log("flipInputArray Number of Items:", flipInputArray.length);
+    console.log(when, ": normInputArray Contents:", normInputArray, ". normInputArray items:", normInputArray.length);
+    console.log(when, ": flipInputArray Contents:", flipInputArray, ". flipInputArray items:", flipInputArray.length);
+
 }
 
 
 ////EMPTYING CONTAINERS and CONTAINER RACKS ❗️❗️❗️❗️❗️❗️
 function clearInputUI() {
-    document.querySelectorAll('#normInputRack .wordCont, #flipInputRack .wordCont').forEach(wordCont => {
+    document.querySelectorAll('#normRack .wordCont, #flipRack .wordCont').forEach(wordCont => {
         wordCont.querySelectorAll('div').forEach(tile => {
             tile.textContent = '';
             tile.classList.remove('tile');
@@ -198,6 +189,7 @@ function submitMove() {
         getDirectionalConfig().upperRackArray.push(inputWord);
         makeTilesFor(inputWord);
         gameState.moveCounter++;
+        gameState.latestMove = 'submit';
 
         // If round complete
          (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
@@ -210,10 +202,10 @@ function submitMove() {
 
 // DIRECTIONAL CONFIGURATIONS
 function getDirectionalConfig() {
-    if (gameState.gameDirection === 'norm') {
+    if (gameState.direction === 'norm') {
         return {
-            upperRack: normInputRack,
-            lowerRack: flipInputRack,
+            upperRack: normRack,
+            lowerRack: flipRack,
             wordAtTop: wordPair.startWord,
             wordAtBottom: wordPair.endWord,
             upperRackArray: gameState.normInputArray,
@@ -221,8 +213,8 @@ function getDirectionalConfig() {
         };
     } else { // i.e. is 'flip'
         return {
-            upperRack: flipInputRack,
-            lowerRack: normInputRack,
+            upperRack: flipRack,
+            lowerRack: normRack,
             wordAtTop: wordPair.endWord,
             wordAtBottom: wordPair.startWord,
             upperRackArray: gameState.flipInputArray,
@@ -254,7 +246,7 @@ function updateDirectionUI(direction) {
 }
 
 function toggleFlip() {
-    gameState.gameDirection = gameState.gameDirection === 'norm' ? 'flip' : 'norm';
+    gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
     updateGame('flip');
 }
 
@@ -277,21 +269,19 @@ function updateDeleters() {
 
 
 function deleteMove(which) {
-    // let dirConfig = which === 'norm'
-    //     ? { rack: normInputRack, array: gameState.normInputArray }
-    //     : { rack: flipInputRack, array: gameState.flipInputArray };
-
-    console.log('pressed', which);
     let dirConfig;
+
     switch (which) {
         case 'norm':
-            dirConfig = {rack: normInputRack, array: gameState.normInputArray};
+            dirConfig = {rack: normRack, array: gameState.normInputArray};
             break;
         case 'flip':
-            dirConfig = {rack: flipInputRack, array: gameState.flipInputArray};
+            dirConfig = {rack: flipRack, array: gameState.flipInputArray};
             break;
         case 'top':
-            dirConfig = {rack: normInputRack, array: gameState.normInputArray};
+            dirConfig = gameState.direction === 'norm'
+                ? {rack: normRack, array: gameState.normInputArray}
+                : {rack: flipRack, array: gameState.flipInputArray};
             break;
     }
 
@@ -306,21 +296,37 @@ function deleteMove(which) {
         ? updateGame('delete')
         : updateGame('complete');
 
-    // console.log('After: ', dirConfig.rack, dirConfig.array);
+    console.log('After: ', dirConfig.rack, dirConfig.array);
+}
+
+
+function goBackOne() {
+    gameState.phase = 'mid';
+
+    switch (gameState.latestMove) {
+        case 'submit':
+            deleteMove('top');
+            break;
+        case 'delete-norm':
+            break;
+        case 'delete-flip':
+            break;
+    }
+    updateGame('goBackOne');
 }
 
 function updateUI(stateOrAction) {
 
-    console.log('gamePhase: ', gameState.gamePhase);
+    console.log('phase: ', gameState.phase);
 
-    if (gameState.gamePhase === 'pre') {
+    if (gameState.phase === 'pre') {
         removeClass('post', 'complete');
         updateDeleters();
         updateDirectionUI('norm');
         clearInputUI();
         emptyTextInputBox();
     }
-    // else if (gameState.gamePhase === 'post') {
+    // else if (gameState.phase === 'post') {
     //     emptyTextInputBox();
     //     resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
     //     addClass('post', 'complete');
@@ -334,7 +340,7 @@ function updateUI(stateOrAction) {
             updateDeleters();
             break;
         case 'flip':
-            updateDirectionUI(gameState.gameDirection);
+            updateDirectionUI(gameState.direction);
             break;
         case 'complete':
             emptyTextInputBox();
@@ -351,32 +357,21 @@ function updateUI(stateOrAction) {
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
 
-function goBackOne() {
-    switch (gameState.latestMove) {
-        case 'submit':
-            deleteMove('top');
-            break;
-        case 'delete-norm':
-            break;
-        case 'delete-flip':
-            break;
-    }
-    updateGame('goBackOne');
-}
+
 
 
 function updateGame(action) {
     switch (action) {   
         case 'submit':
         case 'flip':
-            gameState.gamePhase = 'mid';
+            gameState.phase = 'mid';
         case 'delete':
             updateUI(action);
             updateLatestAndTargetWord();
             break;
 
         case 'complete':
-            gameState.gamePhase = 'post';
+            gameState.phase = 'post';
             checkAndUpdateBestScoreIndex();
 
             updateUI(action);
@@ -389,6 +384,7 @@ function updateGame(action) {
         case 'resetRound':
 
             resetGameState();
+            logArrays('after reset/next');
             setWordPairAndLengths();
             updateUI();
             buildWordPairTiles();
@@ -397,7 +393,7 @@ function updateGame(action) {
             break;
 
         case 'goBackOne':
-            gameState.gamePhase = 'mid';
+            gameState.phase = 'mid';
 
             // deleteMove('top');
             removeClass('post', 'complete');
@@ -440,11 +436,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     console.log('***GO BACK PRESSED');
                     goBackOne();
                     break;
-                case 'delNorm':
-                    console.log('***DELETE PRESSED');
+                case 'normDeleter':
                     deleteMove('norm');
                     break;
-                case 'delFlip':
+                case 'flipDeleter':
                     deleteMove('flip');
                     break;
                 default:
