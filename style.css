@@ -470,7 +470,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
+    width: 100vw;
     max-width: 500px;
     padding: 0 10px;
     box-sizing: border-box;
@@ -494,7 +494,7 @@ button.key {
     color: black;
     cursor: pointer;
     transition: background-color 0.2s;
-    max-width: 8%;
+    max-width: 8vw;
     margin: 0;
 }
 

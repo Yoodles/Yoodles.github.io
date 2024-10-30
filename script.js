@@ -447,12 +447,34 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-    // Event listener for TEXT BOX (Enter Key) //これどういう意味なんだ？
+    // Event listener for TEXT BOX (Enter Key)
     document.getElementById('currentInput').addEventListener('keypress', function(event) {
         if (event.key === 'Enter' && document.getElementById('submitMove').style.display !== 'none') {
             submitMove();
         }
     });
+
+    // Event listeners for onscreen keyboard
+    document.querySelectorAll('.keyboard .key').forEach(key => {
+        key.addEventListener('click', function() {
+            const keyValue = key.textContent;
+
+            if (keyValue === 'Enter') {
+                submitMove();
+            } else if (keyValue === '⌫') {
+                // Simulate backspace by removing the last character from the input field
+                const inputField = document.getElementById('currentInput');
+                inputField.value = inputField.value.slice(0, -1);
+            } else {
+                // Add the clicked key value to the input field
+                const inputField = document.getElementById('currentInput');
+                inputField.value += keyValue;
+            }
+        });
+    });
+
+
+    // Initialize
     // focusTextInputBox();
     removeClass('overlayer', 'loading');
 });
