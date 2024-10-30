@@ -84,6 +84,18 @@ function emptyTextInputBox() {
     document.getElementById('currentInput').value = '';
 }
 
+function logArrays() {
+    const normInputArray = gameState.normInputArray;
+    const flipInputArray = gameState.flipInputArray;
+
+    console.log("normInputArray Contents:", normInputArray);
+    console.log("normInputArray Number of Items:", normInputArray.length);
+    
+    console.log("flipInputArray Contents:", flipInputArray);
+    console.log("flipInputArray Number of Items:", flipInputArray.length);
+}
+
+
 ////EMPTYING CONTAINERS and CONTAINER RACKS ❗️❗️❗️❗️❗️❗️
 function clearInputUI() {
     document.querySelectorAll('#normInputRack .wordCont, #flipInputRack .wordCont').forEach(wordCont => {
@@ -188,7 +200,7 @@ function submitMove() {
 
         // If round complete
          (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
-            ? updateGame('roundComplete')
+            ? updateGame('complete')
             : updateGame('submit');
 
     } else focusTextInputBox(); //i.e. if isTotallyValid returns "false"
@@ -290,7 +302,7 @@ function deleteMove(which) {
 
     gameState.latestWord !== gameState.targetWord
         ? updateGame('delete')
-        : updateGame('roundComplete');
+        : updateGame('complete');
 
     console.log('After: ', dirConfig.rack, dirConfig.array);
 }
@@ -306,11 +318,11 @@ function updateUI(stateOrAction) {
         clearInputUI();
         emptyTextInputBox();
     }
-    else if (gameState.gamePhase === 'post') {
-        emptyTextInputBox();
-        resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
-        addClass('post', 'complete');
-    }
+    // else if (gameState.gamePhase === 'post') {
+    //     emptyTextInputBox();
+    //     resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
+    //     addClass('post', 'complete');
+    // }
 
     switch (stateOrAction) {
         case 'submit':
@@ -322,6 +334,12 @@ function updateUI(stateOrAction) {
         case 'flip':
             updateDirectionUI(gameState.gameDirection);
             break;
+        case 'complete':
+            emptyTextInputBox();
+            resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
+            addClass('post', 'complete');
+            break;
+
         default:
             break;
     }
@@ -342,11 +360,11 @@ function updateGame(action) {
             updateLatestAndTargetWord();
             break;
 
-        case 'roundComplete':
+        case 'complete':
             gameState.gamePhase = 'post';
             checkAndUpdateBestScoreIndex();
 
-            updateUI();
+            updateUI(action);
             updateLatestAndTargetWord();
             console.log("ROUND COMPLETE!!");
             break;
@@ -371,6 +389,7 @@ function updateGame(action) {
             break;
     };
     
+    logArrays();
     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
 }
 
@@ -424,6 +443,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
     // focusTextInputBox();
-    // showClass('gameArea');
     removeClass('overlayer', 'loading');
 });
