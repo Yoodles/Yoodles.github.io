@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     // Event listeners for onscreen keyboard
-    document.querySelectorAll('.keyboard .key').forEach(key => {
+    document.querySelectorAll('#keyboard .key').forEach(key => {
         key.addEventListener('click', function() {
             const keyValue = key.textContent;
 
