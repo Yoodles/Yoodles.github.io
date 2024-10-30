@@ -34,40 +34,18 @@ body {
 }
 
 #header button {
+    width: 15vw;
+    height: 15vw;
 
 }
-
-#footer {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    min-height: 8vh;
-    justify-content: center;
-    background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 200%);
-    z-index: 999;
-}
-
-#footer > div {
-    width: 98vw;
-    height:8vh;
-    justify-content: center;
-}
-
-
 
 #movesCont {
-    /* margin-top: 3vh;
-    margin-bottom: 1.2vh; */
-    display: flex;
-    max-width: 30vw;
-    flex-direction: column;
+    display: inline-flex;
+    width: 100vw;
+    justify-content: space-between;
     font-size: 4vw;
     font-weight: 200;
     margin: auto;   
-}
-#movesCont div {
-    width: 100%
 }
  
 #gameName {
@@ -316,10 +294,6 @@ input:focus {outline: none}
     transform: translate(-0.15vw, -2.7vw);
     margin: 0;
 }
-/* 
-#skip:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    /*transform: scale (0.98); */
 
 
 
@@ -472,6 +446,7 @@ button:hover {
     gap: 10px;
     width: 100vw;
     max-width: 500px;
+    max-height: 30vh;
     padding: 0 10px;
     box-sizing: border-box;
 }
@@ -485,7 +460,7 @@ button:hover {
 button.key {
     flex: 1;
     /* width: 50px; */
-    height: 60px;
+    height: 8vh;
     background-color: #d3d3d3;
     border: none;
     border-radius: 4px;
@@ -494,7 +469,7 @@ button.key {
     color: black;
     cursor: pointer;
     transition: background-color 0.2s;
-    max-width: 8vw;
+    max-width: 7vw;
     margin: 0;
 }
 

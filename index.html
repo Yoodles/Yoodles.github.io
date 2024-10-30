@@ -20,7 +20,12 @@
         <h1 id="ARD">ARD</h1>
     </div>
     <button id="skipRound">SKIP</button>
-</div>    
+</div>
+
+<div id="movesCont">    
+    <div id="moveCounter" class="moveCounter">Moves: 0</div>
+    <div id="bestScore">Best: --</div>
+</div>
 
 <div id="gameArea" class="gameArea hidden">
     
@@ -77,7 +82,7 @@
                     <button id="flipDeleter" class="deleters invisible">x</button>
                 </div>
                 <input id="currentInput" type ="text">
-                <button id="submitMove">GO</button>
+                <!-- <button id="submitMove">GO</button> -->
             </div>
 
             <div id="flipRack" data-layout="stack rack">
@@ -157,14 +162,8 @@
 
 </div>    
 
-<div id="footer">
-    <div>
-        <div id="movesCont">    
-            <div id="moveCounter" class="moveCounter">Moves: 0</div>
-            <div id="bestScore">Best Score: --</div>
-        </div>
-    </div>
-</div>
+
+
 
 <script type="module" src="script.js"></script>
 

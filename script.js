@@ -114,7 +114,7 @@ function checkAndUpdateBestScoreIndex() { //just at end of round?
 function updateBestScoreUI() {
     const bestScoreDisplay = document.getElementById('bestScore');
     const latestBestScore = wordPair.bestScoreIndex[wordPair.currentPairIndex] || "--";
-    bestScoreDisplay.innerText = "Best Score: " + latestBestScore;
+    bestScoreDisplay.innerText = "Best: " + latestBestScore;
 }
 
 //UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
