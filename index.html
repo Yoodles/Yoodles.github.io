@@ -10,164 +10,166 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
 </head>
+
 <body>
+    <div id="appContainer">
+        <div id="header">
+            <button id="resetRound">RESET</button>
+            <div id="gameName">
+                <h1 id="W1">W</h1>
+                <h1 id="ORD"> ORD</h1>
+                <div id="SLASH" class="line"></div>
+                <h1 id="W2">W</h1>
+                <h1 id="ARD">ARD</h1>
+            </div>
+            <button id="skipRound">SKIP</button>
 
-<div id="header">
-    <button id="resetRound">RESET</button>
-    <div id="gameName">
-        <h1 id="W1">W</h1>
-        <h1 id="ORD"> ORD</h1>
-        <div id="SLASH" class="line"></div>
-        <h1 id="W2">W</h1>
-        <h1 id="ARD">ARD</h1>
-    </div>
-    <button id="skipRound">SKIP</button>
 
-
-</div>
-
-<div id="gameArea" class="gameArea hidden">
-    
-    <div class="post overlayer loading"></div>
-
-    <div id="movesCont">
-        <div id="moveCounter" class="moveCounter">Moves: 0</div>
-        <div id="bestScore">Best: --</div>
-    </div>
-
-    <div id="resultPanel" class="post">
-        <div id="resultMessage" class="result">Completed in 200 moves!<br>You know words good!</div>
-        <div id="resultButtons">
-            <button id="retryRound">RETRY</button>
-            <button id="goBackOne">UNDO</button>
-            <button id="nextRound">NEXT</button>
         </div>
-    </div>
 
-    <div id="gameplayCont">
-        
-        <div id="startWord" data-layout="stack" class="wordCont setWord">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    
-        <div id="inputterRack" class="inputRack">
-            <div id="normRack" data-layout="stack rack">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+        <div id="gameArea" class="gameArea hidden">
+            
+            <div class="post overlayer loading"></div>
+
+            <div id="movesCont">
+                <div id="moveCounter" class="moveCounter">Moves: 0</div>
+                <div id="bestScore">Best: --</div>
             </div>
 
-            <div id="inputterSet" data-layout="stack" class="inputter">
-                <div id="flipperAndDeleters">
-                    <button id="normDeleter" class="deleters invisible">x</button>
-                    <button id="toggleFlip" type="button">
-                        <p id="toggleTop">W</p>
-                        <p id="toggleBottom">W</p>
-                    </button>
-                    <button id="flipDeleter" class="deleters invisible">x</button>
+            <div id="resultPanel" class="post">
+                <div id="resultMessage" class="result">Completed in 200 moves!<br>You know words good!</div>
+                <div id="resultButtons">
+                    <button id="retryRound">RETRY</button>
+                    <button id="goBackOne">UNDO</button>
+                    <button id="nextRound">NEXT</button>
                 </div>
-                <input id="currentInput" type ="text">
-                <!-- <button id="submitMove">GO</button> -->
             </div>
 
-            <div id="flipRack" data-layout="stack rack">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div> 
+            <div id="gameplayCont">
+                
+                <div id="startWord" data-layout="stack" class="wordCont setWord">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            
+                <div id="inputterRack" class="inputRack">
+                    <div id="normRack" data-layout="stack rack">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
 
-        </div>
+                    <div id="inputterSet" data-layout="stack" class="inputter">
+                        <div id="flipperAndDeleters">
+                            <button id="normDeleter" class="deleters invisible">x</button>
+                            <button id="toggleFlip" type="button">
+                                <p id="toggleTop">W</p>
+                                <p id="toggleBottom">W</p>
+                            </button>
+                            <button id="flipDeleter" class="deleters invisible">x</button>
+                        </div>
+                        <input id="currentInput" type ="text">
+                        <!-- <button id="submitMove">GO</button> -->
+                    </div>
 
-        <div id="endWord" data-layout="stack" class="wordCont setWord">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                    <div id="flipRack" data-layout="stack rack">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div> 
+
+                </div>
+
+                <div id="endWord" data-layout="stack" class="wordCont setWord">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                </div>
+            </div>
+
+        </div>    
+
+        <!-- Onscreen Keyboard -->
+        <div id="keyboard">
+            <!-- First row -->
+            <div class="key-row">
+                <button class="key">Q</button>
+                <button class="key">W</button>
+                <button class="key">E</button>
+                <button class="key">R</button>
+                <button class="key">T</button>
+                <button class="key">Y</button>
+                <button class="key">U</button>
+                <button class="key">I</button>
+                <button class="key">O</button>
+                <button class="key">P</button>
+            </div>
+            <!-- Second row -->
+            <div class="key-row">
+                <button class="key">A</button>
+                <button class="key">S</button>
+                <button class="key">D</button>
+                <button class="key">F</button>
+                <button class="key">G</button>
+                <button class="key">H</button>
+                <button class="key">J</button>
+                <button class="key">K</button>
+                <button class="key">L</button>
+            </div>
+            <!-- Third row -->
+            <div class="key-row">
+                <button class="key special">Enter</button>
+                <button class="key">Z</button>
+                <button class="key">X</button>
+                <button class="key">C</button>
+                <button class="key">V</button>
+                <button class="key">B</button>
+                <button class="key">N</button>
+                <button class="key">M</button>
+                <button class="key special">⌫</button>
+            </div>
         </div>
     </div>
 
-</div>    
 
-    <!-- Onscreen Keyboard -->
-    <div id="keyboard">
-        <!-- First row -->
-        <div class="key-row">
-            <button class="key">Q</button>
-            <button class="key">W</button>
-            <button class="key">E</button>
-            <button class="key">R</button>
-            <button class="key">T</button>
-            <button class="key">Y</button>
-            <button class="key">U</button>
-            <button class="key">I</button>
-            <button class="key">O</button>
-            <button class="key">P</button>
-        </div>
-        <!-- Second row -->
-        <div class="key-row">
-            <button class="key">A</button>
-            <button class="key">S</button>
-            <button class="key">D</button>
-            <button class="key">F</button>
-            <button class="key">G</button>
-            <button class="key">H</button>
-            <button class="key">J</button>
-            <button class="key">K</button>
-            <button class="key">L</button>
-        </div>
-        <!-- Third row -->
-        <div class="key-row">
-            <button class="key special">Enter</button>
-            <button class="key">Z</button>
-            <button class="key">X</button>
-            <button class="key">C</button>
-            <button class="key">V</button>
-            <button class="key">B</button>
-            <button class="key">N</button>
-            <button class="key">M</button>
-            <button class="key special">⌫</button>
-        </div>
-    </div>
-
-
-<script type="module" src="script.js"></script>
+    <script type="module" src="script.js"></script>
 
 </body>
 </html>
