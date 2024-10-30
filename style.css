@@ -14,22 +14,22 @@ p {
 }
 
 body {
-    display: flex;
-    overflow: hidden; /* Prevents any overflow outside of the container */
-
     margin: 0;
     width: 100vw;
-    height: calc(var(--vh, 1vh) * 100); /* Full viewport height based on custom property */
+    overflow: hidden; /* Prevents scrolling on the main body */
     
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-
     font-family: 'Raleway', sans-serif;
     text-align: center;
 }
 
+#appContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: calc(var(--vh, 1vh) * 100); /* Full viewport height based on custom property */
+}
 
 button {
     font-family: 'Raleway', sans-serif;
