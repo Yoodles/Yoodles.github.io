@@ -419,7 +419,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setVhUnit();
     window.addEventListener('resize', setVhUnit);
 
-    
+
     setWordPairAndLengths(0);
     buildWordPairTiles();
 
@@ -489,14 +489,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Initialize
     removeClass('overlayer', 'loading');
 });
-
-
-function setVhUnit() {
-    // Calculate the correct viewport height
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-
-// Set on load and resize
-window.addEventListener('load', setVhUnit);
-window.addEventListener('resize', setVhUnit);

@@ -160,6 +160,7 @@ button.key {
     color: black;
     cursor: pointer;
     transition: background-color 0.2s;
+    /* inline-size: min-content; */
 
 }
 .key.special {flex: 1.5; max-width: 15%;}
