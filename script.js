@@ -136,19 +136,9 @@ function makeTilesFor(word, rack) {
         tile.textContent = isVisible ? word[i].toUpperCase() : '';
         tile.classList.toggle('tile', isVisible);
         tile.classList.toggle('hidden', !isVisible);
-        if (isVisible) tile.style.animationDelay = `${i * 0.3}s`;
+        if (isVisible && (wordCont === startWordRack || wordCont === endWordRack)) tile.style.animationDelay = `${i * 0.3}s`;
     });
     wordCont.classList.remove('hidden');
-
-
-    // if (rack !== startWordRack && rack !== endWordRack) {
-    //     // Append the new word container at the bottom of the rack
-    //     rack.appendChild(wordCont);
-
-    //     // Increment the upward shift by 11.4vw for each new word
-    //     currentOffset += 11.4;
-    //     rack.style.transform = `translateY(-${currentOffset}vw)`;
-    // }
 
     wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 }
