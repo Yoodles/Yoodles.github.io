@@ -293,11 +293,14 @@ function deleteMove(which) {
 
     gameState.moveCounter--;
 
+    updateLatestAndTargetWord();
+
     gameState.latestWord !== gameState.targetWord
         ? updateGame('delete')
         : updateGame('complete');
 
-    console.log('After: ', dirConfig.rack, dirConfig.array);
+    logArrays('after delete');
+    // console.log('After: ', dirConfig.rack, dirConfig.array);
 }
 
 
@@ -327,11 +330,6 @@ function updateUI(stateOrAction) {
         clearInputUI();
         emptyTextInputBox();
     }
-    // else if (gameState.phase === 'post') {
-    //     emptyTextInputBox();
-    //     resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
-    //     addClass('post', 'complete');
-    // }
 
     switch (stateOrAction) {
         case 'submit':
@@ -362,13 +360,18 @@ function updateUI(stateOrAction) {
 
 
 function updateGame(action) {
+
+    gameState.phase = 'mid';
+
     switch (action) {   
         case 'submit':
         case 'flip':
-            gameState.phase = 'mid';
-        case 'delete':
             updateUI(action);
             updateLatestAndTargetWord();
+            break;
+        case 'delete':
+            updateUI(action);
+            // updateLatestAndTargetWord();
             break;
 
         case 'complete':
