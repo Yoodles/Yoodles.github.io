@@ -250,7 +250,8 @@ function submitMove() {
         gameState.latestMove = 'submit';
 
         // If round complete
-         (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
+        //  (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
+        inputWord === gameState.targetWord
             ? updateGame('complete')
             : updateGame('submit');
 
@@ -305,9 +306,10 @@ function goBackOne() {
             deleteMove('top');
             break;
         case 'delete-norm':
-            
+            makeTilesFor(gameState.latestWord, normRack);
             break;
         case 'delete-flip':
+            makeTilesFor(gameState.targetWord, flipRack);
             break;
     }
     updateGame('goBackOne');
@@ -392,7 +394,6 @@ function updateGame(action) {
 
         case 'goBackOne':
             // gameState.phase = 'mid';
-
             // deleteMove('top');
             removeClass('post', 'complete');
             break;
