@@ -149,7 +149,7 @@ button:hover {filter: brightness(80%); transform: scale(1.1);}
     flex-direction: column;
     gap: 8px;
     height: 30%;
-    width: 100%;
+    width: 90%;
     padding: 10px;
     border: lightgrey solid 0.5px;
 }
@@ -360,6 +360,12 @@ input:focus {outline: none}
 
 #toggleFlip img {width: 12vw; height: 12vw;}
 
+.rotating {animation: verticalFlip 1.8s ease-in-out;}
+
+@keyframes verticalFlip {
+    0% {transform: rotateX(0deg);}
+    100% {transform: rotateX(720deg);}
+}
 
 
 h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
@@ -388,7 +394,14 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     margin-right: auto;
 }
 
+.wordCont, .deleters {
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1); /* Adjust timing and bezier curve as needed */
+    opacity: 1; /* Fully visible by default */
+}
 
+.wordCont.fading, .deleters.fading {
+    opacity: 0; /* Fully faded */
+}
 
 .hidden { display: none }
 .invisible { visibility: hidden }
