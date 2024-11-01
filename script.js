@@ -350,7 +350,6 @@ function updateUI(stateOrAction) {
 
 
 function updateGame(action) {
-
     gameState.phase = 'mid';
 
     switch (action) {   
@@ -397,91 +396,6 @@ function updateGame(action) {
     console.log('latestMove: ', gameState.latestMove);
     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
 }
-
-
-// // INITIALIZE GAME DISPLAY AFTER GAMELOAD　//
-// document.addEventListener('DOMContentLoaded', (event) => {
-
-//     // Function to set custom --vh unit based on viewport height
-//     function setVhUnit() {
-//         let vh = window.innerHeight * 0.01;
-//         document.documentElement.style.setProperty('--vh', `${vh}px`);
-//     }
-
-//     // Call setVhUnit on load + add listener to adjust --vh on resize
-//     setVhUnit();
-//     window.addEventListener('resize', setVhUnit);
-
-
-//     setWordPairAndLengths(0);
-//     buildWordPairTiles();
-
-//     checkAndUpdateBestScoreIndex();
-//     updateBestScoreUI();
-    
-//     console.log("PAGE LOAD: Word Pair: ", wordPair.startWord, wordPair.endWord, "Latest/Target: ", gameState.latestWord, gameState.targetWord);
-    
-//     //EVENT LISTENERS for BUTTONS
-//     document.getElementById('toggleFlip').addEventListener('click', toggleFlip);
-//     document.addEventListener('click', function(event) {
-//         if (event.target.tagName === 'BUTTON' && event.target.id) {
-//             switch(event.target.id) {
-//                 case 'submitMove':
-// 		            submitMove();
-//                     break;
-//                 case 'nextRound':
-//                 case 'skipRound':
-//                     updateGame('nextRound');
-//                     break;                 
-//                 case 'resetRound':
-//                 case 'retryRound':
-//                     updateGame('resetRound');
-//                     break;
-//                 case 'undoMove':
-//                     console.log('***GO BACK PRESSED');
-//                     undoMove();
-//                     break;
-//                 case 'normDeleter':
-//                     deleteMove('norm');
-//                     break;
-//                 case 'flipDeleter':
-//                     deleteMove('flip');
-//                     break;
-//                 default:
-//             }
-//         }
-//     });
-
-//     // Event listener for TEXT BOX (Enter Key)
-//     document.getElementById('currentInput').addEventListener('keypress', function(event) {
-//         if (event.key === 'Enter' && document.getElementById('submitMove').style.display !== 'none') {
-//             submitMove();
-//         }
-//     });
-
-//     // Event listeners for onscreen keyboard
-//     document.querySelectorAll('#keyboard .key').forEach(key => {
-//         key.addEventListener('click', function() {
-//             const keyValue = key.textContent;
-
-//             if (keyValue === 'Enter') {
-//                 submitMove();
-//             } else if (keyValue === '⌫') {
-//                 // Simulate backspace by removing the last character from the input field
-//                 const inputField = document.getElementById('currentInput');
-//                 inputField.value = inputField.value.slice(0, -1);
-//             } else {
-//                 // Add the clicked key value to the input field
-//                 const inputField = document.getElementById('currentInput');
-//                 inputField.value += keyValue;
-//             }
-//         });
-//     });
-
-
-//     // Initialize
-//     removeClass('overlayer', 'loading');
-// });
 
 
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD
