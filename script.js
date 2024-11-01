@@ -243,6 +243,7 @@ function submitMove() {
     if (isTotallyValid(inputWord, gameState.latestWord)) {
         getDirectionalConfig().upperRackArray.push(inputWord);
         makeTilesFor(inputWord);
+
         gameState.moveCounter++;
         gameState.latestMove = 'submit';
 
@@ -276,7 +277,6 @@ function deleteMove(which) {
     if (wordConts) wordConts[wordConts.length - 1].remove();
 
     gameState.moveCounter--;
-
     gameState.latestMove = dirConfig.rack === normRack
         ? 'delete-norm'
         : 'delete-flip';
@@ -292,7 +292,7 @@ function deleteMove(which) {
 }
 
 
-function goBackOne() {
+function undoMove() {
     gameState.phase = 'mid';
 
     switch (gameState.latestMove) {
@@ -306,7 +306,7 @@ function goBackOne() {
             makeTilesFor(gameState.targetWord, flipRack);
             break;
     }
-    updateGame('goBackOne');
+    updateGame('undoMove');
 }
 
 function updateUI(stateOrAction) {
@@ -386,7 +386,7 @@ function updateGame(action) {
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             break;
 
-        case 'goBackOne':
+        case 'undoMove':
             // gameState.phase = 'mid';
             // deleteMove('top');
             removeClass('post', 'complete');
@@ -437,9 +437,9 @@ function updateGame(action) {
 //                 case 'retryRound':
 //                     updateGame('resetRound');
 //                     break;
-//                 case 'goBackOne':
+//                 case 'undoMove':
 //                     console.log('***GO BACK PRESSED');
-//                     goBackOne();
+//                     undoMove();
 //                     break;
 //                 case 'normDeleter':
 //                     deleteMove('norm');
@@ -513,6 +513,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 case 'submitMove':
                     submitMove();
                     break;
+                case 'normDeleter':
+                    deleteMove('norm');
+                    break;
+                case 'flipDeleter':
+                    deleteMove('flip');
+                    break;
+                case 'undoMove':
+                    undoMove();
+                    break;
                 case 'nextRound':
                 case 'skipRound':
                     updateGame('nextRound');
@@ -521,17 +530,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 case 'retryRound':
                     updateGame('resetRound');
                     break;
-                case 'goBackOne':
-                    console.log('***GO BACK PRESSED');
-                    goBackOne();
-                    break;
-                case 'normDeleter':
-                    deleteMove('norm');
-                    break;
-                case 'flipDeleter':
-                    deleteMove('flip');
-                    break;
-                default:
             }
         }
     });

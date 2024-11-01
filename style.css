@@ -468,12 +468,12 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     background-color: rgb(255, 192, 201);
     border-color:  rgb(255, 92, 115, 0.5)
 }
-#skipRound, #goBackOne {
+#skipRound, #undoMove {
     background-color: rgb(255, 251, 184);
     border-color: rgba(255, 246, 85, 0.5);
 }
 
-#goBackOne {width: 25vw}
+#undoMove {width: 25vw}
 
 /* #resultMessage {
     display: block;
@@ -504,7 +504,7 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 }
 
 
-/* #goBackOne {background-color: #FFB6C1}    */
+/* #undoMove {background-color: #FFB6C1}    */
 #nextRound {background-color: #ADD8E6}   
 
    
