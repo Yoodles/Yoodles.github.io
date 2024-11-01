@@ -453,9 +453,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Event listener for TEXT BOX (Enter Key)
     document.getElementById('currentInput').addEventListener('keypress', function(event) {
-        if (event.key === 'Enter' && document.getElementById('submitMove').style.display !== 'none') {
-            submitMove();
-        }
+        if (event.key === 'Enter') submitMove();
     });
 
     // Event listener for onscreen keyboard (using event delegation)
