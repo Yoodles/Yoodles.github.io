@@ -26,7 +26,6 @@ function resetGameState() {
     gameState = initialGameState();
 }
 
-
 export let wordPair = {
     currentPairIndex: 0,
     startWord: '',
@@ -307,7 +306,7 @@ function undoMove() {
             makeTilesFor(gameState.latestWord, normRack);
             break;
         case 'delete-flip':
-            makeTilesFor(gameState.targetWord, flipRack);
+            makeTilesFor(gameState.latestWord, flipRack);
             break;
     }
     updateGame('undoMove');
