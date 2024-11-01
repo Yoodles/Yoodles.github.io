@@ -12,8 +12,8 @@ const initialGameState = () => ({
     phase: 'pre',
     direction: 'norm',
     moveCounter: 0,
-    normInputArray: [],
-    flipInputArray: [],
+    normArray: [],
+    flipArray: [],
     latestWord: '',
     targetWord: '',
     latestMove: '',
@@ -79,11 +79,11 @@ function emptyTextInputBox() {
 }
 
 function logArrays(when) {
-    const normInputArray = gameState.normInputArray;
-    const flipInputArray = gameState.flipInputArray;
+    const normArray = gameState.normArray;
+    const flipArray = gameState.flipArray;
 
-    console.log(when, ": normInputArray Contents:", normInputArray, ". normInputArray items:", normInputArray.length);
-    console.log(when, ": flipInputArray Contents:", flipInputArray, ". flipInputArray items:", flipInputArray.length);
+    console.log(when, ": normArray Contents:", normArray, ". normArray items:", normArray.length);
+    console.log(when, ": flipArray Contents:", flipArray, ". flipArray items:", flipArray.length);
 
 }
 
@@ -180,8 +180,8 @@ function getDirectionalConfig() {
             lowerRack: flipRack,
             wordAtTop: wordPair.startWord,
             wordAtBottom: wordPair.endWord,
-            upperRackArray: gameState.normInputArray,
-            lowerRackArray: gameState.flipInputArray,
+            upperRackArray: gameState.normArray,
+            lowerRackArray: gameState.flipArray,
         };
     } else { // i.e. is 'flip'
         return {
@@ -189,8 +189,8 @@ function getDirectionalConfig() {
             lowerRack: normRack,
             wordAtTop: wordPair.endWord,
             wordAtBottom: wordPair.startWord,
-            upperRackArray: gameState.flipInputArray,
-            lowerRackArray: gameState.normInputArray,
+            upperRackArray: gameState.flipArray,
+            lowerRackArray: gameState.normArray,
         };
     }
 }
@@ -229,11 +229,11 @@ function updateDeleters() {
     const deleteNorm = document.getElementById('normDeleter');
     const deleteFlip = document.getElementById('flipDeleter');
 
-    gameState.normInputArray.length < 1
+    gameState.normArray.length < 1
         ? deleteNorm.classList.add('invisible')
         : deleteNorm.classList.remove('invisible');
             
-    gameState.flipInputArray.length < 1
+    gameState.flipArray.length < 1
         ? deleteFlip.classList.add('invisible')
         : deleteFlip.classList.remove('invisible');
 }
@@ -264,15 +264,15 @@ function deleteMove(which) {
 
     switch (which) {
         case 'norm':
-            dirConfig = {rack: normRack, array: gameState.normInputArray};
+            dirConfig = {rack: normRack, array: gameState.normArray};
             break;
         case 'flip':
-            dirConfig = {rack: flipRack, array: gameState.flipInputArray};
+            dirConfig = {rack: flipRack, array: gameState.flipArray};
             break;
         case 'top':
             dirConfig = gameState.direction === 'norm'
-                ? {rack: normRack, array: gameState.normInputArray}
-                : {rack: flipRack, array: gameState.flipInputArray};
+                ? {rack: normRack, array: gameState.normArray}
+                : {rack: flipRack, array: gameState.flipArray};
             break;
     }
 
