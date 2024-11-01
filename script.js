@@ -293,7 +293,7 @@ function deleteMove(which) {
         : updateGame('complete');
 
     logArrays('after delete');
-    console.log('After: ', dirConfig.rack, dirConfig.array);
+    // console.log('After: ', dirConfig.rack, dirConfig.array);
 }
 
 
@@ -305,6 +305,7 @@ function goBackOne() {
             deleteMove('top');
             break;
         case 'delete-norm':
+            
             break;
         case 'delete-flip':
             break;
