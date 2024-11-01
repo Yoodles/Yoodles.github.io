@@ -81,7 +81,6 @@ button:hover {filter: brightness(80%); transform: scale(1.1);}
     height: 5vh;
     /* max-height: 50px; */
     margin: 2vw;
-    box-sizing: border-box;
 }
 
 #resetRound {grid-column: 1}
@@ -152,7 +151,6 @@ button:hover {filter: brightness(80%); transform: scale(1.1);}
     height: 30%;
     width: 100%;
     padding: 10px;
-    box-sizing: border-box;
     border: lightgrey solid 0.5px;
 }
 
@@ -333,7 +331,8 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 #inputField {
     width: 100%;
     height: 13vw;
-    max-width: 82vw;
+    min-width: 50vw;
+    max-width: 70vw;
     text-transform: uppercase;
     border: 0.2vw solid #373737;
     font-family: 'Raleway';
@@ -346,7 +345,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     margin-top: 1.5vh;
     margin-bottom: 1.5vh;
 }
-#inputField:focus {outline: none}
+input:focus {outline: none}
 
 
 #flipperAndDeleters {
