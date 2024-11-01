@@ -246,12 +246,9 @@ function submitMove() {
         gameState.moveCounter++;
         gameState.latestMove = 'submit';
 
-        // If round complete
-        //  (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
         inputWord === gameState.targetWord
             ? updateGame('complete')
             : updateGame('submit');
-
     }
     // else focusTextInputBox(); //i.e. if isTotallyValid returns "false"
 }
