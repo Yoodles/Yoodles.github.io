@@ -1,6 +1,8 @@
 import { wordPairList } from './words.js';
 import { isTotallyValid } from './word-validity.js';
 
+const inputField = document.getElementById('inputField');
+
 const startWordRack = document.getElementById('startWord');
 const normRack = document.getElementById('normRack'); 
 const flipRack = document.getElementById('flipRack');
@@ -71,10 +73,10 @@ function removeClass(className, classToRemove) {
 }
 
 function focusTextInputBox() {
-    document.getElementById('currentInput').focus();
+    inputField.focus();
 }
 function emptyTextInputBox() {
-    document.getElementById('currentInput').value = '';
+    inputField.value = '';
 }
 
 function logArrays(when) {
@@ -238,7 +240,7 @@ function updateDeleters() {
 
 //FUNC: SUBMITTING A MOVE
 function submitMove() {
-    const inputWord = document.getElementById('currentInput').value.toLowerCase();
+    const inputWord = inputField.value.toLowerCase();
 
     if (isTotallyValid(inputWord, gameState.latestWord)) {
         getDirectionalConfig().upperRackArray.push(inputWord);
@@ -451,7 +453,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     // Event listener for TEXT BOX (Enter Key)
-    document.getElementById('currentInput').addEventListener('keypress', function(event) {
+    inputField.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') submitMove();
     });
 
@@ -464,26 +466,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         if (keyValue === 'Enter') {
             submitMove();
-        } else if (keyValue === '⌫') {
+        } else if (keyValue === 'Del') {
             // Simulate backspace by removing the last character from the input field
-            const inputField = document.getElementById('currentInput');
             inputField.value = inputField.value.slice(0, -1);
         } else {
             // Add the clicked key value to the input field
-            const inputField = document.getElementById('currentInput');
             inputField.value += keyValue;
         }
     });
-
-    // // Double-tap prevention for mobile devices
-    // let lastTouchEnd = 0;
-    // document.addEventListener('touchend', (event) => {
-    //     const now = new Date().getTime();
-    //     if (now - lastTouchEnd <= 300) { // Prevents zoom if double-tap occurs within 300 ms
-    //         event.preventDefault();
-    //     }
-    //     lastTouchEnd = now;
-    // }, false);
 
     // Initialize
     removeClass('overlayer', 'loading');
