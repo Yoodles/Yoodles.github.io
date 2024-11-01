@@ -282,7 +282,7 @@ function deleteMove(which) {
 
     gameState.moveCounter--;
 
-    gameState.latestMove = rack === normRack
+    gameState.latestMove = dirConfig.rack === normRack
         ? 'delete-norm'
         : 'delete-flip';
 
