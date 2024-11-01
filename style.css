@@ -169,17 +169,15 @@ button.key {
     font-weight: bold;
     color: black;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.1s ease;
     /* inline-size: min-content; */
 
 }
-.key.special {flex: 1.5; max-width: 15%;}
-.key.backspace {font-size: 6vw;}
-.key.enter {font-size: 4vw;}
+.key.special {flex: 1.5;}
+.key.backspace {max-width: 11%; font-size: 6vw;}
+.key.enter {max-width: 14%; font-size: 4vw;}
+
 .key:active {background-color: #a9a9a9;}
-.key.correct {background-color: #6aa84f; color: white;}
-.key.present {background-color: #ffd966; color: white;}
-.key.absent {background-color: #999999; color: white;}
 
 
 .tile {
