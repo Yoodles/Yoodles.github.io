@@ -282,6 +282,10 @@ function deleteMove(which) {
 
     gameState.moveCounter--;
 
+    gameState.latestMove = rack === normRack
+        ? 'delete-norm'
+        : 'delete-flip';
+
     updateLatestAndTargetWord();
 
     gameState.latestWord !== gameState.targetWord
