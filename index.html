@@ -17,7 +17,7 @@
 <body>
     <div id="appContainer">
         <div id="header">
-            <button id="resetRound">RESET</button>
+            <button id="resetRound" onclick="updateGame('resetRound')">RESET</button>
             <div id="gameName">
                 <h1 id="W1">W</h1>
                 <h1 id="ORD"> ORD</h1>
@@ -25,7 +25,7 @@
                 <h1 id="W2">W</h1>
                 <h1 id="ARD">ARD</h1>
             </div>
-            <button id="skipRound">SKIP</button>
+            <button id="skipRound" onclick="updateGame('nextRound')">SKIP</button>
 
 
         </div>
@@ -42,9 +42,9 @@
             <div id="resultPanel" class="post">
                 <div id="resultMessage" class="result">Completed in 200 moves!<br>You know words good!</div>
                 <div id="resultButtons">
-                    <button id="retryRound">RETRY</button>
-                    <button id="undoMove">UNDO</button>
-                    <button id="nextRound">NEXT</button>
+                    <button id="retryRound" onclick="updateGame('resetRound')">RETRY</button>
+                    <button id="undoMove" onclick="undoMove()">UNDO</button>
+                    <button id="nextRound" onclick="updateGame('nextRound')">NEXT</button>
                 </div>
             </div>
 
@@ -72,16 +72,17 @@
 
                     <div id="inputterSet" data-layout="stack" class="inputter">
                         <div id="flipperAndDeleters">
-                            <button id="normDeleter" class="deleters invisible">x</button>
-                            <button id="toggleFlip" class="icon-button">
+                            <button id="normDeleter" class="deleters invisible" onclick="deleteMove('norm')">x</button>
+
+                            <button id="toggleFlip" onclick="toggleFlip()">
                                 <img src="images/flipper.svg">
                             </button>
-                            
+                        
 
-                            <button id="flipDeleter" class="deleters invisible">x</button>
+                            <button id="flipDeleter" class="deleters invisible" onclick="deleteMove('flip')">x</button>
                         </div>
                         <input id="inputField" type ="text">
-                        <!-- <button id="submitMove">GO</button> -->
+                        <!-- <button id="submitMove" onclick="submitMove()">GO</button> -->
                     </div>
 
                     <div id="flipRack" data-layout="stack rack">

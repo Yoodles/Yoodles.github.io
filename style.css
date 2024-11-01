@@ -355,7 +355,7 @@ input:focus {outline: none}
     /* outline: none; */
     padding: 0;
     cursor: pointer;
-    user-select: none;
+    /* user-select: none; */
 }
 
 #toggleFlip img {width: 12vw; height: 12vw;}
