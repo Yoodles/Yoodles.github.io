@@ -1,5 +1,11 @@
 :root {--vh: 1vh;}
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 @font-face {
     font-family: 'Raleway';
     src: url('../fonts/Raleway-VariableFont_wght.ttf') format('truetype');
@@ -175,7 +181,7 @@ button.key {
 
 }
 .key.special {flex: 1.5;}
-.key.backspace {max-width: 11%; font-size: 6vw;}
+.key.backspace {max-width: 12%; font-size: 4vw;}
 .key.enter {max-width: 14%; font-size: 4vw;}
 
 .key:active {background-color: #a9a9a9;}
@@ -324,7 +330,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     /* margin: auto; */
 }
 
-#currentInput {
+#inputField {
     width: 100%;
     height: 13vw;
     max-width: 82vw;
@@ -340,7 +346,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     margin-top: 1.5vh;
     margin-bottom: 1.5vh;
 }
-input:focus {outline: none}
+#inputField:focus {outline: none}
 
 
 #flipperAndDeleters {
