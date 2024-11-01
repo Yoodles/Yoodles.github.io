@@ -92,6 +92,7 @@ button:hover {filter: brightness(80%); transform: scale(1.1);}
 
 
 #gameArea {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -104,11 +105,15 @@ button:hover {filter: brightness(80%); transform: scale(1.1);}
 }
 
 #movesCont {
-    position: relative;
+    position: absolute;
     top: 0%;
     left: 0%;
+    width: fit-content;
+    margin: 2vw;
+    font-size: 4vw;
+    text-align: start;
 }
-#moveCounter, #bestScore {font-size: 3vw;}
+/* #moveCounter, #bestScore {font-size: 3vw;} */
 #moveCounter {justify-self: start;}
 #bestScore {justify-self: end;}
 
