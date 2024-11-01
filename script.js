@@ -218,6 +218,7 @@ function updateDirectionUI(direction) {
 
 function toggleFlip() {
     gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
+    updateLatestAndTargetWord();
     updateGame('flip');
 }
 
@@ -244,6 +245,8 @@ function submitMove() {
         makeTilesFor(inputWord);
 
         gameState.moveCounter++;
+        updateLatestAndTargetWord();
+
         gameState.latestMove = 'submit';
 
         inputWord === gameState.targetWord
@@ -358,12 +361,8 @@ function updateGame(action) {
     switch (action) {   
         case 'submit':
         case 'flip':
-            updateUI(action);
-            updateLatestAndTargetWord();
-            break;
         case 'delete':
             updateUI(action);
-            // updateLatestAndTargetWord();
             break;
 
         case 'complete':
