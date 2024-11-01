@@ -157,7 +157,7 @@ button:hover {filter: brightness(80%); transform: scale(1.1);}
 }
 
 button.key {
-    /* flex: 1; */
+    flex: 1;
 
     margin: 0;
     height: 7vh;
