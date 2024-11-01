@@ -503,7 +503,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     checkAndUpdateBestScoreIndex();
     updateBestScoreUI();
 
-    console.log("PAGE LOAD: Word Pair: ", wordPair.startWord, wordPair.endWord, "Latest/Target: ", gameState.latestWord, gameState.targetWord);
+    // console.log("PAGE LOAD: Word Pair: ", wordPair.startWord, wordPair.endWord, "Latest/Target: ", gameState.latestWord, gameState.targetWord);
 
     // EVENT LISTENERS for BUTTONS
     document.getElementById('toggleFlip').addEventListener('click', toggleFlip);
