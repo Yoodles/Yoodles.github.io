@@ -255,8 +255,8 @@ function submitMove() {
 }
 
 function deleteMove(which) {
+    // determine which rack/array to delete from
     let dirConfig;
-
     switch (which) {
         case 'norm':
             dirConfig = {rack: normRack, array: gameState.normArray};
@@ -271,24 +271,28 @@ function deleteMove(which) {
             break;
     }
 
+    // find all wordConts in the rack
     let wordConts = dirConfig.rack.querySelectorAll('.wordCont');
 
+    // delete last entry in array (if non-empty) and last wordCont in rack
     if (dirConfig.array.length > 0) dirConfig.array.pop();
     if (wordConts) wordConts[wordConts.length - 1].remove();
 
     gameState.moveCounter--;
+    updateLatestAndTargetWord();
+
+    // record latestMove (for "Undo" post-completion)
     gameState.latestMove = dirConfig.rack === normRack
         ? 'delete-norm'
         : 'delete-flip';
 
-    updateLatestAndTargetWord();
-
-    gameState.latestWord !== gameState.targetWord
-        ? updateGame('delete')
-        : updateGame('complete');
+    // if latest & target match after delete, trigger completion code
+    gameState.latestWord === gameState.targetWord
+        ? updateGame('complete')
+        : updateGame('delete');
 
     logArrays('after delete');
-    // console.log('After: ', dirConfig.rack, dirConfig.array);
+    console.log('After: ', dirConfig.rack, dirConfig.array);
 }
 
 
