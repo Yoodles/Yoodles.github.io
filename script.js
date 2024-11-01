@@ -1,5 +1,5 @@
-import { wordPairList } from './words.js';
-import { isTotallyValid } from './word-validity.js';
+// import { wordPairList } from './words.js';
+// import { isTotallyValid } from './word-validity.js';
 
 const inputField = document.getElementById('inputField');
 
@@ -22,13 +22,15 @@ const initialGameState = () => ({
     resultMessage: ''
 });
 
-export let gameState = initialGameState();
+let gameState = initialGameState();
+// export let gameState = initialGameState();
 
 function resetGameState() {
     gameState = initialGameState();
 }
 
-export let wordPair = {
+// export let wordPair = {
+let wordPair = {
     currentPairIndex: 0,
     startWord: '',
     endWord: '',

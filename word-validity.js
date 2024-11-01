@@ -1,5 +1,5 @@
-import { wordList } from './words.js';
-import { wordPair } from './script.js';
+// import { wordList } from './words.js';
+// import { wordPair } from './script.js';
 
 //=====MOVES====✅
 
@@ -41,7 +41,7 @@ function isOneMoveApart(word1, word2) {
 }
 
 ////FUNC: CHECK IF WORD MEETS ALL CONDITIONS // ✅
-export function isTotallyValid(word, word2) {
+function isTotallyValid(word, word2) {
     console.log('start of isTotallyValid', word, word2);
     //INPUT IS VALID WORD LENGTH ✅
     function isValidLength(word) {
