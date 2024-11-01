@@ -133,6 +133,7 @@ button:hover {filter: brightness(80%); transform: scale(1.1);}
     max-width: 80%;
     padding: 0 8vh;
     margin: auto;
+    overflow-y: auto;
 }
 
 
