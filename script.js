@@ -255,7 +255,7 @@ function submitMove() {
             ? updateGame('complete')
             : updateGame('submit');
     }
-    // else focusTextInputBox(); //i.e. if isTotallyValid returns "false"
+    // else inputField.focus(); //i.e. if isTotallyValid returns "false"
 }
 
 function deleteMove(which) {
@@ -332,7 +332,7 @@ function updateUI(stateOrAction) {
     switch (stateOrAction) {
         case 'submit':
         case 'delete':
-            // focusTextInputBox();
+            // inputField.focus();
             emptyTextInputBox();
             updateDeleters();
             break;
@@ -344,13 +344,15 @@ function updateUI(stateOrAction) {
             resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
             addClass('post', 'complete');
             break;
-
+        case 'undoMove':
+            removeClass('post', 'complete');
+            break;
         default:
             break;
     }
 
     updateBestScoreUI();
-    // focusTextInputBox();
+    // inputField.focus();
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
 
@@ -364,6 +366,7 @@ function updateGame(action) {
         case 'submit':
         case 'flip':
         case 'delete':
+        case 'undoMove':
             updateUI(action);
             break;
 
@@ -379,7 +382,6 @@ function updateGame(action) {
         case 'nextRound':
             wordPair.currentPairIndex++;
         case 'resetRound':
-
             resetGameState();
             logArrays('after reset/next');
             setWordPairAndLengths();
@@ -389,10 +391,6 @@ function updateGame(action) {
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             break;
 
-        case 'undoMove':
-            // gameState.phase = 'mid';
-            // deleteMove('top');
-            removeClass('post', 'complete');
             break;
     };
     
