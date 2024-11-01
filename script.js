@@ -387,7 +387,7 @@ function updateGame(action) {
             break;
 
         case 'goBackOne':
-            gameState.phase = 'mid';
+            // gameState.phase = 'mid';
 
             // deleteMove('top');
             removeClass('post', 'complete');
