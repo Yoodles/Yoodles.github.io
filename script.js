@@ -563,15 +563,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-    // Double-tap prevention for mobile devices
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', (event) => {
-        const now = new Date().getTime();
-        if (now - lastTouchEnd <= 300) { // Prevents zoom if double-tap occurs within 300 ms
-            event.preventDefault();
-        }
-        lastTouchEnd = now;
-    }, false);
+    // // Double-tap prevention for mobile devices
+    // let lastTouchEnd = 0;
+    // document.addEventListener('touchend', (event) => {
+    //     const now = new Date().getTime();
+    //     if (now - lastTouchEnd <= 300) { // Prevents zoom if double-tap occurs within 300 ms
+    //         event.preventDefault();
+    //     }
+    //     lastTouchEnd = now;
+    // }, false);
 
     // Initialize
     removeClass('overlayer', 'loading');
