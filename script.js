@@ -293,7 +293,7 @@ function deleteMove(which) {
         : updateGame('complete');
 
     logArrays('after delete');
-    // console.log('After: ', dirConfig.rack, dirConfig.array);
+    console.log('After: ', dirConfig.rack, dirConfig.array);
 }
 
 
@@ -398,6 +398,7 @@ function updateGame(action) {
     };
     
     logArrays();
+    console.log('latestMove: ', gameState.latestMove);
     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
 }
 
