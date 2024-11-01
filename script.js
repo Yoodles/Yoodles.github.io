@@ -222,9 +222,6 @@ function toggleFlip() {
     updateGame('flip');
 }
 
-
-//消してマッチした場合はどうなるか？？？特にMove Counterやcompleteアニメーションなど
-
 function updateDeleters() {
     const deleteNorm = document.getElementById('normDeleter');
     const deleteFlip = document.getElementById('flipDeleter');
