@@ -157,7 +157,7 @@ button:hover {filter: brightness(80%); transform: scale(1.1);}
 }
 
 button.key {
-    flex: 1;
+    /* flex: 1; */
 
     margin: 0;
     height: 7vh;
@@ -165,7 +165,7 @@ button.key {
     background-color: #d3d3d3;
     border: none;
     border-radius: 4px;
-    font-size: 1em;
+    font-size: 4.5vw;
     font-weight: bold;
     color: black;
     cursor: pointer;
@@ -174,6 +174,8 @@ button.key {
 
 }
 .key.special {flex: 1.5; max-width: 15%;}
+.key.backspace {font-size: 6vw;}
+.key.enter {font-size: 4vw;}
 .key:active {background-color: #a9a9a9;}
 .key.correct {background-color: #6aa84f; color: white;}
 .key.present {background-color: #ffd966; color: white;}
