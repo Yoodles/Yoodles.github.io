@@ -171,25 +171,6 @@ function prepareInputWordCont() {
     return wordCont;
 }
 
-//FUNC: SUBMITTING A MOVE
-function submitMove() {
-    const inputWord = document.getElementById('currentInput').value.toLowerCase();
-
-    if (isTotallyValid(inputWord, gameState.latestWord)) {
-        getDirectionalConfig().upperRackArray.push(inputWord);
-        makeTilesFor(inputWord);
-        gameState.moveCounter++;
-        gameState.latestMove = 'submit';
-
-        // If round complete
-         (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
-            ? updateGame('complete')
-            : updateGame('submit');
-
-    }
-    // else focusTextInputBox(); //i.e. if isTotallyValid returns "false"
-}
-
 
 // DIRECTIONAL CONFIGURATIONS
 function getDirectionalConfig() {
@@ -258,6 +239,24 @@ function updateDeleters() {
 }
 
 
+//FUNC: SUBMITTING A MOVE
+function submitMove() {
+    const inputWord = document.getElementById('currentInput').value.toLowerCase();
+
+    if (isTotallyValid(inputWord, gameState.latestWord)) {
+        getDirectionalConfig().upperRackArray.push(inputWord);
+        makeTilesFor(inputWord);
+        gameState.moveCounter++;
+        gameState.latestMove = 'submit';
+
+        // If round complete
+         (inputWord === gameState.targetWord || inputWord === gameState.latestWord)
+            ? updateGame('complete')
+            : updateGame('submit');
+
+    }
+    // else focusTextInputBox(); //i.e. if isTotallyValid returns "false"
+}
 
 function deleteMove(which) {
     let dirConfig;
