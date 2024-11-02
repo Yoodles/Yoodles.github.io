@@ -129,10 +129,6 @@ function updateMoveCounterUI() {
 
 ////GENERATING WORD TILES////
 function makeTilesFor(word, rack) {
-    // let wordCont;
-    // if (rack === startWordCont) wordCont = startWordCont;
-    // else if (rack === endWordCont) wordCont = endWordCont;
-    // else wordCont = prepareInputWordCont();
 
     let wordCont = (rack !== startWordCont && rack !== endWordCont)
         ? prepareInputWordCont()
@@ -147,8 +143,23 @@ function makeTilesFor(word, rack) {
     });
     wordCont.classList.remove('hidden');
 
+
+
     wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 }
+
+function modifyHeight(rack) {
+    
+    // Get the current height of the div in pixels
+    let currentHeight = parseFloat(window.getComputedStyle(rack).height);
+
+    // Convert 14.5vw to pixels based on the current viewport width
+    let additionalHeight = (14.5 / 100) * window.innerWidth;
+
+    // Set the new height in pixels
+    rack.style.height = (currentHeight + additionalHeight) + 'px';
+}
+
 
 
 
@@ -279,6 +290,8 @@ function submitMove() {
     if (isTotallyValid(inputWord, gameState.latestWord)) {
         getDirectionalConfig().upperRackArray.push(inputWord);
         makeTilesFor(inputWord);
+
+        modifyHeight(gameState.upperRack);
 
         gameState.moveCounter++;
         updateLatestAndTargetWord();
