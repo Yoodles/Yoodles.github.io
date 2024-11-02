@@ -45,6 +45,70 @@
                 </div>
             </div>
 
+            <div id="tutorialPanel">
+                <div class="Modal_topWrapper__MvEd5 Modal_newHeading__Ah45w">
+                    <h2 class="Modal_heading__u2uxI">How To Play</h2>
+                    <button class="closeIcon">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" class="game-icon" data-testid="icon-close">
+                            <path fill="var(--color-tone-1)" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                        </svg>
+                    </button>
+                    <h3 class="Help_subheading__mbRG9">Guess the Wordle in 6 tries.</h3>
+                    <section class="Help_help__fbOXF">
+                        <ul class="Help_instructions__uXsG6">
+                            <li>Each guess must be a valid 5-letter word.</li>
+                            <li>The color of the tiles will change to show how close your guess was to the word.</li>
+                        </ul>
+                        <div class="Help_examples">
+                            <p><strong>Moves</strong></p>
+
+                            <li>Change a letter:
+                                <span class="help-wordCont">
+                                    <span class="tile help">W</span>
+                                    <span class="tile help">O</span>
+                                    <span class="tile help">R</span>
+                                    <span class="tile help">D</span>
+                                </span>
+                                →
+                                <span class="help-wordCont">
+                                    <span class="tile help">W</span>
+                                    <span class="tile help">A</span>
+                                    <span class="tile help">R</span>
+                                    <span class="tile help">D</span>
+                                </span>
+                            </li>
+
+                            <div>
+
+                            </div>
+
+                            <div class="tile help">W</div>
+                            <div class="tile help removed-letter">W</div>
+                            <div class="tile help added-letter">L</div>
+                            <div class="Help_example__gldBI">
+                                <div data-testid="wordy-letter" class="Help_tileContainer">
+                                    <div class="Tile_tile__UWEHN Tile_small__dKW39" role="img" "1st letter, W, correct" data-state="correct" data-animation="idle" data-testid="tile" aria-live="off">w</div>
+                                </div>
+                                <div data-testid="wordy-letter" class="Help_tileContainer">
+                                </div>
+
+                        <p><strong>I</strong> is in the word but in the wrong spot.</p>
+                    </div>
+                        <div aria-label="rogue" class="Help_example__gldBI">
+                            <div data-testid="rogue-letter" class="Help_tileContainer">
+                                <div class="Tile_tile" role="img">r</div>
+                            </div>
+                            <div data-testid="rogue-letter" class="Help_tileContainer">
+                                <div class="Tile" role="img">o</div>
+                            </div>
+                            <div data-testid="rogue-letter" class="Help_tileContainer"><div class="Tile_tile__UWEHN Tile_small__dKW39" role="img">g</div></div>
+                            <div data-testid="rogue-letter" class="Help_tileContainer"><div class="Tile_tile__UWEHN Tile_small__dKW39" role="img">u</div></div>
+                            <div data-testid="rogue-letter" class="Help_tileContainer"><div class="Tile_tile__UWEHN Tile_small__dKW39" role="img" "5th letter, E" >e</div></div><p><strong>U</strong> is not in the word in any spot.</p></div></div><div class="Help_statsLogin__HkQec"><div class="Help_statsIcon__gZPRN"><img alt="Green Bar Graph" style="content: var(--wordle-stats-mini-check);"></div></div>
+                        </section>
+                    </div>
+
+            </div>
+
             <div id="gameplayCont">
                 
                 <div id="startWord" class="wordCont setWord">

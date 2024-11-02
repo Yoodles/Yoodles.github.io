@@ -4,6 +4,9 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  user-select: none;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 @font-face {
@@ -22,8 +25,7 @@ p {
 body {
     margin: 0;
     width: 100vw;
-    overflow: hidden; /* Prevents scrolling on the main body */
-    
+    overflow: hidden;
     font-family: 'Raleway', sans-serif;
     text-align: center;
 
@@ -41,7 +43,6 @@ body {
 }
 
 button {
-    /* width: 14vw; */
     justify-content: center;
 
     cursor: pointer;
@@ -305,7 +306,6 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 
-
 #inputterSet {
     display: flex;
     position: relative;
@@ -510,3 +510,38 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 }
 #W2 {font-weight: 250; transform: translate(-0.15vw)}
 #ARD {transform: translate(-1vw)}
+
+
+
+#tutorialPanel {
+    padding: 32px;
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid var(--color-tone-6);
+    background-color: white;
+    width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: 0 4px 23px 0 rgba(0,0,0,.2);
+}
+
+.closeIcon {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 4vw;
+    height: 4vw;
+    position: absolute;
+    top: 4vw;
+    right: 4vw;
+}
+
+.tile.help {
+    max-width: 5vw;
+    max-height: 5vw;
+}
+
+.help-wordCont {
+    display: inline-flex;
+    flex-wrap: nowrap;
+}
