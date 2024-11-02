@@ -142,37 +142,32 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
 
 
 #keyboard {
-    /* position: fixed; */
-    /* bottom: 0%; */
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    /* gap: 8px; */
     height: 30%;
     width: 100%;
     padding: 10px;
     border: lightgrey solid 0.5px;
-
-    
 }
 
 .key-row {
     display: flex;
-    /* gap: 9px; */
-    justify-content: center;
     width: 100%;
     border: lightgrey solid 0.5px;
     user-select: none;
     margin: 0 auto 8px;
     touch-action: manipulation;
+
+    justify-content: center;
 }
 
 
 button.key {
     flex: 1;
     display: flex;
-    margin: 0;
     height: 7vh;
-    max-width: 7%;
+    /* max-width: 7%; */
     background-color: #d3d3d3;
     border: 0;
     border-radius: 4px;
@@ -204,9 +199,11 @@ button.key {
 
 
 }
-.key.special {flex: 1.5;}
-.key.backspace {max-width: 12%; font-size: 4vw;}
-.key.enter {max-width: 14%; font-size: 4vw;}
+button.key:last-of-type {margin: 0;}
+.key.special {flex: 1.5; font-size: 4vw}
+
+.key.backspace {max-width: 12%;}
+.key.enter {max-width: 14%;}
 
 .key:active {background-color: #a9a9a9;}
 
