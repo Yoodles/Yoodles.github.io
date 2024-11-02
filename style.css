@@ -169,7 +169,7 @@ button.key {
     border: none;
     border-radius: 4px;
     font-size: 4vw;
-    /* font-weight: bold; */
+    font-weight: bold;
     text-align: center;
     color: black;
     cursor: pointer;
