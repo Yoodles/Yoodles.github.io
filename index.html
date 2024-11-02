@@ -24,29 +24,6 @@
             </div>
             <button id="skipRound" onclick="updateGame('nextRound')">SKIP</button>
 
-
-        </div>
-
-        <div id="gameArea" class="gameArea hidden">
-            
-            <div class="post overlayer loading"></div>
-
-            <div id="movesCont">
-                <div id="moveCounter" class="moveCounter">Moves: 0</div>
-                <div id="bestScore">Best: --</div>
-            </div>
-
-            <button id="openHelp" onclick="toggleHelp()">?</button>
-
-            <div id="resultPanel" class="post">
-                <div id="resultMessage" class="result">Completed in X moves!<br>You know words good!</div>
-                <div id="resultButtons">
-                    <button id="retryRound" onclick="updateGame('resetRound')">RETRY</button>
-                    <button id="undoMove" onclick="undoMove()">UNDO</button>
-                    <button id="nextRound" onclick="updateGame('nextRound')">NEXT</button>
-                </div>
-            </div>
-
             <div id="helpPanel" class="">
                 <button class="closeIcon" onclick="toggleHelp()">×</button>
 
@@ -150,6 +127,28 @@
                         </section>
                     </div>
 
+            </div>
+
+        </div>
+
+        <div id="gameArea" class="gameArea hidden">
+            
+            <div class="post overlayer loading"></div>
+
+            <div id="movesCont">
+                <div id="moveCounter" class="moveCounter">Moves: 0</div>
+                <div id="bestScore">Best: --</div>
+            </div>
+
+            <button id="openHelp" onclick="toggleHelp()">?</button>
+
+            <div id="resultPanel" class="post">
+                <div id="resultMessage" class="result">Completed in X moves!<br>You know words good!</div>
+                <div id="resultButtons">
+                    <button id="retryRound" onclick="updateGame('resetRound')">RETRY</button>
+                    <button id="undoMove" onclick="undoMove()">UNDO</button>
+                    <button id="nextRound" onclick="updateGame('nextRound')">NEXT</button>
+                </div>
             </div>
 
             <div id="gameplayCont">
