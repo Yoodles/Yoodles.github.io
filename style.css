@@ -471,8 +471,10 @@ input:focus {outline: none}
 }
 
 #resultPanel button {
-    height: 30px;
-    width: 80px;
+    /* height: 30px;
+    width: 80px; */
+    height: 4vh;
+    width: 20vw;
 }
 
 
