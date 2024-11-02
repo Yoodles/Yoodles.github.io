@@ -148,13 +148,13 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     height: 30%;
     width: 100%;
     padding: 10px;
-    border: lightgrey solid 0.5px;
+    /* border: lightgrey solid 0.5px; */
 }
 
 .key-row {
     display: flex;
     width: 100%;
-    border: lightgrey solid 0.5px;
+    /* border: lightgrey solid 0.5px; */
     user-select: none;
     margin: 0 auto 8px;
     touch-action: manipulation;
@@ -292,7 +292,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     max-width: 80%;
     margin: auto;
     height: 0;
-    transition: height 0.5s ease-in;
+    transition: height 0.2s ease-in;
     /* transition: transform 0.5s ease-in-out; */
 }
 
