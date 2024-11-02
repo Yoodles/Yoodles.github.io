@@ -2,11 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
-
 
     <title>WORDWARD</title>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -50,7 +47,7 @@
 
             <div id="gameplayCont">
                 
-                <div id="startWord" data-layout="stack" class="wordCont setWord">
+                <div id="startWord" class="wordCont setWord">
                     <div></div>
                     <div></div>
                     <div></div>
@@ -60,7 +57,7 @@
                 </div>
             
                 <div id="inputterRack" class="inputRack">
-                    <div id="normRack" data-layout="stack rack">
+                    <div id="normRack" data-layout="rack">
                         <div></div>
                         <div></div>
                         <div></div>
@@ -70,7 +67,7 @@
                         <div></div>
                     </div>
 
-                    <div id="inputterSet" data-layout="stack" class="inputter">
+                    <div id="inputterSet" class="inputter">
                         <div id="flipperAndDeleters">
                             <button id="normDeleter" class="deleters invisible" onclick="deleteMove('norm')">x</button>
 
@@ -85,7 +82,7 @@
                         <!-- <button id="submitMove" onclick="submitMove()">GO</button> -->
                     </div>
 
-                    <div id="flipRack" data-layout="stack rack">
+                    <div id="flipRack" data-layout="rack">
                         <div></div>
                         <div></div>
                         <div></div>
@@ -97,7 +94,7 @@
 
                 </div>
 
-                <div id="endWord" data-layout="stack" class="wordCont setWord">
+                <div id="endWord" class="wordCont setWord">
                         <div></div>
                         <div></div>
                         <div></div>
@@ -151,7 +148,6 @@
             </div>
         </div>
     </div>
-
 
     <script src="script.js"></script>
     <script src="words.js"></script>

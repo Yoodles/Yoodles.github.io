@@ -277,18 +277,15 @@ div[data-flip] #inputterSet { order: 2; }
 div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
-[data-layout="stack"] {
+/* [data-layout="stack"] {
     display: flex;
     justify-content: center;
     align-content: center;
     max-width: 80vw;
-}
+} */
 
 [data-layout="rack"] {
-    /* display: flex; */
     flex-direction: column;
-    /* justify-content: center;
-    align-content: center; */
     max-width: 80%;
     margin: auto;
 }
