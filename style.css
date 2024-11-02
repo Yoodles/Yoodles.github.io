@@ -70,7 +70,7 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     align-content: center;
     align-items: center;
     z-index: 1000;
-    border: lightgrey solid 0.5px;
+    /* border: lightgrey solid 0.5px; */
 }
 
 #header button {
@@ -106,7 +106,7 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     /* justify-content: space-evenly; */
     align-items: center;
 
-    border: lightgrey solid 0.5px;
+    /* border: lightgrey solid 0.5px; */
 }
 
 #movesCont {
@@ -147,7 +147,7 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     height: 30%;
     width: 90%;
     padding: 10px;
-    border: lightgrey solid 0.5px;
+    /* border: lightgrey solid 0.5px; */
 }
 
 .key-row {
@@ -155,6 +155,8 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     gap: 9px;
     justify-content: center;
     max-width: 100%;
+    border: lightgrey solid 0.5px;
+
 }
 
 button.key {
