@@ -58,13 +58,12 @@ button {
     text-align: center;
     
 }
-button:hover {filter: brightness(80%); transform: scale(1.1);}
+button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
 
 
 #header {
     display: grid;
     grid-template-columns: auto 1fr auto;
-    /* grid-template-rows: auto auto; */
     flex-direction: column;
     /* gap: 10px; */
 
@@ -121,7 +120,6 @@ button:hover {filter: brightness(80%); transform: scale(1.1);}
     font-size: 4vw;
     text-align: start;
 }
-/* #moveCounter, #bestScore {font-size: 3vw;} */
 #moveCounter {justify-self: start;}
 #bestScore {justify-self: end;}
 
@@ -253,6 +251,15 @@ button.key {
 #inputterRack { order: 2; }
 #endWord { order: 3; }
 
+div[data-flip] #startWord { order: 3; }
+div[data-flip] #inputterRack { order: 2; }
+div[data-flip] #endWord { order: 1; }
+
+div[data-flip] #normRack { order: 3; flex-direction: column-reverse;}
+div[data-flip] #inputterSet { order: 2; }
+div[data-flip] #flipRack { order: 1; flex-direction: column;}
+
+
 #normRack, #flipRack {
     position: relative;
     display: flex;
@@ -270,13 +277,6 @@ button.key {
 
 
 
-div[data-flip] #startWord { order: 3; }
-div[data-flip] #inputterRack { order: 2; }
-div[data-flip] #endWord { order: 1; }
-
-div[data-flip] #normRack { order: 3; flex-direction: column-reverse;}
-div[data-flip] #inputterSet { order: 2; }
-div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 
@@ -284,7 +284,6 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 #inputterSet {
     display: flex;
     position: relative;
-    /* flex-wrap: nowrap;   ??  */
     align-items: center;
     width: 100%;
     margin-top: 1.5vw;
@@ -345,7 +344,7 @@ input:focus {outline: none}
 }
 #toggleFlip img {width: 12vw; height: 12vw;}
 
-.rotating {animation: verticalFlip 1.8s ease-in-out;}
+.rotating {animation: verticalFlip 1.2s ease-in-out;}
 
 
 @keyframes verticalFlip {
@@ -362,6 +361,7 @@ input:focus {outline: none}
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
+    /* height: 11.4vw; */
 }
 
 .wordCont, .deleters {
