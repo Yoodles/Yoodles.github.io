@@ -24,108 +24,88 @@
             </div>
             <button id="skipRound" onclick="updateGame('nextRound')">SKIP</button>
 
-            <div id="helpPanel" class="">
-                <button class="closeIcon" onclick="toggleHelp()">×</button>
-
-                <p>How To Play</p>
-
-                <h2 class="">Change the word one move at a time to get from the top to the bottom.</h2>
-                
-                <div class="Help_examples">
-                    <p><strong>Moves</strong></p>
-                    <ul class="Help_instructions__uXsG6">
-                        <li>Each move must be a valid word.</li>
-                    </ul>
-                            <li>Change a letter:
-                                <span class="help-wordCont">
-                                    <span class="tile help">W</span>
-                                    <span class="tile help removed">O</span>
-                                    <span class="tile help">R</span>
-                                    <span class="tile help">D</span>
-                                </span>
-                                →
-                                <span class="help-wordCont">
-                                    <span class="tile help">W</span>
-                                    <span class="tile help added">A</span>
-                                    <span class="tile help">R</span>
-                                    <span class="tile help">D</span>
-                                </span>
-                            </li>
-
-                            <li>Add/remove a letter:
-                                <span class="help-wordCont">
-                                    <span class="tile help">W</span>
-                                    <span class="tile help">O</span>
-                                    <span class="tile help">R</span>
-                                    <span class="tile help">D</span>
-                                </span>
-                                →
-                                <span class="help-wordCont">
-                                    <span class="tile help">W</span>
-                                    <span class="tile help">O</span>
-                                    <span class="tile help">R</span>
-                                    <span class="tile help added">L</span>
-                                    <span class="tile help">D</span>
-                                </span>
-                                <span class="help-wordCont">
-                                    <span class="tile help">W</span>
-                                    <span class="tile help">A</span>
-                                    <span class="tile help">R</span>
-                                    <span class="tile help removed">D</span>
-                                </span>
-                                →
-                                <span class="help-wordCont">
-                                    <span class="tile help">W</span>
-                                    <span class="tile help">A</span>
-                                    <span class="tile help">R</span>
-                                </span>
-                            </li>
-
-                            <li>Jumble the letters:
-                                <span class="help-wordCont">
-                                    <span class="tile help">W</span>
-                                    <span class="tile help">O</span>
-                                    <span class="tile help">R</span>
-                                    <span class="tile help">D</span>
-                                    <span class="tile help moved">S</span>
-                                </span>
-                                →
-                                <span class="help-wordCont">
-                                    <span class="tile help moved">S</span>
-                                    <span class="tile help">W</span>
-                                    <span class="tile help">O</span>
-                                    <span class="tile help">R</span>
-                                    <span class="tile help">D</span>
-                                </span>
-                                <span class="help-wordCont">
-                                    <span class="tile help">W</span>
-                                    <span class="tile help">A</span>
-                                    <span class="tile help">R</span>
-                                    <span class="tile help">D</span>
-                                </span>
-                                →
-                                <span class="help-wordCont">
-                                    <span class="tile help">D</span>
-                                    <span class="tile help">R</span>
-                                    <span class="tile help">A</span>
-                                    <span class="tile help">W</span>
-                                </span>
-                            </li>
-
-                            <div>
-
-                            </div>
-
-                            <div class="tile help">W</div>
-                            <div class="tile help removed-letter">W</div>
-                            <div class="tile help added-letter">L</div>
-                            <div class="Help_example__gldBI">
 
 
-                    </div>
+        </div>
 
-                        </section>
-                    </div>
+        <div id="helpPanel" class="">
+            <button class="closeIcon" onclick="toggleHelp()">×</button>
+
+            <p>How To Play</p>
+
+            <h2 class="">Change the word one move at a time to get from the top to the bottom.</h2>
+            
+            <div class="Help_examples">
+                <p><strong>Moves</strong></p>
+                <ul class="Help_instructions__uXsG6">
+                    <li>Each move must be a valid word.</li>
+                </ul>
+                    <li>Change a letter:
+                        <div class="help-wordCont">
+                            <span class="tile help">W</span>
+                            <span class="tile help removed">O</span>
+                            <span class="tile help">R</span>
+                            <span class="tile help">D</span>
+                            →
+                            <span class="tile help">W</span>
+                            <span class="tile help added">A</span>
+                            <span class="tile help">R</span>
+                            <span class="tile help">D</span>
+                        </div>
+                    </li>
+
+                    <li>Add/remove a letter:
+                        <div class="help-wordCont">
+                            <span class="tile help">W</span>
+                            <span class="tile help">O</span>
+                            <span class="tile help">R</span>
+                            <span class="tile help">D</span>
+                            →
+                            <span class="tile help">W</span>
+                            <span class="tile help">O</span>
+                            <span class="tile help">R</span>
+                            <span class="tile help added">L</span>
+                            <span class="tile help">D</span>
+                        </div>
+                        <div class="help-wordCont">
+                            <span class="tile help">W</span>
+                            <span class="tile help">A</span>
+                            <span class="tile help">R</span>
+                            <span class="tile help removed">D</span>
+                            →
+                            <span class="tile help">W</span>
+                            <span class="tile help">A</span>
+                            <span class="tile help">R</span>
+                        </div>
+                    </li>
+
+                    <li>Jumble the letters:
+                        <div class="help-wordCont">
+                            <span class="tile help">W</span>
+                            <span class="tile help">O</span>
+                            <span class="tile help">R</span>
+                            <span class="tile help">D</span>
+                            <span class="tile help moved">S</span>
+                            →
+                            <span class="tile help moved">S</span>
+                            <span class="tile help">W</span>
+                            <span class="tile help">O</span>
+                            <span class="tile help">R</span>
+                            <span class="tile help">D</span>
+                        </div>
+                        <div class="help-wordCont">
+                            <span class="tile help">W</span>
+                            <span class="tile help">A</span>
+                            <span class="tile help">R</span>
+                            <span class="tile help">D</span>
+                            →
+                            <span class="tile help">D</span>
+                            <span class="tile help">R</span>
+                            <span class="tile help">A</span>
+                            <span class="tile help">W</span>
+                        </div>
+                    </li>
+                </ul>
 
             </div>
 
