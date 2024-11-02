@@ -381,6 +381,8 @@ function updateUI(stateOrAction) {
         updateDirectionUI('norm');
         clearInputUI();
         emptyTextInputBox();
+        normRack.style.height = 0;
+        flipRack.style.height = 0;
     }
 
     switch (stateOrAction) {
@@ -474,37 +476,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     updateBestScoreUI();
 
     // console.log("PAGE LOAD: Word Pair: ", wordPair.startWord, wordPair.endWord, "Latest/Target: ", gameState.latestWord, gameState.targetWord);
-
-    // EVENT LISTENERS for BUTTONS
-    // document.addEventListener('click', function(event) {
-    //     if (event.target.tagName === 'BUTTON' && event.target.id) {
-    //         switch(event.target.id) {
-    //             case 'submitMove':
-    //                 submitMove();
-    //                 break;
-    //             case 'toggleFlip':
-    //                 toggleFlip();
-    //                 break;
-    //             case 'normDeleter':
-    //                 deleteMove('norm');
-    //                 break;
-    //             case 'flipDeleter':
-    //                 deleteMove('flip');
-    //                 break;
-    //             case 'undoMove':
-    //                 undoMove();
-    //                 break;
-    //             case 'nextRound':
-    //             case 'skipRound':
-    //                 updateGame('nextRound');
-    //                 break;                 
-    //             case 'resetRound':
-    //             case 'retryRound':
-    //                 updateGame('resetRound');
-    //                 break;
-    //         }
-    //     }
-    // });
 
     // Event listener for TEXT BOX (Enter Key)
     inputField.addEventListener('keypress', function(event) {
