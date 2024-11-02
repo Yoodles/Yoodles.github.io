@@ -47,20 +47,35 @@
                 </div>
             </div>
 
-            <div id="helpPanel" class="hidden">
-                <div class="Modal_topWrapper__MvEd5 Modal_newHeading__Ah45w">
-                    <h2 class="Modal_heading__u2uxI">How To Play</h2>
-                    <button class="closeIcon" onclick="toggleHelp()">×</button>
+            <div id="helpPanel" class="">
+                <button class="closeIcon" onclick="toggleHelp()">×</button>
 
-                    <h3 class="Help_subheading__mbRG9">Change the word one move at a time to get from the top to the bottom.</h3>
-                    <section class="Help_help__fbOXF">
-                        <ul class="Help_instructions__uXsG6">
-                            <li>Each move must be a valid word.</li>
-                        </ul>
-                        <div class="Help_examples">
-                            <p><strong>Moves</strong></p>
+                <p>How To Play</p>
 
+                <h2 class="">Change the word one move at a time to get from the top to the bottom.</h2>
+                
+                <div class="Help_examples">
+                    <p><strong>Moves</strong></p>
+                    <ul class="Help_instructions__uXsG6">
+                        <li>Each move must be a valid word.</li>
+                    </ul>
                             <li>Change a letter:
+                                <span class="help-wordCont">
+                                    <span class="tile help">W</span>
+                                    <span class="tile help removed">O</span>
+                                    <span class="tile help">R</span>
+                                    <span class="tile help">D</span>
+                                </span>
+                                →
+                                <span class="help-wordCont">
+                                    <span class="tile help">W</span>
+                                    <span class="tile help added">A</span>
+                                    <span class="tile help">R</span>
+                                    <span class="tile help">D</span>
+                                </span>
+                            </li>
+
+                            <li>Add/remove a letter:
                                 <span class="help-wordCont">
                                     <span class="tile help">W</span>
                                     <span class="tile help">O</span>
@@ -70,13 +85,41 @@
                                 →
                                 <span class="help-wordCont">
                                     <span class="tile help">W</span>
+                                    <span class="tile help">O</span>
+                                    <span class="tile help">R</span>
+                                    <span class="tile help added">L</span>
+                                    <span class="tile help">D</span>
+                                </span>
+                                <span class="help-wordCont">
+                                    <span class="tile help">W</span>
                                     <span class="tile help">A</span>
                                     <span class="tile help">R</span>
-                                    <span class="tile help">D</span>
+                                    <span class="tile help removed">D</span>
+                                </span>
+                                →
+                                <span class="help-wordCont">
+                                    <span class="tile help">W</span>
+                                    <span class="tile help">A</span>
+                                    <span class="tile help">R</span>
                                 </span>
                             </li>
 
-                            <li>Add/remove a letter:
+                            <li>Jumble the letters:
+                                <span class="help-wordCont">
+                                    <span class="tile help">W</span>
+                                    <span class="tile help">O</span>
+                                    <span class="tile help">R</span>
+                                    <span class="tile help">D</span>
+                                    <span class="tile help moved">S</span>
+                                </span>
+                                →
+                                <span class="help-wordCont">
+                                    <span class="tile help moved">S</span>
+                                    <span class="tile help">W</span>
+                                    <span class="tile help">O</span>
+                                    <span class="tile help">R</span>
+                                    <span class="tile help">D</span>
+                                </span>
                                 <span class="help-wordCont">
                                     <span class="tile help">W</span>
                                     <span class="tile help">A</span>
@@ -85,9 +128,10 @@
                                 </span>
                                 →
                                 <span class="help-wordCont">
-                                    <span class="tile help">W</span>
-                                    <span class="tile help">A</span>
+                                    <span class="tile help">D</span>
                                     <span class="tile help">R</span>
+                                    <span class="tile help">A</span>
+                                    <span class="tile help">W</span>
                                 </span>
                             </li>
 
