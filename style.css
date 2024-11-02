@@ -207,6 +207,7 @@ button.key:last-of-type {margin: 0;}
 
 .key:active {background-color: #a9a9a9;}
 
+.spacer {flex: 0.5}
 
 .tile {
     display: flex;
