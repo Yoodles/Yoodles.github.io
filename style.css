@@ -257,8 +257,10 @@ button.key {
     position: relative;
     display: flex;
 
-    flex-direction: column-reverse; /* Stack words from the bottom upwards */
-    transition: transform 0.5s ease-in-out; /* Animation for upward sliding */
+    max-width: 80%;
+    margin: auto;
+
+    /* transition: transform 0.5s ease-in-out; */
 
 }
 
@@ -277,18 +279,6 @@ div[data-flip] #inputterSet { order: 2; }
 div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
-/* [data-layout="stack"] {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    max-width: 80vw;
-} */
-
-[data-layout="rack"] {
-    flex-direction: column;
-    max-width: 80%;
-    margin: auto;
-}
 
 
 #inputterSet {
