@@ -148,18 +148,22 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     flex-direction: column;
     gap: 8px;
     height: 30%;
-    width: 90%;
+    width: 100%;
     padding: 10px;
-    /* border: lightgrey solid 0.5px; */
+    border: lightgrey solid 0.5px;
+
+    
 }
 
 .key-row {
     display: flex;
     /* gap: 9px; */
     justify-content: center;
-    max-width: 100%;
+    width: 100%;
     border: lightgrey solid 0.5px;
-
+    user-select: none;
+    margin: 0 auto 8px;
+    touch-action: manipulation;
 }
 
 
