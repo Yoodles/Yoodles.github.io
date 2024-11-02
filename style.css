@@ -113,17 +113,24 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     /* border: lightgrey solid 0.5px; */
 }
 
-#movesCont {
+#movesCont, #openHelp {
     position: absolute;
     top: 0%;
-    left: 0%;
     width: fit-content;
     margin: 2vw;
     font-size: 4vw;
     text-align: start;
 }
+#movesCont {left: 0%}
+#openHelp {
+    right: 0%;
+    background: none;
+}
+
 #moveCounter {justify-self: start;}
 #bestScore {justify-self: end;}
+
+
 
 #gameplayCont {
     display: flex;
