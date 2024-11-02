@@ -148,18 +148,23 @@ function makeTilesFor(word, rack) {
     wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 }
 
-function modifyHeight(rack) {
-    
+
+function modifyHeight(rack, shouldAdd) {
     // Get the current height of the div in pixels
     let currentHeight = parseFloat(window.getComputedStyle(rack).height);
 
     // Convert 14.5vw to pixels based on the current viewport width
     let additionalHeight = (14.5 / 100) * window.innerWidth;
 
-    // Set the new height in pixels
-    rack.style.height = (currentHeight + additionalHeight) + 'px';
+    // Check if the height should be added or subtracted
+    if (shouldAdd) {
+        // Add the height
+        rack.style.height = (currentHeight + additionalHeight) + 'px';
+    } else {
+        // Subtract the height
+        rack.style.height = (currentHeight - additionalHeight) + 'px';
+    }
 }
-
 
 
 
@@ -291,7 +296,7 @@ function submitMove() {
         getDirectionalConfig().upperRackArray.push(inputWord);
         makeTilesFor(inputWord);
 
-        modifyHeight(getDirectionalConfig().upperRack);
+        modifyHeight(getDirectionalConfig().upperRack, true);
 
         gameState.moveCounter++;
         updateLatestAndTargetWord();
@@ -328,6 +333,8 @@ function deleteMove(which) {
     // delete last entry in array (if non-empty) and last wordCont in rack
     if (dirConfig.array.length > 0) dirConfig.array.pop();
     if (wordConts) wordConts[wordConts.length - 1].remove();
+
+    modifyHeight(dirConfig.rack, false);
 
     gameState.moveCounter--;
     updateLatestAndTargetWord();
