@@ -291,7 +291,7 @@ function submitMove() {
         getDirectionalConfig().upperRackArray.push(inputWord);
         makeTilesFor(inputWord);
 
-        modifyHeight(gameState.upperRack);
+        modifyHeight(getDirectionalConfig().upperRack);
 
         gameState.moveCounter++;
         updateLatestAndTargetWord();
