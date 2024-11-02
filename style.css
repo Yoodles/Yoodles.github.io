@@ -41,7 +41,7 @@ body {
 }
 
 button {
-    width: 14vw;
+    /* width: 14vw; */
     justify-content: center;
 
     cursor: pointer;
@@ -57,6 +57,9 @@ button {
     text-align: center;
 }
 button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
+
+
+
 
 
 #header {
@@ -152,21 +155,22 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
 
 .key-row {
     display: flex;
-    gap: 9px;
+    /* gap: 9px; */
     justify-content: center;
     max-width: 100%;
     border: lightgrey solid 0.5px;
 
 }
 
+
 button.key {
     flex: 1;
-
+    display: flex;
     margin: 0;
     height: 7vh;
     max-width: 7%;
     background-color: #d3d3d3;
-    border: none;
+    border: 0;
     border-radius: 4px;
     font-size: 4vw;
     font-weight: bold;
@@ -175,6 +179,25 @@ button.key {
     cursor: pointer;
     transition: background-color 0.1s ease;
     /* inline-size: min-content; */
+
+    align-items: center;
+    user-select: none;
+
+    /* font-size: 1.25em; */
+    padding: 0;
+    margin: 0 6px 0 0;
+    height: 58px;
+
+    /* -webkit-user-select: none;
+    -moz-user-select: none; */
+
+    /* background-color: var(--key-bg);
+    color: var(--key-text-color); */
+    justify-content: center;
+    
+    /* text-transform: uppercase; */
+    /* -webkit-tap-highlight-color: rgba(0,0,0,.3); */
+
 
 }
 .key.special {flex: 1.5;}
