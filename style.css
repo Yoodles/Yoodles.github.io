@@ -513,7 +513,7 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 
 
 
-#tutorialPanel {
+#helpPanel {
     padding: 32px;
     position: relative;
     border-radius: 8px;
@@ -534,6 +534,8 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     position: absolute;
     top: 4vw;
     right: 4vw;
+    color: black;
+    font-size: 8vw;
 }
 
 .tile.help {

@@ -127,6 +127,11 @@ function updateMoveCounterUI() {
 
 // let currentOffset = 0;
 
+
+function toggleHelp() {
+    document.getElementById('helpPanel').classList.toggle('hidden');
+}
+
 ////GENERATING WORD TILES////
 function makeTilesFor(word, rack) {
 
