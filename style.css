@@ -50,13 +50,11 @@ button {
     border: solid 0.1vw;
     border-radius: 0.42vw;
 
-
     color: black;
     font-family: 'Raleway', sans-serif;
     font-size: 3.5vw;
     font-weight: 300;
     text-align: center;
-    
 }
 button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
 
@@ -433,11 +431,9 @@ input:focus {outline: none}
     border-color: rgba(255, 246, 85, 0.5);
 }
 
-#undoMove {width: 25vw}
+/* #undoMove {width: 25vw}
+ */
 
-/* #resultMessage {
-    display: block;
-} */
 
 
 #resultPanel {
