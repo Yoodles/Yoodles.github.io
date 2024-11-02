@@ -136,7 +136,7 @@ button:hover {filter: brightness(80%); transform: scale(1.1);}
     align-content: center;
     /* max-height: 80vh; */
     max-width: 90%;
-    padding: 0 8vh;
+    padding: 8vh;
     margin: auto;
     overflow-y: auto;
 }
