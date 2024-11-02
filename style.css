@@ -546,16 +546,19 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     font-size: 8vw;
 }
 
-#helpPanel .tile.help {
-    /* width: 5px; */
-    /* font-size: 5px; */
-    max-width: 5vw;
-    max-height: 5vw;
+#helpPanel ul {
+    /* font-size: 20px; */
+    width: 100%;
 }
+
+.tile.help {
+    width: 6vw;
+    height: 6vw;
+}
+.tile.added {background-color: lightgreen;}
+.tile.removed {background-color: lightpink}
 
 .help-wordCont {
     display: inline-flex;
     flex-wrap: nowrap;
 }
-
-.help-wordCont {}
