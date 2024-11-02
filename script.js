@@ -3,10 +3,10 @@
 
 const inputField = document.getElementById('inputField');
 
-const startWordRack = document.getElementById('startWord');
+const startWordCont = document.getElementById('startWord');
 const normRack = document.getElementById('normRack'); 
 const flipRack = document.getElementById('flipRack');
-const endWordRack = document.getElementById('endWord');
+const endWordCont = document.getElementById('endWord');
 
 
 //// INITIAL STATE AT START OF ROUND ////
@@ -59,8 +59,8 @@ function setWordPairAndLengths() {
 }
 
 function buildWordPairTiles() {
-    makeTilesFor(wordPair.startWord, startWordRack);
-    makeTilesFor(wordPair.endWord, endWordRack);
+    makeTilesFor(wordPair.startWord, startWordCont);
+    makeTilesFor(wordPair.endWord, endWordCont);
 }
 
 //====UTILITY FUNCTIONS====//
@@ -129,17 +129,21 @@ function updateMoveCounterUI() {
 
 ////GENERATING WORD TILES////
 function makeTilesFor(word, rack) {
-    let wordCont;
-    if (rack === startWordRack) wordCont = startWordRack;
-    else if (rack === endWordRack) wordCont = endWordRack;
-    else wordCont = prepareInputWordCont();
+    // let wordCont;
+    // if (rack === startWordCont) wordCont = startWordCont;
+    // else if (rack === endWordCont) wordCont = endWordCont;
+    // else wordCont = prepareInputWordCont();
+
+    let wordCont = (rack !== startWordCont && rack !== endWordCont)
+        ? prepareInputWordCont()
+        : rack;
 
     wordCont.querySelectorAll('div').forEach((tile, i) => {
         const isVisible = i < word.length;
         tile.textContent = isVisible ? word[i].toUpperCase() : '';
         tile.classList.toggle('tile', isVisible);
         tile.classList.toggle('hidden', !isVisible);
-        if (isVisible && (wordCont === startWordRack || wordCont === endWordRack)) tile.style.animationDelay = `${i * 0.3}s`;
+        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${i * 0.3}s`;
     });
     wordCont.classList.remove('hidden');
 
