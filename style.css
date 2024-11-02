@@ -337,7 +337,7 @@ input:focus {outline: none}
 #flipperAndDeleters[data-flip] { flex-direction: column-reverse; }
 
 
-.deleters {
+.deleter {
     height: 10vw;
     width: 90%;
     font-size: 5vw;
@@ -353,31 +353,15 @@ input:focus {outline: none}
     cursor: pointer;
     /* user-select: none; */
 }
-
 #toggleFlip img {width: 12vw; height: 12vw;}
 
 .rotating {animation: verticalFlip 1.8s ease-in-out;}
+
 
 @keyframes verticalFlip {
     0% {transform: rotateX(0deg);}
     100% {transform: rotateX(720deg);}
 }
-
-
-h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
-#W1 {font-weight: 250; transform: translate(0.65vw)}
-#ORD {transform:translate(0.4vw)}
-#SLASH {
-    content: '';
-    position: relative;
-    height: 19vw;
-    border-top: 0;
-    border-right: 0.4vw solid rgba(119, 119, 119, 0.563);
-    transform: translate(0.80vw, 0.5vw) skewX(-23.1deg);
-    width: 0.2vw;
-}
-#W2 {font-weight: 250; transform: translate(-0.15vw)}
-#ARD {transform: translate(-1vw)}
 
 
 
@@ -469,12 +453,14 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 #resultPanel {
     background-color: rgba(255, 255, 255, 0.8);
     position: absolute;
+    top: 50%;
     z-index: 90;
     width: 85%;
-    height: 130px;
+    height: 25vh;
     border: solid 1.2px;
     border-radius: 5px;
-    font-size: 18px;
+    /* font-size: 18px; */
+    font-size: 4vw;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -495,3 +481,17 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 
    
 
+h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
+#W1 {font-weight: 250; transform: translate(0.65vw)}
+#ORD {transform:translate(0.4vw)}
+#SLASH {
+    content: '';
+    position: relative;
+    height: 19vw;
+    border-top: 0;
+    border-right: 0.4vw solid rgba(119, 119, 119, 0.563);
+    transform: translate(0.80vw, 0.5vw) skewX(-23.1deg);
+    width: 0.2vw;
+}
+#W2 {font-weight: 250; transform: translate(-0.15vw)}
+#ARD {transform: translate(-1vw)}

@@ -224,7 +224,7 @@ function updateDirectionUI(direction) {
 function toggleFlip() {
     const button = document.getElementById('toggleFlip');
     const wordConts = document.querySelectorAll('.wordCont');
-    const deleters = document.querySelectorAll('.deleters');
+    const deleters = document.querySelectorAll('.deleter');
 
     // Start the button rotation animation
     button.classList.add('rotating');
