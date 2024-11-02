@@ -556,12 +556,13 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     margin-bottom: 7px;
 }
 
-.tile.help {
+#helpPanel .tile {
     width: 6vw;
     height: 6vw;
 }
-.tile.added {background-color: lightgreen;}
-.tile.removed {background-color: lightpink}
+.tile.added {background-color: rgb(219, 255, 219);}
+.tile.moved {background-color: rgb(253, 253, 227);}
+.tile.removed {background-color: rgb(255, 227, 231)}
 
 .help-wordCont {
     display: inline-flex;
