@@ -500,6 +500,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
+    console.log(`Benchmarks: A = ${wordPair.score3star}, B = ${wordPair.score2star}`);
+
+
     // Initialize
     removeClass('overlayer', 'loading');
 });
