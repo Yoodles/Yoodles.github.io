@@ -357,6 +357,29 @@ function deleteMove(which) {
 }
 
 
+function rateStars() {
+    const stars = document.querySelectorAll('#starContainer .star');
+    const moves = gameState.moveCounter;
+    
+    // Determine star rating based on score3star and score2star
+    let starRating;
+    if (moves <= wordPair.score3star) {
+        starRating = 3;
+    } else if (moves <= wordPair.score2star) {
+        starRating = 2;
+    } else {
+        starRating = 1;
+    }
+
+    // Reset all stars to grey
+    stars.forEach(star => star.classList.remove('yellow'));
+
+    // Add 'yellow' class to the appropriate number of stars
+    for (let i = 0; i < starRating; i++) {
+        stars[i].classList.add('yellow');
+    }
+}
+
 function undoMove() {
     gameState.phase = 'mid';
 
@@ -401,6 +424,7 @@ function updateUI(stateOrAction) {
         case 'complete':
             emptyTextInputBox();
             resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
+            rateStars();
             addClass('post', 'complete');
             break;
         case 'undoMove':

@@ -496,6 +496,7 @@ input:focus {outline: none}
 
 .star.yellow {
     color: yellow;
+    /* border: 1px solid darkgrey; */
 }
 
 #resultPanel button {
