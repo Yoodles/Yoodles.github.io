@@ -19,7 +19,6 @@ const initialGameState = () => ({
     latestWord: '',
     targetWord: '',
     latestMove: '',
-    resultMessage: ''
 });
 
 let gameState = initialGameState();
@@ -84,7 +83,7 @@ function removeClass(className, classToRemove) {
 
 function focusTextInputBox() {inputField.focus()}
 
-function emptyTextInputBox() {inputField.value = ''}
+function emptyInputArea() {inputField.value = ''}
 
 function logArrays(when) {
     const normArray = gameState.normArray;
@@ -239,7 +238,7 @@ function updateDirectionUI(direction) {
     });
 }
 
-
+// 
 function toggleFlip() {
     const button = document.getElementById('toggleFlip');
     const wordConts = document.querySelectorAll('.wordCont');
@@ -353,20 +352,15 @@ function deleteMove(which) {
     console.log('After: ', dirConfig.rack, dirConfig.array);
 }
 
-
-function rateStars() {
+function setResultPanel() {
     const stars = document.querySelectorAll('#starContainer .star');
     const moves = gameState.moveCounter;
     
     // Determine star rating based on score3star and score2star
     let starRating;
-    if (moves <= wordPair.score3star) {
-        starRating = 3;
-    } else if (moves <= wordPair.score2star) {
-        starRating = 2;
-    } else {
-        starRating = 1;
-    }
+    if (moves <= wordPair.score3star) starRating = 3;
+    else if (moves <= wordPair.score2star) starRating = 2;
+    else starRating = 1;
 
     // Reset all stars to grey
     stars.forEach(star => star.classList.remove('yellow'));
@@ -375,6 +369,9 @@ function rateStars() {
     for (let i = 0; i < starRating; i++) {
         stars[i].classList.add('yellow');
     }
+
+    resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
+
 }
 
 function undoMove() {
@@ -403,7 +400,7 @@ function updateUI(stateOrAction) {
         updateDeleters();
         updateDirectionUI('norm');
         clearInputUI();
-        emptyTextInputBox();
+        emptyInputArea();
         normRack.style.height = 0;
         flipRack.style.height = 0;
     }
@@ -412,16 +409,14 @@ function updateUI(stateOrAction) {
         case 'submit':
         case 'delete':
             // inputField.focus();
-            emptyTextInputBox();
+            emptyInputArea();
             updateDeleters();
             break;
         case 'flip':
             updateDirectionUI(gameState.direction);
             break;
         case 'complete':
-            emptyTextInputBox();
-            resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
-            rateStars();
+            emptyInputArea();
             addClass('post', 'complete');
             break;
         case 'undoMove':
@@ -453,6 +448,7 @@ function updateGame(action) {
         case 'complete':
             gameState.phase = 'post';
             checkAndUpdateBestScoreIndex();
+            setResultPanel();
 
             updateUI(action);
             updateLatestAndTargetWords();
