@@ -482,6 +482,22 @@ input:focus {outline: none}
     display: flex;
 }
 
+.star-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.star {
+    font-size: 7vw; /* Adjust the size based on the screen width */
+    color: grey;
+    margin: 0 5px;
+}
+
+.star.yellow {
+    color: yellow;
+}
+
 #resultPanel button {
     height: 4vh;
     width: 20vw;
