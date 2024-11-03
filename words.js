@@ -9,16 +9,6 @@ black white 8 11
 topsy turvy 8 11
 hand mouth 6 10`;
 
-// // Conversion function
-// function convertWordPairs(inputStr) {
-//   return inputStr.split('\n')
-//       .map(line => line.trim())
-//       .filter(line => line)
-//       .map(line => {
-//           const [start, end] = line.split(' '); // Adjust this split if you use a different delimiter
-//           return { start, end };
-//       });
-// }
 
 function extractWordPair(inputStr) {
   return inputStr.split('\n')
@@ -36,9 +26,6 @@ function extractWordPair(inputStr) {
           };
       });
 }
-
-// Convert the word pairs
-// const wordPairs = convertWordPairs(wordPairsStr);
 
 
 const wordPairList = extractWordPair(wordPairsStr);
