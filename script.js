@@ -355,6 +355,8 @@ function deleteMove(which) {
 function setResultPanel() {
     const stars = document.querySelectorAll('#starContainer .star');
     const moves = gameState.moveCounter;
+    const message = document.getElementById('resultMessage');
+
     
     // Determine star rating based on score3star and score2star
     let starRating;
@@ -370,7 +372,20 @@ function setResultPanel() {
         stars[i].classList.add('yellow');
     }
 
-    resultMessage.innerText = "Completed in " + gameState.moveCounter + " moves!\nYou know words good!!";
+
+    // Update the result message based on the star rating
+
+    switch (starRating) {
+        case 3:
+            message.innerText = `Completed in ${gameState.moveCounter} moves!\nOutstanding work! You earned 3 stars!`;
+            break;
+        case 2:
+            message.innerText = `Completed in ${gameState.moveCounter} moves!\nGreat job! You earned 2 stars!`;
+            break;
+        case 1:
+            message.innerText = `Completed in ${gameState.moveCounter} moves!\nYou know words good!!`;
+            break;
+    }
 
 }
 
