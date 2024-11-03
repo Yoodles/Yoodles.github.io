@@ -246,15 +246,18 @@ function toggleFlip() {
 
     // Start the button rotation animation
     button.classList.add('rotating');
+    inputField.classList.add('rotating');
 
     // Add 'fading' class to all .wordCont and .deleters elements to fade them out
     wordConts.forEach(cont => cont.classList.add('fading'));
     deleters.forEach(deleter => deleter.classList.add('fading'));
+    // inputField.classList.add('fading');
 
     // Set a timeout to remove the 'fading' class after the fade-out duration (0.9s)
     setTimeout(() => {
         wordConts.forEach(cont => cont.classList.remove('fading'));
         deleters.forEach(deleter => deleter.classList.remove('fading'));
+        // inputField.classList.remove('fading');
 
         // Run updateGame('flip') while elements are still faded out
         updateGame('flip');
@@ -263,7 +266,8 @@ function toggleFlip() {
     // Remove the 'rotating' class after the animation ends (1.8s)
     setTimeout(() => {
         button.classList.remove('rotating');
-    }, 1800);
+        inputField.classList.remove('rotating');
+    }, 1200);
 
     // Toggle game direction and update word state
     gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';

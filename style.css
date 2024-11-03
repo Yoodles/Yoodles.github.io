@@ -334,6 +334,8 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     position: relative; /*redundant?*/
     margin-top: 1.5vh;
     margin-bottom: 1.5vh;
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+
 }
 input:focus {outline: none}
 
@@ -392,12 +394,12 @@ input:focus {outline: none}
 }
 
 .wordCont, .deleter {
-    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1); /* Adjust timing and bezier curve as needed */
-    opacity: 1; /* Fully visible by default */
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 1;
 }
 
-.wordCont.fading, .deleter.fading {
-    opacity: 0; /* Fully faded */
+.wordCont.fading, .deleter.fading, #inputField.fading {
+    opacity: 0;
 }
 
 .hidden { display: none }
