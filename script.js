@@ -153,22 +153,11 @@ function makeTilesFor(word, rack) {
 
 
 function modifyHeight(rack, array) {
+    // Get the height of startWordCont in pixels
+    let wordContHeight = parseFloat(window.getComputedStyle(startWordCont).height);
 
-    //e.g. getDirectionalConfig().upperArray
-    // Get the current height of the div in pixels
-    let currentHeight = parseFloat(window.getComputedStyle(rack).height);
-
-
-    // Get the height of one wordCont element to use as a relative modification value
-    const sampleWordCont = rack.querySelector('.wordCont');
-    let wordContHeight = parseFloat(window.getComputedStyle(sampleWordCont).height);
-
-    // Calculate the total height change based on the number of elements added or removed
-    let totalHeightChange = array.length * wordContHeight;
-
-    // Set the new height in pixels
-    rack.style.height = (currentHeight + totalHeightChange) + 'px';
-    
+    // // New height of rack = number of words in array x wordCont height
+    rack.style.height = array.length * wordContHeight + 'px';
 }
 
 
