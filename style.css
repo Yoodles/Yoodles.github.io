@@ -250,7 +250,7 @@ button.key:last-of-type {margin: 0;}
 .overlayer {
     display: none;
     position: fixed;
-    background-color: #ffffff9e;
+    background-color: #ffffffbe;
     width: 100%;
     height: 100%;
     z-index: 80;
@@ -384,6 +384,7 @@ input:focus {outline: none}
 
 .wordCont, .deleter {
     transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    /* transition: opacity 0.9s ease-out; */
     opacity: 1;
 }
 
