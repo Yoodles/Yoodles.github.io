@@ -263,9 +263,7 @@ button.key:last-of-type {margin: 0;}
 #inputterRack {
     display: flex;
     position: relative;
-    /* overflow: hidden; */
     flex-direction: column;
-    /* overflow: scroll; */
 }
 
 #startWord { order: 1; }
@@ -491,7 +489,7 @@ input:focus {outline: none}
 
 .star.yellow {
     color: rgb(255, 255, 202);
-    text-shadow: 0 0 1px grey; /* Keeps the rim visible when stars are yellow */
+    text-shadow: 0 0 1px rgb(0, 0, 0); /* Keeps the rim visible when stars are yellow */
     /* border: 1px solid darkgrey; */
 }
 
@@ -578,7 +576,8 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     height: 6vw;
 }
 .tile.added {background-color: rgb(219, 255, 219);}
-.tile.moved {background-color: rgb(253, 253, 227);}
+/* .tile.moved {background-color: rgb(253, 253, 227);} */
+.tile.moved {background-color: rgb(255, 227, 231)}
 .tile.removed {background-color: rgb(255, 227, 231)}
 
 .help-wordCont {
