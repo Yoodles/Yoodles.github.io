@@ -218,7 +218,7 @@ function getDirectionalConfig() {
 }
 
 // FUNCTION: Update the latest and target word based on the current directional configuration
-function updateLatestAndTargetWord() {
+function updateLatestAndTargetWords() {
     const { upperArray, wordAtTop, lowerArray, wordAtBottom } = getDirectionalConfig();
     gameState.latestWord = upperArray.length ? upperArray.at(-1) : wordAtTop;
     gameState.targetWord = lowerArray.length ? lowerArray.at(-1) : wordAtBottom;
@@ -268,7 +268,7 @@ function toggleFlip() {
 
     // Toggle game direction and update word state
     gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
-    updateLatestAndTargetWord();
+    updateLatestAndTargetWords();
 }
 
 
@@ -299,7 +299,7 @@ function submitMove() {
         modifyHeight(upperRack, upperArray);
 
         gameState.moveCounter++;
-        updateLatestAndTargetWord();
+        updateLatestAndTargetWords();
 
         gameState.latestMove = 'submit';
 
@@ -337,7 +337,7 @@ function deleteMove(which) {
     modifyHeight(dirConfig.rack, dirConfig.array);
 
     gameState.moveCounter--;
-    updateLatestAndTargetWord();
+    updateLatestAndTargetWords();
 
     // record latestMove (for "Undo" post-completion)
     gameState.latestMove = dirConfig.rack === normRack
@@ -455,7 +455,7 @@ function updateGame(action) {
             checkAndUpdateBestScoreIndex();
 
             updateUI(action);
-            updateLatestAndTargetWord();
+            updateLatestAndTargetWords();
             console.log("ROUND COMPLETE!!");
             break;
 

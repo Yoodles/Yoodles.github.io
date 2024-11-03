@@ -495,7 +495,7 @@ input:focus {outline: none}
 }
 
 .star.yellow {
-    color: yellow;
+    color: rgb(255, 255, 202);
     /* border: 1px solid darkgrey; */
 }
 
