@@ -82,12 +82,9 @@ function removeClass(className, classToRemove) {
     elems.forEach(el => el.classList.remove(classToRemove));
 }
 
-function focusTextInputBox() {
-    inputField.focus();
-}
-function emptyTextInputBox() {
-    inputField.value = '';
-}
+function focusTextInputBox() {inputField.focus()}
+
+function emptyTextInputBox() {inputField.value = ''}
 
 function logArrays(when) {
     const normArray = gameState.normArray;
