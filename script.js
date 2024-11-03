@@ -148,8 +148,6 @@ function makeTilesFor(word, rack) {
     });
     wordCont.classList.remove('hidden');
 
-
-
     wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 }
 
@@ -171,16 +169,6 @@ function modifyHeight(rack, array) {
     // Set the new height in pixels
     rack.style.height = (currentHeight + totalHeightChange) + 'px';
     
-
-
-    // // Check if the height should be added or subtracted
-    // if (shouldAdd) {
-    //     // Add the height
-    //     rack.style.height = (currentHeight + additionalHeight) + 'px';
-    // } else {
-    //     // Subtract the height
-    //     rack.style.height = (currentHeight - additionalHeight) + 'px';
-    // }
 }
 
 
@@ -310,10 +298,11 @@ function submitMove() {
     const inputWord = inputField.value.toLowerCase();
 
     if (isTotallyValid(inputWord, gameState.latestWord)) {
-        getDirectionalConfig().upperArray.push(inputWord);
+        const { upperRack, upperArray } = getDirectionalConfig();
+        upperArray.push(inputWord);
         makeTilesFor(inputWord);
 
-        modifyHeight(getDirectionalConfig().upperRack, true);
+        modifyHeight(upperRack, upperArray);
 
         gameState.moveCounter++;
         updateLatestAndTargetWord();
@@ -351,7 +340,7 @@ function deleteMove(which) {
     if (dirConfig.array.length > 0) dirConfig.array.pop();
     if (wordConts) wordConts[wordConts.length - 1].remove();
 
-    modifyHeight(dirConfig.array, false);
+    modifyHeight(dirConfig.rack, dirConfig.array);
 
     gameState.moveCounter--;
     updateLatestAndTargetWord();
