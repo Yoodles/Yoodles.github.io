@@ -61,6 +61,9 @@ function setWordPairAndLengths() {
     } else {
         document.getElementById('gameArea').innerText = "All Rounds Completed!";
     }
+
+    console.log(`Benchmarks: A = ${wordPair.score3star}, B = ${wordPair.score2star}`);
+
 }
 
 function buildWordPairTiles() {
@@ -499,9 +502,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             inputField.value += keyValue;
         }
     });
-
-    console.log(`Benchmarks: A = ${wordPair.score3star}, B = ${wordPair.score2star}`);
-
 
     // Initialize
     removeClass('overlayer', 'loading');
