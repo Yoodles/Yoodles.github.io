@@ -391,12 +391,12 @@ input:focus {outline: none}
     /* height: 11.4vw; */
 }
 
-.wordCont, .deleters {
+.wordCont, .deleter {
     transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1); /* Adjust timing and bezier curve as needed */
     opacity: 1; /* Fully visible by default */
 }
 
-.wordCont.fading, .deleters.fading {
+.wordCont.fading, .deleter.fading {
     opacity: 0; /* Fully faded */
 }
 
