@@ -17,8 +17,8 @@
 }
 
 p {
-    font-size: 7vw;
-    font-weight: 200;
+    font-size: 5vw;
+    font-weight: 300;
     letter-spacing: -0.04em;
 }
 
@@ -162,7 +162,6 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
 .key-row {
     display: flex;
     width: 100%;
-    /* border: lightgrey solid 0.5px; */
     user-select: none;
     margin: 0 auto 8px;
     touch-action: manipulation;
@@ -170,8 +169,7 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     justify-content: center;
 }
 
-
-button.key {
+.key {
     flex: 1;
     display: flex;
     height: 7vh;
@@ -195,11 +193,6 @@ button.key {
     margin: 0 6px 0 0;
     height: 58px;
 
-    /* -webkit-user-select: none;
-    -moz-user-select: none; */
-
-    /* background-color: var(--key-bg);
-    color: var(--key-text-color); */
     justify-content: center;
     
     /* text-transform: uppercase; */

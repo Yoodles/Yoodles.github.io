@@ -154,29 +154,41 @@ function makeTilesFor(word, rack) {
 }
 
 
-function modifyHeight(rack, shouldAdd) {
+function modifyHeight(rack, array) {
+
+    //e.g. getDirectionalConfig().upperArray
     // Get the current height of the div in pixels
     let currentHeight = parseFloat(window.getComputedStyle(rack).height);
 
-    // Convert 14.5vw to pixels based on the current viewport width
-    let additionalHeight = (14.5 / 100) * window.innerWidth;
 
-    // Check if the height should be added or subtracted
-    if (shouldAdd) {
-        // Add the height
-        rack.style.height = (currentHeight + additionalHeight) + 'px';
-    } else {
-        // Subtract the height
-        rack.style.height = (currentHeight - additionalHeight) + 'px';
-    }
+    // Get the height of one wordCont element to use as a relative modification value
+    const sampleWordCont = rack.querySelector('.wordCont');
+    let wordContHeight = parseFloat(window.getComputedStyle(sampleWordCont).height);
+
+    // Calculate the total height change based on the number of elements added or removed
+    let totalHeightChange = array.length * wordContHeight;
+
+    // Set the new height in pixels
+    rack.style.height = (currentHeight + totalHeightChange) + 'px';
+    
+
+
+    // // Check if the height should be added or subtracted
+    // if (shouldAdd) {
+    //     // Add the height
+    //     rack.style.height = (currentHeight + additionalHeight) + 'px';
+    // } else {
+    //     // Subtract the height
+    //     rack.style.height = (currentHeight - additionalHeight) + 'px';
+    // }
 }
 
 
 
 //GETTING THE INPUTWORD CONT READY
 function prepareInputWordCont() {
-    const { upperRack, upperRackArray } = getDirectionalConfig();
-    const howManyInArray = upperRackArray.length;
+    const { upperRack, upperArray } = getDirectionalConfig();
+    const howManyInArray = upperArray.length;
     const wordsInRack = upperRack.children;
     let wordCont;
 
@@ -208,8 +220,8 @@ function getDirectionalConfig() {
             lowerRack: flipRack,
             wordAtTop: wordPair.startWord,
             wordAtBottom: wordPair.endWord,
-            upperRackArray: gameState.normArray,
-            lowerRackArray: gameState.flipArray,
+            upperArray: gameState.normArray,
+            lowerArray: gameState.flipArray,
         };
     } else { // i.e. is 'flip'
         return {
@@ -217,17 +229,17 @@ function getDirectionalConfig() {
             lowerRack: normRack,
             wordAtTop: wordPair.endWord,
             wordAtBottom: wordPair.startWord,
-            upperRackArray: gameState.flipArray,
-            lowerRackArray: gameState.normArray,
+            upperArray: gameState.flipArray,
+            lowerArray: gameState.normArray,
         };
     }
 }
 
 // FUNCTION: Update the latest and target word based on the current directional configuration
 function updateLatestAndTargetWord() {
-    const { upperRackArray, wordAtTop, lowerRackArray, wordAtBottom } = getDirectionalConfig();
-    gameState.latestWord = upperRackArray.length ? upperRackArray.at(-1) : wordAtTop;
-    gameState.targetWord = lowerRackArray.length ? lowerRackArray.at(-1) : wordAtBottom;
+    const { upperArray, wordAtTop, lowerArray, wordAtBottom } = getDirectionalConfig();
+    gameState.latestWord = upperArray.length ? upperArray.at(-1) : wordAtTop;
+    gameState.targetWord = lowerArray.length ? lowerArray.at(-1) : wordAtBottom;
     console.log('update latest/target: ', gameState.latestWord, gameState.targetWord);
 }
 
@@ -298,7 +310,7 @@ function submitMove() {
     const inputWord = inputField.value.toLowerCase();
 
     if (isTotallyValid(inputWord, gameState.latestWord)) {
-        getDirectionalConfig().upperRackArray.push(inputWord);
+        getDirectionalConfig().upperArray.push(inputWord);
         makeTilesFor(inputWord);
 
         modifyHeight(getDirectionalConfig().upperRack, true);
@@ -339,7 +351,7 @@ function deleteMove(which) {
     if (dirConfig.array.length > 0) dirConfig.array.pop();
     if (wordConts) wordConts[wordConts.length - 1].remove();
 
-    modifyHeight(dirConfig.rack, false);
+    modifyHeight(dirConfig.array, false);
 
     gameState.moveCounter--;
     updateLatestAndTargetWord();
