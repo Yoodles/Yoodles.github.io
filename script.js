@@ -36,7 +36,9 @@ let wordPair = {
     endWord: '',
     maxLength: 6,
     minLength: 3,
-    bestScoreIndex: {}
+    bestScoreIndex: {},
+    score3star: 0,
+    score2star: 0
 }
 
 
@@ -47,6 +49,9 @@ function setWordPairAndLengths() {
     if (index < wordPairList.length) {
         wordPair.startWord = wordPairList[index].start;
         wordPair.endWord = wordPairList[index].end;
+        
+        wordPair.score3star = wordPairList[index].score.A;
+        wordPair.score2star = wordPairList[index].score.B;
 
         wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
         wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
