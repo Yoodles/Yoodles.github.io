@@ -27,7 +27,7 @@
             <button id="skipRound" class="function" onclick="updateGame('nextRound')">SKIP</button>
         </div>
 
-        <div id="helpPanel" class="">
+        <div id="helpPanel" class="hidden">
             <button class="closeIcon function" onclick="toggleHelp()">×</button>
 
             <p>How To Play</p>
@@ -120,7 +120,7 @@
                 <div id="bestScore">Best: --</div>
             </div>
 
-            <button id="openHelp" class="function" onclick="toggleHelp()">?</button>
+            <button id="openHelp" class="function help" onclick="toggleHelp()">?</button>
 
             <div id="resultPanel" class="post">
                 <div id="resultMessage" class="result">Completed in X moves!<br>You know words good!</div>
