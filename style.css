@@ -57,7 +57,7 @@ button {
     font-weight: 300;
     text-align: center;
 }
-button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
+button:not(#toggleFlip, #normDeleter, #flipDeleter):hover {filter: brightness(80%); transform: scale(1.1);}
 
 
 
@@ -178,7 +178,7 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     user-select: none;
 
     padding: 0;
-    margin: 0 6px 0 0;
+    margin: 0 8px 0 0;
     height: 58px;
 
     justify-content: center;
@@ -280,9 +280,9 @@ button.key:last-of-type {margin: 0; padding: 0;}
     flex-direction: column;
 }
 
-#startWord { order: 1; }
-#inputterRack { order: 2; }
-#endWord { order: 3; }
+#startWord {order: 1}
+#inputterRack {order: 2}
+#endWord {order: 3}
 
 div[data-flip] #startWord { order: 3; }
 div[data-flip] #inputterRack { order: 2; }
@@ -375,8 +375,10 @@ input:focus {outline: none}
     width: 90%;
     font-size: 5vw;
     background: none;
-    border: none
+    border: none;
+    transform: rotate(0.5turn);
 }
+[data-flip] .deleter {transform: none;}
 
 .rotating {animation: verticalFlip 1.2s ease-in-out;}
 

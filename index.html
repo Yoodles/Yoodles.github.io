@@ -23,9 +23,6 @@
                 <h1 id="ARD">ARD</h1>
             </div>
             <button id="skipRound" onclick="updateGame('nextRound')">SKIP</button>
-
-
-
         </div>
 
         <div id="helpPanel" class="hidden">
@@ -37,7 +34,7 @@
             
             <p>Moves</p>
 
-            <ul class="Help_instructions__uXsG6">
+            <ul class="">
                 <li>Each move must be a valid word.</li>
                 <li>You can change one letter...
                     <div class="help-wordCont">
@@ -161,11 +158,11 @@
 
                     <div id="inputterSet" class="inputter">
                         <div id="flipperAndDeleters">
-                            <button id="normDeleter" class="deleter invisible" onclick="deleteMove('norm')">x</button>
+                            <button id="normDeleter" class="deleter invisible" onclick="deleteMove('norm')">V</button>
 
                             <button id="toggleFlip" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
                         
-                            <button id="flipDeleter" class="deleter invisible" onclick="deleteMove('flip')">x</button>
+                            <button id="flipDeleter" class="deleter invisible" onclick="deleteMove('flip')">V</button>
                         </div>
                         <input id="inputField" type ="text">
                         <!-- <button id="submitMove" onclick="submitMove()">GO</button> -->
