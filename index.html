@@ -13,7 +13,7 @@
 
 <body>
     <div id="appContainer">
-        <div class="overlay loading post hidden" onclick="togglePopup('close')"></div>
+        <div class="overlay loading post" onclick="togglePopup('close')"></div>
 
         <div id="header">
             <button id="resetRound" class="function" onclick="updateGame('resetRound')">RESET</button>
@@ -21,8 +21,8 @@
             <button id="skipRound" class="function" onclick="updateGame('nextRound')">SKIP</button>
         </div>
 
-        <div id="popupPanel">
-            <button class="closeButton function" onclick="togglePopup('close')">×</button>
+        <div id="popupPanel" class="hidden">
+            <button class="closeButton" onclick="togglePopup('close')">×</button>
 
             <div id="helpContent" class="popup-content">
                 <p>How To Play</p>

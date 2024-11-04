@@ -4,6 +4,7 @@
   box-sizing: border-box;
   user-select: none;
   font: inherit;
+  font-size: inherit;
   vertical-align: baseline;
 }
 
@@ -65,7 +66,6 @@ button.function.help {
 }
 
 
-
 .overlay {
     /* display: none; */
     position: fixed;
@@ -89,14 +89,15 @@ button.function.help {
 
 
 #header {
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     width: 100%;
     height: 11%;
     align-items: center;
     z-index: 99;
     text-align: center;
-    /* padding: 10% 0; */
+
+    /* padding: 2vw 0; */
 }
 
 
@@ -112,7 +113,6 @@ button.function.help {
 }
 #gameLogo > img {
     width: 100%;
-    vertical-align: -100%;
     margin: 10% 0;
 }
 
@@ -136,13 +136,13 @@ button.function.help {
 }
 #movesCont {
     left: 0%;
-    margin: 0 3vw;
+    margin: 1vw 3vw;
     text-align: start;
 }
 
 #openHelp {
     right: 0%;
-    margin: 0 3vw;
+    margin: 2vw 3vw;
     height: 6vw;
     width: 6vw;
     background: none;
@@ -161,22 +161,19 @@ button.function.help {
 #gameplayCont {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    /* position: relative; */
-    transition: height 0.8s ease-out;
-    /* width: 100%; */
-    align-content: center;
+    /* transition: height 0.8s ease-out; */
+    width: 100%;
+
     /* max-height: 80vh; */
     /* width: 100%; */
-    max-width: 90%;
-    padding: 8vh;
+    padding: 13vh;
     margin: auto;
     overflow-y: auto;
 }
 
 
 
-/* KEYBOARD */
+/*=====KEYBOARD=====*/
 #keyboard {
     display: flex;
     flex-direction: column;
@@ -192,7 +189,6 @@ button.function.help {
     user-select: none;
     margin: 0 auto 8px;
     touch-action: manipulation;
-
     justify-content: center;
 }
 
@@ -219,8 +215,7 @@ button.function.help {
     justify-content: center;
 }
 
-
-button.key:last-of-type {margin: 0; padding: 0;}
+.key:last-of-type {margin: 0; padding: 0;}
 .key.special {flex: 1.5; font-size: 4vw}
 
 .key.backspace {max-width: 12%;}
@@ -233,8 +228,7 @@ button.key:last-of-type {margin: 0; padding: 0;}
 
 
 
-
-/* WORDCONTS AND TILES */
+/*=====WORD CONTAINERS & TILES=====*/
 
 .wordCont {
     display: flex;
@@ -342,7 +336,9 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     display: flex;
     position: relative;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
+    min-width: 60vw;
+    max-width: 70vw;
     margin-top: 1.5vw;
     margin-bottom: 1.5vw;
     /* margin: auto; */
@@ -468,17 +464,6 @@ input:focus {outline: none}
 } */
 
 
-#resetRound, #retryRound {
-    background-color: rgb(255, 192, 201);
-    border-color:  rgb(255, 92, 115, 0.5)
-}
-#skipRound, #undoMove {
-    background-color: rgb(255, 251, 184);
-    border-color: rgba(255, 246, 85, 0.5);
-}
-
-#nextRound {background-color: #ADD8E6}   
-
 
 #resultPanel {
     background-color: rgba(255, 255, 255, 0.8);
@@ -523,7 +508,16 @@ input:focus {outline: none}
     width: 20vw;
 }
 
+#resetRound, #retryRound {
+    background-color: rgb(255, 192, 201);
+    border-color:  rgb(255, 92, 115, 0.5)
+}
+#skipRound, #undoMove {
+    background-color: rgb(255, 251, 184);
+    border-color: rgba(255, 246, 85, 0.5);
+}
 
+#nextRound {background-color: #ADD8E6}
 
 
 
@@ -543,14 +537,11 @@ input:focus {outline: none}
     border-radius: 3vw;
     border: 1px solid var(--color-tone-6);
     background-color: white;
-    margin: 20%;
-    width: 100%;
-    height: 100%;
+
     width: 90%;
     height: 90%;
-    padding: 10vh 0;
+    /* padding: 10vh 0; */
     overflow-y: auto;
-    overflow: hidden; /* Ensure inner content doesn't overflow */
 
     box-shadow: 0 4px 23px 0 rgba(0,0,0,.2);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -560,24 +551,24 @@ input:focus {outline: none}
 }
 
 .popup-content {
-    padding: 20px;
-    max-height: 60vh; /* Adjust for how much content can be shown before scrolling */
+    padding: 4vw;
     overflow-y: auto; /* Make the content inside the pop-up scrollable */
 }
 
-.closeButton {
-    position: absolute;
 
-    top: 4vw;
-    right: 4vw;
+.closeButton {
+    position: sticky;
+    top: 0;
+    float: right;
     background: transparent;
     border: none;
-    padding: 0;
-
+    /* padding: 0; */
     font-size: 8vw;
     cursor: pointer;
     color: #333;
 }
+
+
 
 p {
     font-size: 5vw;
@@ -585,7 +576,7 @@ p {
     letter-spacing: -0.04em;
 }
 
-h2 {font-size: 3vw;}
+h2, li {font-size: 4vw;}
 
 ul {
     /* font-size: 20px; */
