@@ -69,7 +69,7 @@ button.function:hover {filter: brightness(80%); transform: scale(1.1);}
     text-align: center;
 }
 
-#header > button {
+#header > button.function {
     width: 15vw;
     height: 5vh;
     /* max-height: 50px; */
@@ -86,13 +86,14 @@ button.function:hover {filter: brightness(80%); transform: scale(1.1);}
 
 #gameLogo {
     justify-content: center;
+    align-items: center;
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
 }
 #gameLogo > img {
-    width: 60vw;
+    width: 100%;
 }
 
 #gameArea {
