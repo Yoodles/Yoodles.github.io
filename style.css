@@ -164,7 +164,7 @@ button.function.help {
 .key {
     flex: 1;
     display: flex;
-    height: 7vh;
+    height: 6vh;
     background-color: #d3d3d3;
     border: 0;
     border-radius: 1vw;
