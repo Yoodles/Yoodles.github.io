@@ -186,6 +186,7 @@ function renderRoundList() {
         roundList.appendChild(listItem);
     });
 }
+
 function togglePopup(action) {
     const overlay = document.querySelector('.overlay');
     const popup = document.getElementById('popupPanel');
@@ -624,4 +625,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Initialize
     removeClass('overlay', 'loading');
+
+    renderRoundList();
 });
