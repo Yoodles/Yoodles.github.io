@@ -1,11 +1,9 @@
-const wordPairsStr = `tree fret 5 8
-rail tail 1 4
+const wordPairsStr = `rail sail 1 3
 oil water 6 10
 trump biden 7 10
 joe lloyd 8 12
-couch sofa 8 12
-right party 8 12
-black white 8 11
+couch sofa 10 14
+black white 9 14
 topsy turvy 8 11
 hand mouth 6 10`;
 
