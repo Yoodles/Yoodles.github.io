@@ -187,8 +187,27 @@ function renderRoundList() {
     });
 }
 
-function toggleHelp() {
-    document.getElementById('helpPanel').classList.toggle('hidden');
+function showPopup(type) {
+    const popup = document.getElementById('popupPanel');
+    const helpContent = document.getElementById('helpContent');
+    const roundsContent = document.getElementById('roundsContent');
+
+    // Hide all content initially
+    helpContent.classList.add('hidden');
+    roundsContent.classList.add('hidden');
+
+    if (type === 'help') {
+        helpContent.classList.remove('hidden');
+    } else if (type === 'rounds') {
+        roundsContent.classList.remove('hidden');
+    }
+
+    popup.classList.remove('hidden'); // Show the panel
+}
+
+
+function closePopup() {
+    document.getElementById('popupPanel').classList.add('hidden');
 }
 
 ////GENERATING WORD TILES////
