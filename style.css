@@ -76,17 +76,11 @@ button.function:hover {filter: brightness(80%); transform: scale(1.1);}
     margin: 2vw;
 }
 
-#gameName {
-    display: inline-flex;
-    /* max-height: 10vh; */
-    max-width: 70vw;
-    justify-content: center;
-    align-items: center;
-}
-
 #gameLogo {
+    width: 50vw;
     justify-content: center;
     align-items: center;
+    vertical-align: middle;
     background: none;
     border: none;
     padding: 0;
