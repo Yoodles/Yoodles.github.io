@@ -21,7 +21,8 @@
             <button id="skipRound" class="function" onclick="updateGame('nextRound')">SKIP</button>
         </div>
 
-        <div id="popupPanel" class="hidden">
+        <!-- <div id="popupPanel" class="hidden"> -->
+        <div id="popupPanel">
             <button class="closeButton" onclick="togglePopup('close')">×</button>
 
             <div id="helpContent" class="popup-content">
@@ -160,7 +161,7 @@
 
                     <div id="inputterSet" class="inputter">
                         <div id="flipperAndDeleters">
-                            <button id="normDeleter" class="deleter invisible" onclick="deleteMove('norm')">V</button>
+                            <button id="normDeleter" class="deleter invisible" onclick="deleteMove('norm')"><img src="images/deleter.png"></button>
 
                             <button id="toggleFlip" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
                         

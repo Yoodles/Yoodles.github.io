@@ -153,10 +153,6 @@ button.function.help {
     text-align: center;;
 }
 
-/* #moveCounter {justify-self: start;} */
-/* #bestScore {justify-self: end;} */
-
-
 
 #gameplayCont {
     display: flex;
@@ -233,7 +229,6 @@ button.function.help {
 .wordCont {
     display: flex;
     justify-content: center; /* not sure */
-    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
     /* height: 11.4vw; */
@@ -251,7 +246,6 @@ button.function.help {
 .tile {
     display: flex;
     justify-content: center;
-    align-content: center;
     border: 1px solid rgb(127, 127, 127);
     margin: 0.7vw;
     align-items: center;
@@ -392,15 +386,18 @@ input:focus {outline: none}
 #toggleFlip img {width: 12vw; height: 12vw;}
 
 .deleter {
-    height: 10vw;
-    width: 90%;
-    font-size: 5vw;
+
+    /* width: 90%; */
     background: none;
     border: none;
-    transform: rotate(0.5turn);
+    transform: none;
 }
-[data-flip] .deleter {transform: none;}
-[data-flip] .deleter::before {transform: none;}
+.deleter img {
+    height: 10vw;
+    font-size: 5vw;
+}
+[data-flip] .deleter {transform: rotate(0.5turn)}
+/* [data-flip] .deleter::before {transform: none;}
 
 
 .deleter::before {
@@ -411,7 +408,7 @@ input:focus {outline: none}
 
 .deleter::before {
   top: -4px;
-}
+} */
 
 
 
