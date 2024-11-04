@@ -89,23 +89,24 @@ button.function.help {
 
 
 #header {
-    display: inline-flex;
+    /* display: inline-flex; */
+    display: grid;
+    grid-template-columns: 15vw auto 15vw;
     justify-content: space-between;
     width: 100%;
     height: 11%;
     align-items: center;
     z-index: 99;
     text-align: center;
-
-    /* padding: 2vw 0; */
+    padding: 2vw 3vw;
 }
 
 
 
 #gameLogo {
     width: 45vw;
-    justify-content: center;
-    align-items: center;
+
+    align-self: baseline;
     background: none;
     border: none;
     padding: 0;
@@ -113,7 +114,8 @@ button.function.help {
 }
 #gameLogo > img {
     width: 100%;
-    margin: 10% 0;
+    max-height: 11%;
+    /* margin: 10% 0; */
 }
 
 #gameArea {
@@ -393,10 +395,11 @@ input:focus {outline: none}
     transform: none;
 }
 .deleter img {
-    height: 10vw;
+    height: 8vw;
     font-size: 5vw;
+    /* text-shadow: #FC0 1px 0 10px; */
 }
-[data-flip] .deleter {transform: rotate(0.5turn)}
+[data-flip] .deleter img {transform: rotate(0.5turn)}
 /* [data-flip] .deleter::before {transform: none;}
 
 
@@ -534,29 +537,29 @@ input:focus {outline: none}
     border-radius: 3vw;
     border: 1px solid var(--color-tone-6);
     background-color: white;
-
+    align-content: center;
     width: 90%;
     height: 90%;
-    /* padding: 10vh 0; */
+    padding: 3vw;
     overflow-y: auto;
 
     box-shadow: 0 4px 23px 0 rgba(0,0,0,.2);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
     text-align: start;
     z-index: 101;
 }
 
 .popup-content {
+    height: 90%;
     padding: 4vw;
     overflow-y: auto; /* Make the content inside the pop-up scrollable */
 }
 
 
 .closeButton {
-    position: sticky;
+    position: absolute;
     top: 0;
-    float: right;
+    right: 0;
     background: transparent;
     border: none;
     /* padding: 0; */
@@ -577,7 +580,7 @@ h2, li {font-size: 4vw;}
 
 ul {
     /* font-size: 20px; */
-    line-height: 30px;
+    /* line-height: 30px; */
     width: 100%;
     padding-inline-start: 0px;
 }
