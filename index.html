@@ -14,19 +14,23 @@
 <body>
     <div id="appContainer">
         <div id="header">
-            <button id="resetRound" onclick="updateGame('resetRound')">RESET</button>
-            <div id="gameName">
+            <button id="resetRound" class="function" onclick="updateGame('resetRound')">RESET</button>
+            <!-- <div id="gameName">
                 <h1 id="W1">W</h1>
                 <h1 id="ORD"> ORD</h1>
                 <div id="SLASH" class="line"></div>
                 <h1 id="W2">W</h1>
                 <h1 id="ARD">ARD</h1>
-            </div>
-            <button id="skipRound" onclick="updateGame('nextRound')">SKIP</button>
+            </div> -->
+
+            <button id="gameLogo">
+                <img src="images/logo4.png">
+            </button>
+            <button id="skipRound" class="function" onclick="updateGame('nextRound')">SKIP</button>
         </div>
 
-        <div id="helpPanel" class="hidden">
-            <button class="closeIcon" onclick="toggleHelp()">×</button>
+        <div id="helpPanel" class="">
+            <button class="closeIcon function" onclick="toggleHelp()">×</button>
 
             <p>How To Play</p>
 
@@ -118,7 +122,7 @@
                 <div id="bestScore">Best: --</div>
             </div>
 
-            <button id="openHelp" onclick="toggleHelp()">?</button>
+            <button id="openHelp" class="function" onclick="toggleHelp()">?</button>
 
             <div id="resultPanel" class="post">
                 <div id="resultMessage" class="result">Completed in X moves!<br>You know words good!</div>
@@ -128,9 +132,9 @@
                     <span class="star" id="star3">★</span>
                 </div>
                 <div id="resultButtons">
-                    <button id="retryRound" onclick="updateGame('resetRound')">RETRY</button>
-                    <button id="undoMove" onclick="undoMove()">UNDO</button>
-                    <button id="nextRound" onclick="updateGame('nextRound')">NEXT</button>
+                    <button id="retryRound" class="function" onclick="updateGame('resetRound')">RETRY</button>
+                    <button id="undoMove" class="function" onclick="undoMove()">UNDO</button>
+                    <button id="nextRound" class="function" onclick="updateGame('nextRound')">NEXT</button>
                 </div>
             </div>
 
