@@ -394,7 +394,7 @@ function setResultPanel() {
 }
 
 function undoMove() {
-    gameState.phase = 'mid';
+    // gameState.phase = 'mid';
 
     switch (gameState.latestMove) {
         case 'submit':
