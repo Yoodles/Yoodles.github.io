@@ -164,10 +164,10 @@ button.function.help {
 .key {
     flex: 1;
     display: flex;
-    /* height: 9%; */
+    height: 7vh;
     background-color: #d3d3d3;
     border: 0;
-    border-radius: 4px;
+    border-radius: 1vw;
     font-size: 4vw;
     font-weight: bold;
     text-align: center;
