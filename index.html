@@ -15,92 +15,100 @@
     <div id="appContainer">
         <div id="header">
             <button id="resetRound" class="function" onclick="updateGame('resetRound')">RESET</button>
-            <button id="gameLogo" onclick="openMenu()"><img src="images/logo.png"></button>
+            <button id="gameLogo" onclick="toggleMenu()"><img src="images/logo.png"></button>
             <button id="skipRound" class="function" onclick="updateGame('nextRound')">SKIP</button>
         </div>
 
-        <div id="helpPanel" class="hidden">
-            <button class="closeIcon function" onclick="toggleHelp()">×</button>
+        <div id="popupPanel" class="popup hidden">
+            <button class=".close-button closeIcon function" onclick="toggleHelp()">×</button>
 
-            <p>How To Play</p>
+            <div id="helpContent" class="popup-content">
+                <p>How To Play</p>
 
-            <h2 class="">Change the word one move at a time to get from the top to the bottom.</h2>
-            
-            <p>Moves</p>
+                <h2 class="">Change the word one move at a time to get from the top to the bottom.</h2>
+                
+                <p>Moves</p>
 
-            <ul class="">
-                <li>Each move must be a valid word.</li>
-                <li>You can change one letter...
-                    <div class="help-wordCont">
-                        <span class="tile">W</span>
-                        <span class="tile removed">O</span>
-                        <span class="tile">R</span>
-                        <span class="tile">D</span>
-                        →
-                        <span class="tile">W</span>
-                        <span class="tile added">A</span>
-                        <span class="tile">R</span>
-                        <span class="tile">D</span>
-                    </div>
-                </li>
+                <ul class="">
+                    <li>Each move must be a valid word.</li>
+                    <li>You can change one letter...
+                        <div class="help-wordCont">
+                            <span class="tile">W</span>
+                            <span class="tile removed">O</span>
+                            <span class="tile">R</span>
+                            <span class="tile">D</span>
+                            →
+                            <span class="tile">W</span>
+                            <span class="tile added">A</span>
+                            <span class="tile">R</span>
+                            <span class="tile">D</span>
+                        </div>
+                    </li>
 
-                <li class="no-bullet">... add/remove one letter...
-                    <div class="help-wordCont">
-                        <span class="tile">W</span>
-                        <span class="tile">O</span>
-                        <span class="tile">R</span>
-                        <span class="tile">D</span>
-                        →
-                        <span class="tile">W</span>
-                        <span class="tile">O</span>
-                        <span class="tile">R</span>
-                        <span class="tile added">L</span>
-                        <span class="tile">D</span>
-                    </div>
-                    <div class="help-wordCont">
-                        <span class="tile">W</span>
-                        <span class="tile">A</span>
-                        <span class="tile">R</span>
-                        <span class="tile removed">D</span>
-                        →
-                        <span class="tile">W</span>
-                        <span class="tile">A</span>
-                        <span class="tile">R</span>
-                    </div>
-                </li>
+                    <li class="no-bullet">... add/remove one letter...
+                        <div class="help-wordCont">
+                            <span class="tile">W</span>
+                            <span class="tile">O</span>
+                            <span class="tile">R</span>
+                            <span class="tile">D</span>
+                            →
+                            <span class="tile">W</span>
+                            <span class="tile">O</span>
+                            <span class="tile">R</span>
+                            <span class="tile added">L</span>
+                            <span class="tile">D</span>
+                        </div>
+                        <div class="help-wordCont">
+                            <span class="tile">W</span>
+                            <span class="tile">A</span>
+                            <span class="tile">R</span>
+                            <span class="tile removed">D</span>
+                            →
+                            <span class="tile">W</span>
+                            <span class="tile">A</span>
+                            <span class="tile">R</span>
+                        </div>
+                    </li>
 
-                <li class="no-bullet">... or jumble all the letters.
-                    <div class="help-wordCont jumble">
-                        <span class="tile moved">W</span>
-                        <span class="tile moved">A</span>
-                        <span class="tile moved">R</span>
-                        <span class="tile moved">D</span>
-                        →
-                        <span class="tile added">D</span>
-                        <span class="tile added">R</span>
-                        <span class="tile added">A</span>
-                        <span class="tile added">W</span>
-                    </div>
-                    <div class="help-wordCont">
-                        <span class="tile moved">W</span>
-                        <span class="tile moved">O</span>
-                        <span class="tile moved">R</span>
-                        <span class="tile moved">D</span>
-                        <span class="tile moved">S</span>
-                        →
-                        <span class="tile added">S</span>
-                        <span class="tile added">W</span>
-                        <span class="tile added">O</span>
-                        <span class="tile added">R</span>
-                        <span class="tile added">D</span>
-                    </div>
+                    <li class="no-bullet">... or jumble all the letters.
+                        <div class="help-wordCont jumble">
+                            <span class="tile moved">W</span>
+                            <span class="tile moved">A</span>
+                            <span class="tile moved">R</span>
+                            <span class="tile moved">D</span>
+                            →
+                            <span class="tile added">D</span>
+                            <span class="tile added">R</span>
+                            <span class="tile added">A</span>
+                            <span class="tile added">W</span>
+                        </div>
+                        <div class="help-wordCont">
+                            <span class="tile moved">W</span>
+                            <span class="tile moved">O</span>
+                            <span class="tile moved">R</span>
+                            <span class="tile moved">D</span>
+                            <span class="tile moved">S</span>
+                            →
+                            <span class="tile added">S</span>
+                            <span class="tile added">W</span>
+                            <span class="tile added">O</span>
+                            <span class="tile added">R</span>
+                            <span class="tile added">D</span>
+                        </div>
 
-                </li>
-                <li>Clicking <img src="images/flipper.svg"> will flip the whole board.</li>
-                <li>You can also undo a move by clicking X.</li>
-                <li>Fewer moves, better score!</li>
-            </ul>
+                    </li>
+                    <li>Clicking <img src="images/flipper.svg"> will flip the whole board.</li>
+                    <li>You can also undo a move by clicking X.</li>
+                    <li>Fewer moves, better score!</li>
+                </ul>
+            </div>
 
+            <div id="roundsContent" class="popup-content hidden">
+                <h2>Select a Round</h2>
+                <ul id="roundList">
+                    <!-- List of rounds here -->
+                </ul>
+            </div>
         </div>
 
         <div id="gameArea" class="gameArea hidden">

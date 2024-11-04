@@ -121,7 +121,7 @@ button.function.help {
     border: 1px solid;
     border-radius: 4vw;
     padding-inline: 0;
-    font-weight: 100;
+    font-weight: bold;
     text-align: center;;
 }
 
@@ -525,7 +525,7 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 
 
 
-#helpPanel {
+#popupPanel {
     padding: 32px;
     position: absolute;
     z-index: 101;
@@ -539,6 +539,26 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     text-align: start;
 }
 
+.popup {
+    position: fixed; /* Keeps the pop-up in a fixed location on the screen */
+    top: 20%; /* Adjust this value to control vertical positioning */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center the element horizontally */
+    width: 80%; /* Adjust as needed or set a fixed value */
+    max-width: 600px; /* Optional for limiting width */
+    max-height: 70vh; /* Limit the height */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensure inner content doesn't overflow */
+    z-index: 1000;
+}
+.popup-content {
+    padding: 20px;
+    max-height: 60vh; /* Adjust for how much content can be shown before scrolling */
+    overflow-y: auto; /* Make the content inside the pop-up scrollable */
+}
+
 .closeIcon {
     background: none;
     border: none;
@@ -550,6 +570,17 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     right: 4vw;
     color: black;
     font-size: 8vw;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
 }
 
 p {
@@ -581,7 +612,7 @@ li img {
     vertical-align: -29%;
 }
 
-#helpPanel .tile {
+#helpContent .tile {
     width: 6vw;
     height: 6vw;
 }
@@ -593,6 +624,37 @@ li img {
 .help-wordCont {
     display: inline-flex;
     flex-wrap: nowrap;
+}
+
+
+
+
+
+
+.menu-panel {
+    position: fixed;
+    top: 50px; /* Adjust based on the logo's position */
+    left: 0;
+    right: 0;
+    max-height: 300px; /* Adjustable for visibility */
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.menu-panel.show {
+    display: block;
+}
+
+#roundList li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 

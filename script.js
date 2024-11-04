@@ -159,8 +159,33 @@ function updateMoveCounterUI() {
     document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
 }
 
-// let currentOffset = 0;
 
+
+function toggleMenu() {
+    document.getElementById('menuPanel').classList.toggle('show');
+}
+
+
+
+function renderRoundList() {
+    const roundList = document.getElementById('roundList');
+    roundList.innerHTML = ''; // Clear existing list
+
+    wordPairDetails.forEach(pair => {
+        const pairKey = `${pair.start}-${pair.end}`;
+        const bestScore = bestScores[pairKey] || 0;
+
+        // Create list item
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+            ${pair.start.toUpperCase()} → ${pair.end.toUpperCase()}
+            <span class="stars">${generateStars(bestScore)}</span>
+        `;
+        listItem.onclick = () => jumpToRound(pairKey); // Add click event for navigating rounds
+
+        roundList.appendChild(listItem);
+    });
+}
 
 function toggleHelp() {
     document.getElementById('helpPanel').classList.toggle('hidden');
