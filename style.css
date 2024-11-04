@@ -72,7 +72,6 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     align-items: center;
     z-index: 100;
     text-align: center;
-    /* border: lightgrey solid 0.5px; */
 }
 
 #header button {
@@ -129,7 +128,6 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     flex-direction: column;
     justify-content: space-between;
     /* position: relative; */
-    /* height: fit-content; */
     transition: height 0.8s ease-out;
     /* width: 100%; */
     align-content: center;
@@ -142,6 +140,8 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
 }
 
 
+
+/* KEYBOARD */
 #keyboard {
     display: flex;
     flex-direction: column;
@@ -170,7 +170,7 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     font-size: 4vw;
     font-weight: bold;
     text-align: center;
-    color: black;
+    color: rgb(23, 23, 23);
     cursor: pointer;
     transition: background-color 0.1s ease;
 
@@ -182,8 +182,9 @@ button:not(#toggleFlip):hover {filter: brightness(80%); transform: scale(1.1);}
     height: 58px;
 
     justify-content: center;
-    
 }
+
+
 button.key:last-of-type {margin: 0; padding: 0;}
 .key.special {flex: 1.5; font-size: 4vw}
 
@@ -193,6 +194,34 @@ button.key:last-of-type {margin: 0; padding: 0;}
 .key:active {background-color: #a9a9a9;}
 
 .spacer {flex: 0.5}
+
+
+
+
+
+
+
+.wordCont {
+    display: flex;
+    justify-content: center; /* not sure */
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    /* height: 11.4vw; */
+}
+
+.wordCont, .deleter {
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    /* transition: opacity 0.9s ease-out; */
+    opacity: 1;
+}
+
+.wordCont.fading, .deleter.fading, #inputField.fading {
+    opacity: 0;
+}
+
+
+
 
 .tile {
     display: flex;
@@ -219,20 +248,14 @@ button.key:last-of-type {margin: 0; padding: 0;}
     min-width: 10vw;
 }
 
+
+
+
 .setWord .tile {
     font-weight: bold;
     border: 1.2px solid rgb(50, 50, 50);
 }
 
-.matching-letter {
-    background-color: rgb(142 255 41 / 50%);
-    animation: highlightAnimation 0.5s ease-out; /* Brief animation */
-}
-
-@keyframes highlightAnimation {
-    from { background-color: transparent; }
-    to { background-color: palegreen; }
-}
 
 
 
@@ -337,13 +360,7 @@ input:focus {outline: none}
 #flipperAndDeleters[data-flip] { flex-direction: column-reverse; }
 
 
-.deleter {
-    height: 10vw;
-    width: 90%;
-    font-size: 5vw;
-    background: none;
-    border: none
-}
+
 
 #toggleFlip {
     background: none;
@@ -352,6 +369,14 @@ input:focus {outline: none}
     cursor: pointer;
 }
 #toggleFlip img {width: 12vw; height: 12vw;}
+
+.deleter {
+    height: 10vw;
+    width: 90%;
+    font-size: 5vw;
+    background: none;
+    border: none
+}
 
 .rotating {animation: verticalFlip 1.2s ease-in-out;}
 
@@ -363,25 +388,6 @@ input:focus {outline: none}
 
 
 
-
-.wordCont {
-    display: flex;
-    justify-content: center; /* not sure */
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    /* height: 11.4vw; */
-}
-
-.wordCont, .deleter {
-    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-    /* transition: opacity 0.9s ease-out; */
-    opacity: 1;
-}
-
-.wordCont.fading, .deleter.fading, #inputField.fading {
-    opacity: 0;
-}
 
 .hidden { display: none }
 .invisible { visibility: hidden }
@@ -406,21 +412,8 @@ input:focus {outline: none}
 }
 
 
-@keyframes slideDown {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(100%);
-    }
-}
 
-
-
-
-
-
-#submitMove {
+/* #submitMove {
     height: 10vw;
     margin: 1.25vw;
     font-size: 3.5vw;
@@ -431,7 +424,7 @@ input:focus {outline: none}
     text-align: center;
     left: 100%;
     position: absolute;
-}
+} */
 
 
 #resetRound, #retryRound {
@@ -443,6 +436,7 @@ input:focus {outline: none}
     border-color: rgba(255, 246, 85, 0.5);
 }
 
+#nextRound {background-color: #ADD8E6}   
 
 
 #resultPanel {
@@ -463,9 +457,7 @@ input:focus {outline: none}
     box-shadow: 0 4px 23px 0 rgba(0,0,0,.2);
 
 }
-#resultPanel.complete {
-    display: flex;
-}
+#resultPanel.complete {display: flex}
 
 .star-container {
     display: flex;
@@ -490,9 +482,6 @@ input:focus {outline: none}
     width: 20vw;
 }
 
-
-/* #undoMove {background-color: #FFB6C1}    */
-#nextRound {background-color: #ADD8E6}   
 
    
 
@@ -523,9 +512,7 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     width: 90%;
     height: 90%;
     overflow-y: auto;
-
     box-shadow: 0 4px 23px 0 rgba(0,0,0,.2);
-
 }
 
 .closeIcon {
@@ -541,25 +528,22 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     font-size: 8vw;
 }
 
-#helpPanel ul {
+ul {
     /* font-size: 20px; */
     line-height: 30px;
     width: 100%;
     padding-inline-start: 0px;
 }
-#helpPanel li {
+li {
     text-align: start;
     margin-bottom: 8px;
 }
-.no-bullet {
-    list-style-type: none;
-}
+li.no-bullet {list-style-type: none;}
 
 
-#helpPanel li img {
+li img {
     width: 4.5vw;
     margin: 0 2px;
-    /* transform: translateY(20px); */
     vertical-align: -29%;
 }
 
@@ -575,4 +559,21 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 .help-wordCont {
     display: inline-flex;
     flex-wrap: nowrap;
+}
+
+
+
+
+
+
+
+
+.matching-letter {
+    background-color: rgb(142 255 41 / 50%);
+    animation: highlightAnimation 0.5s ease-out; /* Brief animation */
+}
+
+@keyframes highlightAnimation {
+    from { background-color: transparent; }
+    to { background-color: palegreen; }
 }
