@@ -53,12 +53,40 @@ button.function:hover {filter: brightness(80%); transform: scale(1.1);}
 button.function {
     width: 15vw;
     height: 5vh;
-    margin: 2vw;
+    /* margin: 2vw; */
     padding-inline: 0;
 }
+header button.function {
+    margin: 3vw;
+}
+
 button.function.help {
     padding-inline: inherit;
 }
+
+
+
+.overlay {
+    /* display: none; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+    transition: background-color 0.3s ease-in-out; /* Smooth transition for fading */
+    z-index: 100;
+    pointer-events: none;
+}
+.overlay.loading {display: block; background-color: #ffffff}
+.overlay.complete {display: block;}
+
+.overlay.visible  {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background when active */
+    pointer-events: auto; /* Allow interaction when the overlay is visible */
+}
+
+
 
 #header {
     display: flex;
@@ -66,7 +94,7 @@ button.function.help {
     width: 100%;
     height: 11%;
     align-items: center;
-    z-index: 100;
+    z-index: 99;
     text-align: center;
     /* padding: 10% 0; */
 }
@@ -206,7 +234,7 @@ button.key:last-of-type {margin: 0; padding: 0;}
 
 
 
-
+/* WORDCONTS AND TILES */
 
 .wordCont {
     display: flex;
@@ -223,11 +251,7 @@ button.key:last-of-type {margin: 0; padding: 0;}
     opacity: 1;
 }
 
-.wordCont.fading, .deleter.fading, #inputField.fading {
-    opacity: 0;
-}
-
-
+.wordCont.fading, .deleter.fading, #inputField.fading {opacity: 0;}
 
 
 .tile {
@@ -255,29 +279,23 @@ button.key:last-of-type {margin: 0; padding: 0;}
     min-width: 10vw;
 }
 
-
-
-
 .setWord .tile {
     font-weight: bold;
     border: 1.2px solid rgb(50, 50, 50);
 }
 
-
-
-
-
-
-.overlayer {
-    display: none;
-    position: fixed;
-    background-color: #ffffffbe;
-    width: 100%;
-    height: 100%;
-    z-index: 80;
+#helpContent .tile {
+    width: 6vw;
+    height: 6vw;
 }
-.overlayer.loading {display: block; background-color: #ffffff}
-.overlayer.complete {display: block;}
+.tile.added {background-color: rgb(219, 255, 219);}
+/* .tile.moved {background-color: rgb(253, 253, 227);} */
+.tile.moved {background-color: rgb(255, 227, 231)}
+.tile.removed {background-color: rgb(255, 227, 231)}
+
+
+
+
 
 
 
@@ -507,24 +525,6 @@ input:focus {outline: none}
 
 
    
-
-h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
-#W1 {font-weight: 250; transform: translate(0.65vw)}
-#ORD {transform:translate(0.4vw)}
-#SLASH {
-    content: '';
-    position: relative;
-    height: 19vw;
-    border-top: 0;
-    border-right: 0.4vw solid rgba(119, 119, 119, 0.563);
-    transform: translate(0.80vw, 0.5vw) skewX(-23.1deg);
-    width: 0.2vw;
-}
-#W2 {font-weight: 250; transform: translate(-0.15vw)}
-#ARD {transform: translate(-1vw)}
-
-
-
 #popupPanel {
     padding: 32px;
     position: absolute;
@@ -612,15 +612,6 @@ li img {
     vertical-align: -29%;
 }
 
-#helpContent .tile {
-    width: 6vw;
-    height: 6vw;
-}
-.tile.added {background-color: rgb(219, 255, 219);}
-/* .tile.moved {background-color: rgb(253, 253, 227);} */
-.tile.moved {background-color: rgb(255, 227, 231)}
-.tile.removed {background-color: rgb(255, 227, 231)}
-
 .help-wordCont {
     display: inline-flex;
     flex-wrap: nowrap;
@@ -673,3 +664,19 @@ li img {
     from { background-color: transparent; }
     to { background-color: palegreen; }
 }
+
+/* h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;} */
+/* #W1 {font-weight: 250; transform: translate(0.65vw)}
+#ORD {transform:translate(0.4vw)}
+#SLASH {
+    content: '';
+    position: relative;
+    height: 19vw;
+    border-top: 0;
+    border-right: 0.4vw solid rgba(119, 119, 119, 0.563);
+    transform: translate(0.80vw, 0.5vw) skewX(-23.1deg);
+    width: 0.2vw;
+}
+#W2 {font-weight: 250; transform: translate(-0.15vw)}
+#ARD {transform: translate(-1vw)} */
+

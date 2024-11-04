@@ -95,7 +95,7 @@ function removeClass(className, classToRemove) {
 
 function focusTextInputBox() {inputField.focus()}
 
-function emptyInputArea() {inputField.value = ''}
+function emptyinputField() {inputField.value = ''}
 
 function logArrays(when) {
     const normArray = gameState.normArray;
@@ -186,8 +186,8 @@ function renderRoundList() {
         roundList.appendChild(listItem);
     });
 }
-
-function showPopup(type) {
+function togglePopup(action) {
+    const overlay = document.querySelector('.overlay');
     const popup = document.getElementById('popupPanel');
     const helpContent = document.getElementById('helpContent');
     const roundsContent = document.getElementById('roundsContent');
@@ -196,19 +196,21 @@ function showPopup(type) {
     helpContent.classList.add('hidden');
     roundsContent.classList.add('hidden');
 
-    if (type === 'help') {
-        helpContent.classList.remove('hidden');
-    } else if (type === 'rounds') {
-        roundsContent.classList.remove('hidden');
+    if (action === 'close') {
+        // Hide the overlay and the popup
+        overlay.classList.remove('visible');
+        popup.classList.add('hidden');
+    } else {
+        // Show specific content based on the type
+        if (action === 'help') helpContent.classList.remove('hidden');
+        else if (action === 'rounds') roundsContent.classList.remove('hidden');
+
+        // Show the overlay and the popup
+        overlay.classList.add('visible');
+        popup.classList.remove('hidden');
     }
-
-    popup.classList.remove('hidden'); // Show the panel
 }
 
-
-function closePopup() {
-    document.getElementById('popupPanel').classList.add('hidden');
-}
 
 ////GENERATING WORD TILES////
 function makeTilesFor(word, rack) {
@@ -499,7 +501,7 @@ function updateUI(stateOrAction) {
         updateDeleters();
         updateDirectionUI('norm');
         clearInputUI();
-        emptyInputArea();
+        emptyinputField();
         normRack.style.height = 0;
         flipRack.style.height = 0;
     }
@@ -508,14 +510,14 @@ function updateUI(stateOrAction) {
         case 'submit':
         case 'delete':
             // inputField.focus();
-            emptyInputArea();
+            emptyinputField();
             updateDeleters();
             break;
         case 'flip':
             updateDirectionUI(gameState.direction);
             break;
         case 'complete':
-            emptyInputArea();
+            emptyinputField();
             addClass('post', 'complete');
             break;
         case 'undoMove':
@@ -621,5 +623,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     // Initialize
-    removeClass('overlayer', 'loading');
+    removeClass('overlay', 'loading');
 });

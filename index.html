@@ -13,14 +13,16 @@
 
 <body>
     <div id="appContainer">
+        <div class="overlay loading post" onclick="togglePopup('close')"></div>
+
         <div id="header">
             <button id="resetRound" class="function" onclick="updateGame('resetRound')">RESET</button>
-            <button id="gameLogo" onclick="showPopup('rounds')"><img src="images/logo.png"></button>
+            <button id="gameLogo" onclick="togglePopup('rounds')"><img src="images/logo.png"></button>
             <button id="skipRound" class="function" onclick="updateGame('nextRound')">SKIP</button>
         </div>
 
-        <div id="popupPanel" class="popup hidden">
-            <button class=".close-button closeIcon function" onclick="closePopup()">×</button>
+        <div id="popupPanel" class="popup">
+            <button class="close-button closeIcon function" onclick="togglePopup('close')">×</button>
 
             <div id="helpContent" class="popup-content">
                 <p>How To Play</p>
@@ -113,14 +115,12 @@
 
         <div id="gameArea" class="gameArea hidden">
             
-            <div class="post overlayer loading"></div>
-
             <div id="movesCont">
                 <div id="moveCounter" class="moveCounter">Moves: 0</div>
                 <div id="bestScore">Best: --</div>
             </div>
 
-            <button id="openHelp" class="function help" onclick="showPopup('help')">?</button>
+            <button id="openHelp" class="function help" onclick="togglePopup('help')">?</button>
 
             <div id="resultPanel" class="post">
                 <div id="resultMessage" class="result">Completed in X moves!<br>You know words good!</div>
