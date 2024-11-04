@@ -26,14 +26,6 @@ function extractWordPair(inputStr) {
 }
 
 
-// Function to update the best score in localStorage
-function updateBestScore(pairKey, score) {
-    if (score > bestScores[pairKey]) {
-        bestScores[pairKey] = score;
-        localStorage.setItem(pairKey, JSON.stringify(score));
-    }
-}
-
 
 const wordPairDetails = extractWordPair(wordPairsStr);
 // export { wordPairDetails };

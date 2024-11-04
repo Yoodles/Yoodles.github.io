@@ -51,6 +51,14 @@ wordPairDetails.forEach(pair => {
     bestScores[key] = JSON.parse(localStorage.getItem(key)) || 0;
 });
 
+// Function to update the best score in localStorage
+function updateBestScore(pairKey, score) {
+    if (score > bestScores[pairKey]) {
+        bestScores[pairKey] = score;
+        localStorage.setItem(pairKey, JSON.stringify(score));
+    }
+}
+
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️
 function setWordPairAndLengths() {
     const index = wordPair.currentPairIndex;
@@ -118,21 +126,39 @@ function clearInputUI() {
 
 //====BEST SCORES====//
 //UPDATE BEST SCORE FOR THE ROUND ❗️❗️(CHECK IF BEST SCORE?)
-function checkAndUpdateBestScoreIndex() { //just at end of round?
+// function checkAndUpdateBestScoreIndex() { //just at end of round?
+//     const indexNum = wordPair.currentPairIndex;
+//     // Check for existing best score, update, and return latest best score
+//     //(="If there's no best score for the index no. in bestScoreIndex corresponding to crntPairIndex, or if the moveCounter is lower than it, then the moveCounter shall be the new bestScore in the index")
+//     if (!wordPair.bestScoreIndex[indexNum] || gameState.moveCounter < wordPair.bestScoreIndex[indexNum]) {
+//         wordPair.bestScoreIndex[indexNum] = gameState.moveCounter;
+//     }
+// }
+
+function checkAndUpdateBestScoreIndex() {
     const indexNum = wordPair.currentPairIndex;
-    // Check for existing best score, update, and return latest best score
-    //(="If there's no best score for the index no. in bestScoreIndex corresponding to crntPairIndex, or if the moveCounter is lower than it, then the moveCounter shall be the new bestScore in the index")
-    if (!wordPair.bestScoreIndex[indexNum] || gameState.moveCounter < wordPair.bestScoreIndex[indexNum]) {
-        wordPair.bestScoreIndex[indexNum] = gameState.moveCounter;
+    const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
+
+    // Check and update the best score for the current pair if necessary
+    if (!bestScores[pairKey] || gameState.moveCounter < bestScores[pairKey]) {
+        bestScores[pairKey] = gameState.moveCounter;
+        localStorage.setItem(pairKey, JSON.stringify(gameState.moveCounter)); // Store in localStorage
     }
-}
 
 //SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
+// function updateBestScoreUI() {
+//     const bestScoreDisplay = document.getElementById('bestScore');
+//     const latestBestScore = wordPair.bestScoreIndex[wordPair.currentPairIndex] || "--";
+//     bestScoreDisplay.innerText = "Best: " + latestBestScore;
+// }
+
 function updateBestScoreUI() {
     const bestScoreDisplay = document.getElementById('bestScore');
-    const latestBestScore = wordPair.bestScoreIndex[wordPair.currentPairIndex] || "--";
+    const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
+    const latestBestScore = bestScores[pairKey] || "--";
     bestScoreDisplay.innerText = "Best: " + latestBestScore;
 }
+
 
 //UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
 function updateMoveCounterUI() {
