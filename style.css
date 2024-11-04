@@ -565,26 +565,16 @@ input:focus {outline: none}
     overflow-y: auto; /* Make the content inside the pop-up scrollable */
 }
 
-.closeIcon {
-    background: none;
-    border: none;
-    padding: 0;
-    width: 4vw;
-    height: 4vw;
+.closeButton {
     position: absolute;
+
     top: 4vw;
     right: 4vw;
-    color: black;
-    font-size: 8vw;
-}
-
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
     background: transparent;
     border: none;
-    font-size: 20px;
+    padding: 0;
+
+    font-size: 8vw;
     cursor: pointer;
     color: #333;
 }
@@ -595,9 +585,7 @@ p {
     letter-spacing: -0.04em;
 }
 
-h2 {
-    font-size: 3vw;
-}
+h2 {font-size: 3vw;}
 
 ul {
     /* font-size: 20px; */
