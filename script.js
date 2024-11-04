@@ -423,6 +423,12 @@ function setResultPanel() {
 
 }
 
+// Function to jump to a round (implement logic as needed)
+function jumpToRound(pairKey) {
+    console.log(`Jumping to round: ${pairKey}`);
+    // Implement the logic for loading the selected round here
+}
+
 function undoMove() {
     // gameState.phase = 'mid';
 
@@ -505,6 +511,7 @@ function updateGame(action) {
             break;
 
         case 'nextRound':
+            updateBestScore();
             wordPair.currentPairIndex++;
         case 'resetRound':
             resetGameState();
