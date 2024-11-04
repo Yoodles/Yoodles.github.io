@@ -1,8 +1,6 @@
 :root {--vh: 1vh;}
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   box-sizing: border-box;
   user-select: none;
   font: inherit;
@@ -17,14 +15,12 @@
 }
 
 
-
 body {
     margin: 0;
     width: 100vw;
     overflow: hidden;
     font-family: 'Raleway', sans-serif;
     text-align: center;
-
     /* touch-action: manipulation; */
 
 }
@@ -89,6 +85,7 @@ button.function.help {
 #gameLogo > img {
     width: 100%;
     vertical-align: -100%;
+    margin: 10% 0;
 }
 
 #gameArea {
@@ -112,10 +109,17 @@ button.function.help {
     text-align: start;
 }
 #movesCont {left: 0%}
+
 #openHelp {
     right: 0%;
+    height: 6vw;
+    width: 6vw;
     background: none;
-    border-radius: 30px;
+    border: 1px solid;
+    border-radius: 4vw;
+    padding-inline: 0;
+    font-weight: 100;
+    text-align: center;;
 }
 
 #moveCounter {justify-self: start;}
