@@ -1,4 +1,4 @@
-// import { wordPairList } from './words.js';
+// import { wordPairDetails } from './words.js';
 // import { isTotallyValid } from './word-validity.js';
 
 const inputField = document.getElementById('inputField');
@@ -41,16 +41,26 @@ let wordPair = {
 }
 
 
+// Convert word pairs and set up a best scores object
+let bestScores = {};
+
+// Initialize best scores for each word pair
+wordPairDetails.forEach(pair => {
+    const key = `${pair.start}-${pair.end}`;
+    // Load from localStorage if available, otherwise default to 0 stars
+    bestScores[key] = JSON.parse(localStorage.getItem(key)) || 0;
+});
+
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️
 function setWordPairAndLengths() {
     const index = wordPair.currentPairIndex;
 
-    if (index < wordPairList.length) {
-        wordPair.startWord = wordPairList[index].start;
-        wordPair.endWord = wordPairList[index].end;
+    if (index < wordPairDetails.length) {
+        wordPair.startWord = wordPairDetails[index].start;
+        wordPair.endWord = wordPairDetails[index].end;
         
-        wordPair.score3star = wordPairList[index].score.A;
-        wordPair.score2star = wordPairList[index].score.B;
+        wordPair.score3star = wordPairDetails[index].score.A;
+        wordPair.score2star = wordPairDetails[index].score.B;
 
         wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
         wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
