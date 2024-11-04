@@ -514,8 +514,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     checkAndUpdateBestScoreIndex();
     updateBestScoreUI();
 
-    // console.log("PAGE LOAD: Word Pair: ", wordPair.startWord, wordPair.endWord, "Latest/Target: ", gameState.latestWord, gameState.targetWord);
-
     // Event listener for TEXT BOX (Enter Key)
     inputField.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') submitMove();
@@ -528,15 +526,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         const keyValue = key.textContent;
 
-        if (keyValue === 'Enter') {
-            submitMove();
-        } else if (keyValue === 'Del') {
-            // Simulate backspace by removing the last character from the input field
-            inputField.value = inputField.value.slice(0, -1);
-        } else {
-            // Add the clicked key value to the input field
-            inputField.value += keyValue;
-        }
+        if (keyValue === 'Enter') submitMove();
+        else if (keyValue === 'Del') inputField.value = inputField.value.slice(0, -1);
+        else inputField.value += keyValue;
     });
 
     // Initialize
