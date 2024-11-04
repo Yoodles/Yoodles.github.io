@@ -386,7 +386,7 @@ function deleteMove(which) {
     console.log('After: ', dirConfig.rack, dirConfig.array);
 }
 
-function setResultPanel() {
+function updateResultPanel() {
     const stars = document.querySelectorAll('#starContainer .star');
     const moves = gameState.moveCounter;
     const message = document.getElementById('resultMessage');
@@ -503,7 +503,7 @@ function updateGame(action) {
         case 'complete':
             gameState.phase = 'post';
             checkAndUpdateBestScoreIndex();
-            setResultPanel();
+            updateResultPanel();
 
             updateUI(action);
             updateLatestAndTargetWords();
@@ -512,6 +512,7 @@ function updateGame(action) {
 
         case 'nextRound':
             updateBestScore();
+            updateBestScoreUI();
             wordPair.currentPairIndex++;
         case 'resetRound':
             resetGameState();
