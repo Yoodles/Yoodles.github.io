@@ -171,6 +171,8 @@ function renderRoundList() {
     const roundList = document.getElementById('roundList');
     roundList.innerHTML = ''; // Clear existing list
 
+    console.log(wordPairDetails);
+
     wordPairDetails.forEach(pair => {
         const pairKey = `${pair.start}-${pair.end}`;
         const bestScore = bestScores[pairKey] || 0;
