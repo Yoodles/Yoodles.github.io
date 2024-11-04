@@ -44,12 +44,6 @@ let wordPair = {
 // Convert word pairs and set up a best scores object
 let bestScores = {};
 
-// Initialize best scores for each word pair
-wordPairDetails.forEach(pair => {
-    const key = `${pair.start}-${pair.end}`;
-    // Load from localStorage if available, otherwise default to 0 stars
-    bestScores[key] = JSON.parse(localStorage.getItem(key)) || 0;
-});
 
 // Function to update the best score in localStorage
 function updateBestScore(pairKey, score) {
@@ -136,7 +130,6 @@ function clearInputUI() {
 // }
 
 function checkAndUpdateBestScoreIndex() {
-    const indexNum = wordPair.currentPairIndex;
     const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
 
     // Check and update the best score for the current pair if necessary
@@ -144,6 +137,7 @@ function checkAndUpdateBestScoreIndex() {
         bestScores[pairKey] = gameState.moveCounter;
         localStorage.setItem(pairKey, JSON.stringify(gameState.moveCounter)); // Store in localStorage
     }
+}
 
 //SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
 // function updateBestScoreUI() {
@@ -546,6 +540,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     setWordPairAndLengths(0);
     buildWordPairTiles();
+
+    // Initialize best scores for each word pair
+    wordPairDetails.forEach(pair => {
+        const key = `${pair.start}-${pair.end}`;
+        // Load from localStorage if available, otherwise default to 0 stars
+        bestScores[key] = JSON.parse(localStorage.getItem(key)) || 0;
+    });
 
     checkAndUpdateBestScoreIndex();
     updateBestScoreUI();
