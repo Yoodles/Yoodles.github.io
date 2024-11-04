@@ -125,8 +125,8 @@ button.function.help {
     text-align: center;;
 }
 
-#moveCounter {justify-self: start;}
-#bestScore {justify-self: end;}
+/* #moveCounter {justify-self: start;} */
+/* #bestScore {justify-self: end;} */
 
 
 
