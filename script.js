@@ -141,19 +141,6 @@ function updateBestScoreUI() {
 }
 
 
-//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
-function updateMoveCounterUI() {
-    document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
-}
-
-
-
-function toggleMenu() {
-    document.getElementById('menuPanel').classList.toggle('show');
-}
-
-
-
 function renderRoundList() {
     const roundList = document.getElementById('roundList');
     roundList.innerHTML = ''; // Clear existing list
@@ -175,6 +162,66 @@ function renderRoundList() {
         roundList.appendChild(listItem);
     });
 }
+
+// Generate star icons based on the best score
+function generateStars(score) {
+    const maxStars = 3;
+    let starsHtml = '';
+    for (let i = 0; i < maxStars; i++) {
+        starsHtml += `<span class="star ${i < score ? 'yellow' : ''}">★</span>`;
+    }
+    return starsHtml;
+}
+
+function renderResultPanel() {
+    const starContainer = document.getElementById('starContainer');
+    const moves = gameState.moveCounter;
+    const message = document.getElementById('resultMessage');
+
+    // Determine star rating based on score3star and score2star
+    let starRating;
+    if (moves <= wordPair.score3star) starRating = 3;
+    else if (moves <= wordPair.score2star) starRating = 2;
+    else starRating = 1;
+
+    // Use generateStars to update the starContainer with the appropriate star rating
+    starContainer.innerHTML = generateStars(starRating);
+
+    // Update the result message based on the star rating
+
+    switch (starRating) {
+        case 3:
+            message.innerText = `Completed in ${gameState.moveCounter} moves!\nOutstanding work! You earned 3 stars!`;
+            break;
+        case 2:
+            message.innerText = `Completed in ${gameState.moveCounter} moves!\nGreat job! You earned 2 stars!`;
+            break;
+        case 1:
+            message.innerText = `Completed in ${gameState.moveCounter} moves!\nYou know words good!!`;
+            break;
+    }
+
+}
+
+
+
+// Jump to a specific round when selected from the list
+function jumpToRound(pairKey) {
+    const [startWord, endWord] = pairKey.split('-');
+    wordPair.startWord = startWord;
+    wordPair.endWord = endWord;
+    // Additional logic to load the round
+    updateBestScoreUI();
+}
+
+
+
+
+//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
+function updateMoveCounterUI() {
+    document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
+}
+
 
 function togglePopup(action) {
     const overlay = document.querySelector('.overlay');
@@ -422,54 +469,8 @@ function deleteMove(which) {
     console.log('After: ', dirConfig.rack, dirConfig.array);
 }
 
-// Generate star icons based on the best score
-function generateStars(score) {
-    const maxStars = 3;
-    let starsHtml = '';
-    for (let i = 0; i < maxStars; i++) {
-        starsHtml += `<span class="star ${i < score ? 'yellow' : ''}">★</span>`;
-    }
-    return starsHtml;
-}
 
-function updateResultPanel() {
-    const starContainer = document.getElementById('starContainer');
-    const moves = gameState.moveCounter;
-    const message = document.getElementById('resultMessage');
 
-    // Determine star rating based on score3star and score2star
-    let starRating;
-    if (moves <= wordPair.score3star) starRating = 3;
-    else if (moves <= wordPair.score2star) starRating = 2;
-    else starRating = 1;
-
-    // Use generateStars to update the starContainer with the appropriate star rating
-    starContainer.innerHTML = generateStars(starRating);
-
-    // Update the result message based on the star rating
-
-    switch (starRating) {
-        case 3:
-            message.innerText = `Completed in ${gameState.moveCounter} moves!\nOutstanding work! You earned 3 stars!`;
-            break;
-        case 2:
-            message.innerText = `Completed in ${gameState.moveCounter} moves!\nGreat job! You earned 2 stars!`;
-            break;
-        case 1:
-            message.innerText = `Completed in ${gameState.moveCounter} moves!\nYou know words good!!`;
-            break;
-    }
-
-}
-
-// Jump to a specific round when selected from the list
-function jumpToRound(pairKey) {
-    const [startWord, endWord] = pairKey.split('-');
-    wordPair.startWord = startWord;
-    wordPair.endWord = endWord;
-    // Additional logic to load the round
-    updateBestScoreUI();
-}
 
 function undoMove() {
     // gameState.phase = 'mid';
@@ -545,7 +546,7 @@ function updateGame(action) {
         case 'complete':
             gameState.phase = 'post';
             checkAndUpdateBestScoreIndex();
-            updateResultPanel();
+            renderResultPanel();
 
             updateUI(action);
             updateLatestAndTargetWords();
