@@ -592,10 +592,14 @@ li.no-bullet {list-style-type: none;}
 
 
 li img {
-    width: 4.5vw;
+    /* width: 4.5vw; */
     margin: 0 2px;
     vertical-align: -29%;
 }
+
+li .flipper {width: 5vw;}
+li .del {width: 3.5vw;}
+li .del.flip {transform: rotate(0.5turn);}
 
 .help-wordCont {
     display: inline-flex;
