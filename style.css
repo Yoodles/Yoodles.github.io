@@ -566,12 +566,8 @@ li {
 }
 li.no-bullet {list-style-type: none;}
 
-li img {
-    vertical-align: -33%;
-}
-
 li .flipper {width: 5vw; margin: 0 0.7vw; vertical-align: -33%;}
-li .del {width: 3vw; margin: 0 0.7vw; vertical-align: -33%;}
+li .del {width: 3vw; margin: 0 0.7vw; vertical-align: -25%;}
 li .del.flip {transform: rotate(0.5turn);}
 
 .help-wordCont {
