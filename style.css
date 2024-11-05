@@ -260,24 +260,15 @@ button.function.help {
     position: relative;
     text-align: center;
 }
-#gameplayCont .tile {
-    max-height: 60px; 
-    height: 10vw;
-    min-height: 10vw;
-    max-width: 60px;
-    width: 10vw;
-    min-width: 10vw;
-}
+#gameplayCont .tile {height: 10vw; width: 10vw}
+#helpContent .tile {width: 6vw; height: 6vw}
 
 .setWord .tile {
     font-weight: bold;
-    border: 1.2px solid rgb(50, 50, 50);
+    border: 0.3vw solid rgb(50, 50, 50);
 }
 
-#helpContent .tile {
-    width: 6vw;
-    height: 6vw;
-}
+
 .tile.added {background-color: rgb(219, 255, 219);}
 /* .tile.moved {background-color: rgb(253, 253, 227);} */
 .tile.moved {background-color: rgb(255, 227, 231)}
@@ -388,7 +379,6 @@ input:focus {outline: none}
 #toggleFlip img {width: 12vw; height: 12vw;}
 
 .deleter {
-
     /* width: 90%; */
     background: none;
     border: none;
@@ -397,22 +387,8 @@ input:focus {outline: none}
 .deleter img {
     height: 8vw;
     font-size: 5vw;
-    /* text-shadow: #FC0 1px 0 10px; */
 }
 [data-flip] .deleter img {transform: rotate(0.5turn)}
-/* [data-flip] .deleter::before {transform: none;}
-
-
-.deleter::before {
-  content: 'V';
-  position: absolute;
-  left: 50;
-}
-
-.deleter::before {
-  top: -4px;
-} */
-
 
 
 
@@ -420,27 +396,29 @@ input:focus {outline: none}
 .hidden { display: none }
 .invisible { visibility: hidden }
 
-@keyframes fadeOut {
-    from {opacity: 1}
-    to {opacity: 0}
-}
-@keyframes fadeIn {
-    from { opacity: 0.3}
-    to { opacity: 1}
-}
 .fade-out {
     animation-name: fadeOut;
     animation-duration: 0.4s;
     animation-fill-mode: forwards;
 }
+
+@keyframes fadeOut {
+    from {opacity: 1}
+    to {opacity: 0}
+}
+
 .fade-in {
     animation-name: fadeIn;
     animation-duration: 0.4s;
     animation-fill-mode: forwards;
 }
 
-.rotating {animation: verticalFlip 1.2s ease-in-out;}
+@keyframes fadeIn {
+    from { opacity: 0.3}
+    to { opacity: 1}
+}
 
+.rotating {animation: verticalFlip 1.2s ease-in-out;}
 
 @keyframes verticalFlip {
     0% {transform: rotateX(0deg);}
