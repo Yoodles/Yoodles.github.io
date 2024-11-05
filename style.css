@@ -37,12 +37,9 @@ body {
 
 button {
     justify-content: center;
-
     cursor: pointer;
-
     border: solid 0.1vw;
     border-radius: 0.42vw;
-
     color: black;
     font-family: 'Raleway', sans-serif;
     font-size: 3.5vw;
@@ -383,18 +380,22 @@ input:focus {outline: none}
     background: none;
     border: none;
     transform: none;
+    transition: opacity 1s ease-in;
 }
 .deleter img {
-    height: 8vw;
+    height: 7vw;
     font-size: 5vw;
 }
-[data-flip] .deleter img {transform: rotate(0.5turn)}
+#flipDeleter img {transform: rotate(0.5turn)}
+div[data-flip] #normDeleter img {transform: rotate(0.5turn)}
+div[data-flip] #flipDeleter img {transform: none}
 
 
 
 
 .hidden { display: none }
-.invisible { visibility: hidden }
+/* .invisible { visibility: hidden } */
+.invisible { opacity: 0; }
 
 .fade-out {
     animation-name: fadeOut;
