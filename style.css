@@ -241,7 +241,8 @@ button.function.help {
 .tile {
     display: flex;
     justify-content: center;
-    border: 0.2vw solid rgb(127, 127, 127);
+    /* border: 0.2vw solid rgb(127, 127, 127); */
+    border: .6vw ridge rgb(127, 127, 127);
     margin: 0.7vw;
     align-items: center;
     font-size: 4.5vw;

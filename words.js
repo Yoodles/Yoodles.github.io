@@ -1,4 +1,5 @@
-const wordPairsStr = `rail sail 1 3
+const wordPairsStr = `threat treat 3 4
+rail sail 1 3
 oil water 6 10
 trump biden 12 15
 spain france 10 15
