@@ -41,23 +41,7 @@ let wordPair = {
 }
 
 
-// Convert word pairs and set up a best scores object
-let bestScores = {};
 
-// Load best scores from localStorage for each word pair
-wordPairDetails.forEach(pair => {
-    const key = `${pair.start}-${pair.end}`;
-    bestScores[key] = JSON.parse(localStorage.getItem(key)) || 0;
-});
-
-
-// Update the best score for a word pair in `localStorage`
-function updateBestScore(pairKey, score) {
-    if (score < bestScores[pairKey] || !bestScores[pairKey]) { // Only update if score is lower
-        bestScores[pairKey] = score;
-        localStorage.setItem(pairKey, JSON.stringify(score));
-    }
-}
 
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️
 function setWordPairAndLengths() {
@@ -125,15 +109,17 @@ function clearInputUI() {
 }
 
 //====BEST SCORES====//
-//UPDATE BEST SCORE FOR THE ROUND ❗️❗️(CHECK IF BEST SCORE?)
-// function checkAndUpdateBestScoreIndex() { //just at end of round?
-//     const indexNum = wordPair.currentPairIndex;
-//     // Check for existing best score, update, and return latest best score
-//     //(="If there's no best score for the index no. in bestScoreIndex corresponding to crntPairIndex, or if the moveCounter is lower than it, then the moveCounter shall be the new bestScore in the index")
-//     if (!wordPair.bestScoreIndex[indexNum] || gameState.moveCounter < wordPair.bestScoreIndex[indexNum]) {
-//         wordPair.bestScoreIndex[indexNum] = gameState.moveCounter;
-//     }
-// }
+
+// Convert word pairs and set up a best scores object
+let bestScores = {};
+
+// Update the best score for a word pair in `localStorage`
+function updateBestScore(pairKey, score) {
+    if (score < bestScores[pairKey] || !bestScores[pairKey]) { // Only update if score is lower
+        bestScores[pairKey] = score;
+        localStorage.setItem(pairKey, JSON.stringify(score));
+    }
+}
 
 // Check and update the best score after a round, if it's a new best
 function checkAndUpdateBestScoreIndex() {
@@ -447,25 +433,18 @@ function generateStars(score) {
 }
 
 function updateResultPanel() {
-    const stars = document.querySelectorAll('#starContainer .star');
+    const starContainer = document.getElementById('starContainer');
     const moves = gameState.moveCounter;
     const message = document.getElementById('resultMessage');
 
-    
     // Determine star rating based on score3star and score2star
     let starRating;
     if (moves <= wordPair.score3star) starRating = 3;
     else if (moves <= wordPair.score2star) starRating = 2;
     else starRating = 1;
 
-    // Reset all stars to grey
-    stars.forEach(star => star.classList.remove('yellow'));
-
-    // Add 'yellow' class to the appropriate number of stars
-    for (let i = 0; i < starRating; i++) {
-        stars[i].classList.add('yellow');
-    }
-
+    // Use generateStars to update the starContainer with the appropriate star rating
+    starContainer.innerHTML = generateStars(starRating);
 
     // Update the result message based on the star rating
 
@@ -615,6 +594,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     wordPairDetails.forEach(pair => {
         const key = `${pair.start}-${pair.end}`;
         // Load from localStorage if available, otherwise default to 0 stars
+        bestScores[key] = JSON.parse(localStorage.getItem(key)) || 0;
+    });
+
+    // Initialize best scores for each word pair from localStorage
+    wordPairDetails.forEach(pair => {
+        const key = `${pair.start}-${pair.end}`;
         bestScores[key] = JSON.parse(localStorage.getItem(key)) || 0;
     });
 
