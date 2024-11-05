@@ -592,9 +592,8 @@ li.no-bullet {list-style-type: none;}
 
 
 li img {
-    /* width: 4.5vw; */
-    margin: 0 2px;
-    vertical-align: -29%;
+    margin: 0 0.7vw;
+    vertical-align: -33%;
 }
 
 li .flipper {width: 5vw;}
