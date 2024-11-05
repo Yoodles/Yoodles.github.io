@@ -44,10 +44,16 @@ let wordPair = {
 // Convert word pairs and set up a best scores object
 let bestScores = {};
 
+// Load best scores from localStorage for each word pair
+wordPairDetails.forEach(pair => {
+    const key = `${pair.start}-${pair.end}`;
+    bestScores[key] = JSON.parse(localStorage.getItem(key)) || 0;
+});
 
-// Function to update the best score in localStorage
+
+// Update the best score for a word pair in `localStorage`
 function updateBestScore(pairKey, score) {
-    if (score > bestScores[pairKey]) {
+    if (score < bestScores[pairKey] || !bestScores[pairKey]) { // Only update if score is lower
         bestScores[pairKey] = score;
         localStorage.setItem(pairKey, JSON.stringify(score));
     }
@@ -129,23 +135,18 @@ function clearInputUI() {
 //     }
 // }
 
+// Check and update the best score after a round, if it's a new best
 function checkAndUpdateBestScoreIndex() {
     const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
-
-    // Check and update the best score for the current pair if necessary
     if (!bestScores[pairKey] || gameState.moveCounter < bestScores[pairKey]) {
         bestScores[pairKey] = gameState.moveCounter;
-        localStorage.setItem(pairKey, JSON.stringify(gameState.moveCounter)); // Store in localStorage
+        localStorage.setItem(pairKey, JSON.stringify(gameState.moveCounter));
     }
 }
 
-//SHOW LATEST BEST SCORE on SCREEN ///　UPDATE!!!!! IF!!!! ANIMATION!!!!!
-// function updateBestScoreUI() {
-//     const bestScoreDisplay = document.getElementById('bestScore');
-//     const latestBestScore = wordPair.bestScoreIndex[wordPair.currentPairIndex] || "--";
-//     bestScoreDisplay.innerText = "Best: " + latestBestScore;
-// }
 
+
+// Display the best score on the UI
 function updateBestScoreUI() {
     const bestScoreDisplay = document.getElementById('bestScore');
     const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
@@ -435,6 +436,16 @@ function deleteMove(which) {
     console.log('After: ', dirConfig.rack, dirConfig.array);
 }
 
+// Generate star icons based on the best score
+function generateStars(score) {
+    const maxStars = 3;
+    let starsHtml = '';
+    for (let i = 0; i < maxStars; i++) {
+        starsHtml += `<span class="star ${i < score ? 'yellow' : ''}">★</span>`;
+    }
+    return starsHtml;
+}
+
 function updateResultPanel() {
     const stars = document.querySelectorAll('#starContainer .star');
     const moves = gameState.moveCounter;
@@ -472,10 +483,13 @@ function updateResultPanel() {
 
 }
 
-// Function to jump to a round (implement logic as needed)
+// Jump to a specific round when selected from the list
 function jumpToRound(pairKey) {
-    console.log(`Jumping to round: ${pairKey}`);
-    // Implement the logic for loading the selected round here
+    const [startWord, endWord] = pairKey.split('-');
+    wordPair.startWord = startWord;
+    wordPair.endWord = endWord;
+    // Additional logic to load the round
+    updateBestScoreUI();
 }
 
 function undoMove() {
@@ -560,12 +574,12 @@ function updateGame(action) {
             break;
 
         case 'nextRound':
-            updateBestScore();
             updateBestScoreUI();
+            // updateBestScoreUI();
             wordPair.currentPairIndex++;
         case 'resetRound':
             resetGameState();
-            logArrays('after reset/next');
+            // logArrays('after reset/next');
             setWordPairAndLengths();
             updateUI();
             buildWordPairTiles();
@@ -573,7 +587,6 @@ function updateGame(action) {
             console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             break;
 
-            break;
     };
     
     logArrays();
@@ -606,7 +619,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     checkAndUpdateBestScoreIndex();
-    updateBestScoreUI();
 
     // Event listener for TEXT BOX (Enter Key)
     inputField.addEventListener('keypress', function(event) {
@@ -629,4 +641,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     removeClass('overlay', 'loading');
 
     renderRoundList();
+    updateBestScoreUI();
+
 });
