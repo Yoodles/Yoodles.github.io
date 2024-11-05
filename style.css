@@ -145,10 +145,10 @@ button.function.help {
     height: 6vw;
     width: 6vw;
     background: none;
-    border: 1px solid;
+    border: .3vw solid;
     border-radius: 4vw;
     padding-inline: 0;
-    font-weight: bold;
+    /* font-weight: bold; */
     text-align: center;;
 }
 
