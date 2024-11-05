@@ -510,18 +510,15 @@ input:focus {outline: none}
 
 #popupPanel {
     position: fixed;
-
+    width: 90%;
+    height: 90%;
     border-radius: 3vw;
     border: 1vw solid var(--color-tone-6);
     background-color: white;
     align-content: center;
-    width: 90%;
-    height: 90%;
     padding: 4vw;
     overflow-y: auto;
-
     box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
-
     text-align: start;
     z-index: 101;
 }
@@ -540,9 +537,10 @@ input:focus {outline: none}
     background: transparent;
     border: none;
     /* padding: 0; */
-    font-size: 8vw;
+    font-size: 7vw;
     cursor: pointer;
     color: #333;
+    transform: scale(1, 0.9);
 }
 
 
