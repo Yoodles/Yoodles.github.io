@@ -190,10 +190,11 @@ button.function.help {
 .key {
     flex: 1;
     display: flex;
-    /* height: 6vh; */
+    margin: 0 1vw 1vh 0;
     background-color: #d3d3d3;
     border: 0;
     border-radius: 1vw;
+    padding: 0;
     font-size: 4vw;
     font-weight: bold;
     text-align: center;
@@ -203,15 +204,9 @@ button.function.help {
 
     align-items: center;
     user-select: none;
-
-    padding: 0;
-    /* margin: 0 1vw 0 0; */
-    margin: 0 1vw 1vh;
-
-    justify-content: center;
 }
 
-.key:last-of-type {margin: 0 0 1vh; padding: 0;}
+.key:last-of-type {margin: 0 0 1vh 0;}
 .key.special {flex: 1.5; font-size: 4vw}
 
 .key.backspace {max-width: 12%;}
@@ -430,21 +425,6 @@ div[data-flip] #flipDeleter img {transform: none}
 
 
 
-/* #submitMove {
-    height: 10vw;
-    margin: 1.25vw;
-    font-size: 3.5vw;
-    font-weight: 300;
-    width: 12vw;
-    background-color: hsla(120, 62%, 84%, 0.50);
-    border: 0.05vw solid hsla(120, 62%, 84%, 0.9);
-    text-align: center;
-    left: 100%;
-    position: absolute;
-} */
-
-
-
 #resultPanel {
     background-color: rgb(255, 255, 255);
     position: absolute;
@@ -538,6 +518,8 @@ div[data-flip] #flipDeleter img {transform: none}
     cursor: pointer;
     color: #333;
     transform: scale(1, 0.9);
+    transition: background-color 0.1s ease;
+
 }
 
 .popup-content {
