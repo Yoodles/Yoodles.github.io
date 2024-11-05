@@ -242,7 +242,8 @@ button.function.help {
     display: flex;
     justify-content: center;
     /* border: 0.2vw solid rgb(127, 127, 127); */
-    border: .6vw ridge rgb(127, 127, 127);
+    /* border: .6vw ridge rgb(127, 127, 127); */
+    border: .4vw outset rgb(127, 127, 127);
     margin: 0.7vw;
     align-items: center;
     font-size: 4.5vw;
@@ -259,12 +260,10 @@ button.function.help {
 
 .setWord .tile {
     font-weight: bold;
-    border: 0.3vw solid rgb(50, 50, 50);
+    border: 0.4vw outset rgb(50, 50, 50);
 }
 
-
 .tile.added {background-color: rgb(219, 255, 219);}
-/* .tile.moved {background-color: rgb(253, 253, 227);} */
 .tile.moved {background-color: rgb(255, 227, 231)}
 .tile.removed {background-color: rgb(255, 227, 231)}
 
@@ -281,15 +280,21 @@ button.function.help {
 }
 
 #startWord {order: 1}
-#inputterRack {order: 2}
-#endWord {order: 3}
-
 div[data-flip] #startWord { order: 3; }
+
+#inputterRack {order: 2}
 div[data-flip] #inputterRack { order: 2; }
+
+#endWord {order: 3}
 div[data-flip] #endWord { order: 1; }
 
+#normRack { order: 1; flex-direction: column}
 div[data-flip] #normRack { order: 3; flex-direction: column-reverse;}
+
+#inputterSet { order: 2; }
 div[data-flip] #inputterSet { order: 2; }
+
+#flipRack { order: 3; flex-direction: column-reverse; }
 div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
@@ -304,9 +309,8 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     /* transition: transform 0.5s ease-in-out; */
 }
 
-#normRack { order: 1; flex-direction: column}
-#inputterSet { order: 2; }
-#flipRack { order: 3; flex-direction: column-reverse; }
+
+
 
 
 
@@ -317,7 +321,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     display: flex;
     position: relative;
     align-items: center;
-    /* width: 100%; */
+    width: 100%;
     min-width: 60vw;
     max-width: 70vw;
     margin-top: 1.5vw;
@@ -331,12 +335,13 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     /* min-width: 50vw;
     max-width: 70vw; */
     text-transform: uppercase;
-    border: 0.4vw dashed #373737;
+    /* border: 0.3vw dashed #373737; */
+    border: .6vw outset #373737;
     font-family: 'Raleway';
     font-size: 5.7vw;
     letter-spacing: 1.18vw;
     font-weight: 105;
-    border-radius: 0.8vw;
+    border-radius: 4vw;
     text-align: center;
     position: relative; /*redundant?*/
     margin-top: 1.5vh;
