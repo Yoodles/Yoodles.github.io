@@ -549,11 +549,13 @@ function updateGame(action) {
 
             updateUI(action);
             updateLatestAndTargetWords();
+            updateBestScoreUI();
+            checkAndUpdateBestScoreIndex();
             console.log("ROUND COMPLETE!!");
             break;
 
         case 'nextRound':
-            updateBestScoreUI();
+            checkAndUpdateBestScoreIndex();
             // updateBestScoreUI();
             wordPair.currentPairIndex++;
         case 'resetRound':
