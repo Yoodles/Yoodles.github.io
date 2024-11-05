@@ -478,9 +478,11 @@ div[data-flip] #flipDeleter img {transform: none}
 
 .star.yellow {
     color: rgb(255, 255, 202);
-    text-shadow: 0 0 1px rgb(0, 0, 0); /* Keeps the rim visible when stars are yellow */
+    text-shadow: 0 0 .4vw rgb(0, 0, 0); /* Keeps the rim visible when stars are yellow */
     /* border: 1px solid darkgrey; */
 }
+
+.popup-content .star {font-size: 5vw;}
 
 #resultPanel button {
     height: 4vh;
@@ -512,7 +514,7 @@ div[data-flip] #flipDeleter img {transform: none}
 #popupPanel {
     position: fixed;
     width: 90%;
-    height: 90%;
+    height: 85%;
     border-radius: 3vw;
     border: 1vw solid var(--color-tone-6);
     background-color: white;
@@ -524,27 +526,24 @@ div[data-flip] #flipDeleter img {transform: none}
     z-index: 101;
 }
 
-.popup-content {
-    height: 90%;
-    padding: 0 4vw;
-    overflow-y: auto; /* Make the content inside the pop-up scrollable */
-}
-
-
 .closeButton {
     position: absolute;
     top: 0;
     right: 0;
     background: transparent;
     border: none;
-    /* padding: 0; */
+    padding: 3vw 5vw;
     font-size: 7vw;
     cursor: pointer;
     color: #333;
     transform: scale(1, 0.9);
 }
 
-
+.popup-content {
+    height: 90%;
+    padding: 0 4vw;
+    overflow-y: auto; /* Make the content inside the pop-up scrollable */
+}
 
 p {
     font-size: 5vw;
@@ -561,8 +560,8 @@ ul {
 }
 li {
     text-align: start;
-    line-height: 6vw;
-    margin-bottom: 5px;
+    line-height: 5vh;
+    margin-bottom: 2vh;
 }
 li.no-bullet {list-style-type: none;}
 
@@ -575,9 +574,7 @@ li .del.flip {transform: rotate(0.5turn);}
     flex-wrap: nowrap;
 }
 
-.help-wordCont:last-of-type {
-    margin-bottom: 1vw;
-}
+/* .help-wordCont:last-of-type {margin-bottom: 1vh;} */
 
 
 
