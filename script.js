@@ -191,10 +191,10 @@ function renderResultPanel() {
 
     switch (starRating) {
         case 3:
-            message.innerText = `Completed in ${gameState.moveCounter} moves!\nOutstanding work! You earned 3 stars!`;
+            message.innerText = `Completed in ${gameState.moveCounter} moves!\nOutstanding!`;
             break;
         case 2:
-            message.innerText = `Completed in ${gameState.moveCounter} moves!\nGreat job! You earned 2 stars!`;
+            message.innerText = `Completed in ${gameState.moveCounter} moves!\nGreat job!`;
             break;
         case 1:
             message.innerText = `Completed in ${gameState.moveCounter} moves!\nYou know words good!!`;

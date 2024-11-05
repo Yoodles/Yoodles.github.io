@@ -331,7 +331,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     /* min-width: 50vw;
     max-width: 70vw; */
     text-transform: uppercase;
-    border: 0.2vw solid #373737;
+    border: 0.4vw dashed #373737;
     font-family: 'Raleway';
     font-size: 5.7vw;
     letter-spacing: 1.18vw;
@@ -433,8 +433,8 @@ div[data-flip] #flipDeleter img {transform: none}
     z-index: 90;
     width: 85%;
     height: 25vh;
-    border: solid 1px;
-    border-radius: 5px;
+    border: solid .5vw;
+    border-radius: 2vw;
     /* font-size: 18px; */
     font-size: 4vw;
     display: none;
@@ -455,7 +455,7 @@ div[data-flip] #flipDeleter img {transform: none}
 .star {
     font-size: 7vw;
     color: grey;
-    margin: 0 5px;
+    margin: 0 1vw;
 }
 
 .star.yellow {
@@ -486,11 +486,12 @@ div[data-flip] #flipDeleter img {transform: none}
 
 
 #roundList li {
-    padding: 3vw;
+    padding: 1vw;
     border-bottom: .1vw solid #ddd;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0;
 }   
 
 #popupPanel {
