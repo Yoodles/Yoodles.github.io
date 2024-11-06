@@ -22,6 +22,7 @@ body {
     overflow: hidden;
     font-family: 'Raleway', sans-serif;
     text-align: center;
+    background-color: #f8f9ff;
     /* touch-action: manipulation; */
 
 }
@@ -288,6 +289,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 .tile {
     display: flex;
     justify-content: center;
+    background-color: #ffffff;
     /* border: 0.2vw solid rgb(127, 127, 127); */
     /* border: .6vw ridge rgb(127, 127, 127); */
     border: .5vw outset rgb(127, 127, 127);
