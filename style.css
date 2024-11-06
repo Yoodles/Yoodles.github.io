@@ -276,6 +276,7 @@ button.function.help {
     display: flex;
     position: relative;
     flex-direction: column;
+    align-items: center;
 }
 
 #startWord {order: 1}
