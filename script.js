@@ -263,6 +263,9 @@ function makeTilesFor(word, rack) {
         tile.classList.toggle('hidden', !isVisible);
         if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${i * 0.3}s`;
     });
+
+    wordCont.style.opacity = 1;
+
     wordCont.classList.remove('hidden');
 
     wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility

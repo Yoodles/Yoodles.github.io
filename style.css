@@ -125,6 +125,7 @@ button.function.help {
     overflow: hidden;
     /* justify-content: space-evenly; */
     align-items: center;
+    font-size: 5vw;
 
 }
 
@@ -218,6 +219,52 @@ button.function.help {
 
 
 
+
+
+
+
+
+#inputterRack {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+}
+
+#startWord {order: 1}
+div[data-flip] #startWord { order: 3; }
+
+#inputterRack {order: 2}
+div[data-flip] #inputterRack { order: 2; }
+
+#endWord {order: 3}
+div[data-flip] #endWord { order: 1; }
+
+#normRack { order: 1; flex-direction: column}
+div[data-flip] #normRack { order: 3; flex-direction: column-reverse;}
+
+#inputterSet { order: 2; }
+div[data-flip] #inputterSet { order: 2; }
+
+#flipRack { order: 3; flex-direction: column-reverse; }
+div[data-flip] #flipRack { order: 1; flex-direction: column;}
+
+
+#normRack, #flipRack {
+    position: relative;
+    display: flex;
+    margin: auto;
+    height: 0;
+    transition: height 0.15s ease-in 0.5s;
+    /* transition: transform 0.5s ease-in-out; */
+}
+
+
+
+
+
+
+
 /*=====WORD CONTAINERS & TILES=====*/
 
 .wordCont {
@@ -225,6 +272,7 @@ button.function.help {
     justify-content: center; /* not sure */
     margin-left: auto;
     margin-right: auto;
+    /* opacity: 0; */
     /* height: 11.4vw; */
 }
 
@@ -265,47 +313,6 @@ button.function.help {
 .tile.added {background-color: rgb(219, 255, 219);}
 .tile.moved {background-color: rgb(255, 227, 231)}
 .tile.removed {background-color: rgb(255, 227, 231)}
-
-
-
-
-
-
-
-#inputterRack {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-}
-
-#startWord {order: 1}
-div[data-flip] #startWord { order: 3; }
-
-#inputterRack {order: 2}
-div[data-flip] #inputterRack { order: 2; }
-
-#endWord {order: 3}
-div[data-flip] #endWord { order: 1; }
-
-#normRack { order: 1; flex-direction: column}
-div[data-flip] #normRack { order: 3; flex-direction: column-reverse;}
-
-#inputterSet { order: 2; }
-div[data-flip] #inputterSet { order: 2; }
-
-#flipRack { order: 3; flex-direction: column-reverse; }
-div[data-flip] #flipRack { order: 1; flex-direction: column;}
-
-
-#normRack, #flipRack {
-    position: relative;
-    display: flex;
-    margin: auto;
-    height: 0;
-    transition: height 0.15s ease-in;
-    /* transition: transform 0.5s ease-in-out; */
-}
 
 
 
@@ -381,7 +388,7 @@ input:focus {outline: none}
     background: none;
     border: none;
     transform: none;
-    transition: opacity 1s ease-in;
+    transition: opacity 0.2s ease-in;
 }
 .deleter img {
     height: 7vw;
