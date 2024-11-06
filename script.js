@@ -251,17 +251,22 @@ function makeTilesFor(word, rack) {
         ? prepareInputWordCont()
         : rack;
 
+    if (rack !== startWordCont && rack !== endWordCont) {
+        wordCont.classList.add('hidden');
+        wordCont.classList.add('fading');
+    }
+
     wordCont.querySelectorAll('div').forEach((tile, i) => {
         const isVisible = i < word.length;
         tile.textContent = isVisible ? word[i].toUpperCase() : '';
         tile.classList.toggle('tile', isVisible);
         tile.classList.toggle('hidden', !isVisible);
-        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${i * 0.3}s`;
+        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${0.2 + i * 0.2}s`;
     });
 
-    wordCont.style.opacity = 1;
-
-    wordCont.classList.remove('hidden');
+    // wordCont.style.opacity = 1;
+    // wordCont.classList.remove('hidden');
+    // wordCont.classList.remove('fading');
 
     wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 }
@@ -411,6 +416,9 @@ function submitMove() {
         makeTilesFor(inputWord);
 
         modifyHeight(upperRack, upperArray);
+
+        // wordCont.classList.remove('hidden');
+        // wordCont.classList.remove('fading');
 
         gameState.moveCounter++;
         updateLatestAndTargetWords();
