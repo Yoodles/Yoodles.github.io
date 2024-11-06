@@ -292,7 +292,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     background-color: #ffffff;
     /* border: 0.2vw solid rgb(127, 127, 127); */
     /* border: .6vw ridge rgb(127, 127, 127); */
-    border: .5vw outset rgb(127, 127, 127);
+    /* border: .5vw outset rgb(127, 127, 127); */
     margin: 0.7vw;
     align-items: center;
     font-size: 4.5vw;
@@ -303,13 +303,14 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     flex: 1;
     position: relative;
     text-align: center;
+    box-shadow: 3vw 3vw 5vw rgba(0, 0, 0, 0.081);
 }
 #gameplayCont .tile {height: 10vw; width: 10vw}
 #helpContent .tile {width: 5vw; height: 5vw; font-size: 4vw;}
 
 .setWord .tile {
     font-weight: bold;
-    border: 0.5vw outset rgb(50, 50, 50);
+    /* border: 0.5vw outset rgb(50, 50, 50); */
 }
 
 .tile.added {background-color: rgb(219, 255, 219);}
