@@ -290,12 +290,12 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     justify-content: center;
     /* border: 0.2vw solid rgb(127, 127, 127); */
     /* border: .6vw ridge rgb(127, 127, 127); */
-    border: .4vw outset rgb(127, 127, 127);
+    border: .5vw outset rgb(127, 127, 127);
     margin: 0.7vw;
     align-items: center;
     font-size: 4.5vw;
     font-weight: 300;
-    border-radius: 0.6vw;
+    border-radius: 1vw;
     animation-name: fadeIn;
     animation-duration: 0.2s;
     flex: 1;
@@ -307,7 +307,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 .setWord .tile {
     font-weight: bold;
-    border: 0.4vw outset rgb(50, 50, 50);
+    border: 0.5vw outset rgb(50, 50, 50);
 }
 
 .tile.added {background-color: rgb(219, 255, 219);}
@@ -340,8 +340,8 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     /* min-width: 50vw;
     max-width: 70vw; */
     text-transform: uppercase;
-    /* border: 0.3vw dashed #373737; */
-    border: .6vw outset #373737;
+    border: 0.3vw dashed #373737;
+    /* border: .6vw inset #373737; */
     background-color: white;
     font-family: 'Raleway';
     font-size: 5.7vw;
