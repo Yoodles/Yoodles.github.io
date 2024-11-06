@@ -22,7 +22,7 @@ body {
     overflow: hidden;
     font-family: 'Raleway', sans-serif;
     text-align: center;
-    background-color: #f8f9ff;
+    background-color: #f5f6fe;
     /* touch-action: manipulation; */
 
 }
@@ -156,8 +156,8 @@ button.function.help {
     padding-inline: 0;
     /* font-weight: bold; */
     text-align: center;
-    box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101);
-
+    /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
+    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
 }
 
 
