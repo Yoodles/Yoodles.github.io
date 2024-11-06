@@ -41,8 +41,6 @@ let wordPair = {
 }
 
 
-
-
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️
 function setWordPairAndLengths() {
     const index = wordPair.currentPairIndex;
@@ -62,9 +60,6 @@ function setWordPairAndLengths() {
     } else {
         document.getElementById('gameArea').innerText = "All Rounds Completed!";
     }
-
-    console.log(`Benchmarks: A = ${wordPair.score3star}, B = ${wordPair.score2star}`);
-
 }
 
 function buildWordPairTiles() {
