@@ -53,6 +53,7 @@ button.function {
     height: 5vh;
     /* margin: 2vw; */
     padding-inline: 0;
+    touch-action: none;
 }
 header button.function {
     margin: 3vw;
@@ -336,6 +337,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     text-transform: uppercase;
     /* border: 0.3vw dashed #373737; */
     border: .6vw outset #373737;
+    background-color: white;
     font-family: 'Raleway';
     font-size: 5.7vw;
     letter-spacing: 1.18vw;
