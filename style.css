@@ -110,6 +110,8 @@ button.function.help {
     border: none;
     padding: 0;
     cursor: pointer;
+    filter: drop-shadow(1vw 1vw 1vw rgb(0 0 0 / 0.4));
+
 }
 #gameLogo > img {
     width: 100%;
@@ -385,6 +387,7 @@ input:focus {outline: none}
     border: none;
     padding: 0;
     cursor: pointer;
+    filter: drop-shadow(1vw 2vw 1vw rgb(0 0 0 / 0.4));
 
 }
 #toggleFlip img {width: 12vw; height: 12vw; text-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.101);
