@@ -160,8 +160,7 @@ button.function.help {
     width: 100%;
 
     /* max-height: 80vh; */
-    /* width: 100%; */
-    padding: 13vh;
+    padding: 13vh 0;
     margin: auto;
     overflow-y: auto;
 }
@@ -301,8 +300,6 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 #normRack, #flipRack {
     position: relative;
     display: flex;
-
-    max-width: 80%;
     margin: auto;
     height: 0;
     transition: height 0.15s ease-in;
@@ -355,7 +352,7 @@ input:focus {outline: none}
 
 #flipperAndDeleters {
     display: flex;
-    right: 100%;
+    left: 100%;
     flex-direction: column;
     justify-content: space-around;
     height: 47.5vw;
