@@ -152,7 +152,9 @@ button.function.help {
     border-radius: 4vw;
     padding-inline: 0;
     /* font-weight: bold; */
-    text-align: center;;
+    text-align: center;
+    box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101);
+
 }
 
 
@@ -202,7 +204,7 @@ button.function.help {
     color: rgb(23, 23, 23);
     cursor: pointer;
     transition: background-color 0.1s ease;
-    box-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.081);
+    box-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.101);
     align-items: center;
     user-select: none;
 }
@@ -383,8 +385,10 @@ input:focus {outline: none}
     border: none;
     padding: 0;
     cursor: pointer;
+
 }
-#toggleFlip img {width: 12vw; height: 12vw;}
+#toggleFlip img {width: 12vw; height: 12vw; text-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.101);
+}
 
 .deleter {
     /* width: 90%; */
