@@ -156,7 +156,6 @@ button.function.help {
 #gameplayCont {
     display: flex;
     flex-direction: column;
-    /* transition: height 0.8s ease-out; */
     width: 100%;
 
     /* max-height: 80vh; */
@@ -554,8 +553,9 @@ li {
     margin-bottom: 2vh;
 }
 li.no-bullet {list-style-type: none;}
+li div {align-items: baseline;}
 
-li .flipper {width: 5vw; margin: 0 0.7vw; vertical-align: -33%;}
+li .flipper {width: 5vw; margin: 0 0.6vw; vertical-align: -33%;}
 li .del {width: 3vw; margin: 0 0.7vw; vertical-align: -25%;}
 li .del.flip {transform: rotate(0.5turn);}
 
