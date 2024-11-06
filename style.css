@@ -202,7 +202,7 @@ button.function.help {
     color: rgb(23, 23, 23);
     cursor: pointer;
     transition: background-color 0.1s ease;
-
+    box-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.081);
     align-items: center;
     user-select: none;
 }
@@ -345,7 +345,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     text-transform: uppercase;
     border: 0.3vw dashed #373737;
     /* border: .6vw inset #373737; */
-    background-color: white;
+    /* background-color: white; */
     font-family: 'Raleway';
     font-size: 5.7vw;
     letter-spacing: 1.18vw;
