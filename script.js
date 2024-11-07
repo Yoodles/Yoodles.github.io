@@ -151,7 +151,7 @@ function renderRoundList() {
             ${pair.start.toUpperCase()} → ${pair.end.toUpperCase()}
             <span class="stars">${generateStars(bestScore)}</span>
         `;
-        listItem.onclick = () => jumpToRound(pairKey); // Add click event for navigating rounds
+        listItem.addEventListener('click', () => jumpToRound(pairKey));
 
         roundList.appendChild(listItem);
     });
@@ -205,6 +205,8 @@ function jumpToRound(pairKey) {
     wordPair.startWord = startWord;
     wordPair.endWord = endWord;
     // Additional logic to load the round
+    // setWordPairAndLengths(0);
+    buildWordPairTiles();
     updateBestScoreUI();
 }
 
