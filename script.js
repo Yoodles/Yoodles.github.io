@@ -445,7 +445,7 @@ function updateDirectionUI(direction) {
 // 
 function toggleFlip() {
     const button = document.getElementById('toggleFlip');
-    const wordConts = document.querySelectorAll('.wordCont');
+    const racks = document.querySelectorAll('.rack');
     const deleters = document.querySelectorAll('.deleter');
 
     // Start the button rotation animation
@@ -453,19 +453,17 @@ function toggleFlip() {
     inputField.classList.add('rotating');
 
     // Add 'fading' class to all .wordCont and .deleters elements to fade them out
-    wordConts.forEach(cont => cont.classList.add('fading'));
-    deleters.forEach(deleter => deleter.classList.add('fading'));
-    // inputField.classList.add('fading');
+    racks.forEach(rack => rack.classList.add('fade-out'));
+    deleters.forEach(deleter => deleter.classList.add('fade-out'));
 
     // Set a timeout to remove the 'fading' class after the fade-out duration (0.9s)
     setTimeout(() => {
-        wordConts.forEach(cont => cont.classList.remove('fading'));
-        deleters.forEach(deleter => deleter.classList.remove('fading'));
-        // inputField.classList.remove('fading');
+        racks.forEach(cont => cont.classList.remove('fade-out'));
+        deleters.forEach(deleter => deleter.classList.remove('fade-out'));
 
         // Run updateGame('flip') while elements are still faded out
-        updateGame('flip');
-    }, 900); // This matches the fade-out duration
+        updateUI('flip');
+    }, 400); // This matches the fade-out duration
 
     // Remove the 'rotating' class after the animation ends (1.8s)
     setTimeout(() => {
@@ -564,7 +562,6 @@ function updateGame(action) {
     gameState.phase = 'mid';
 
     switch (action) {   
-        case 'flip':
         case 'undoMove':
             updateUI(action);
             break;

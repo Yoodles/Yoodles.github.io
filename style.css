@@ -322,6 +322,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 .wordCont.setWord {opacity: 1}
 
+.rack {opacity: 1}
 
 /* #racksAndInput .wordCont.fadeIn {
     opacity: 1;
