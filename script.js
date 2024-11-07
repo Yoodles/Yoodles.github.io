@@ -559,9 +559,7 @@ function updateGame(action) {
     gameState.phase = 'mid';
 
     switch (action) {   
-        // case 'submit':
         case 'flip':
-        // case 'delete':
         case 'undoMove':
             updateUI(action);
             break;
@@ -571,10 +569,10 @@ function updateGame(action) {
             checkAndUpdateBestScoreIndex();
             renderResultPanel();
 
-            updateUI(action);
             updateLatestAndTargetWords();
             updateBestScoreUI();
             checkAndUpdateBestScoreIndex();
+            updateUI(action);
             console.log("ROUND COMPLETE!!");
             break;
 
