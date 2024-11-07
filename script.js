@@ -149,7 +149,7 @@ function renderRoundList() {
         const listItem = document.createElement('li');
         listItem.innerHTML = `
             ${pair.start.toUpperCase()} → ${pair.end.toUpperCase()}
-            <span class="stars">${generateStars(bestScore)}</span>
+            <span class="star-container">${generateStars(bestScore)}</span>
         `;
         listItem.addEventListener('click', () => jumpToRound(pairKey));
 
@@ -201,13 +201,16 @@ function renderResultPanel() {
 
 // Jump to a specific round when selected from the list
 function jumpToRound(pairKey) {
+    console.log('JUMPTOROUND!', pairKey);
     const [startWord, endWord] = pairKey.split('-');
     wordPair.startWord = startWord;
     wordPair.endWord = endWord;
-    // Additional logic to load the round
+
+    console.log(wordPair.startWord, wordPair.endWord);
     // setWordPairAndLengths(0);
     buildWordPairTiles();
     updateBestScoreUI();
+    togglePopup('close');
 }
 
 
@@ -290,24 +293,24 @@ function submitMove() {
 
     if (isTotallyValid(inputWord, gameState.latestWord)) {
         const {upperRack, upperArray} = getDirectionalConfig();
+
         upperArray.push(inputWord);
 
-        let wordCont = prepareInputCont(upperRack, upperArray);
-        makeTilesIn(wordCont, inputWord);
-
         gameState.phase = 'mid';
+        gameState.latestMove = 'submit';
         gameState.moveCounter++;
         updateLatestAndTargetWords();
 
-        gameState.latestMove = 'submit';
+        // UPDATE UI (Build tiles, animations, etc.)
+        let wordCont = prepareInputCont(upperRack, upperArray);
+        makeTilesIn(wordCont, inputWord);
 
         if (inputWord === gameState.targetWord) updateGame('complete');
         else {
-
             modifyHeight('submit', upperRack, upperArray);
             applyClassInSequence(wordCont, ['fade-in'], [0]);
             emptyInputField();
-            updateDeletersUI();
+            updateDeleterVisibility();
         }
     }
 }
@@ -357,7 +360,7 @@ function deleteMove(which) {
         }, 300);
 
         emptyInputField();
-        updateDeletersUI();
+        updateDeleterVisibility();
     }
 
     logArrays('after delete');
@@ -481,7 +484,7 @@ function applyClassInSequence(elements, classes, delays) {
 
 
 
-function updateDeletersUI() {
+function updateDeleterVisibility() {
     const deleteNorm = document.getElementById('normDeleter');
     const deleteFlip = document.getElementById('flipDeleter');
 
@@ -520,7 +523,7 @@ function updateUI(stateOrAction) {
 
     if (gameState.phase === 'pre') {
         removeClass('post', 'complete');
-        updateDeletersUI();
+        updateDeleterVisibility();
         updateDirectionUI('norm');
         clearInputUI();
         emptyInputField();

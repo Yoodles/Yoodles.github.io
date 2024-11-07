@@ -518,7 +518,16 @@ div[data-flip] #flipDeleter img {transform: none}
     justify-content: space-between;
     align-items: center;
     margin: 0;
-}   
+}
+
+#roundList li:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+#roundList li:hover span {
+    text-decoration: none;
+    cursor: unset;
+}
 
 #popupPanel {
     position: fixed;
