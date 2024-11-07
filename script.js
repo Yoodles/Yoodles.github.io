@@ -256,6 +256,7 @@ function submitMove() {
         let wordCont = prepareInputCont(upperRack, upperArray);
         makeTilesIn(wordCont, inputWord);
 
+        gameState.phase = 'mid';
         gameState.moveCounter++;
         updateLatestAndTargetWords();
 
@@ -263,15 +264,75 @@ function submitMove() {
 
         if (inputWord === gameState.targetWord) updateGame('complete');
         else {
-            wordCont.classList.remove('invisible');
-            wordCont.classList.add('fade-in');
+            // wordCont.classList.remove('fade');
+            // wordCont.classList.remove('invisible');
             modifyHeight('submit', upperRack, upperArray);
+            animateElement(wordCont, 'fade-in');
             emptyInputField();
             updateDeletersUI();
         }
     }
 }
 
+
+function deleteMove(which) {
+    // determine which rack/array to delete from
+    let dirConfig;
+    switch (which) {
+        case 'norm':
+            dirConfig = {rack: normRack, array: gameState.normArray};
+            break;
+        case 'flip':
+            dirConfig = {rack: flipRack, array: gameState.flipArray};
+            break;
+        case 'top':
+            dirConfig = gameState.direction === 'norm'
+                ? {rack: normRack, array: gameState.normArray}
+                : {rack: flipRack, array: gameState.flipArray};
+            break;
+    }
+
+    // find all wordConts in the rack
+    let wordConts = dirConfig.rack.querySelectorAll('.wordCont');
+    let wordToDelete = wordConts[wordConts.length - 1];
+
+    // delete last entry in array (if non-empty) and last wordCont in rack
+    if (dirConfig.array.length > 0) dirConfig.array.pop();
+
+    gameState.moveCounter--;
+    updateLatestAndTargetWords();
+
+    // record latestMove (for "Undo" post-completion)
+    gameState.latestMove = dirConfig.rack === normRack
+        ? 'delete-norm'
+        : 'delete-flip';
+
+    // if latest & target match after delete, trigger completion code
+    if (gameState.latestWord === gameState.targetWord) updateGame('complete');
+    else {
+        animateElement(wordToDelete, 'fade-out');
+
+        // Delay the removal by .4 seconds
+        setTimeout(() => {
+            wordToDelete.remove();
+            modifyHeight('delete', dirConfig.rack, dirConfig.array);
+        }, 400);
+
+
+        emptyInputField();
+        updateDeletersUI();
+    }
+
+    logArrays('after delete');
+    console.log('After: ', dirConfig.rack, dirConfig.array);
+}
+
+
+
+function animateElement(el, animation, duration) {
+    // el.style.transitionDuration = `${duration}s`;
+    el.classList.add(`${animation}`);
+}
 
 //GETTING THE INPUTWORD CONT READY
 function prepareInputCont(rack, array) {
@@ -297,17 +358,12 @@ function prepareInputCont(rack, array) {
         cont.appendChild(tileCont);
     }
 
-    cont.classList.add('wordCont', 'invisible');
+    cont.classList.add('wordCont');
     return cont;
 }
 
 ////GENERATING WORD TILES////
 function makeTilesIn(wordCont, word) {
-
-    // let cont = (wordCont === startWordCont || wordCont === endWordCont)
-    //     ? wordCont
-    //     : prepareInputCont(rack, array);
-
     wordCont.querySelectorAll('div').forEach((tile, i) => {
         const isVisible = i < word.length;
         tile.textContent = isVisible ? word[i].toUpperCase() : '';
@@ -315,10 +371,10 @@ function makeTilesIn(wordCont, word) {
         tile.classList.toggle('hidden', !isVisible);
         if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${0.2 + i * 0.2}s`;
     });
-
-    // wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
-
 }
+
+// wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
+
 
 
 function modifyHeight(action, rack, array) {
@@ -435,51 +491,6 @@ function updateDeletersUI() {
 
 
 
-function deleteMove(which) {
-    // determine which rack/array to delete from
-    let dirConfig;
-    switch (which) {
-        case 'norm':
-            dirConfig = {rack: normRack, array: gameState.normArray};
-            break;
-        case 'flip':
-            dirConfig = {rack: flipRack, array: gameState.flipArray};
-            break;
-        case 'top':
-            dirConfig = gameState.direction === 'norm'
-                ? {rack: normRack, array: gameState.normArray}
-                : {rack: flipRack, array: gameState.flipArray};
-            break;
-    }
-
-    // find all wordConts in the rack
-    let wordConts = dirConfig.rack.querySelectorAll('.wordCont');
-
-    // delete last entry in array (if non-empty) and last wordCont in rack
-    if (dirConfig.array.length > 0) dirConfig.array.pop();
-    if (wordConts) wordConts[wordConts.length - 1].remove();
-
-    modifyHeight('delete', dirConfig.rack, dirConfig.array);
-
-    gameState.moveCounter--;
-    updateLatestAndTargetWords();
-
-    // record latestMove (for "Undo" post-completion)
-    gameState.latestMove = dirConfig.rack === normRack
-        ? 'delete-norm'
-        : 'delete-flip';
-
-    // if latest & target match after delete, trigger completion code
-    gameState.latestWord === gameState.targetWord
-        ? updateGame('complete')
-        : updateGame('delete');
-
-    logArrays('after delete');
-    console.log('After: ', dirConfig.rack, dirConfig.array);
-}
-
-
-
 
 function undoMove() {
     // gameState.phase = 'mid';
@@ -500,14 +511,6 @@ function undoMove() {
 
 function updateUI(stateOrAction) {
 
-    let dirConfig = getDirectionalConfig();
-    // let lastWordCont = dirConfig.upperRack.querySelector('.wordCont:nth-last-of-type(1)');
-    // console.log(dirConfig.upperRack.querySelectorAll('.wordCont'));
-
-
-    // console.log(dirConfig.upperRack);
-    // console.log(lastWordCont);
-
     console.log('phase: ', gameState.phase);
 
     if (gameState.phase === 'pre') {
@@ -522,13 +525,9 @@ function updateUI(stateOrAction) {
 
     switch (stateOrAction) {
         case 'submit':
-            // emptyInputField();
-            // updateDeletersUI();
             break;
         case 'delete':
             // inputField.focus();
-            emptyInputField();
-            updateDeletersUI();
             break;
         case 'flip':
             updateDirectionUI(gameState.direction);
@@ -557,9 +556,9 @@ function updateGame(action) {
     gameState.phase = 'mid';
 
     switch (action) {   
-        case 'submit':
+        // case 'submit':
         case 'flip':
-        case 'delete':
+        // case 'delete':
         case 'undoMove':
             updateUI(action);
             break;

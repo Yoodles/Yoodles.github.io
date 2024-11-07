@@ -276,27 +276,6 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 /*=====WORD CONTAINERS & TILES=====*/
 
-.wordCont {
-    display: flex;
-    justify-content: center; /* not sure */
-    margin-left: auto;
-    margin-right: auto;
-    /* opacity: 0; */
-    /* height: 11.4vw; */
-}
-
-.wordCont, .deleter {
-    /* transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1); */
-    /* transition: opacity 0.9s ease-out; */
-    /* opacity: 1; */
-}
-
-.wordCont.fading, .deleter.fading, #inputField.fading {opacity: 0;}
-
-
-.setWord .wordCont {opacity: 1}
-
-
 .tile {
     display: flex;
     justify-content: center;
@@ -330,20 +309,61 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 
+.wordCont {
+    display: flex;
+    justify-content: center; /* not sure */
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+}
+
+/* .wordCont, .deleter { */
+    /* transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1); */
+    /* transition: opacity 0.9s ease-out; */
+    /* opacity: 1; */
+/* } */
+
+/* .wordCont.fading, .deleter.fading, #inputField.fading {opacity: 0;} */
+
+.wordCont.setWord {opacity: 1}
+
+
+/* #racksAndInput .wordCont.fadeIn {
+    opacity: 1;
+} */
+
+
+
 .hidden { display: none;}
-/* .invisible { visibility: hidden } */
 
 .invisible { opacity: 0; }
 
+
 .fade-in {
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out; /* Adjust the timing as needed */
+    animation-name: fadeIn;
+    animation-fill-mode: forwards;
 }
 
 .fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out; /* Adjust the timing as needed */
+    animation-name: fadeOut;
+    animation-fill-mode: forwards;
 }
+
+.fade-in.wordCont, .fade-out.wordCont {
+    animation-duration: .4s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0}
+    to { opacity: 1}
+}
+
+@keyframes fadeOut {
+    from {opacity: 1}
+    to {opacity: 0}
+}
+
+
 
 
 
@@ -604,30 +624,6 @@ li .del.flip {transform: rotate(0.5turn);}
 
 
 
-
-
-
-/* .fade-out {
-    animation-name: fadeOut;
-    animation-duration: 0.4s;
-    animation-fill-mode: forwards;
-}
-
-@keyframes fadeOut {
-    from {opacity: 1}
-    to {opacity: 0}
-} */
-
-/* .fade-in {
-    animation-name: fadeIn;
-    animation-duration: 0.4s;
-    animation-fill-mode: forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0.3}
-    to { opacity: 1}
-} */
 
 .rotating {animation: verticalFlip 1.2s ease-in-out;}
 
