@@ -339,6 +339,14 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 
+.rotating {animation: verticalFlip 1.2s ease-in-out;}
+
+@keyframes verticalFlip {
+    0% {transform: rotateX(0deg);}
+    100% {transform: rotateX(720deg);}
+}
+
+
 /* .fade-in.wordCont, .fade-out.wordCont {
     transition: opacity 2s ease;
 } */
@@ -599,24 +607,7 @@ li .del.flip {transform: rotate(0.5turn);}
 
 
 
-
-.rotating {animation: verticalFlip 1.2s ease-in-out;}
-
-@keyframes verticalFlip {
-    0% {transform: rotateX(0deg);}
-    100% {transform: rotateX(720deg);}
-}
-
-
 /* .deleter {
     opacity: 0;
     transition: opacity var(--fade-duration) ease-in-out;
 } */
-
-
-
-.element {
-    opacity: 0;
-    transition: opacity 0.5s ease-in;
-    transition-delay: 0.3s; /* Delay of 0.3s */
-}
