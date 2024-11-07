@@ -286,12 +286,15 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 }
 
 .wordCont, .deleter {
-    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    /* transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1); */
     /* transition: opacity 0.9s ease-out; */
-    opacity: 1;
+    /* opacity: 1; */
 }
 
 .wordCont.fading, .deleter.fading, #inputField.fading {opacity: 0;}
+
+
+.setWord .wordCont {opacity: 1}
 
 
 .tile {
@@ -326,6 +329,21 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 
+
+.hidden { display: none;}
+/* .invisible { visibility: hidden } */
+
+.invisible { opacity: 0; }
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out; /* Adjust the timing as needed */
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Adjust the timing as needed */
+}
 
 
 
@@ -587,11 +605,9 @@ li .del.flip {transform: rotate(0.5turn);}
 
 
 
-.hidden { display: none }
-/* .invisible { visibility: hidden } */
-.invisible { opacity: 0; }
 
-.fade-out {
+
+/* .fade-out {
     animation-name: fadeOut;
     animation-duration: 0.4s;
     animation-fill-mode: forwards;
@@ -600,9 +616,9 @@ li .del.flip {transform: rotate(0.5turn);}
 @keyframes fadeOut {
     from {opacity: 1}
     to {opacity: 0}
-}
+} */
 
-.fade-in {
+/* .fade-in {
     animation-name: fadeIn;
     animation-duration: 0.4s;
     animation-fill-mode: forwards;
@@ -611,7 +627,7 @@ li .del.flip {transform: rotate(0.5turn);}
 @keyframes fadeIn {
     from { opacity: 0.3}
     to { opacity: 1}
-}
+} */
 
 .rotating {animation: verticalFlip 1.2s ease-in-out;}
 
@@ -626,13 +642,7 @@ li .del.flip {transform: rotate(0.5turn);}
     transition: opacity var(--fade-duration) ease-in-out;
 } */
 
-/* .fade-in {
-    opacity: 1;
-}
 
-.fade-out {
-    opacity: 0;
-} */
 
 .element {
     opacity: 0;

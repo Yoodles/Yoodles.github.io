@@ -62,8 +62,8 @@ function setWordPairAndLengths() {
 }
 
 function buildWordPairTiles() {
-    makeTilesFor(wordPair.startWord, startWordCont);
-    makeTilesFor(wordPair.endWord, endWordCont);
+    makeTilesIn(startWordCont, wordPair.startWord);
+    makeTilesIn(endWordCont, wordPair.endWord);
 }
 
 //====UTILITY FUNCTIONS====//
@@ -253,25 +253,60 @@ function submitMove() {
         const {upperRack, upperArray} = getDirectionalConfig();
         upperArray.push(inputWord);
 
-        makeTilesFor(inputWord, upperRack, upperArray);
+        let wordCont = prepareInputCont(upperRack, upperArray);
+        makeTilesIn(wordCont, inputWord);
 
         gameState.moveCounter++;
         updateLatestAndTargetWords();
 
         gameState.latestMove = 'submit';
 
-        inputWord === gameState.targetWord
-            ? updateGame('complete')
-            : updateGame('submit');
+        if (inputWord === gameState.targetWord) updateGame('complete');
+        else {
+            wordCont.classList.remove('invisible');
+            wordCont.classList.add('fade-in');
+            modifyHeight('submit', upperRack, upperArray);
+            emptyInputField();
+            updateDeletersUI();
+        }
     }
 }
 
-////GENERATING WORD TILES////
-function makeTilesFor(word, rack, array) {
 
-    let wordCont = (rack === startWordCont || rack === endWordCont)
-        ? rack
-        : prepareInputCont(rack, array);
+//GETTING THE INPUTWORD CONT READY
+function prepareInputCont(rack, array) {
+    const positionInArray = array.length;
+    const wordContsInRack = rack.children;
+    let cont;
+
+    // If the array has fewer entries than there are divs in, then use rack's child at array length...
+    if (wordContsInRack && positionInArray < wordContsInRack.length) {
+        cont = wordContsInRack[positionInArray];
+    // ...otherwise, use a new div added to rack.
+    } else {
+        cont = document.createElement('div');
+        rack.appendChild(cont);
+    }
+
+    // Clear the wordCont in case of preexisting tiles
+    cont.innerHTML = '';
+
+    // Make 6 empty tileConts inside the wordCont
+    for (let i = 0; i < 6; i++) {
+        const tileCont = document.createElement('div');
+        cont.appendChild(tileCont);
+    }
+
+    cont.classList.add('wordCont', 'invisible');
+    return cont;
+}
+
+////GENERATING WORD TILES////
+function makeTilesIn(wordCont, word) {
+
+    // let cont = (wordCont === startWordCont || wordCont === endWordCont)
+    //     ? wordCont
+    //     : prepareInputCont(rack, array);
 
     wordCont.querySelectorAll('div').forEach((tile, i) => {
         const isVisible = i < word.length;
@@ -281,40 +316,7 @@ function makeTilesFor(word, rack, array) {
         if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${0.2 + i * 0.2}s`;
     });
 
-    // wordCont.style.opacity = 1;
-    wordCont.classList.remove('hidden');
-    wordCont.classList.remove('fading');
-
-    wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
-
-
-    //GETTING THE INPUTWORD CONT READY
-    function prepareInputCont(rack, array) {
-        const positionInArray = array.length;
-        const wordContsInRack = rack.children;
-        let cont;
-
-        // If the array has fewer entries than there are divs in, then use rack's child at array length...
-        if (wordContsInRack && positionInArray < wordContsInRack.length) {
-            cont = wordContsInRack[positionInArray];
-        // ...otherwise, use a new div added to rack.
-        } else {
-            cont = document.createElement('div');
-            rack.appendChild(cont);
-        }
-
-        // Clear the wordCont in case of preexisting tiles
-        cont.innerHTML = '';
-
-        // Make 6 empty tileConts inside the wordCont
-        for (let i = 0; i < 6; i++) {
-            const tileCont = document.createElement('div');
-            cont.appendChild(tileCont);
-        }
-
-        cont.classList.add('wordCont');
-        return cont;
-    }
+    // wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 
 }
 
@@ -418,7 +420,7 @@ function toggleFlip() {
 
 
 
-function updateDeleters() {
+function updateDeletersUI() {
     const deleteNorm = document.getElementById('normDeleter');
     const deleteFlip = document.getElementById('flipDeleter');
 
@@ -486,11 +488,11 @@ function undoMove() {
         case 'submit':
             deleteMove('top');
             break;
-        case 'delete-norm':
-            makeTilesFor(gameState.latestWord, normRack, gameState.normArray);
+        case 'delete-norm': //*****
+            makeTilesIn(gameState.latestWord, normRack, gameState.normArray);
             break;
         case 'delete-flip':
-            makeTilesFor(gameState.latestWord, flipRack, gameState.flipArray);
+            makeTilesIn(gameState.latestWord, flipRack, gameState.flipArray);
             break;
     }
     updateGame('undoMove');
@@ -498,13 +500,19 @@ function undoMove() {
 
 function updateUI(stateOrAction) {
 
-    const dirConfig = getDirectionalConfig();
+    let dirConfig = getDirectionalConfig();
+    // let lastWordCont = dirConfig.upperRack.querySelector('.wordCont:nth-last-of-type(1)');
+    // console.log(dirConfig.upperRack.querySelectorAll('.wordCont'));
+
+
+    // console.log(dirConfig.upperRack);
+    // console.log(lastWordCont);
 
     console.log('phase: ', gameState.phase);
 
     if (gameState.phase === 'pre') {
         removeClass('post', 'complete');
-        updateDeleters();
+        updateDeletersUI();
         updateDirectionUI('norm');
         clearInputUI();
         emptyInputField();
@@ -514,14 +522,13 @@ function updateUI(stateOrAction) {
 
     switch (stateOrAction) {
         case 'submit':
-            modifyHeight('submit', dirConfig.upperRack, dirConfig.upperArray);
-            emptyInputField();
-            updateDeleters();
+            // emptyInputField();
+            // updateDeletersUI();
             break;
         case 'delete':
             // inputField.focus();
             emptyInputField();
-            updateDeleters();
+            updateDeletersUI();
             break;
         case 'flip':
             updateDirectionUI(gameState.direction);
