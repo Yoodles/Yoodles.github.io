@@ -447,15 +447,7 @@ function toggleFlip() {
     const deleters = document.querySelectorAll('.deleter');
 
     // Start the button rotation animation
-    flipper.classList.add('rotating');
-    inputField.classList.add('rotating');
-
     applyClassInSequence([flipper, inputField], ['rotating', 'rotating'], [0, 2000]);
-
-
-    // Add 'fading' class to all .wordCont and .deleters elements to fade them out
-    // racks.forEach(rack => rack.classList.add('fade-out'));
-    // deleters.forEach(deleter => deleter.classList.add('fade-out'));
 
     applyClassInSequence([...racks, ...deleters], ['fade-out'], [0]);
 

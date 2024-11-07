@@ -294,7 +294,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     box-shadow: 3vw 3vw 5vw rgba(0, 0, 0, 0.081);
 }
 #gameplayCont .tile {height: 10vw; width: 10vw}
-#helpContent .tile {width: 5vw; height: 5vw; font-size: 4vw;}
+#helpContent .tile {width: 5vw; height: 5vw; font-size: 4vw; box-shadow: none;}
 
 .setWord .tile {
     font-weight: bold;
@@ -319,13 +319,6 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 }
 
 /* transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1); */
-
-
-
-/* #racksAndInput .wordCont.fadeIn {
-    opacity: 1;
-} */
-
 
 
 .hidden { display: none;}
