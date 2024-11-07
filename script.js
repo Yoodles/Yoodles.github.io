@@ -443,17 +443,19 @@ function updateDirectionUI(direction) {
 
 // 
 function toggleFlip() {
-    const button = document.getElementById('toggleFlip');
+    const flipper = document.getElementById('toggleFlip');
     const racks = document.querySelectorAll('.rack');
     const deleters = document.querySelectorAll('.deleter');
 
     // Start the button rotation animation
-    button.classList.add('rotating');
+    flipper.classList.add('rotating');
     inputField.classList.add('rotating');
 
     // Add 'fading' class to all .wordCont and .deleters elements to fade them out
-    racks.forEach(rack => rack.classList.add('fade-out'));
-    deleters.forEach(deleter => deleter.classList.add('fade-out'));
+    // racks.forEach(rack => rack.classList.add('fade-out'));
+    // deleters.forEach(deleter => deleter.classList.add('fade-out'));
+
+    applyClassInSequence([...racks, ...deleters], ['fade-out'], [0]);
 
     // Set a timeout to remove the 'fading' class after the fade-out duration (0.9s)
     setTimeout(() => {
@@ -476,13 +478,20 @@ function toggleFlip() {
 }
 
 
-function applyClassInSequence(element, classes, delays) {
-    classes.forEach((className, index) => {
-        setTimeout(() => {
-            element.classList.toggle(className);
-        }, delays[index]);
+function applyClassInSequence(elements, classes, delays) {
+    // Ensure `elements` is an array, even if a single element is passed
+    const elementArray = Array.isArray(elements) ? elements : [elements];
+
+    // Apply each class in sequence for each element
+    elementArray.forEach(element => {
+        classes.forEach((className, index) => {
+            setTimeout(() => {
+                element.classList.toggle(className);
+            }, delays[index]);
+        });
     });
 }
+
 
 
 
