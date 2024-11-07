@@ -295,11 +295,10 @@ function submitMove() {
         const {upperRack, upperArray} = getDirectionalConfig();
 
         upperArray.push(inputWord);
-
+        updateLatestAndTargetWords();
         gameState.phase = 'mid';
         gameState.latestMove = 'submit';
         gameState.moveCounter++;
-        updateLatestAndTargetWords();
 
         // UPDATE UI (Build tiles, animations, etc.)
         let wordCont = prepareInputCont(upperRack, upperArray);
@@ -307,8 +306,14 @@ function submitMove() {
 
         if (inputWord === gameState.targetWord) updateGame('complete');
         else {
-            modifyHeight('submit', upperRack, upperArray);
-            applyClassInSequence(wordCont, ['fade-in'], [0]);
+
+            // Start modifyHeight and then trigger toggleClassesInSequence only after it completes
+            modifyHeight('submit', upperRack, upperArray)
+                .then(() => {
+                // Once modifyHeight completes, fade in and out .wordCont
+                toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
+                });
+
             emptyInputField();
             updateDeleterVisibility();
         }
@@ -351,7 +356,9 @@ function deleteMove(which) {
     // if latest & target match after delete, trigger completion code
     if (gameState.latestWord === gameState.targetWord) updateGame('complete');
     else {
-        applyClassInSequence(wordToDelete, ['fade-out'], [0]);
+        // Apply the classes in sequence to trigger the fade-out effect
+        toggleClassesInSequence(wordToDelete, ['visible', 'fade-out'], [0, 0]);
+
 
         // Delay the removal by .3 seconds
         setTimeout(() => {
@@ -384,18 +391,55 @@ function animateElement(el, animation) {
 
 
 
+// function modifyHeight(action, rack, array) {
+//     // Get the height of startWordCont in pixels
+//     let wordContHeight = parseFloat(window.getComputedStyle(startWordCont).height);
+
+//     // If Submit/Delete: New height of rack = number of words in array x wordCont height
+//     if (action === 'submit' || action === 'delete') rack.style.height = array.length * wordContHeight + 'px';
+
+//     // If Complete: 
+//     else if (action === 'complete') getDirectionalConfig().upperRack.style.transform = 'translateY(' + 18 * (window.innerWidth / 100) + wordContHeight + ')';
+// }
+
 function modifyHeight(action, rack, array) {
-    // Get the height of startWordCont in pixels
-    let wordContHeight = parseFloat(window.getComputedStyle(startWordCont).height);
-
-    // If Submit/Delete: New height of rack = number of words in array x wordCont height
-    if (action === 'submit' || action === 'delete') rack.style.height = array.length * wordContHeight + 'px';
-
-    // If Complete: 
-    else if (action === 'complete') getDirectionalConfig().upperRack.style.transform = 'translateY(' + 18 * (window.innerWidth / 100) + wordContHeight + ')';
-}
-
-
+    return new Promise((resolve) => {
+      let wordContHeight = parseFloat(window.getComputedStyle(startWordCont).height);
+  
+      if (action === 'submit' || action === 'delete') {
+        // Set the height based on the array length
+        rack.style.height = array.length * wordContHeight + 'px';
+  
+        // Listen for the height transition to complete
+        const onTransitionEnd = (event) => {
+          if (event.propertyName === 'height') { // Check if the height property finished transitioning
+            rack.removeEventListener('transitionend', onTransitionEnd); // Clean up the event listener
+            resolve(); // Resolve the promise when the transition ends
+          }
+        };
+  
+        // Add the event listener for the height transition
+        rack.addEventListener('transitionend', onTransitionEnd);
+      } 
+      else if (action === 'complete') {
+        // Set the transform for a sliding effect
+        const upperRack = getDirectionalConfig().upperRack;
+        upperRack.style.transform = 'translateY(' + (18 * (window.innerWidth / 100) + wordContHeight) + 'px';
+  
+        // Listen for the transform transition to complete
+        const onTransformEnd = (event) => {
+          if (event.propertyName === 'transform') { // Check if the transform property finished transitioning
+            upperRack.removeEventListener('transitionend', onTransformEnd); // Clean up the event listener
+            resolve(); // Resolve the promise when the transition ends
+          }
+        };
+  
+        // Add the event listener for the transform transition
+        upperRack.addEventListener('transitionend', onTransformEnd);
+      }
+    });
+  }
+  
 
 
 
@@ -456,9 +500,9 @@ function toggleFlip() {
     const deleters = document.querySelectorAll('.deleter');
 
     // Start the button rotation animation
-    applyClassInSequence([flipper, inputField], ['rotating', 'rotating'], [0, 2000]);
+    toggleClassesInSequence([flipper, inputField], ['rotating', 'rotating'], [0, 2000]);
 
-    applyClassInSequence([...racks, ...deleters], ['fade-out'], [0]);
+    toggleClassesInSequence([...racks, ...deleters], ['fade-out'], [0]);
 
     // Set a timeout to flip racks during fade
     setTimeout(() => {
@@ -467,7 +511,7 @@ function toggleFlip() {
 }
 
 
-function applyClassInSequence(elements, classes, delays) {
+function toggleClassesInSequence(elements, classes, delays) {
     // Ensure `elements` is an array, even if a single element is passed
     const elementArray = Array.isArray(elements) ? elements : [elements];
 
