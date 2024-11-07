@@ -320,6 +320,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     margin-right: auto;
     opacity: 0;
 }
+.wordCont.visible {opacity: 1}
 
 .rack {opacity: 1}
 
@@ -512,14 +513,9 @@ div[data-flip] #flipDeleter img {transform: none}
     align-items: center;
     margin: 0;
 }
-
 #roundList li:hover {
-    text-decoration: underline;
+    transform: scale(1.05);
     cursor: pointer;
-}
-#roundList li:hover span {
-    text-decoration: none;
-    cursor: unset;
 }
 
 #popupPanel {

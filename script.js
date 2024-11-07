@@ -66,6 +66,40 @@ function buildWordPairTiles() {
     makeTilesIn(endWordCont, wordPair.endWord);
 }
 
+
+
+// DIRECTIONAL CONFIGURATIONS
+function getDirectionalConfig() {
+    if (gameState.direction === 'norm') {
+        return {
+            upperRack: normRack,
+            lowerRack: flipRack,
+            wordAtTop: wordPair.startWord,
+            wordAtBottom: wordPair.endWord,
+            upperArray: gameState.normArray,
+            lowerArray: gameState.flipArray,
+        };
+    } else { // i.e. is 'flip'
+        return {
+            upperRack: flipRack,
+            lowerRack: normRack,
+            wordAtTop: wordPair.endWord,
+            wordAtBottom: wordPair.startWord,
+            upperArray: gameState.flipArray,
+            lowerArray: gameState.normArray,
+        };
+    }
+}
+
+// FUNCTION: Update the latest and target word based on the current directional configuration
+function updateLatestAndTargetWords() {
+    const { upperArray, wordAtTop, lowerArray, wordAtBottom } = getDirectionalConfig();
+    gameState.latestWord = upperArray.length ? upperArray.at(-1) : wordAtTop;
+    gameState.targetWord = lowerArray.length ? lowerArray.at(-1) : wordAtBottom;
+    console.log('update latest/target: ', gameState.latestWord, gameState.targetWord);
+}
+
+
 //====UTILITY FUNCTIONS====//
 
 function addClass(className, classToAdd) {
@@ -208,7 +242,7 @@ function jumpToRound(pairKey) {
 
     console.log(wordPair.startWord, wordPair.endWord);
     // setWordPairAndLengths(0);
-    buildWordPairTiles();
+    buildWordPairTiles(); //***** NEED TO SET LATEST/TARGET and LENGTHS
     updateBestScoreUI();
     togglePopup('close');
 }
@@ -443,36 +477,7 @@ function modifyHeight(action, rack, array) {
 
 
 
-// DIRECTIONAL CONFIGURATIONS
-function getDirectionalConfig() {
-    if (gameState.direction === 'norm') {
-        return {
-            upperRack: normRack,
-            lowerRack: flipRack,
-            wordAtTop: wordPair.startWord,
-            wordAtBottom: wordPair.endWord,
-            upperArray: gameState.normArray,
-            lowerArray: gameState.flipArray,
-        };
-    } else { // i.e. is 'flip'
-        return {
-            upperRack: flipRack,
-            lowerRack: normRack,
-            wordAtTop: wordPair.endWord,
-            wordAtBottom: wordPair.startWord,
-            upperArray: gameState.flipArray,
-            lowerArray: gameState.normArray,
-        };
-    }
-}
 
-// FUNCTION: Update the latest and target word based on the current directional configuration
-function updateLatestAndTargetWords() {
-    const { upperArray, wordAtTop, lowerArray, wordAtBottom } = getDirectionalConfig();
-    gameState.latestWord = upperArray.length ? upperArray.at(-1) : wordAtTop;
-    gameState.targetWord = lowerArray.length ? lowerArray.at(-1) : wordAtBottom;
-    console.log('update latest/target: ', gameState.latestWord, gameState.targetWord);
-}
 
 function updateDirectionUI(direction) {
     const elementsToUpdate = [
