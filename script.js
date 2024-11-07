@@ -2,7 +2,6 @@
 // import { isTotallyValid } from './word-validity.js';
 
 const inputField = document.getElementById('inputField');
-
 const startWordCont = document.getElementById('startWord');
 const normRack = document.getElementById('normRack'); 
 const flipRack = document.getElementById('flipRack');
@@ -251,10 +250,10 @@ function makeTilesFor(word, rack) {
         ? prepareInputWordCont()
         : rack;
 
-    if (rack !== startWordCont && rack !== endWordCont) {
-        wordCont.classList.add('hidden');
-        wordCont.classList.add('fading');
-    }
+    // if (rack !== startWordCont && rack !== endWordCont) {
+    //     wordCont.classList.add('hidden');
+    //     wordCont.classList.add('fading');
+    // }
 
     wordCont.querySelectorAll('div').forEach((tile, i) => {
         const isVisible = i < word.length;
@@ -265,14 +264,14 @@ function makeTilesFor(word, rack) {
     });
 
     // wordCont.style.opacity = 1;
-    // wordCont.classList.remove('hidden');
-    // wordCont.classList.remove('fading');
+    wordCont.classList.remove('hidden');
+    wordCont.classList.remove('fading');
 
     wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 }
 
 
-function modifyHeight(rack, array, action) {
+function modifyHeight(action, rack, array) {
     // Get the height of startWordCont in pixels
     let wordContHeight = parseFloat(window.getComputedStyle(startWordCont).height);
 
@@ -280,7 +279,7 @@ function modifyHeight(rack, array, action) {
     if (action === 'submit' || action === 'delete') rack.style.height = array.length * wordContHeight + 'px';
 
     // If Complete: 
-    else if (action === 'complete') rack.style.transform = 'translateY(' + 18 * (window.innerWidth / 100) + wordContHeight + ')';
+    else if (action === 'complete') getDirectionalConfig().upperRack.style.transform = 'translateY(' + 18 * (window.innerWidth / 100) + wordContHeight + ')';
 }
 
 
@@ -418,10 +417,10 @@ function submitMove() {
         upperArray.push(inputWord);
         makeTilesFor(inputWord);
 
-        modifyHeight(upperRack, upperArray, 'submit');
+        modifyHeight('submit', upperRack, upperArray);
 
-        // wordCont.classList.remove('hidden');
-        // wordCont.classList.remove('fading');
+        wordCont.classList.remove('hidden');
+        wordCont.classList.remove('fading');
 
         gameState.moveCounter++;
         updateLatestAndTargetWords();
@@ -459,7 +458,7 @@ function deleteMove(which) {
     if (dirConfig.array.length > 0) dirConfig.array.pop();
     if (wordConts) wordConts[wordConts.length - 1].remove();
 
-    modifyHeight(dirConfig.rack, dirConfig.array, 'delete');
+    modifyHeight('delete', dirConfig.rack, dirConfig.array);
 
     gameState.moveCounter--;
     updateLatestAndTargetWords();
@@ -524,6 +523,7 @@ function updateUI(stateOrAction) {
             break;
         case 'complete':
             emptyinputField();
+            modifyHeight('complete');
             addClass('post', 'complete');
             break;
         case 'undoMove':

@@ -621,18 +621,18 @@ li .del.flip {transform: rotate(0.5turn);}
 }
 
 
-.deleter {
+/* .deleter {
     opacity: 0;
     transition: opacity var(--fade-duration) ease-in-out;
-}
+} */
 
-.fade-in {
+/* .fade-in {
     opacity: 1;
 }
 
 .fade-out {
     opacity: 0;
-}
+} */
 
 .element {
     opacity: 0;
