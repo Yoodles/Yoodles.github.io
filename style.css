@@ -314,16 +314,11 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     justify-content: center; /* not sure */
     margin-left: auto;
     margin-right: auto;
-    /* opacity: 0; */
+
+    opacity: 0;
 }
 
-/* .wordCont, .deleter { */
-    /* transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1); */
-    /* transition: opacity 0.9s ease-out; */
-    /* opacity: 1; */
-/* } */
-
-/* .wordCont.fading, .deleter.fading, #inputField.fading {opacity: 0;} */
+/* transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1); */
 
 .wordCont.setWord {opacity: 1}
 
@@ -335,14 +330,8 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 .hidden { display: none;}
-
 .invisible { opacity: 0; }
 
-
-
-/* .fade-in.wordCont {
-    transition-delay: .2s;
-} */
 
 /* .fade-in.wordCont, .fade-out.wordCont {
     transition: opacity 2s ease;
@@ -350,8 +339,9 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 /* Fade effects */
-.fade-in { opacity: 1; transition: opacity 2s ease-in; }
-.fade-out { opacity: 0; transition: opacity 2s ease-out; }
+.fade-in { opacity: 1; transition: opacity .2s ease-in; }
+.fade-out { opacity: 0; transition: opacity .2s ease-out; }
+.fade-in.wordCont {transition-delay: .2s;}
 
 /* Slide effects */
 .slide-up { transform: translateY(0); transition: transform 1s ease; }

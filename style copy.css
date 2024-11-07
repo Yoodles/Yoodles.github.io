@@ -117,7 +117,6 @@ button.function.help {
 #gameLogo > img {
     width: 100%;
     max-height: 11%;
-    /* margin: 10% 0; */
 }
 
 #gameArea {
@@ -326,51 +325,23 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 /* .wordCont.fading, .deleter.fading, #inputField.fading {opacity: 0;} */
 
 .wordCont.setWord {opacity: 1}
-
-
-/* #racksAndInput .wordCont.fadeIn {
-    opacity: 1;
-} */
-
-
-
-.hidden { display: none;}
-
-.invisible { opacity: 0; }
-
-
-.fade-in {
-    /* animation-name: fadeIn;
-    animation-fill-mode: forwards; */
-    opacity: 1;
-}
-
-.fade-out {
-    /* animation-name: fadeOut;
-    animation-fill-mode: forwards; */
-    opacity: 0;
-}
+#racksAndInput .wordCont.fadeIn {opacity: 0;}
 
 .fade-in.wordCont {
     transition-delay: .2s;
 }
 
-.fade-in.wordCont, .fade-out.wordCont {
+.hidden { display: none;}
+.invisible { opacity: 0; }
+
+.fade-in {opacity: 1;}
+.fade-out {opacity: 0;}
+
+
+
+/* .fade-in.wordCont, .fade-out.wordCont {
     transition: opacity 2s ease;
-}
-
-/* @keyframes fadeIn {
-    from { opacity: 0}
-    to { opacity: 1}
 } */
-
-/* @keyframes fadeOut {
-    from {opacity: 1}
-    to {opacity: 0}
-} */
-
-
-
 
 
 
@@ -412,9 +383,7 @@ input:focus {outline: none}
     justify-content: space-around;
     height: 47.5vw;
     position: absolute;
-    width: 14vw; /* もしcolumnの幅をフレックスにするなら、min-widthを9vwに */
-    /* padding: 1.25vw; */
-    /* background: #edf6ffef; */
+    width: 14vw;
     align-items: center;
 }
 #flipperAndDeleters[data-flip] { flex-direction: column-reverse; }

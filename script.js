@@ -242,7 +242,44 @@ function togglePopup(action) {
     }
 }
 
+//GETTING THE INPUTWORD CONT READY
+function prepareInputCont(rack, array) {
+    const positionInArray = array.length;
+    const wordContsInRack = rack.children;
+    let cont;
 
+    // If the array has fewer entries than there are divs in, then use rack's child at array length...
+    if (wordContsInRack && positionInArray < wordContsInRack.length) {
+        cont = wordContsInRack[positionInArray];
+    // ...otherwise, use a new div added to rack.
+    } else {
+        cont = document.createElement('div');
+        rack.appendChild(cont);
+    }
+
+    // Clear the wordCont in case of preexisting tiles
+    cont.innerHTML = '';
+
+    // Make 6 empty tileConts inside the wordCont
+    for (let i = 0; i < 6; i++) {
+        const tileCont = document.createElement('div');
+        cont.appendChild(tileCont);
+    }
+
+    cont.classList.add('wordCont');
+    return cont;
+}
+
+////GENERATING WORD TILES////
+function makeTilesIn(wordCont, word) {
+    wordCont.querySelectorAll('div').forEach((tile, i) => {
+        const isVisible = i < word.length;
+        tile.textContent = isVisible ? word[i].toUpperCase() : '';
+        tile.classList.toggle('tile', isVisible);
+        tile.classList.toggle('hidden', !isVisible);
+        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${0.2 + i * 0.2}s`;
+    });
+}
 
 
 //FUNC: SUBMITTING A MOVE
@@ -310,16 +347,16 @@ function deleteMove(which) {
     // if latest & target match after delete, trigger completion code
     if (gameState.latestWord === gameState.targetWord) updateGame('complete');
     else {
-        animateElement(wordToDelete, 'fade-out');
+        applyClassInSequence(wordToDelete, ['fade-out'], [0]);
 
-        // Delay the removal by .4 seconds
+        // Delay the removal by .3 seconds
         setTimeout(() => {
+            modifyHeight('delete', dirConfig.rack, dirConfig.array);
             wordToDelete.remove();
-        }, 2000);
-
-        modifyHeight('delete', dirConfig.rack, dirConfig.array);
+        }, 300);
 
         emptyInputField();
+        inputField.focus();
         updateDeletersUI();
     }
 
@@ -338,44 +375,7 @@ function animateElement(el, animation) {
 
 }
 
-//GETTING THE INPUTWORD CONT READY
-function prepareInputCont(rack, array) {
-    const positionInArray = array.length;
-    const wordContsInRack = rack.children;
-    let cont;
 
-    // If the array has fewer entries than there are divs in, then use rack's child at array length...
-    if (wordContsInRack && positionInArray < wordContsInRack.length) {
-        cont = wordContsInRack[positionInArray];
-    // ...otherwise, use a new div added to rack.
-    } else {
-        cont = document.createElement('div');
-        rack.appendChild(cont);
-    }
-
-    // Clear the wordCont in case of preexisting tiles
-    cont.innerHTML = '';
-
-    // Make 6 empty tileConts inside the wordCont
-    for (let i = 0; i < 6; i++) {
-        const tileCont = document.createElement('div');
-        cont.appendChild(tileCont);
-    }
-
-    cont.classList.add('wordCont');
-    return cont;
-}
-
-////GENERATING WORD TILES////
-function makeTilesIn(wordCont, word) {
-    wordCont.querySelectorAll('div').forEach((tile, i) => {
-        const isVisible = i < word.length;
-        tile.textContent = isVisible ? word[i].toUpperCase() : '';
-        tile.classList.toggle('tile', isVisible);
-        tile.classList.toggle('hidden', !isVisible);
-        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${0.2 + i * 0.2}s`;
-    });
-}
 
 // wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 
@@ -537,11 +537,6 @@ function updateUI(stateOrAction) {
     }
 
     switch (stateOrAction) {
-        case 'submit':
-            break;
-        case 'delete':
-            // inputField.focus();
-            break;
         case 'flip':
             updateDirectionUI(gameState.direction);
             break;
