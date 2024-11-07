@@ -458,7 +458,7 @@ function toggleFlip() {
     // Set a timeout to flip racks during fade
     setTimeout(() => {
         updateDirectionUI(gameState.direction);
-    }, 2000); // This matches the fade-out duration
+    }, 2000);
 }
 
 
@@ -509,7 +509,7 @@ function undoMove() {
             makeTilesIn(gameState.latestWord, flipRack, gameState.flipArray);
             break;
     }
-    updateGame('undoMove');
+    updateUI('undoMove');
 }
 
 function updateUI(stateOrAction) {
@@ -551,10 +551,6 @@ function updateGame(action) {
     gameState.phase = 'mid';
 
     switch (action) {   
-        case 'undoMove':
-            updateUI(action);
-            break;
-
         case 'complete':
             gameState.phase = 'post';
             checkAndUpdateBestScoreIndex();
