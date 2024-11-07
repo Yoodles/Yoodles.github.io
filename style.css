@@ -314,7 +314,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     justify-content: center; /* not sure */
     margin-left: auto;
     margin-right: auto;
-    opacity: 0;
+    /* opacity: 0; */
 }
 
 /* .wordCont, .deleter { */
@@ -340,32 +340,34 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 .fade-in {
-    animation-name: fadeIn;
-    animation-fill-mode: forwards;
+    /* animation-name: fadeIn;
+    animation-fill-mode: forwards; */
+    opacity: 1;
 }
 
 .fade-out {
-    animation-name: fadeOut;
-    animation-fill-mode: forwards;
+    /* animation-name: fadeOut;
+    animation-fill-mode: forwards; */
+    opacity: 0;
 }
 
 .fade-in.wordCont {
-    animation-delay: .2s;
+    transition-delay: .2s;
 }
 
 .fade-in.wordCont, .fade-out.wordCont {
-    animation-duration: .4s;
+    transition: opacity 2s ease;
 }
 
-@keyframes fadeIn {
+/* @keyframes fadeIn {
     from { opacity: 0}
     to { opacity: 1}
-}
+} */
 
-@keyframes fadeOut {
+/* @keyframes fadeOut {
     from {opacity: 1}
     to {opacity: 0}
-}
+} */
 
 
 

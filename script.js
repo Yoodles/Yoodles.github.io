@@ -314,7 +314,7 @@ function deleteMove(which) {
         // Delay the removal by .4 seconds
         setTimeout(() => {
             wordToDelete.remove();
-        }, 400);
+        }, 2000);
 
         modifyHeight('delete', dirConfig.rack, dirConfig.array);
 
@@ -331,6 +331,10 @@ function deleteMove(which) {
 function animateElement(el, animation) {
     // el.style.transitionDuration = `${duration}s`;
     el.classList.add(`${animation}`);
+    setTimeout(() => {
+        el.classList.remove(`${animation}`);
+    }, 2000);
+
 }
 
 //GETTING THE INPUTWORD CONT READY
