@@ -79,7 +79,7 @@ function removeClass(className, classToRemove) {
 
 function focusTextInputBox() {inputField.focus()}
 
-function emptyinputField() {inputField.value = ''}
+function emptyInputField() {inputField.value = ''}
 
 function logArrays(when) {
     const normArray = gameState.normArray;
@@ -243,17 +243,35 @@ function togglePopup(action) {
 }
 
 
+
+
+//FUNC: SUBMITTING A MOVE
+function submitMove() {
+    const inputWord = inputField.value.toLowerCase();
+
+    if (isTotallyValid(inputWord, gameState.latestWord)) {
+        const {upperRack, upperArray} = getDirectionalConfig();
+        upperArray.push(inputWord);
+
+        makeTilesFor(inputWord, upperRack, upperArray);
+
+        gameState.moveCounter++;
+        updateLatestAndTargetWords();
+
+        gameState.latestMove = 'submit';
+
+        inputWord === gameState.targetWord
+            ? updateGame('complete')
+            : updateGame('submit');
+    }
+}
+
 ////GENERATING WORD TILES////
-function makeTilesFor(word, rack) {
+function makeTilesFor(word, rack, array) {
 
-    let wordCont = (rack !== startWordCont && rack !== endWordCont)
-        ? prepareInputWordCont()
-        : rack;
-
-    // if (rack !== startWordCont && rack !== endWordCont) {
-    //     wordCont.classList.add('hidden');
-    //     wordCont.classList.add('fading');
-    // }
+    let wordCont = (rack === startWordCont || rack === endWordCont)
+        ? rack
+        : prepareInputCont(rack, array);
 
     wordCont.querySelectorAll('div').forEach((tile, i) => {
         const isVisible = i < word.length;
@@ -268,6 +286,36 @@ function makeTilesFor(word, rack) {
     wordCont.classList.remove('fading');
 
     wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
+
+
+    //GETTING THE INPUTWORD CONT READY
+    function prepareInputCont(rack, array) {
+        const positionInArray = array.length;
+        const wordContsInRack = rack.children;
+        let cont;
+
+        // If the array has fewer entries than there are divs in, then use rack's child at array length...
+        if (wordContsInRack && positionInArray < wordContsInRack.length) {
+            cont = wordContsInRack[positionInArray];
+        // ...otherwise, use a new div added to rack.
+        } else {
+            cont = document.createElement('div');
+            rack.appendChild(cont);
+        }
+
+        // Clear the wordCont in case of preexisting tiles
+        cont.innerHTML = '';
+
+        // Make 6 empty tileConts inside the wordCont
+        for (let i = 0; i < 6; i++) {
+            const tileCont = document.createElement('div');
+            cont.appendChild(tileCont);
+        }
+
+        cont.classList.add('wordCont');
+        return cont;
+    }
+
 }
 
 
@@ -284,31 +332,7 @@ function modifyHeight(action, rack, array) {
 
 
 
-//GETTING THE INPUTWORD CONT READY
-function prepareInputWordCont() {
-    const { upperRack, upperArray } = getDirectionalConfig();
-    const howManyInArray = upperArray.length;
-    const wordsInRack = upperRack.children;
-    let wordCont;
 
-    if (wordsInRack && howManyInArray < wordsInRack.length) {
-        wordCont = wordsInRack[howManyInArray];
-    } else {
-        wordCont = document.createElement('div');
-        upperRack.appendChild(wordCont);
-    }
-
-    wordCont.innerHTML = ''; // Clear word container
-
-    // Prepare 6 empty divs inside wordCont
-    for (let i = 0; i < 6; i++) {
-        const tileCont = document.createElement('div');
-        wordCont.appendChild(tileCont);
-    }
-
-    wordCont.classList.add('wordCont');
-    return wordCont;
-}
 
 
 // DIRECTIONAL CONFIGURATIONS
@@ -408,31 +432,6 @@ function updateDeleters() {
 }
 
 
-//FUNC: SUBMITTING A MOVE
-function submitMove() {
-    const inputWord = inputField.value.toLowerCase();
-
-    if (isTotallyValid(inputWord, gameState.latestWord)) {
-        const { upperRack, upperArray } = getDirectionalConfig();
-        upperArray.push(inputWord);
-        makeTilesFor(inputWord);
-
-        modifyHeight('submit', upperRack, upperArray);
-
-        wordCont.classList.remove('hidden');
-        wordCont.classList.remove('fading');
-
-        gameState.moveCounter++;
-        updateLatestAndTargetWords();
-
-        gameState.latestMove = 'submit';
-
-        inputWord === gameState.targetWord
-            ? updateGame('complete')
-            : updateGame('submit');
-    }
-    // else inputField.focus(); //i.e. if isTotallyValid returns "false"
-}
 
 function deleteMove(which) {
     // determine which rack/array to delete from
@@ -488,16 +487,18 @@ function undoMove() {
             deleteMove('top');
             break;
         case 'delete-norm':
-            makeTilesFor(gameState.latestWord, normRack);
+            makeTilesFor(gameState.latestWord, normRack, gameState.normArray);
             break;
         case 'delete-flip':
-            makeTilesFor(gameState.latestWord, flipRack);
+            makeTilesFor(gameState.latestWord, flipRack, gameState.flipArray);
             break;
     }
     updateGame('undoMove');
 }
 
 function updateUI(stateOrAction) {
+
+    const dirConfig = getDirectionalConfig();
 
     console.log('phase: ', gameState.phase);
 
@@ -506,23 +507,27 @@ function updateUI(stateOrAction) {
         updateDeleters();
         updateDirectionUI('norm');
         clearInputUI();
-        emptyinputField();
+        emptyInputField();
         normRack.style.height = 0;
         flipRack.style.height = 0;
     }
 
     switch (stateOrAction) {
         case 'submit':
+            modifyHeight('submit', dirConfig.upperRack, dirConfig.upperArray);
+            emptyInputField();
+            updateDeleters();
+            break;
         case 'delete':
             // inputField.focus();
-            emptyinputField();
+            emptyInputField();
             updateDeleters();
             break;
         case 'flip':
             updateDirectionUI(gameState.direction);
             break;
         case 'complete':
-            emptyinputField();
+            emptyInputField();
             modifyHeight('complete');
             addClass('post', 'complete');
             break;
