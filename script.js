@@ -356,7 +356,6 @@ function deleteMove(which) {
         }, 300);
 
         emptyInputField();
-        inputField.focus();
         updateDeletersUI();
     }
 
