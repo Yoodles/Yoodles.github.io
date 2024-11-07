@@ -41,8 +41,10 @@ let wordPair = {
 
 
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️
-function setWordPairAndLengths() {
+function setWordPairAndLengths(pairKey) {
     const index = wordPair.currentPairIndex;
+
+    // if (pairKey);
 
     if (index < wordPairDetails.length) {
         wordPair.startWord = wordPairDetails[index].start;
@@ -235,7 +237,6 @@ function renderResultPanel() {
 
 // Jump to a specific round when selected from the list
 function jumpToRound(pairKey) {
-    console.log('JUMPTOROUND!', pairKey);
     const [startWord, endWord] = pairKey.split('-');
     wordPair.startWord = startWord;
     wordPair.endWord = endWord;
