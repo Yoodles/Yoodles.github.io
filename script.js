@@ -303,7 +303,6 @@ function submitMove() {
         else {
 
             modifyHeight('submit', upperRack, upperArray);
-            // animateElement(wordCont, 'fade-in');
             applyClassInSequence(wordCont, ['fade-in'], [0]);
             emptyInputField();
             updateDeletersUI();
@@ -451,6 +450,9 @@ function toggleFlip() {
     flipper.classList.add('rotating');
     inputField.classList.add('rotating');
 
+    applyClassInSequence([flipper, inputField], ['rotating', 'rotating'], [0, 2000]);
+
+
     // Add 'fading' class to all .wordCont and .deleters elements to fade them out
     // racks.forEach(rack => rack.classList.add('fade-out'));
     // deleters.forEach(deleter => deleter.classList.add('fade-out'));
@@ -459,22 +461,24 @@ function toggleFlip() {
 
     // Set a timeout to remove the 'fading' class after the fade-out duration (0.9s)
     setTimeout(() => {
-        racks.forEach(cont => cont.classList.remove('fade-out'));
-        deleters.forEach(deleter => deleter.classList.remove('fade-out'));
+        // racks.forEach(cont => cont.classList.remove('fade-out'));
+        // deleters.forEach(deleter => deleter.classList.remove('fade-out'));
 
         // Run updateGame('flip') while elements are still faded out
         updateUI('flip');
-    }, 400); // This matches the fade-out duration
+    }, 2400); // This matches the fade-out duration
 
     // Remove the 'rotating' class after the animation ends (1.8s)
-    setTimeout(() => {
-        button.classList.remove('rotating');
-        inputField.classList.remove('rotating');
-    }, 1200);
+    // setTimeout(() => {
+    //     flipper.classList.remove('rotating');
+    //     inputField.classList.remove('rotating');
+    // }, 2400);
 
     // Toggle game direction and update word state
     gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
     updateLatestAndTargetWords();
+    updateDirectionUI(gameState.direction);
+
 }
 
 

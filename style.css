@@ -320,9 +320,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 /* transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1); */
 
-.wordCont.setWord {opacity: 1}
 
-.rack {opacity: 1}
 
 /* #racksAndInput .wordCont.fadeIn {
     opacity: 1;
@@ -340,13 +338,21 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 /* Fade effects */
-.fade-in { opacity: 1; transition: opacity .2s ease-in; }
-.fade-out { opacity: 0; transition: opacity .2s ease-out; }
+.fade-in { opacity: 1; transition: opacity 2s ease-in; }
+.fade-out { opacity: 0; transition: opacity 2s ease-out; }
+
+/* .wordCont.setWord {opacity: 1} */
+
+.rack {opacity: 1}
+
 .fade-in.wordCont {transition-delay: .2s;}
+.fade-in.wordCont {transition-duration: .2s}
+
+.rack.fade-out {transition-delay: 2s;}
 
 /* Slide effects */
-.slide-up { transform: translateY(0); transition: transform 1s ease; }
-.slide-down { transform: translateY(0); transition: transform 1s ease; }
+/* .slide-up { transform: translateY(0); transition: transform 1s ease; }
+.slide-down { transform: translateY(0); transition: transform 1s ease; } */
 
 /* Rotate effects */
 .rotate { transform: rotate(0deg); transition: transform 2s ease; }
@@ -361,16 +367,14 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 .visible { opacity: 1; transform: translateY(0); } */
 
 
-/* @keyframes fadeIn {
-    from { opacity: 0}
-    to { opacity: 1}
-} */
 
-/* @keyframes fadeOut {
-    from {opacity: 1}
-    to {opacity: 0}
-} */
 
+.rotating {animation: verticalFlip 1.2s ease-in-out;}
+
+@keyframes verticalFlip {
+    0% {transform: rotateX(0deg);}
+    100% {transform: rotateX(720deg);}
+}
 
 
 
@@ -632,13 +636,6 @@ li .del.flip {transform: rotate(0.5turn);}
 
 
 
-
-.rotating {animation: verticalFlip 1.2s ease-in-out;}
-
-@keyframes verticalFlip {
-    0% {transform: rotateX(0deg);}
-    100% {transform: rotateX(720deg);}
-}
 
 
 /* .deleter {
