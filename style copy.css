@@ -339,36 +339,25 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 .invisible { opacity: 0; }
 
 
+.fade-in {
+    /* animation-name: fadeIn;
+    animation-fill-mode: forwards; */
+    opacity: 1;
+}
 
-/* .fade-in.wordCont {
+.fade-out {
+    /* animation-name: fadeOut;
+    animation-fill-mode: forwards; */
+    opacity: 0;
+}
+
+.fade-in.wordCont {
     transition-delay: .2s;
-} */
+}
 
-/* .fade-in.wordCont, .fade-out.wordCont {
+.fade-in.wordCont, .fade-out.wordCont {
     transition: opacity 2s ease;
-} */
-
-
-/* Fade effects */
-.fade-in { opacity: 1; transition: opacity 2s ease-in; }
-.fade-out { opacity: 0; transition: opacity 2s ease-out; }
-
-/* Slide effects */
-.slide-up { transform: translateY(0); transition: transform 1s ease; }
-.slide-down { transform: translateY(0); transition: transform 1s ease; }
-
-/* Rotate effects */
-.rotate { transform: rotate(0deg); transition: transform 2s ease; }
-
-/* Transition durations as modifiers */
-.duration-1s { transition-duration: 1s; }
-.duration-2s { transition-duration: 2s; }
-.duration-3s { transition-duration: 3s; }
-
-/* Triggerable states */
-/* .hidden { opacity: 0;}
-.visible { opacity: 1; transform: translateY(0); } */
-
+}
 
 /* @keyframes fadeIn {
     from { opacity: 0}

@@ -266,7 +266,8 @@ function submitMove() {
         else {
 
             modifyHeight('submit', upperRack, upperArray);
-            animateElement(wordCont, 'fade-in');
+            // animateElement(wordCont, 'fade-in');
+            applyClassInSequence(wordCont, ['fade-in'], [0]);
             emptyInputField();
             updateDeletersUI();
         }
@@ -475,6 +476,15 @@ function toggleFlip() {
     // Toggle game direction and update word state
     gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
     updateLatestAndTargetWords();
+}
+
+
+function applyClassInSequence(element, classes, delays) {
+    classes.forEach((className, index) => {
+        setTimeout(() => {
+            element.classList.toggle(className);
+        }, delays[index]);
+    });
 }
 
 
