@@ -359,12 +359,11 @@ function deleteMove(which) {
         // Apply the classes in sequence to trigger the fade-out effect
         toggleClassesInSequence(wordToDelete, ['visible', 'fade-out'], [0, 0]);
 
-
         // Delay the removal by .3 seconds
         setTimeout(() => {
             modifyHeight('delete', dirConfig.rack, dirConfig.array);
             wordToDelete.remove();
-        }, 300);
+        }, 200);
 
         emptyInputField();
         updateDeleterVisibility();
