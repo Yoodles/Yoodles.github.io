@@ -264,8 +264,7 @@ function submitMove() {
 
         if (inputWord === gameState.targetWord) updateGame('complete');
         else {
-            // wordCont.classList.remove('fade');
-            // wordCont.classList.remove('invisible');
+
             modifyHeight('submit', upperRack, upperArray);
             animateElement(wordCont, 'fade-in');
             emptyInputField();
@@ -315,9 +314,9 @@ function deleteMove(which) {
         // Delay the removal by .4 seconds
         setTimeout(() => {
             wordToDelete.remove();
-            modifyHeight('delete', dirConfig.rack, dirConfig.array);
         }, 400);
 
+        modifyHeight('delete', dirConfig.rack, dirConfig.array);
 
         emptyInputField();
         updateDeletersUI();
@@ -329,7 +328,7 @@ function deleteMove(which) {
 
 
 
-function animateElement(el, animation, duration) {
+function animateElement(el, animation) {
     // el.style.transitionDuration = `${duration}s`;
     el.classList.add(`${animation}`);
 }

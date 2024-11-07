@@ -264,7 +264,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     display: flex;
     margin: auto;
     height: 0;
-    transition: height 0.15s ease-in 0.5s;
+    transition: height 0.2s ease-in;
     /* transition: transform 0.5s ease-in-out; */
 }
 
@@ -347,6 +347,10 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 .fade-out {
     animation-name: fadeOut;
     animation-fill-mode: forwards;
+}
+
+.fade-in.wordCont {
+    animation-delay: .2s;
 }
 
 .fade-in.wordCont, .fade-out.wordCont {
