@@ -442,6 +442,10 @@ function updateDirectionUI(direction) {
 
 // 
 function toggleFlip() {
+    // Toggle game direction and update latest/target words
+    gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
+    updateLatestAndTargetWords();
+
     const flipper = document.getElementById('toggleFlip');
     const racks = document.querySelectorAll('.rack');
     const deleters = document.querySelectorAll('.deleter');
@@ -451,26 +455,10 @@ function toggleFlip() {
 
     applyClassInSequence([...racks, ...deleters], ['fade-out'], [0]);
 
-    // Set a timeout to remove the 'fading' class after the fade-out duration (0.9s)
+    // Set a timeout to flip racks during fade
     setTimeout(() => {
-        // racks.forEach(cont => cont.classList.remove('fade-out'));
-        // deleters.forEach(deleter => deleter.classList.remove('fade-out'));
-
-        // Run updateGame('flip') while elements are still faded out
-        updateUI('flip');
-    }, 2400); // This matches the fade-out duration
-
-    // Remove the 'rotating' class after the animation ends (1.8s)
-    // setTimeout(() => {
-    //     flipper.classList.remove('rotating');
-    //     inputField.classList.remove('rotating');
-    // }, 2400);
-
-    // Toggle game direction and update word state
-    gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
-    updateLatestAndTargetWords();
-    updateDirectionUI(gameState.direction);
-
+        updateDirectionUI(gameState.direction);
+    }, 2000); // This matches the fade-out duration
 }
 
 
@@ -539,9 +527,6 @@ function updateUI(stateOrAction) {
     }
 
     switch (stateOrAction) {
-        case 'flip':
-            updateDirectionUI(gameState.direction);
-            break;
         case 'complete':
             emptyInputField();
             modifyHeight('complete');
