@@ -272,12 +272,15 @@ function makeTilesFor(word, rack) {
 }
 
 
-function modifyHeight(rack, array) {
+function modifyHeight(rack, array, action) {
     // Get the height of startWordCont in pixels
     let wordContHeight = parseFloat(window.getComputedStyle(startWordCont).height);
 
-    // // New height of rack = number of words in array x wordCont height
-    rack.style.height = array.length * wordContHeight + 'px';
+    // If Submit/Delete: New height of rack = number of words in array x wordCont height
+    if (action === 'submit' || action === 'delete') rack.style.height = array.length * wordContHeight + 'px';
+
+    // If Complete: 
+    else if (action === 'complete') rack.style.transform = 'translateY(' + 18 * (window.innerWidth / 100) + wordContHeight + ')';
 }
 
 
@@ -415,7 +418,7 @@ function submitMove() {
         upperArray.push(inputWord);
         makeTilesFor(inputWord);
 
-        modifyHeight(upperRack, upperArray);
+        modifyHeight(upperRack, upperArray, 'submit');
 
         // wordCont.classList.remove('hidden');
         // wordCont.classList.remove('fading');
@@ -456,7 +459,7 @@ function deleteMove(which) {
     if (dirConfig.array.length > 0) dirConfig.array.pop();
     if (wordConts) wordConts[wordConts.length - 1].remove();
 
-    modifyHeight(dirConfig.rack, dirConfig.array);
+    modifyHeight(dirConfig.rack, dirConfig.array, 'delete');
 
     gameState.moveCounter--;
     updateLatestAndTargetWords();

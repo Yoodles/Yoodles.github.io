@@ -233,7 +233,7 @@ button.function.help {
 
 
 
-#inputterRack {
+#racksAndInput {
     display: flex;
     position: relative;
     flex-direction: column;
@@ -243,8 +243,8 @@ button.function.help {
 #startWord {order: 1}
 div[data-flip] #startWord { order: 3; }
 
-#inputterRack {order: 2}
-div[data-flip] #inputterRack { order: 2; }
+#racksAndInput {order: 2}
+div[data-flip] #racksAndInput { order: 2; }
 
 #endWord {order: 3}
 div[data-flip] #endWord { order: 1; }
@@ -252,8 +252,8 @@ div[data-flip] #endWord { order: 1; }
 #normRack { order: 1; flex-direction: column}
 div[data-flip] #normRack { order: 3; flex-direction: column-reverse;}
 
-#inputterSet { order: 2; }
-div[data-flip] #inputterSet { order: 2; }
+#inputAndSideButtons { order: 2; }
+div[data-flip] #inputAndSideButtons { order: 2; }
 
 #flipRack { order: 3; flex-direction: column-reverse; }
 div[data-flip] #flipRack { order: 1; flex-direction: column;}
@@ -298,9 +298,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     display: flex;
     justify-content: center;
     background-color: #ffffff;
-    /* border: 0.2vw solid rgb(127, 127, 127); */
-    /* border: .6vw ridge rgb(127, 127, 127); */
-    /* border: .5vw outset rgb(127, 127, 127); */
+    border: .2vw solid rgba(0, 0, 0, 0.148);
     margin: 0.7vw;
     align-items: center;
     font-size: 4.5vw;
@@ -333,21 +331,18 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 
-#inputterSet {
+#inputAndSideButtons {
     display: flex;
     position: relative;
     align-items: center;
     width: 100%;
     min-width: 60vw;
     max-width: 70vw;
-    margin-top: 1.5vw;
-    margin-bottom: 1.5vw;
-    /* margin: auto; */
 }
 
 #inputField {
     width: 100%;
-    height: 13vw;
+    height: 14vw;
     text-transform: uppercase;
     border: 0.3vw dashed #373737;
     /* border: .6vw inset #373737; */
@@ -359,8 +354,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     border-radius: 4vw;
     text-align: center;
     position: relative; /*redundant?*/
-    margin-top: 1.5vh;
-    margin-bottom: 1.5vh;
+    margin: 2vw 0;
     transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
 
 }
@@ -411,39 +405,6 @@ div[data-flip] #flipDeleter img {transform: none}
 
 
 
-
-.hidden { display: none }
-/* .invisible { visibility: hidden } */
-.invisible { opacity: 0; }
-
-.fade-out {
-    animation-name: fadeOut;
-    animation-duration: 0.4s;
-    animation-fill-mode: forwards;
-}
-
-@keyframes fadeOut {
-    from {opacity: 1}
-    to {opacity: 0}
-}
-
-.fade-in {
-    animation-name: fadeIn;
-    animation-duration: 0.4s;
-    animation-fill-mode: forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0.3}
-    to { opacity: 1}
-}
-
-.rotating {animation: verticalFlip 1.2s ease-in-out;}
-
-@keyframes verticalFlip {
-    0% {transform: rotateX(0deg);}
-    100% {transform: rotateX(720deg);}
-}
 
 
 
@@ -622,3 +583,59 @@ li .del.flip {transform: rotate(0.5turn);}
 #W2 {font-weight: 250; transform: translate(-0.15vw)}
 #ARD {transform: translate(-1vw)} */
 
+
+
+
+
+.hidden { display: none }
+/* .invisible { visibility: hidden } */
+.invisible { opacity: 0; }
+
+.fade-out {
+    animation-name: fadeOut;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+    from {opacity: 1}
+    to {opacity: 0}
+}
+
+.fade-in {
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0.3}
+    to { opacity: 1}
+}
+
+.rotating {animation: verticalFlip 1.2s ease-in-out;}
+
+@keyframes verticalFlip {
+    0% {transform: rotateX(0deg);}
+    100% {transform: rotateX(720deg);}
+}
+
+
+.deleter {
+    opacity: 0;
+    transition: opacity var(--fade-duration) ease-in-out;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+.element {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+    transition-delay: 0.3s; /* Delay of 0.3s */
+}
