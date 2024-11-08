@@ -148,10 +148,8 @@ button.function.help {
     width: 100%;
     height: 62%;
     overflow: hidden;
-    /* justify-content: space-evenly; */
     align-items: center;
     font-size: 5vw;
-
 }
 
 #movesCont, #openHelp {
@@ -165,7 +163,6 @@ button.function.help {
     margin: 1vw 3vw;
     text-align: start;
     /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
-
     text-shadow: 0.5vw 0.5vw 3vw rgba(0, 0, 0, 0.27);
 }
 
@@ -183,7 +180,6 @@ button.function.help {
     /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
     filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
 }
-
 
 #gameplayCont {
     display: flex;
@@ -286,6 +282,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     margin: auto;
     height: 0;
     transition: height 0.2s ease-in;
+    background-color: aqua;
     /* transition: transform 0.5s ease-in-out; */
 }
 
@@ -477,7 +474,7 @@ div[data-flip] #flipDeleter img {transform: none}
     background-color: rgb(255, 255, 255);
     position: absolute;
     top: 50%;
-    z-index: 90;
+    z-index: 101;
     width: 85%;
     height: 25vh;
     border: solid .5vw;
@@ -656,21 +653,3 @@ li .del.flip {transform: rotate(0.5turn);}
 }
 #W2 {font-weight: 250; transform: translate(-0.15vw)}
 #ARD {transform: translate(-1vw)} */
-
-
-
-
-
-
-/* .deleter {
-    opacity: 0;
-    transition: opacity var(--fade-duration) ease-in-out;
-} */
-
-
-
-.element {
-    opacity: 0;
-    transition: opacity 0.5s ease-in;
-    transition-delay: 0.3s; /* Delay of 0.3s */
-}

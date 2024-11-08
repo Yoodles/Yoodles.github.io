@@ -1,6 +1,3 @@
-// import { wordPairDetails } from './words.js';
-// import { isTotallyValid } from './word-validity.js';
-
 const inputField = document.getElementById('inputField');
 const startWordCont = document.getElementById('startWord');
 const normRack = document.getElementById('normRack'); 
@@ -51,7 +48,6 @@ function jumpToRound(pairKey) {
     console.log(`Start word: ${wordPair.startWord}, End word: ${wordPair.endWord}`);
     console.log(`Current pairKey: ${pairKey}`);
 
-    // Build the word pair tiles for the new round
     buildWordPairTiles();
 
     // Update the best score UI for the selected round
@@ -91,7 +87,10 @@ function updateBestScoreUI(pairKey) {
     bestScoreDisplay.innerText = `Best: ${bestScore}`;
 }
 
-
+//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
+function updateMoveCounterUI() {
+    document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
+}
 
 
 // FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS
@@ -197,9 +196,49 @@ function toggleClassesInSequence(elements, classes, delays) {
     });
 }
 
+function toggleClassWithDelay(elements, className, action, delay) {
+    // Ensure `elements` is an array, even if a single element is passed
+    const elementArray = Array.isArray(elements) ? elements : [elements];
+
+    // Apply the add/remove action
+    elementArray.forEach(element => {
+        if (action === 'add') {
+            element.classList.add(className);
+        } else if (action === 'remove') {
+            element.classList.remove(className);
+        } else {
+            console.error("Invalid action: use 'add' or 'remove'");
+            return;
+        }
+
+        // If a delay is provided, reverse the action after the delay
+        if (delay) {
+            setTimeout(() => {
+                if (action === 'add') {
+                    element.classList.remove(className);
+                } else if (action === 'remove') {
+                    element.classList.add(className);
+                }
+            }, delay);
+        }
+    });
+}
+
+
 function focusTextInputBox() {inputField.focus()}
 
 function emptyInputField() {inputField.value = ''}
+
+////EMPTYING CONTAINERS and CONTAINER RACKS
+function clearInputUI() {
+    document.querySelectorAll('#normRack .wordCont, #flipRack .wordCont').forEach(wordCont => {
+        wordCont.querySelectorAll('div').forEach(tile => {
+            tile.textContent = '';
+            tile.classList.remove('tile');
+        });
+        wordCont.classList.remove('wordCont');
+    });
+}
 
 function logArrays(when) {
     const normArray = gameState.normArray;
@@ -233,19 +272,6 @@ function toggleOverlay(classNames = null) {
 
 
 
-
-
-
-////EMPTYING CONTAINERS and CONTAINER RACKS ❗️❗️❗️❗️❗️❗️
-function clearInputUI() {
-    document.querySelectorAll('#normRack .wordCont, #flipRack .wordCont').forEach(wordCont => {
-        wordCont.querySelectorAll('div').forEach(tile => {
-            tile.textContent = '';
-            tile.classList.remove('tile');
-        });
-        wordCont.classList.remove('wordCont');
-    });
-}
 
 
 
@@ -331,7 +357,8 @@ function togglePopup(action) {
         else if (action === 'rounds') roundsContent.classList.remove('hidden');
 
         // Show the overlay and the popup
-        overlay.classList.add('translucent');
+        // overlay.classList.add('translucent');
+        toggleOverlay(['translucent', 'full-screen']);
         popup.classList.remove('hidden');
     }
 }
@@ -357,16 +384,15 @@ function submitMove() {
 
         if (inputWord === gameState.targetWord) updateGame('complete');
         else {
-            // Start modifyHeight and then trigger toggleClassesInSequence only after it completes
-            modifyHeight('submit', upperRack, upperArray)
-                .then(() => {
-                // Once modifyHeight completes, fade in and out .wordCont
+            console.log('upperArray in submit: ', upperArray);
+            modifyHeight('submit', upperRack, upperArray);
+            setTimeout(() => {
                 toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
-                });
-
-            emptyInputField();
-            updateDeleterVisibility();
+            }, 200);    
         }
+        updateDeleterVisibility();
+        emptyInputField();
+        updateMoveCounterUI();
     }
 
     //GETTING THE INPUTWORD CONT READY
@@ -423,12 +449,11 @@ function deleteMove(which) {
     if (dirConfig.array.length > 0) dirConfig.array.pop();
 
     gameState.moveCounter--;
+    // record latestMove (for "Undo" post-completion)
+    gameState.latestMove = dirConfig.rack === normRack ? 'delete-norm' : 'delete-flip';
+
     updateLatestAndTargetWords();
 
-    // record latestMove (for "Undo" post-completion)
-    gameState.latestMove = dirConfig.rack === normRack
-        ? 'delete-norm'
-        : 'delete-flip';
 
     // if latest & target match after delete, trigger completion code
     if (gameState.latestWord === gameState.targetWord) updateGame('complete');
@@ -436,7 +461,6 @@ function deleteMove(which) {
         // Apply the classes in sequence to trigger the fade-out effect
         toggleClassesInSequence(wordToDelete, ['visible', 'fade-out'], [0, 0]);
 
-        // Delay the removal by .3 seconds
         setTimeout(() => {
             modifyHeight('delete', dirConfig.rack, dirConfig.array);
             wordToDelete.remove();
@@ -466,7 +490,7 @@ function toggleFlip() {
     toggleClassesInSequence([inputFieldAndButtons], ['rotating', 'rotating'], [0, 2000]);
 
 
-    toggleClassesInSequence([...racks, ...deleters], ['visible','fade-out','fade-out','visible'], [0,0,1200,1200]);
+    toggleClassesInSequence([...racks, ...deleters], ['visible','fade-out'], [0,0]);
 
     // Set a timeout to flip racks during fade
     setTimeout(() => {
@@ -474,65 +498,26 @@ function toggleFlip() {
     }, 600);
 }
 
-//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
-function updateMoveCounterUI() {
-    document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
-}
-
 
 // wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 
 
 
-// function modifyHeight(action, rack, array) {
-//     // Get the height of startWordCont in pixels
-//     let wordContHeight = parseFloat(window.getComputedStyle(startWordCont).height);
-
-//     // If Submit/Delete: New height of rack = number of words in array x wordCont height
-//     if (action === 'submit' || action === 'delete') rack.style.height = array.length * wordContHeight + 'px';
-
-//     // If Complete: 
-//     else if (action === 'complete') getDirectionalConfig().upperRack.style.transform = 'translateY(' + 18 * (window.innerWidth / 100) + wordContHeight + ')';
-// }
-
 function modifyHeight(action, rack, array) {
-    return new Promise((resolve) => {
-      let wordContHeight = parseFloat(window.getComputedStyle(startWordCont).height);
-  
-      if (action === 'submit' || action === 'delete') {
-        // Set the height based on the array length
-        rack.style.height = array.length * wordContHeight + 'px';
-  
-        // Listen for the height transition to complete
-        const onTransitionEnd = (event) => {
-          if (event.propertyName === 'height') { // Check if the height property finished transitioning
-            rack.removeEventListener('transitionend', onTransitionEnd); // Clean up the event listener
-            resolve(); // Resolve the promise when the transition ends
-          }
-        };
-  
-        // Add the event listener for the height transition
-        rack.addEventListener('transitionend', onTransitionEnd);
-      } 
-      else if (action === 'complete') {
-        // Set the transform for a sliding effect
-        const upperRack = getDirectionalConfig().upperRack;
-        upperRack.style.transform = 'translateY(' + (18 * (window.innerWidth / 100) + wordContHeight) + 'px';
-  
-        // Listen for the transform transition to complete
-        const onTransformEnd = (event) => {
-          if (event.propertyName === 'transform') { // Check if the transform property finished transitioning
-            upperRack.removeEventListener('transitionend', onTransformEnd); // Clean up the event listener
-            resolve(); // Resolve the promise when the transition ends
-          }
-        };
-  
-        // Add the event listener for the transform transition
-        upperRack.addEventListener('transitionend', onTransformEnd);
-      }
-    });
-  }
-  
+    // Get the height of startWordCont in pixels
+    console.log('array: ', array, array.length);
+    let wordContHeight = parseFloat(window.getComputedStyle(startWordCont).height);
+    console.log('wordContHeight: ', wordContHeight); // Should log a number (e.g., 50)
+
+    let newHeight = array.length * wordContHeight + 'px';
+
+    console.log('wordContHeight: ', wordContHeight, '. newHeight: ', newHeight);
+    // If Submit/Delete: New height of rack = number of words in array x wordCont height
+    if (action === 'submit' || action === 'delete') rack.style.height = newHeight;
+    // If Complete: 
+    else if (action === 'complete') getDirectionalConfig().upperRack.style.transform = 'translateY(' + 18 * (window.innerWidth / 100) + wordContHeight + ')';
+}
+
 
 function updateDirectionUI(direction) {
     const elementsToUpdate = [
@@ -586,23 +571,7 @@ function undoMove() {
 }
 
 
-function resetUI() {
 
-    removeClass('post', 'complete');
-
-    updateDeleterVisibility();
-    updateDirectionUI('norm');
-    clearInputUI();
-    emptyInputField();
-
-    normRack.style.height = 0;
-    flipRack.style.height = 0;
-
-    const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
-
-    updateBestScoreUI(pairKey);
-    updateMoveCounterUI();
-}
 
 
 function updateGame(action) {
@@ -614,9 +583,14 @@ function updateGame(action) {
             renderResultPanel();
             updateLatestAndTargetWords();
             updateBestScoreUI(currentPairKey);
+
+            // Store the current pairKey in localStorage as the last completed round
+            localStorage.setItem('lastCompletedPair', currentPairKey);
+
             emptyInputField();
-            modifyHeight('complete');
-            addClass('post', 'complete');
+            // modifyHeight('complete');
+            addClass('overlay', 'complete');
+            toggleOverlay(['full-screen', 'translucent']);
             updateMoveCounterUI();
             break;
 
@@ -644,6 +618,25 @@ function updateGame(action) {
     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
 }
 
+
+
+function resetUI() {
+
+    removeClass('post', 'complete');
+
+    updateDeleterVisibility();
+    updateDirectionUI('norm');
+    clearInputUI();
+    emptyInputField();
+
+    normRack.style.height = 0;
+    flipRack.style.height = 0;
+
+    const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
+
+    updateBestScoreUI(pairKey);
+    updateMoveCounterUI();
+}
 
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD
 document.addEventListener('DOMContentLoaded', (event) => {
