@@ -171,37 +171,88 @@ function updateBestScoreUI() {
 }
 
 
+// function renderRoundList() {
+//     const roundList = document.getElementById('roundList');
+//     roundList.innerHTML = ''; // Clear existing list
+
+//     console.log(wordPairDetails);
+
+//     wordPairDetails.forEach(pair => {
+//         const pairKey = `${pair.start}-${pair.end}`;
+//         const bestScore = bestScores[pairKey] || 0;
+
+//         // Create list item
+//         const listItem = document.createElement('li');
+//         listItem.innerHTML = `
+//             ${pair.start.toUpperCase()} → ${pair.end.toUpperCase()}
+//             <span class="star-container">${generateStars(bestScore)}</span>
+//         `;
+//         listItem.addEventListener('click', () => jumpToRound(pairKey));
+
+//         roundList.appendChild(listItem);
+//     });
+// }
+
 function renderRoundList() {
     const roundList = document.getElementById('roundList');
     roundList.innerHTML = ''; // Clear existing list
-
-    console.log(wordPairDetails);
 
     wordPairDetails.forEach(pair => {
         const pairKey = `${pair.start}-${pair.end}`;
         const bestScore = bestScores[pairKey] || 0;
 
-        // Create list item
+        // Create list item with static grey stars
         const listItem = document.createElement('li');
         listItem.innerHTML = `
             ${pair.start.toUpperCase()} → ${pair.end.toUpperCase()}
-            <span class="star-container">${generateStars(bestScore)}</span>
+            <span class="star-container">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+            </span>
         `;
-        listItem.addEventListener('click', () => jumpToRound(pairKey));
+        
+        // Add 'yellow' class to stars based on the best score
+        const stars = listItem.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+            if (index < bestScore) star.classList.add('yellow');
+        });
 
+        listItem.addEventListener('click', () => jumpToRound(pairKey));
         roundList.appendChild(listItem);
     });
 }
 
-// Generate star icons based on the best score
-function generateStars(score) {
-    const maxStars = 3;
-    let starsHtml = '';
-    for (let i = 0; i < maxStars; i++) {
-        starsHtml += `<span class="star ${i < score ? 'yellow' : ''}">★</span>`;
-    }
-    return starsHtml;
-}
+
+// function renderResultPanel() {
+//     const starContainer = document.getElementById('starContainer');
+//     const moves = gameState.moveCounter;
+//     const message = document.getElementById('resultMessage');
+
+//     // Determine star rating based on score3star and score2star
+//     let starRating;
+//     if (moves <= wordPair.score3star) starRating = 3;
+//     else if (moves <= wordPair.score2star) starRating = 2;
+//     else starRating = 1;
+
+//     // Use generateStars to update the starContainer with the appropriate star rating
+//     starContainer.innerHTML = generateStars(starRating);
+
+//     // Update the result message based on the star rating
+
+//     switch (starRating) {
+//         case 3:
+//             message.innerText = `Completed in ${gameState.moveCounter} moves!\nOutstanding!`;
+//             break;
+//         case 2:
+//             message.innerText = `Completed in ${gameState.moveCounter} moves!\nGreat job!`;
+//             break;
+//         case 1:
+//             message.innerText = `Completed in ${gameState.moveCounter} moves!\nYou know words good!!`;
+//             break;
+//     }
+
+// }
 
 function renderResultPanel() {
     const starContainer = document.getElementById('starContainer');
@@ -214,23 +265,16 @@ function renderResultPanel() {
     else if (moves <= wordPair.score2star) starRating = 2;
     else starRating = 1;
 
-    // Use generateStars to update the starContainer with the appropriate star rating
-    starContainer.innerHTML = generateStars(starRating);
+    // Add 'yellow' class to stars based on the starRating
+    const stars = starContainer.querySelectorAll('.star');
+    stars.forEach((star, index) => {
+        if (index < starRating) star.classList.add('yellow');
+    });
 
     // Update the result message based on the star rating
-
-    switch (starRating) {
-        case 3:
-            message.innerText = `Completed in ${gameState.moveCounter} moves!\nOutstanding!`;
-            break;
-        case 2:
-            message.innerText = `Completed in ${gameState.moveCounter} moves!\nGreat job!`;
-            break;
-        case 1:
-            message.innerText = `Completed in ${gameState.moveCounter} moves!\nYou know words good!!`;
-            break;
-    }
-
+    if (starRating === 3) message.innerText = `Completed in ${gameState.moveCounter} moves!\nOutstanding!`;
+    else if (starRating === 2) message.innerText = `Completed in ${gameState.moveCounter} moves!\nGreat job!`;
+    else message.innerText = `Completed in ${gameState.moveCounter} moves!\nYou know words good!!`;
 }
 
 
@@ -506,7 +550,7 @@ function toggleFlip() {
     // Set a timeout to flip racks during fade
     setTimeout(() => {
         updateDirectionUI(gameState.direction);
-    }, 2000);
+    }, 600);
 }
 
 
@@ -525,7 +569,6 @@ function toggleClassesInSequence(elements, classes, delays) {
 }
 
 
-
 function updateDeleterVisibility() {
     const deleteNorm = document.getElementById('normDeleter');
     const deleteFlip = document.getElementById('flipDeleter');
@@ -539,10 +582,8 @@ function updateDeleterVisibility() {
         : deleteFlip.classList.remove('invisible');
 }
 
-
-
 function undoMove() {
-    // gameState.phase = 'mid';
+    gameState.phase = 'mid';
 
     switch (gameState.latestMove) {
         case 'submit':
@@ -558,16 +599,25 @@ function undoMove() {
     updateUI('undoMove');
 }
 
+
 function updateUI(stateOrAction) {
+
+    const stars = document.getElementById('starContainer').querySelectorAll('.star');
 
     console.log('phase: ', gameState.phase);
 
     if (gameState.phase === 'pre') {
         removeClass('post', 'complete');
+
+        stars.forEach(star => {
+            star.classList.remove('yellow');
+        });
+
         updateDeleterVisibility();
         updateDirectionUI('norm');
         clearInputUI();
         emptyInputField();
+
         normRack.style.height = 0;
         flipRack.style.height = 0;
     }
@@ -579,14 +629,14 @@ function updateUI(stateOrAction) {
             addClass('post', 'complete');
             break;
         case 'undoMove':
+            stars.forEach(star => {
+                star.classList.remove('yellow');
+            });
             removeClass('post', 'complete');
-            break;
-        default:
             break;
     }
 
     updateBestScoreUI();
-    // inputField.focus();
     updateMoveCounterUI(); //"go back"を考えると、completeでも一応update?いや、数字がアプデされてればいい？
 }
 

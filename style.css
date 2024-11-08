@@ -436,6 +436,7 @@ input:focus {outline: none}
     transition: opacity 0.2s ease-in;
     opacity: 0;
 }
+/* .deleter.invisible {opacity: 0;} */
 .deleter.visible {opacity: 1;}
 .deleter img {
     height: 7vw;
@@ -480,6 +481,9 @@ div[data-flip] #flipDeleter img {transform: none}
 .star {
     font-size: 7vw;
     color: grey;
+    transition: background-color 0.3s ease-in-out;
+    /* display: inline-block; */
+    border-radius: 50%;
     margin: 0 1vw;
 }
 
@@ -488,6 +492,9 @@ div[data-flip] #flipDeleter img {transform: none}
     text-shadow: 0 0 .4vw rgb(0, 0, 0); /* Keeps the rim visible when stars are yellow */
     /* border: 1px solid darkgrey; */
 }
+.star-container .star:nth-child(1).yellow { transition-delay: 0s; }
+.star-container .star:nth-child(2).yellow { transition-delay: 0.3s; }
+.star-container .star:nth-child(3).yellow { transition-delay: 0.6s; }
 
 .popup-content .star {font-size: 5vw;}
 

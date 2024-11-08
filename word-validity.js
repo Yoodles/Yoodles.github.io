@@ -42,7 +42,6 @@ function isOneMoveApart(word1, word2) {
 
 ////FUNC: CHECK IF WORD MEETS ALL CONDITIONS // ✅
 function isTotallyValid(word, word2) {
-    console.log('start of isTotallyValid', word, word2);
     //INPUT IS VALID WORD LENGTH ✅
     function isValidLength(word) {
         if (word.length === 0) {
