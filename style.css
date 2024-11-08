@@ -347,8 +347,12 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 /* Fade effects */
-.fade-in { opacity: 1; transition: opacity ease-in; }
-.fade-out { opacity: 0; transition: opacity ease-out; }
+.fade-in { opacity: 1; transition: opacity 1s ease-in; }
+.fade-out { opacity: 0; transition: opacity 1s ease-out; }
+
+.fade-in:not(.exclude) {opacity: 1;}
+.fade-out:not(.exclude) {opacity: 0;}
+
 .wordCont.fade-in {
     transition-duration: .2s;
     /* transition-delay: .2s; */
@@ -362,7 +366,8 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 .rack.fade-in,
 .rack.fade-out {
-    transition-duration: .6s;
+    opacity: 0;
+    /* transition-duration: .6s; */
 }
 
 
@@ -443,9 +448,10 @@ input:focus {outline: none}
     padding: 0;
     cursor: pointer;
     filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
+    transition: transform 0.1s ease-out;
 
 }
-#toggleFlip:hover, #toggleFlip.pressed {transform: scale(1.1)}
+#toggleFlip:hover {transform: scale(1.1)}
 #toggleFlip img {height: 12.3vw;}
 
 .deleter {
@@ -490,7 +496,7 @@ div[data-flip] #flipDeleter img {transform: none}
     box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
 
 }
-#resultPanel.complete {display: flex}
+#resultPanel.active {display: flex}
 
 .star-container {
     display: flex;

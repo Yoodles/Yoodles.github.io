@@ -497,20 +497,13 @@ function toggleFlip() {
     const toggleFlip = document.getElementById('toggleFlip');
     const racks = document.querySelectorAll('.rack');
     const deleters = document.querySelectorAll('.deleter');
-    const gameplayCont = document.getElementById('gameplayCont');
 
     // Start the button rotation animation
-    // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
-    // toggleClassesInSequence([inputFieldAndButtons], ['rotating', 'rotating'], [0, 2000]);
+    toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
+    toggleClassesInSequence([inputFieldAndButtons], ['rotating', 'rotating'], [0, 2000]);
 
-    toggleClassWithDelay([inputFieldAndButtons], 'rotating', 'add', 2000);
 
-    // toggleClassWithDelay([...racks, ...deleters], 'fade-out', 'add', 1200);
-
-    toggleClassesInSequence([gameplayCont], ['fade-out', 'fade-out'], [0, 1000]);
-    // toggleClassWithDelay([gameplayCont], 'fade-out', 'add', 1000);
-    // toggleClassWithDelay([gameplayCont], 'fade-in', 'add', 1000);
-
+    toggleClassesInSequence([...racks, ...deleters], ['visible','fade-out'], [0,0]);
 
     // Set a timeout to flip racks during fade
     setTimeout(() => {
@@ -606,15 +599,13 @@ function updateGame(action) {
             // Store the current pairKey in localStorage as the last completed round
             localStorage.setItem('lastCompletedPair', currentPairKey);
 
+
             ////UPDATE UI
             emptyInputField();
             // modifyHeight('complete');
+
             //or "post"?
             document.getElementById('resultPanel').classList.add('active');
-
-
-            // addClass('overlay', 'complete');
-            // togglePopup();
             toggleOverlay(['full-screen', 'translucent']);
             updateMoveCounterUI();
             break;
@@ -647,8 +638,7 @@ function updateGame(action) {
 
 function resetUI() {
 
-    document.getElementById('resultPanel').classList.remove('active');
-    toggleOverlay();
+    removeClass('post', 'complete');
 
     updateDeleterVisibility();
     updateDirectionUI('norm');
