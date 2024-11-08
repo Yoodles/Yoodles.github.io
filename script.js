@@ -39,27 +39,6 @@ let wordPair = {
     score2star: 0
 }
 
-function extractWordPair(inputStr) {
-    return inputStr.split('\n')
-        .map(line => line.trim())
-        .filter(line => line)
-        .map(line => {
-            const [start, end, A, B] = line.split(' ');
-            return {
-                start,
-                end,
-                score: {
-                    A: parseInt(A, 10),
-                    B: parseInt(B, 10)
-                }
-            };
-        });
-  }
-  
-  const wordPairDetails = extractWordPair(wordPairsStr);
-
-
-  
 //FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️
 function setWordPairAndLengths(pairKey) {
     const index = wordPair.currentPairIndex;
