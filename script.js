@@ -8,12 +8,32 @@ const flipRack = document.getElementById('flipRack');
 const endWordCont = document.getElementById('endWord');
 
 
+//// INITIAL STATE AT START OF ROUND ////
+const initialGameState = () => ({
+    direction: 'norm',
+    moveCounter: 0,
+    normArray: [],
+    flipArray: [],
+    latestWord: '',
+    targetWord: '',
+    latestMove: '',
+});
 
+let gameState = initialGameState();
 
-//Helper function to generate "pairKey" programmatically
-function generatePairKey(startWord, endWord) {
-    return `${startWord}-${endWord}`;
+function resetGameState() {
+    gameState = initialGameState();
 }
+
+let wordPair = {
+    currentPairKey: '',  // Store the current pair key instead of an index
+    startWord: '',
+    endWord: '',
+    maxLength: 6,
+    minLength: 3,
+    score3star: 0,
+    score2star: 0
+};
 
 //Function to find Word Pair by pairKey
 function findWordPair(pairKey) {
@@ -47,22 +67,21 @@ function jumpToRound(pairKey) {
 // Convert word pairs and set up a best scores object
 let bestScores = {};
 
+// Check and update the best score after a round
+function checkAndUpdateBestScoreAfterRound(currentScore) {
+    const pairKey = wordPair.currentPairKey; // Use currentPairKey directly
+    updateBestScore(pairKey, currentScore);
+    updateBestScoreUI(pairKey);
+}
+
 // Update the best score for a word pair in `localStorage`
-// function updateBestScoreObjectAndStorage(pairKey, score) {
 function updateBestScore(pairKey, score) {
     // Update if score is lower than in object (or there's no best score in object)
-    if (score < bestScores[pairKey] || !bestScores[pairKey]) {
+    if (!bestScores[pairKey] || score < bestScores[pairKey]) {
         bestScores[pairKey] = score;
 
         localStorage.setItem(pairKey, JSON.stringify(score));
     }
-}
-
-// Check and update the best score after a round
-function checkAndUpdateBestScoreAfterRound(currentScore) {
-    const pairKey = `${wordPair.start}-${wordPair.end}`;
-    updateBestScore(pairKey, currentScore);
-    updateBestScoreUI(pairKey);
 }
 
 // Update the best score display in the UI
@@ -73,36 +92,6 @@ function updateBestScoreUI(pairKey) {
 }
 
 
-
-
-
-//// INITIAL STATE AT START OF ROUND ////
-const initialGameState = () => ({
-    direction: 'norm',
-    moveCounter: 0,
-    normArray: [],
-    flipArray: [],
-    latestWord: '',
-    targetWord: '',
-    latestMove: '',
-});
-
-let gameState = initialGameState();
-
-function resetGameState() {
-    gameState = initialGameState();
-}
-
-
-let wordPair = {
-    currentPairKey: '',  // Store the current pair key instead of an index
-    startWord: '',
-    endWord: '',
-    maxLength: 6,
-    minLength: 3,
-    score3star: 0,
-    score2star: 0
-};
 
 
 // FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS
@@ -128,8 +117,6 @@ function setWordPairAndLengths(pairKey) {
         gameState.targetWord = wordPair.endWord;
 
         console.log(`New round set: ${wordPair.startWord} -> ${wordPair.endWord}`);
-    } else {
-        document.getElementById('gameArea').innerText = "All Rounds Completed!";
     }
 }
 
@@ -241,6 +228,15 @@ function renderRoundList() {
     const roundList = document.getElementById('roundList');
     roundList.innerHTML = ''; // Clear existing list
 
+    // Define static grey stars to avoid repeated creation
+    const greyStarsHTML = `
+    <span class="star-container">
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+    </span>
+    `;
+
     wordPairDetails.forEach(pair => {
         const bestScore = bestScores[pair.pairKey] || 0;
 
@@ -248,11 +244,7 @@ function renderRoundList() {
         const listItem = document.createElement('li');
         listItem.innerHTML = `
             ${pair.start.toUpperCase()} → ${pair.end.toUpperCase()}
-            <span class="star-container">
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-            </span>
+            ${greyStarsHTML}
         `;
         
         // Add 'yellow' class to stars based on the best score
@@ -281,6 +273,8 @@ function renderResultPanel() {
 
     // Add 'yellow' class to stars based on the starRating
     const stars = starContainer.querySelectorAll('.star');
+    stars.forEach(star => star.classList.remove('yellow'));
+
     stars.forEach((star, index) => {
         if (index < starRating) star.classList.add('yellow');
     });
@@ -573,16 +567,6 @@ function resetUI() {
 
     removeClass('post', 'complete');
 
-    const starContainer = document.getElementById('starContainer');
-    if (starContainer) {
-        const stars = starContainer.querySelectorAll('.star');
-        stars.forEach(star => {
-            star.classList.remove('yellow'); // Reset stars to grey
-        });
-    } else {
-        console.warn('starContainer not found');
-    }
-
     updateDeleterVisibility();
     updateDirectionUI('norm');
     clearInputUI();
@@ -610,30 +594,25 @@ function updateGame(action) {
             emptyInputField();
             modifyHeight('complete');
             addClass('post', 'complete');
-            console.log("ROUND COMPLETE!!");
             updateMoveCounterUI();
             break;
 
         case 'nextRound':
-            const currentIndex = wordPairDetails.findIndex(pair => pair.pairKey === wordPair.currentPairKey);
+            const currentIndex = wordPairDetails.findIndex(pair => pair.pairKey === currentPairKey);
             const nextPair = wordPairDetails[currentIndex + 1];
         
             if (nextPair) {
                 setWordPairAndLengths(nextPair.pairKey);
                 resetUI();
                 buildWordPairTiles();
-            }
-            else console.log("No more rounds available.");
-
+            } else document.getElementById('gameArea').innerText = "All Rounds Completed!";
             break;
 
         case 'resetRound':
-            checkAndUpdateBestScoreAfterRound(); // Save the best score if needed
             resetGameState();
             setWordPairAndLengths(currentPairKey);
             resetUI();
             buildWordPairTiles();
-            
             break;
     };
     
