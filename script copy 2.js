@@ -8,74 +8,6 @@ const flipRack = document.getElementById('flipRack');
 const endWordCont = document.getElementById('endWord');
 
 
-
-
-//Helper function to generate "pairKey" programmatically
-function generatePairKey(startWord, endWord) {
-    return `${startWord}-${endWord}`;
-}
-
-//Function to find Word Pair by pairKey
-function findWordPair(pairKey) {
-    return wordPairDetails.find(pair => pair.pairKey === pairKey);
-}
-
-// Jump to a specific round when selected from the list
-function jumpToRound(pairKey) {
-    console.log(`Jumping to round: ${pairKey}`);
-    
-    // Set up the new word pair, calculate lengths, and initialize latest/target words
-    setWordPairAndLengths(pairKey);
-
-    // Verify that the correct words are set
-    console.log(`Start word: ${wordPair.startWord}, End word: ${wordPair.endWord}`);
-    console.log(`Current pairKey: ${pairKey}`);
-
-    // Build the word pair tiles for the new round
-    buildWordPairTiles();
-
-    // Update the best score UI for the selected round
-    updateBestScoreUI(pairKey);
-
-    // Close the popup
-    togglePopup('close');
-}
-
-
-//====BEST SCORES====//
-
-// Convert word pairs and set up a best scores object
-let bestScores = {};
-
-// Update the best score for a word pair in `localStorage`
-// function updateBestScoreObjectAndStorage(pairKey, score) {
-function updateBestScore(pairKey, score) {
-    // Update if score is lower than in object (or there's no best score in object)
-    if (score < bestScores[pairKey] || !bestScores[pairKey]) {
-        bestScores[pairKey] = score;
-
-        localStorage.setItem(pairKey, JSON.stringify(score));
-    }
-}
-
-// Check and update the best score after a round
-function checkAndUpdateBestScoreAfterRound(currentScore) {
-    const pairKey = `${wordPair.start}-${wordPair.end}`;
-    updateBestScore(pairKey, currentScore);
-    updateBestScoreUI(pairKey);
-}
-
-// Update the best score display in the UI
-function updateBestScoreUI(pairKey) {
-    const bestScoreDisplay = document.getElementById('bestScore');
-    const bestScore = bestScores[pairKey] || "--";
-    bestScoreDisplay.innerText = `Best: ${bestScore}`;
-}
-
-
-
-
-
 //// INITIAL STATE AT START OF ROUND ////
 const initialGameState = () => ({
     direction: 'norm',
@@ -88,68 +20,52 @@ const initialGameState = () => ({
 });
 
 let gameState = initialGameState();
+// export let gameState = initialGameState();
 
 function resetGameState() {
     gameState = initialGameState();
 }
 
-
+// export let wordPair = {
 let wordPair = {
-    currentPairKey: '',  // Store the current pair key instead of an index
+    currentPairIndex: 0,
     startWord: '',
     endWord: '',
     maxLength: 6,
     minLength: 3,
+    bestScoreIndex: {},
     score3star: 0,
     score2star: 0
-};
+}
 
-
-// FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS
+//FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS //❗️❗️❗️❗️❗️
 function setWordPairAndLengths(pairKey) {
-    // Find the word pair by its pairKey
-    const wordPairData = wordPairDetails.find(pair => pair.pairKey === pairKey);
+    const index = wordPair.currentPairIndex;
 
-    if (wordPairData) {
-        wordPair.currentPairKey = pairKey;  // Update currentPairKey
+    // if (pairKey);
 
-        // Set the word pair properties
-        wordPair.startWord = wordPairData.start;
-        wordPair.endWord = wordPairData.end;
-        wordPair.score3star = wordPairData.score.A;
-        wordPair.score2star = wordPairData.score.B;
+    if (index < wordPairDetails.length) {
+        wordPair.startWord = wordPairDetails[index].start;
+        wordPair.endWord = wordPairDetails[index].end;
+        
+        wordPair.score3star = wordPairDetails[index].score.A;
+        wordPair.score2star = wordPairDetails[index].score.B;
 
-        // Set min and max lengths for the round
         wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
         wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
 
-        // Update game state
         gameState.latestWord = wordPair.startWord;
         gameState.targetWord = wordPair.endWord;
-
-        console.log(`New round set: ${wordPair.startWord} -> ${wordPair.endWord}`);
     } else {
         document.getElementById('gameArea').innerText = "All Rounds Completed!";
     }
 }
-
 
 function buildWordPairTiles() {
     makeTilesIn(startWordCont, wordPair.startWord);
     makeTilesIn(endWordCont, wordPair.endWord);
 }
 
-
-////GENERATING WORD TILES////
-function makeTilesIn(wordCont, word) {
-    wordCont.querySelectorAll('div').forEach((tile, i) => {
-        const isVisible = i < word.length;
-        tile.textContent = isVisible ? word[i].toUpperCase() : '';
-        tile.classList.toggle('tile', isVisible);
-        tile.classList.toggle('hidden', !isVisible);
-        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${0.2 + i * 0.2}s`;
-    });
-}
 
 
 // DIRECTIONAL CONFIGURATIONS
@@ -196,20 +112,6 @@ function removeClass(className, classToRemove) {
     elems.forEach(el => el.classList.remove(classToRemove));
 }
 
-function toggleClassesInSequence(elements, classes, delays) {
-    // Ensure `elements` is an array, even if a single element is passed
-    const elementArray = Array.isArray(elements) ? elements : [elements];
-
-    // Apply each class in sequence for each element
-    elementArray.forEach(element => {
-        classes.forEach((className, index) => {
-            setTimeout(() => {
-                element.classList.toggle(className);
-            }, delays[index]);
-        });
-    });
-}
-
 function focusTextInputBox() {inputField.focus()}
 
 function emptyInputField() {inputField.value = ''}
@@ -235,6 +137,41 @@ function clearInputUI() {
     });
 }
 
+//====BEST SCORES====//
+
+// Convert word pairs and set up a best scores object
+let bestScores = {};
+
+// Helper to generate the unique key for each word pair
+function generatePairKey(startWord, endWord) {
+    return `${startWord}-${endWord}`;
+}
+
+// Update the best score for a word pair in `localStorage`
+function updateBestScoreObjectAndStorage(pairKey, score) {
+    if (score < bestScores[pairKey] || !bestScores[pairKey]) { // Only update if score is lower
+        bestScores[pairKey] = score;
+        localStorage.setItem(pairKey, JSON.stringify(score));
+    }
+}
+
+// Check and update the best score after a round, if it's a new best
+function checkAndUpdateBestScoreIndex() {
+    const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
+    if (!bestScores[pairKey] || gameState.moveCounter < bestScores[pairKey]) {
+        bestScores[pairKey] = gameState.moveCounter;
+        localStorage.setItem(pairKey, JSON.stringify(gameState.moveCounter));
+    }
+}
+
+
+// Display the best score on the UI
+function updateBestScoreUI() {
+    const bestScoreDisplay = document.getElementById('bestScore');
+    const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
+    const latestBestScore = bestScores[pairKey] || "--";
+    bestScoreDisplay.innerText = "Best: " + latestBestScore;
+}
 
 
 function renderRoundList() {
@@ -242,7 +179,8 @@ function renderRoundList() {
     roundList.innerHTML = ''; // Clear existing list
 
     wordPairDetails.forEach(pair => {
-        const bestScore = bestScores[pair.pairKey] || 0;
+        const pairKey = `${pair.start}-${pair.end}`;
+        const bestScore = bestScores[pairKey] || 0;
 
         // Create list item with static grey stars
         const listItem = document.createElement('li');
@@ -261,12 +199,41 @@ function renderRoundList() {
             if (index < bestScore) star.classList.add('yellow');
         });
 
-        // Set up click event to jump to the specific round
-        listItem.addEventListener('click', () => jumpToRound(pair.pairKey));
+        listItem.addEventListener('click', () => jumpToRound(pairKey));
         roundList.appendChild(listItem);
     });
 }
 
+
+// function renderResultPanel() {
+//     const starContainer = document.getElementById('starContainer');
+//     const moves = gameState.moveCounter;
+//     const message = document.getElementById('resultMessage');
+
+//     // Determine star rating based on score3star and score2star
+//     let starRating;
+//     if (moves <= wordPair.score3star) starRating = 3;
+//     else if (moves <= wordPair.score2star) starRating = 2;
+//     else starRating = 1;
+
+//     // Use generateStars to update the starContainer with the appropriate star rating
+//     starContainer.innerHTML = generateStars(starRating);
+
+//     // Update the result message based on the star rating
+
+//     switch (starRating) {
+//         case 3:
+//             message.innerText = `Completed in ${gameState.moveCounter} moves!\nOutstanding!`;
+//             break;
+//         case 2:
+//             message.innerText = `Completed in ${gameState.moveCounter} moves!\nGreat job!`;
+//             break;
+//         case 1:
+//             message.innerText = `Completed in ${gameState.moveCounter} moves!\nYou know words good!!`;
+//             break;
+//     }
+
+// }
 
 function renderResultPanel() {
     const starContainer = document.getElementById('starContainer');
@@ -292,6 +259,27 @@ function renderResultPanel() {
 }
 
 
+
+// Jump to a specific round when selected from the list
+function jumpToRound(pairKey) {
+    const [startWord, endWord] = pairKey.split('-');
+    wordPair.startWord = startWord;
+    wordPair.endWord = endWord;
+
+    console.log(wordPair.startWord, wordPair.endWord);
+    // setWordPairAndLengths(0);
+    buildWordPairTiles(); //***** NEED TO SET LATEST/TARGET and LENGTHS
+    updateBestScoreUI();
+    togglePopup('close');
+}
+
+
+
+
+//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
+function updateMoveCounterUI() {
+    document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
+}
 
 
 function togglePopup(action) {
@@ -319,7 +307,44 @@ function togglePopup(action) {
     }
 }
 
+//GETTING THE INPUTWORD CONT READY
+function prepareInputCont(rack, array) {
+    const positionInArray = array.length;
+    const wordContsInRack = rack.children;
+    let cont;
 
+    // If the array has fewer entries than there are divs in, then use rack's child at array length...
+    if (wordContsInRack && positionInArray < wordContsInRack.length) {
+        cont = wordContsInRack[positionInArray];
+    // ...otherwise, use a new div added to rack.
+    } else {
+        cont = document.createElement('div');
+        rack.appendChild(cont);
+    }
+
+    // Clear the wordCont in case of preexisting tiles
+    cont.innerHTML = '';
+
+    // Make 6 empty tileConts inside the wordCont
+    for (let i = 0; i < 6; i++) {
+        const tileCont = document.createElement('div');
+        cont.appendChild(tileCont);
+    }
+
+    cont.classList.add('wordCont');
+    return cont;
+}
+
+////GENERATING WORD TILES////
+function makeTilesIn(wordCont, word) {
+    wordCont.querySelectorAll('div').forEach((tile, i) => {
+        const isVisible = i < word.length;
+        tile.textContent = isVisible ? word[i].toUpperCase() : '';
+        tile.classList.toggle('tile', isVisible);
+        tile.classList.toggle('hidden', !isVisible);
+        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${0.2 + i * 0.2}s`;
+    });
+}
 
 
 //FUNC: SUBMITTING A MOVE
@@ -340,6 +365,7 @@ function submitMove() {
 
         if (inputWord === gameState.targetWord) updateGame('complete');
         else {
+
             // Start modifyHeight and then trigger toggleClassesInSequence only after it completes
             modifyHeight('submit', upperRack, upperArray)
                 .then(() => {
@@ -351,35 +377,8 @@ function submitMove() {
             updateDeleterVisibility();
         }
     }
-
-    //GETTING THE INPUTWORD CONT READY
-    function prepareInputCont(rack, array) {
-        const positionInArray = array.length;
-        const wordContsInRack = rack.children;
-        let cont;
-
-        // If the array has fewer entries than there are divs in, then use rack's child at array length...
-        if (wordContsInRack && positionInArray < wordContsInRack.length) {
-            cont = wordContsInRack[positionInArray];
-        // ...otherwise, use a new div added to rack.
-        } else {
-            cont = document.createElement('div');
-            rack.appendChild(cont);
-        }
-
-        // Clear the wordCont in case of preexisting tiles
-        cont.innerHTML = '';
-
-        // Make 6 empty tileConts inside the wordCont
-        for (let i = 0; i < 6; i++) {
-            const tileCont = document.createElement('div');
-            cont.appendChild(tileCont);
-        }
-
-        cont.classList.add('wordCont');
-        return cont;
-    }
 }
+
 
 function deleteMove(which) {
     // determine which rack/array to delete from
@@ -432,35 +431,6 @@ function deleteMove(which) {
     logArrays('after delete');
 }
 
-
-function toggleFlip() {
-    // Toggle game direction and update latest/target words
-    gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
-    updateLatestAndTargetWords();
-
-    // Animation UI
-    const inputFieldAndButtons = document.getElementById('inputAndSideButtons')
-    const toggleFlip = document.getElementById('toggleFlip');
-    const racks = document.querySelectorAll('.rack');
-    const deleters = document.querySelectorAll('.deleter');
-
-    // Start the button rotation animation
-    toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
-    toggleClassesInSequence([inputFieldAndButtons], ['rotating', 'rotating'], [0, 2000]);
-
-
-    toggleClassesInSequence([...racks, ...deleters], ['visible','fade-out','fade-out','visible'], [0,0,1200,1200]);
-
-    // Set a timeout to flip racks during fade
-    setTimeout(() => {
-        updateDirectionUI(gameState.direction);
-    }, 600);
-}
-
-//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
-function updateMoveCounterUI() {
-    document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
-}
 
 
 // wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
@@ -517,6 +487,11 @@ function modifyHeight(action, rack, array) {
   }
   
 
+
+
+
+
+
 function updateDirectionUI(direction) {
     const elementsToUpdate = [
         document.getElementById('gameplayCont'),
@@ -530,6 +505,47 @@ function updateDirectionUI(direction) {
         }
     });
 }
+
+// 
+function toggleFlip() {
+    // Toggle game direction and update latest/target words
+    gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
+    updateLatestAndTargetWords();
+
+    // Animation UI
+    const inputFieldAndButtons = document.getElementById('inputAndSideButtons')
+    const toggleFlip = document.getElementById('toggleFlip');
+    const racks = document.querySelectorAll('.rack');
+    const deleters = document.querySelectorAll('.deleter');
+
+    // Start the button rotation animation
+    toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
+    toggleClassesInSequence([inputFieldAndButtons], ['rotating', 'rotating'], [0, 2000]);
+
+
+    toggleClassesInSequence([...racks, ...deleters], ['visible','fade-out','fade-out','visible'], [0,0,1200,1200]);
+
+    // Set a timeout to flip racks during fade
+    setTimeout(() => {
+        updateDirectionUI(gameState.direction);
+    }, 600);
+}
+
+
+function toggleClassesInSequence(elements, classes, delays) {
+    // Ensure `elements` is an array, even if a single element is passed
+    const elementArray = Array.isArray(elements) ? elements : [elements];
+
+    // Apply each class in sequence for each element
+    elementArray.forEach(element => {
+        classes.forEach((className, index) => {
+            setTimeout(() => {
+                element.classList.toggle(className);
+            }, delays[index]);
+        });
+    });
+}
+
 
 function updateDeleterVisibility() {
     const deleteNorm = document.getElementById('normDeleter');
@@ -573,15 +589,11 @@ function resetUI() {
 
     removeClass('post', 'complete');
 
-    const starContainer = document.getElementById('starContainer');
-    if (starContainer) {
-        const stars = starContainer.querySelectorAll('.star');
-        stars.forEach(star => {
-            star.classList.remove('yellow'); // Reset stars to grey
-        });
-    } else {
-        console.warn('starContainer not found');
-    }
+    const stars = document.getElementById('starContainer').querySelectorAll('.star');
+
+    stars.forEach(star => {
+        star.classList.remove('yellow');
+    });
 
     updateDeleterVisibility();
     updateDirectionUI('norm');
@@ -591,22 +603,20 @@ function resetUI() {
     normRack.style.height = 0;
     flipRack.style.height = 0;
 
-    const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
-
-    updateBestScoreUI(pairKey);
+    updateBestScoreUI();
     updateMoveCounterUI();
 }
 
 
 function updateGame(action) {
-    const currentPairKey = `${wordPair.startWord}-${wordPair.endWord}`;
-
     switch (action) {   
         case 'complete':
-            checkAndUpdateBestScoreAfterRound();
+            checkAndUpdateBestScoreIndex();
             renderResultPanel();
+
             updateLatestAndTargetWords();
-            updateBestScoreUI(currentPairKey);
+            updateBestScoreUI();
+            checkAndUpdateBestScoreIndex();
             emptyInputField();
             modifyHeight('complete');
             addClass('post', 'complete');
@@ -615,26 +625,20 @@ function updateGame(action) {
             break;
 
         case 'nextRound':
-            const currentIndex = wordPairDetails.findIndex(pair => pair.pairKey === wordPair.currentPairKey);
-            const nextPair = wordPairDetails[currentIndex + 1];
-        
-            if (nextPair) {
-                setWordPairAndLengths(nextPair.pairKey);
-                resetUI();
-                buildWordPairTiles();
-            }
-            else console.log("No more rounds available.");
-
-            break;
-
+            checkAndUpdateBestScoreIndex();
+            // updateBestScoreUI();
+            wordPair.currentPairIndex++;
         case 'resetRound':
-            checkAndUpdateBestScoreAfterRound(); // Save the best score if needed
             resetGameState();
-            setWordPairAndLengths(currentPairKey);
+            // logArrays('after reset/next');
+            setWordPairAndLengths();
+            // updateUI();
             resetUI();
             buildWordPairTiles();
             
+            console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
             break;
+
     };
     
     logArrays();
@@ -656,18 +660,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setVhUnit();
     window.addEventListener('resize', setVhUnit);
 
-    // Initialize best scores for each word pair from localStorage if available, or default to 0
-    wordPairDetails.forEach(pair => {
-        bestScores[pair.pairKey] = JSON.parse(localStorage.getItem(pair.pairKey)) || 0;
-    });
-
-    // Load the first word pair and initialize game state
-    const initialPairKey = wordPairDetails[0].pairKey;
-    setWordPairAndLengths(initialPairKey);
+    setWordPairAndLengths(0);
     buildWordPairTiles();
 
-    // Update the best score UI for the initial pair
-    updateBestScoreUI(initialPairKey);
+    // Initialize best scores for each word pair
+    wordPairDetails.forEach(pair => {
+        const key = `${pair.start}-${pair.end}`;
+        // Load from localStorage if available, otherwise default to 0 stars
+        bestScores[key] = JSON.parse(localStorage.getItem(key)) || 0;
+    });
+
+    // Initialize best scores for each word pair from localStorage
+    wordPairDetails.forEach(pair => {
+        const key = `${pair.start}-${pair.end}`;
+        bestScores[key] = JSON.parse(localStorage.getItem(key)) || 0;
+    });
+
+    checkAndUpdateBestScoreIndex();
 
     // Event listener for TEXT BOX (Enter Key)
     inputField.addEventListener('keypress', function(event) {
@@ -686,8 +695,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         else inputField.value += keyValue;
     });
 
-    // Initialize UI
+    updateBestScoreUI();
+
+    // Initialize
     removeClass('overlay', 'loading');
 
     renderRoundList();
+    
 });
