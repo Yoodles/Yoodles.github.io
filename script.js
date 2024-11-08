@@ -648,6 +648,9 @@ function updateGame(action) {
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD
 document.addEventListener('DOMContentLoaded', (event) => {
 
+    console.log('localStorage contents:', { ...localStorage });
+
+
     // Function to set custom --vh unit based on viewport height
     function setVhUnit() {
         let vh = window.innerHeight * 0.01;
@@ -658,11 +661,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setVhUnit();
     window.addEventListener('resize', setVhUnit);
 
+
+    // localStorage.clear();
+
     // Initialize best scores for each word pair from localStorage if available, or default to 0
     wordPairDetails.forEach(pair => {
         const storedScore = localStorage.getItem(pair.pairKey);
-        console.log(`Key: ${pair.pairKey}, Stored Score: ${storedScore}`);
-        bestScores[pair.pairKey] = storedScore ? JSON.parse(storedScore) : 0;
+    
+        try {
+            bestScores[pair.pairKey] = storedScore && storedScore !== 'undefined' 
+                ? JSON.parse(storedScore) 
+                : 0;
+        } catch (error) {
+            console.warn(`Error parsing data for key: ${pair.pairKey}`, error);
+            bestScores[pair.pairKey] = 0;
+        }
     });
     
 
