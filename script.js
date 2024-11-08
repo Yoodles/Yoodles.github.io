@@ -211,6 +211,27 @@ function logArrays(when) {
 }
 
 
+function toggleOverlay(classNames = null) {
+    const overlay = document.getElementById('overlay');
+
+    if (!classNames) {
+        // No parameter: hide the overlay
+        overlay.classList.add('invisible'); // Ensure it's non-interactive
+        overlay.classList.remove('visible'); // Fade out
+    } else {
+        // Add specified classes
+        classNames.forEach(className => overlay.classList.add(className));
+
+        // Make visible
+        overlay.classList.add('visible');
+        overlay.classList.remove('invisible');
+        }
+}
+
+
+
+
+
 ////EMPTYING CONTAINERS and CONTAINER RACKS ❗️❗️❗️❗️❗️❗️
 function clearInputUI() {
     document.querySelectorAll('#normRack .wordCont, #flipRack .wordCont').forEach(wordCont => {
@@ -286,8 +307,6 @@ function renderResultPanel() {
 }
 
 
-
-
 function togglePopup(action) {
     const overlay = document.querySelector('.overlay');
     const popup = document.getElementById('popupPanel');
@@ -300,7 +319,7 @@ function togglePopup(action) {
 
     if (action === 'close') {
         // Hide the overlay and the popup
-        overlay.classList.remove('visible');
+        overlay.classList.remove('translucent');
         popup.classList.add('hidden');
     } else {
         // Show specific content based on the type
@@ -308,7 +327,7 @@ function togglePopup(action) {
         else if (action === 'rounds') roundsContent.classList.remove('hidden');
 
         // Show the overlay and the popup
-        overlay.classList.add('visible');
+        overlay.classList.add('translucent');
         popup.classList.remove('hidden');
     }
 }
@@ -666,7 +685,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     // Initialize UI
-    removeClass('overlay', 'loading');
-
+    toggleOverlay();
     renderRoundList();
 });

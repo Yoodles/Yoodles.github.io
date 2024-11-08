@@ -13,7 +13,6 @@
 
 <body>
     <div id="appContainer">
-        <div class="overlay loading post" onclick="togglePopup('close')"></div>
 
         <div id="header">
             <button id="resetRound" class="function" onclick="updateGame('resetRound')">RESET</button>
@@ -111,6 +110,8 @@
 
         <div id="gameArea" class="gameArea hidden">
             
+            <div id="overlay" class="overlay full-screen" onclick="togglePopup('close')">All Rounds Completed!</div>
+
             <div id="movesCont">
                 <div id="moveCounter" class="moveCounter">Moves: 0</div>
                 <div id="bestScore">Best: --</div>

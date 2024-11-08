@@ -24,7 +24,9 @@ body {
     text-align: center;
     background-color: #f5f6fe;
     /* touch-action: manipulation; */
-
+}
+body.no-scroll {
+    overflow: hidden;
 }
 
 #appContainer {
@@ -46,6 +48,7 @@ button {
     font-size: 3.5vw;
     font-weight: 300;
     text-align: center;
+    touch-action: manipulation;
 }
 button.function:hover {filter: brightness(80%); transform: scale(1.1);}
 
@@ -65,25 +68,43 @@ button.function.help {
 }
 
 
+
+
+/* Base overlay (covers gameArea by default, invisible) */
 .overlay {
-    /* display: none; */
-    position: fixed;
+    position: absolute; /* Default to gameArea coverage */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0);
-    transition: background-color 0.3s ease-in-out; /* Smooth transition for fading */
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    transition: opacity 0.3s ease-in-out;
     z-index: 100;
-    pointer-events: none;
+    pointer-events: none; /* Non-interactive by default */
+    color: transparent; /* No visible text */
+    opacity: 0;
+    display: flex; /* Default is flex for easy alignment */
 }
-.overlay.loading {display: block; background-color: #ffffff}
-.overlay.complete {display: block;}
+.overlay.full-screen {position: fixed; width: 100vw; height: 100vh;}
 
-.overlay.visible  {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background when active */
-    pointer-events: auto; /* Allow interaction when the overlay is visible */
+.overlay.transparent {
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+    cursor: pointer;
 }
+.overlay.message {
+    color: black;
+    font-size: 16vw;
+    text-align: center;
+}
+.overlay.hidden {pointer-events: none;}
+
+
+
+
+
 
 
 
@@ -310,8 +331,8 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 .hidden { display: none;}
-.visible {opacity: 1;}
-.invisible { opacity: 0; }
+.visible {opacity: 1; pointer-events: auto;}
+.invisible { opacity: 0; pointer-events: none;}
 
 .wordCont {
     display: flex;
