@@ -94,7 +94,8 @@ function getDirectionalConfig() {
 
 // FUNCTION: Update the latest and target word based on the current directional configuration
 function updateLatestAndTargetWords() {
-    const { upperArray, wordAtTop, lowerArray, wordAtBottom } = getDirectionalConfig();
+    const {upperArray, wordAtTop, lowerArray, wordAtBottom} = getDirectionalConfig();
+
     gameState.latestWord = upperArray.length ? upperArray.at(-1) : wordAtTop;
     gameState.targetWord = lowerArray.length ? lowerArray.at(-1) : wordAtBottom;
     console.log('update latest/target: ', gameState.latestWord, gameState.targetWord);
@@ -409,17 +410,6 @@ function deleteMove(which) {
 
 
 
-function animateElement(el, animation) {
-    // el.style.transitionDuration = `${duration}s`;
-    el.classList.add(`${animation}`);
-    setTimeout(() => {
-        el.classList.remove(`${animation}`);
-    }, 2000);
-
-}
-
-
-
 // wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 
 
@@ -498,15 +488,20 @@ function toggleFlip() {
     // Toggle game direction and update latest/target words
     gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
     updateLatestAndTargetWords();
+    gameState.phase = 'mid';
 
-    const flipper = document.getElementById('toggleFlip');
+    // Animation UI
+    const inputFieldAndButtons = document.getElementById('inputAndSideButtons')
+    const toggleFlip = document.getElementById('toggleFlip');
     const racks = document.querySelectorAll('.rack');
     const deleters = document.querySelectorAll('.deleter');
 
     // Start the button rotation animation
-    toggleClassesInSequence([flipper, inputField], ['rotating', 'rotating'], [0, 2000]);
+    toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
+    toggleClassesInSequence([inputFieldAndButtons], ['rotating', 'rotating'], [0, 2000]);
 
-    toggleClassesInSequence([...racks, ...deleters], ['fade-out'], [0]);
+
+    toggleClassesInSequence([...racks, ...deleters], ['visible','fade-out','fade-out','visible'], [0,0,1200,1200]);
 
     // Set a timeout to flip racks during fade
     setTimeout(() => {
@@ -601,8 +596,6 @@ function updateUI(stateOrAction) {
 
 
 function updateGame(action) {
-    gameState.phase = 'mid';
-
     switch (action) {   
         case 'complete':
             gameState.phase = 'post';
@@ -686,10 +679,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         else inputField.value += keyValue;
     });
 
+    updateBestScoreUI();
+
     // Initialize
     removeClass('overlay', 'loading');
 
     renderRoundList();
-    updateBestScoreUI();
-
+    
 });

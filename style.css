@@ -322,8 +322,6 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 }
 .wordCont.visible {opacity: 1}
 
-.rack {opacity: 1}
-
 
 
 
@@ -340,9 +338,13 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     transition-duration: .2s;
 }
 
-/* .wordCont.setWord {opacity: 1} */
+.rack {opacity: 1}
 
-/* .rack.fade-out {transition-delay: 2s;} */
+.rack.fade-in,
+.rack.fade-out {
+    transition-duration: .6s;
+}
+
 
 
 /* Rotate effects */
@@ -423,6 +425,7 @@ input:focus {outline: none}
     filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
 
 }
+#toggleFlip:hover, #toggleFlip.pressed {transform: scale(1.1)}
 #toggleFlip img {height: 12.3vw;}
 
 .deleter {
@@ -431,7 +434,9 @@ input:focus {outline: none}
     border: none;
     transform: none;
     transition: opacity 0.2s ease-in;
+    opacity: 0;
 }
+.deleter.visible {opacity: 1;}
 .deleter img {
     height: 7vw;
     font-size: 5vw;
