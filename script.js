@@ -269,13 +269,13 @@ function toggleOverlay(classNames = null) {
 
     // but if parameters...
     } else {
-        // ...first reset to base state
-        overlay.className = 'overlay';
+
+        overlay.className = 'overlay'; // Clears previous mode classes
 
         // Add specified classes
         classNames.forEach(className => overlay.classList.add(className));
 
-        // Make overlay visible
+        //...then fade in (set opacity to 1)...
         overlay.classList.add('visible');
         overlay.classList.remove('invisible');
     }
