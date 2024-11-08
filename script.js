@@ -526,7 +526,6 @@ function toggleClassesInSequence(elements, classes, delays) {
 
 
 
-
 function updateDeleterVisibility() {
     const deleteNorm = document.getElementById('normDeleter');
     const deleteFlip = document.getElementById('flipDeleter');
@@ -539,7 +538,6 @@ function updateDeleterVisibility() {
         ? deleteFlip.classList.add('invisible')
         : deleteFlip.classList.remove('invisible');
 }
-
 
 
 
