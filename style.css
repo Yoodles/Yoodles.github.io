@@ -81,7 +81,7 @@ button.function.help {
     align-items: center;
     background-color: white;
     transition: opacity 0.3s ease-in-out;
-    z-index: 100;
+    z-index: 200;
     pointer-events: none; /* Non-interactive by default */
     color: transparent; /* No visible text */
     opacity: 0;
@@ -89,11 +89,13 @@ button.function.help {
 }
 .overlay.full-screen {position: fixed; width: 100vw; height: 100vh;}
 
-.overlay.transparent {
+.overlay.translucent {
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
     pointer-events: auto;
     cursor: pointer;
 }
+.overlay.translucent.invisible {pointer-events: none;}
 .overlay.message {
     color: black;
     font-size: 16vw;

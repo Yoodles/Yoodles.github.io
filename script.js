@@ -252,14 +252,25 @@ function logArrays(when) {
 
 function toggleOverlay(classNames = null) {
     const overlay = document.getElementById('overlay');
-
+    
+    // if no parameters...
     if (!classNames) {
-        // Hide the overlay
-        overlay.classList.add('invisible'); // Ensure it's non-interactive
-        overlay.classList.remove('visible'); // Fade out
-    } else {
-        // Reset to base state
+        // ...remove classes other than 'overlay'...
         overlay.className = 'overlay'; // Clears previous mode classes
+
+        //...then fade out (=turn opaque)...
+        overlay.classList.add('invisible');
+        overlay.classList.remove('visible');
+
+        //...and then add .hidden (turn off display)
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 400);
+
+    // but if parameters...
+    } else {
+        // ...first reset to base state
+        overlay.className = 'overlay';
 
         // Add specified classes
         classNames.forEach(className => overlay.classList.add(className));
@@ -349,7 +360,7 @@ function togglePopup(action) {
 
     if (action === 'close') {
         // Hide the overlay and the popup
-        overlay.classList.remove('translucent');
+        toggleOverlay();
         popup.classList.add('hidden');
     } else {
         // Show specific content based on the type
