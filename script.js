@@ -494,30 +494,39 @@ function toggleFlip() {
 
     // Animation UI
     const inputFieldAndButtons = document.getElementById('inputAndSideButtons')
-    const toggleFlip = document.getElementById('toggleFlip');
-    const racks = document.querySelectorAll('.rack');
     const deleters = document.querySelectorAll('.deleter');
-    const gameplayCont = document.getElementById('gameplayCont');
+    const overlay = document.getElementById('overlay2');
 
-    // Start the button rotation animation
     // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
-    // toggleClassesInSequence([inputFieldAndButtons], ['rotating', 'rotating'], [0, 2000]);
+    toggleClassesInSequence([inputFieldAndButtons], ['rotating', 'rotating'], [0, 2000]);
 
-    toggleClassWithDelay([inputFieldAndButtons], 'rotating', 'add', 2000);
-
-    // toggleClassWithDelay([...racks, ...deleters], 'fade-out', 'add', 1200);
-
-    toggleClassesInSequence([gameplayCont], ['fade-out', 'fade-out'], [0, 1000]);
-    // toggleClassWithDelay([gameplayCont], 'fade-out', 'add', 1000);
-    // toggleClassWithDelay([gameplayCont], 'fade-in', 'add', 1000);
-
-
-    // Set a timeout to flip racks during fade
+    fadeIn(overlay, 1000);
     setTimeout(() => {
         updateDirectionUI(gameState.direction);
-    }, 600);
+        fadeOut(overlay, 1000);
+    }, 1000);
+
 }
 
+
+
+function fadeIn(element, duration = 500) {
+    // element.style.transition = `opacity ${duration}ms ease-in`;
+    element.style.transitionDuration = `${duration}ms`;
+
+    element.classList.remove('invisible', 'fade-out');
+    element.classList.add('fade-in');
+  }
+  
+function fadeOut(element, duration = 500) {
+// element.style.transition = `opacity ${duration}ms ease-out`;
+element.style.transitionDuration = `${duration}ms`;
+
+element.classList.remove('fade-in');
+element.classList.add('fade-out');
+setTimeout(() => element.classList.add('invisible'), duration); // Optional: hide after fade
+}
+  
 
 // wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 

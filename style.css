@@ -70,38 +70,7 @@ button.function.help {
 
 
 
-/* Base overlay (covers gameArea by default, invisible) */
-.overlay {
-    position: absolute; /* Default to gameArea coverage */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    transition: opacity 0.3s ease-in-out;
-    z-index: 200;
-    pointer-events: none; /* Non-interactive by default */
-    color: transparent; /* No visible text */
-    opacity: 0;
-    display: flex; /* Default is flex for easy alignment */
-}
-.overlay.full-screen {position: fixed; width: 100vw; height: 100vh;}
 
-.overlay.translucent {
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
-    pointer-events: auto;
-    cursor: pointer;
-}
-.overlay.translucent.invisible {pointer-events: none;}
-.overlay.message {
-    color: black;
-    font-size: 16vw;
-    text-align: center;
-}
-.overlay.hidden {pointer-events: none;}
 
 
 
@@ -159,6 +128,7 @@ button.function.help {
     top: 0%;
     width: fit-content;
     font-size: 4vw;
+    z-index: 201;
 }
 #movesCont {
     left: 0%;
@@ -329,6 +299,51 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 /* transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1); */
 
 
+
+
+
+/* Base overlay (covers gameArea by default, invisible) */
+.overlay {
+    position: absolute; /* Default to gameArea coverage */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    /* background-color: white; */
+    background-color: #f5f6fe;
+
+    transition: opacity 0.3s ease-in-out;
+    z-index: 200;
+    pointer-events: none; /* Non-interactive by default */
+    color: transparent; /* No visible text */
+    opacity: 0;
+    display: flex; /* Default is flex for easy alignment */
+}
+
+#overlay2 {
+    transition: opacity ease;
+}
+#inputAndSideButtons {z-index: 1000};
+
+.overlay.full-screen {position: fixed; width: 100vw; height: 100vh;}
+
+.overlay.translucent {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    pointer-events: auto;
+    cursor: pointer;
+}
+.overlay.translucent.invisible {pointer-events: none;}
+.overlay.message {
+    color: black;
+    font-size: 16vw;
+    text-align: center;
+}
+.overlay.hidden {pointer-events: none;}
+
+
 .hidden { display: none;}
 .visible {opacity: 1; pointer-events: auto;}
 .invisible { opacity: 0; pointer-events: none;}
@@ -345,10 +360,9 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 
 
-
 /* Fade effects */
-.fade-in { opacity: 1; transition: opacity 1s ease-in; }
-.fade-out { opacity: 0; transition: opacity 1s ease-out; }
+.fade-in { opacity: 1; transition: opacity ease-in; }
+.fade-out { opacity: 0; transition: opacity ease-out; }
 
 .fade-in:not(.exclude) {opacity: 1;}
 .fade-out:not(.exclude) {opacity: 0;}
