@@ -256,7 +256,7 @@ function toggleOverlay(classNames = null) {
     // if no parameters...
     if (!classNames) {
         // ...remove classes other than 'overlay'...
-        overlay.className = 'overlay'; // Clears previous mode classes
+        overlay.className = 'overlay visible'; // Clears previous mode classes
 
         //...then fade out (=turn opaque)...
         overlay.classList.add('invisible');
@@ -270,10 +270,12 @@ function toggleOverlay(classNames = null) {
     // but if parameters...
     } else {
 
-        overlay.className = 'overlay'; // Clears previous mode classes
+        overlay.className = 'overlay invisible'; // Clears previous mode classes
 
         // Add specified classes
         classNames.forEach(className => overlay.classList.add(className));
+        
+        // overlay.classList.remove('hidden');
 
         //...then fade in (set opacity to 1)...
         overlay.classList.add('visible');
