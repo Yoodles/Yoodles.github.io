@@ -215,18 +215,22 @@ function toggleOverlay(classNames = null) {
     const overlay = document.getElementById('overlay');
 
     if (!classNames) {
-        // No parameter: hide the overlay
+        // Hide the overlay
         overlay.classList.add('invisible'); // Ensure it's non-interactive
         overlay.classList.remove('visible'); // Fade out
     } else {
+        // Reset to base state
+        overlay.className = 'overlay'; // Clears previous mode classes
+
         // Add specified classes
         classNames.forEach(className => overlay.classList.add(className));
 
-        // Make visible
+        // Make overlay visible
         overlay.classList.add('visible');
         overlay.classList.remove('invisible');
-        }
+    }
 }
+
 
 
 
@@ -656,8 +660,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Initialize best scores for each word pair from localStorage if available, or default to 0
     wordPairDetails.forEach(pair => {
-        bestScores[pair.pairKey] = JSON.parse(localStorage.getItem(pair.pairKey)) || 0;
+        const storedScore = localStorage.getItem(pair.pairKey);
+        console.log(`Key: ${pair.pairKey}, Stored Score: ${storedScore}`);
+        bestScores[pair.pairKey] = storedScore ? JSON.parse(storedScore) : 0;
     });
+    
 
     // Load the first word pair and initialize game state
     const initialPairKey = wordPairDetails[0].pairKey;
