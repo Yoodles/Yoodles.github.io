@@ -284,6 +284,7 @@ function submitMove() {
         const {upperRack, upperArray} = getDirectionalConfig();
 
         upperArray.push(inputWord);
+
         updateLatestAndTargetWords();
         gameState.latestMove = 'submit';
         gameState.moveCounter++;
@@ -302,7 +303,6 @@ function submitMove() {
         updateDeleterVisibility();
         emptyInputField();
         updateMoveCounterUI();
-
         if (gameState.isComplete) updateGame('complete');
     }
 
@@ -358,31 +358,25 @@ function deleteMove(which) {
     // delete last entry in array (if non-empty) and last wordCont in rack
     if (dirConfig.array.length > 0) dirConfig.array.pop();
 
-    gameState.moveCounter--;
-    // record latestMove (for "Undo" post-completion)
-    gameState.latestMove = dirConfig.rack === normRack ? 'delete-norm' : 'delete-flip';
-
     updateLatestAndTargetWords();
+    gameState.latestMove = dirConfig.rack === normRack ? 'delete-norm' : 'delete-flip';
+    gameState.moveCounter--;
+    if (gameState.latestWord === gameState.targetWord) gameState.isComplete = true;
+
 
     // Apply the classes in sequence to trigger the fade-out effect
     toggleClassesInSequence(wordToDelete, ['visible', 'fade-out'], [0, 0]);
 
-    // if latest & target match after delete, trigger completion code
-    if (gameState.latestWord === gameState.targetWord) updateGame('complete');
-    else {
+    setTimeout(() => {
+        modifyHeight('delete', dirConfig.rack, dirConfig.array);
+        
+    }, 200);
 
-        setTimeout(() => {
-            modifyHeight('delete', dirConfig.rack, dirConfig.array);
-            
-            // remove when? leave for undo *****
-            wordToDelete.remove();
-        }, 200);
-
-        emptyInputField();
-        updateDeleterVisibility();
-    }
-
-    logArrays('after delete');
+    updateDeleterVisibility();
+    emptyInputField();
+    updateMoveCounterUI();
+    if (gameState.isComplete) updateGame('complete');
+    else wordToDelete.remove();
 }
 
 
