@@ -376,12 +376,12 @@ function toggleFlip() {
     updateLatestAndTargetWords();
 
     // Animation UI
-    const inputFieldAndButtons = document.getElementById('inputAndSideButtons')
+    const inputSet = document.getElementById('inputSet');
     const deleters = document.querySelectorAll('.deleter');
     const overlay = document.getElementById('overlay');
 
     // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
-    toggleClassesInSequence([inputFieldAndButtons], ['rotating', 'rotating'], [0, 2000]);
+    toggleClassesInSequence([inputSet], ['rotating', 'rotating'], [0, 2000]);
 
     // toggleOverlay();
     fadeIn(overlay, 1000);
@@ -483,7 +483,10 @@ function modifyHeight(action, rack, array) {
     // If Complete: 
     }
     else if (action === 'complete') {
-        const allRacks = document.querySelectorAll('.rack');
+        const normSet = document.getElementById('normSet');
+        const flipSet = document.getElementById('flipSet');
+        const bothSets = document.querySelectorAll('.set');
+        
         startWordCont.classList.add('slide-down-complete');
         getDirectionalConfig().upperRack.classList.add('slide-down-complete');
         getDirectionalConfig().lowerRack.classList.add('slide-up-complete');
@@ -735,24 +738,10 @@ function logArrays(when) {
 
 
 
-// function updateDirectionUI(direction) {
-//     const elementsToUpdate = [
-//         document.getElementById('gameplayCont'),
-//         document.getElementById('flipperAndDeleters')
-//     ];
-
-//     elementsToUpdate.forEach(element => {
-//         if (element) {
-//             if (direction === 'flip') element.setAttribute('data-flip', '')
-//             else if (direction === 'norm') element.removeAttribute('data-flip');
-//         }
-//     });
-// }
-
-
-function updateDirectionUI(direction) {
+function updateDirectionUI(direction) { //if RESET, how? *****
     const elementsToUpdate = [
         document.getElementById('gameplayCont'),
+        document.getElementById('normSet'),
         document.getElementById('flipperAndDeleters')
     ];
 
@@ -760,26 +749,42 @@ function updateDirectionUI(direction) {
         if (element) {
             if (direction === 'flip') element.classList.add('flip');
             else if (direction === 'norm') element.classList.remove('flip');
+            // element.classList.toggle('flip');
         }
     });
 }
 
 
 
-function updateDeleterVisibility() {
-    const deleteNorm = document.getElementById('upperDeleter');
-    const deleteFlip = document.getElementById('lowerDeleter');
+// function updateDeleterVisibility() {
+//     const upperDeleter = document.getElementById('upperDeleter');
+//     const lowerDeleter = document.getElementById('lowerDeleter');
 
-const {upperArray, lowerArray} = getDirectionalConfig();
+//     const {upperArray, lowerArray} = getDirectionalConfig();
 
-    upperArray.length < 1
-        ? deleteNorm.classList.add('invisible')
-        : deleteNorm.classList.remove('invisible');
+//     upperArray.length < 1
+//         ? upperDeleter.classList.add('invisible')
+//         : upperDeleter.classList.remove('invisible');
             
-    lowerArray.length < 1
-        ? deleteFlip.classList.add('invisible')
-        : deleteFlip.classList.remove('invisible');
+//     lowerArray.length < 1
+//         ? lowerDeleter.classList.add('invisible')
+//         : lowerDeleter.classList.remove('invisible');
+// }
+
+
+
+function updateDeleterVisibility() {
+    const {upperArray, lowerArray} = getDirectionalConfig();
+
+    updateVisibility('upperDeleter', upperArray.length);
+    updateVisibility('lowerDeleter', lowerArray.length);
+
+    function updateVisibility(deleterId, arrayLength) {
+        const deleter = document.getElementById(deleterId);
+        deleter.classList.toggle('invisible', arrayLength < 1);
+    }
 }
+
 
 
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD
