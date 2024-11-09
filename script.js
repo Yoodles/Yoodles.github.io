@@ -54,121 +54,10 @@ function jumpToRound(pairKey) {
     updateBestScoreUI(pairKey);
 
     // Close the popup
-    togglePopup('close');
+    togglePanel('close');
 }
 
 
-//====BEST SCORES====//
-
-// Convert word pairs and set up a best scores object
-let bestScores = {};
-
-// Check and update the best score after a round
-function checkAndUpdateBestScoreAfterRound(currentScore) {
-    const pairKey = wordPair.currentPairKey; // Use currentPairKey directly
-    updateBestScore(pairKey, currentScore);
-    updateBestScoreUI(pairKey);
-}
-
-// Update the best score for a word pair in `localStorage`
-function updateBestScore(pairKey, score) {
-    // Update if score is lower than in object (or there's no best score in object)
-    if (!bestScores[pairKey] || score < bestScores[pairKey]) {
-        bestScores[pairKey] = score;
-
-        localStorage.setItem(pairKey, JSON.stringify(score));
-    }
-}
-
-// Update the best score display in the UI
-function updateBestScoreUI(pairKey) {
-    const bestScoreDisplay = document.getElementById('bestScore');
-    const bestScore = bestScores[pairKey] || "--";
-    bestScoreDisplay.innerText = `Best: ${bestScore}`;
-}
-
-//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
-function updateMoveCounterUI() {
-    document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
-}
-
-
-// FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS
-function setWordPairAndLengths(pairKey) {
-    // Find the word pair by its pairKey
-    const wordPairData = wordPairDetails.find(pair => pair.pairKey === pairKey);
-
-    if (wordPairData) {
-        wordPair.currentPairKey = pairKey;  // Update currentPairKey
-
-        // Set the word pair properties
-        wordPair.startWord = wordPairData.start;
-        wordPair.endWord = wordPairData.end;
-        wordPair.score3star = wordPairData.score.A;
-        wordPair.score2star = wordPairData.score.B;
-
-        // Set min and max lengths for the round
-        wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
-        wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
-
-        // Update game state
-        gameState.latestWord = wordPair.startWord;
-        gameState.targetWord = wordPair.endWord;
-
-        console.log(`New round set: ${wordPair.startWord} -> ${wordPair.endWord}`);
-    }
-}
-
-
-function buildWordPairTiles() {
-    makeTilesIn(startWordCont, wordPair.startWord);
-    makeTilesIn(endWordCont, wordPair.endWord);
-}
-
-
-////GENERATING WORD TILES////
-function makeTilesIn(wordCont, word) {
-    wordCont.querySelectorAll('div').forEach((tile, i) => {
-        const isVisible = i < word.length;
-        tile.textContent = isVisible ? word[i].toUpperCase() : '';
-        tile.classList.toggle('tile', isVisible);
-        tile.classList.toggle('hidden', !isVisible);
-        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${0.2 + i * 0.2}s`;
-    });
-}
-
-
-// DIRECTIONAL CONFIGURATIONS
-function getDirectionalConfig() {
-    if (gameState.direction === 'norm') {
-        return {
-            upperRack: normRack,
-            lowerRack: flipRack,
-            wordAtTop: wordPair.startWord,
-            wordAtBottom: wordPair.endWord,
-            upperArray: gameState.normArray,
-            lowerArray: gameState.flipArray,
-        };
-    } else { // i.e. is 'flip'
-        return {
-            upperRack: flipRack,
-            lowerRack: normRack,
-            wordAtTop: wordPair.endWord,
-            wordAtBottom: wordPair.startWord,
-            upperArray: gameState.flipArray,
-            lowerArray: gameState.normArray,
-        };
-    }
-}
-
-// FUNCTION: Update the latest and target word based on the current directional configuration
-function updateLatestAndTargetWords() {
-    const {upperArray, wordAtTop, lowerArray, wordAtBottom} = getDirectionalConfig();
-
-    gameState.latestWord = upperArray.length ? upperArray.at(-1) : wordAtTop;
-    gameState.targetWord = lowerArray.length ? lowerArray.at(-1) : wordAtBottom;
-    console.log('update latest/target: ', gameState.latestWord, gameState.targetWord);
-}
 
 
 //====UTILITY FUNCTIONS====//
@@ -225,29 +114,7 @@ function toggleClassWithDelay(elements, className, action, delay) {
 }
 
 
-function focusTextInputBox() {inputField.focus()}
 
-function emptyInputField() {inputField.value = ''}
-
-////EMPTYING CONTAINERS and CONTAINER RACKS
-function clearInputUI() {
-    document.querySelectorAll('#normRack .wordCont, #flipRack .wordCont').forEach(wordCont => {
-        wordCont.querySelectorAll('div').forEach(tile => {
-            tile.textContent = '';
-            tile.classList.remove('tile');
-        });
-        wordCont.classList.remove('wordCont');
-    });
-}
-
-function logArrays(when) {
-    const normArray = gameState.normArray;
-    const flipArray = gameState.flipArray;
-
-    console.log(when, ": normArray Contents:", normArray, ". normArray items:", normArray.length);
-    console.log(when, ": flipArray Contents:", flipArray, ". flipArray items:", flipArray.length);
-
-}
 
 
 // function toggleOverlay(classNames = null) {
@@ -282,43 +149,6 @@ function logArrays(when) {
 //         overlay.classList.remove('invisible');
 //     }
 // }
-
-
-function toggleOverlay(mode) {
-    const overlay = document.getElementById('overlay');
-    let duration = 300;
-
-    switch (mode) {
-        case 'popup-background':
-            overlay.classList.add('full-screen', 'translucent');
-            duration = 600;
-            fadeIn(overlay, 500);
-            break;
-        case 'on-and-off':
-
-            break;
-        case 'initial':
-            duration = 500;
-            // fadeOut(overlay, 500);
-            break;
-        case 'message':
-            overlay.classList.add('message');
-            break;
-        default:
-            break;
-    }
-
-    if (overlay.classList.contains('hidden')) {
-        fadeIn(overlay, duration);
-    }
-    else {
-        fadeOut(overlay, duration);
-        setTimeout(() => {
-            overlay.className = 'overlay hidden';
-        }, 1000);
-    }
-
-}
 
 
 
@@ -384,29 +214,36 @@ function renderResultPanel() {
 }
 
 
-function togglePopup(action) {
+function togglePanel(action) {
     const popup = document.getElementById('popupPanel');
+    const resultPanel = document.getElementById('resultPanel');
     const helpContent = document.getElementById('helpContent');
     const roundsContent = document.getElementById('roundsContent');
 
-    // Hide all content initially
-    helpContent.classList.add('hidden');
-    roundsContent.classList.add('hidden');
+    let panel;
 
     if (action === 'close') {
         // Hide the overlay and the popup
         toggleOverlay();
         popup.classList.add('hidden');
+    } else if (action === 'result') {
+        //resultPanel.classList.add('hidden');
+        
+        panel = resultPanel;
     } else {
+        panel = popup;
+        // Hide all content initially
+        helpContent.classList.add('hidden');
+        roundsContent.classList.add('hidden');
+        
         // Show specific content based on the type
         if (action === 'help') helpContent.classList.remove('hidden');
         else if (action === 'rounds') roundsContent.classList.remove('hidden');
-
-        // Show the overlay and the popup
-        // overlay.classList.add('translucent');
-        toggleOverlay('popup-background');
-        popup.classList.remove('hidden');
     }
+    // Show the overlay and the popup
+    toggleOverlay('popup-background');
+    panel.classList.remove('hidden');
+
 }
 
 
@@ -543,6 +380,44 @@ function toggleFlip() {
 }
 
 
+function toggleOverlay(mode) {
+    const overlay = document.getElementById('overlay');
+    let duration = 300;
+
+    switch (mode) {
+        case 'popup-background':
+            overlay.classList.add('full-screen', 'translucent');
+            duration = 1000;
+            break;
+        case 'on-and-off':
+
+            break;
+        case 'initial':
+            duration = 500;
+            // fadeOut(overlay, 500);
+            break;
+        case 'default':
+            duration = 500;
+            break;
+        case 'message':
+            overlay.classList.add('message');
+            break;
+        default:
+            break;
+    }
+
+    if (overlay.classList.contains('hidden')) {
+        fadeIn(overlay, duration);
+    }
+    else {
+        fadeOut(overlay, duration);
+        setTimeout(() => {
+            overlay.className = 'overlay hidden';
+        }, 1000);
+    }
+
+}
+
 //Element should start with .invisible or already be at opacity: 0.
 function fadeIn(element, duration = 500) {
     element.style.transitionDuration = `${duration}ms`;
@@ -571,7 +446,7 @@ function fadeOut(element, duration = 500, addHidden = false) {
             // element.style.display = 'none'; // Explicitly set display to none
         }
         else element.classList.add('invisible'); // Just make it invisible
-        
+
     }, duration);
 }
   
@@ -582,13 +457,14 @@ function fadeOut(element, duration = 500, addHidden = false) {
 
 function modifyHeight(action, rack, array) {
     // Get the height of startWordCont in pixels
-    console.log('array: ', array, array.length);
+    // console.log('array: ', array, array.length);
     let wordContHeight = parseFloat(window.getComputedStyle(startWordCont).height);
-    console.log('wordContHeight: ', wordContHeight); // Should log a number (e.g., 50)
+    // console.log('wordContHeight: ', wordContHeight); // Should log a number (e.g., 50)
 
     let newHeight = array.length * wordContHeight + 'px';
 
-    console.log('wordContHeight: ', wordContHeight, '. newHeight: ', newHeight);
+    // console.log('wordContHeight: ', wordContHeight, '. newHeight: ', newHeight);
+
     // If Submit/Delete: New height of rack = number of words in array x wordCont height
     if (action === 'submit' || action === 'delete') rack.style.height = newHeight;
     // If Complete: 
@@ -596,33 +472,7 @@ function modifyHeight(action, rack, array) {
 }
 
 
-function updateDirectionUI(direction) {
-    const elementsToUpdate = [
-        document.getElementById('gameplayCont'),
-        document.getElementById('flipperAndDeleters')
-    ];
 
-    elementsToUpdate.forEach(element => {
-        if (element) {
-            if (direction === 'flip') element.setAttribute('data-flip', '')
-            else if (direction === 'norm') element.removeAttribute('data-flip');
-        }
-    });
-}
-
-function updateDeleterVisibility() {
-    const deleteNorm = document.getElementById('normDeleter');
-    const deleteFlip = document.getElementById('flipDeleter');
-
-    logArrays('updateDeleterVisibility');
-    gameState.normArray.length < 1
-        ? deleteNorm.classList.add('invisible')
-        : deleteNorm.classList.remove('invisible');
-            
-    gameState.flipArray.length < 1
-        ? deleteFlip.classList.add('invisible')
-        : deleteFlip.classList.remove('invisible');
-}
 
 function undoMove() {
     switch (gameState.latestMove) {
@@ -667,13 +517,9 @@ function updateGame(action) {
             ////UPDATE UI
             emptyInputField();
             // modifyHeight('complete');
-            //or "post"?
-            document.getElementById('resultPanel').classList.add('active');
 
-
-            // addClass('overlay', 'complete');
-            // togglePopup();
-            toggleOverlay(['full-screen', 'translucent']);
+            togglePanel('result');            
+            toggleOverlay('popup-background');
             updateMoveCounterUI();
             break;
 
@@ -686,9 +532,12 @@ function updateGame(action) {
                 resetUI();
                 buildWordPairTiles();
             } else document.getElementById('gameArea').innerText = "All Rounds Completed!";
+
             break;
 
         case 'resetRound':
+            toggleOverlay('default');
+
             resetGameState();
             setWordPairAndLengths(currentPairKey);
             resetUI();
@@ -696,7 +545,7 @@ function updateGame(action) {
             break;
     };
     
-    logArrays();
+    // logArrays();
     console.log('latestMove: ', gameState.latestMove);
     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
 }
@@ -706,7 +555,6 @@ function updateGame(action) {
 function resetUI() {
 
     document.getElementById('resultPanel').classList.remove('active');
-    toggleOverlay();
 
     updateDeleterVisibility();
     updateDirectionUI('norm');
@@ -721,6 +569,178 @@ function resetUI() {
     updateBestScoreUI(pairKey);
     updateMoveCounterUI();
 }
+
+
+
+
+
+
+
+// FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS
+function setWordPairAndLengths(pairKey) {
+    // Find the word pair by its pairKey
+    const wordPairData = wordPairDetails.find(pair => pair.pairKey === pairKey);
+
+    if (wordPairData) {
+        wordPair.currentPairKey = pairKey;  // Update currentPairKey
+
+        // Set the word pair properties
+        wordPair.startWord = wordPairData.start;
+        wordPair.endWord = wordPairData.end;
+        wordPair.score3star = wordPairData.score.A;
+        wordPair.score2star = wordPairData.score.B;
+
+        // Set min and max lengths for the round
+        wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
+        wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
+
+        // Update game state
+        gameState.latestWord = wordPair.startWord;
+        gameState.targetWord = wordPair.endWord;
+
+        console.log(`New round set: ${wordPair.startWord} -> ${wordPair.endWord}`);
+    }
+}
+
+function buildWordPairTiles() {
+    makeTilesIn(startWordCont, wordPair.startWord);
+    makeTilesIn(endWordCont, wordPair.endWord);
+}
+
+
+////GENERATING WORD TILES////
+function makeTilesIn(wordCont, word) {
+    wordCont.querySelectorAll('div').forEach((tile, i) => {
+        const isVisible = i < word.length;
+        tile.textContent = isVisible ? word[i].toUpperCase() : '';
+        tile.classList.toggle('tile', isVisible);
+        tile.classList.toggle('hidden', !isVisible);
+        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${0.2 + i * 0.2}s`;
+    });
+}
+
+
+// DIRECTIONAL CONFIGURATIONS
+function getDirectionalConfig() {
+    if (gameState.direction === 'norm') {
+        return {
+            upperRack: normRack,
+            lowerRack: flipRack,
+            wordAtTop: wordPair.startWord,
+            wordAtBottom: wordPair.endWord,
+            upperArray: gameState.normArray,
+            lowerArray: gameState.flipArray,
+        };
+    } else { // i.e. is 'flip'
+        return {
+            upperRack: flipRack,
+            lowerRack: normRack,
+            wordAtTop: wordPair.endWord,
+            wordAtBottom: wordPair.startWord,
+            upperArray: gameState.flipArray,
+            lowerArray: gameState.normArray,
+        };
+    }
+}
+
+// FUNCTION: Update the latest and target word based on the current directional configuration
+function updateLatestAndTargetWords() {
+    const {upperArray, wordAtTop, lowerArray, wordAtBottom} = getDirectionalConfig();
+
+    gameState.latestWord = upperArray.length ? upperArray.at(-1) : wordAtTop;
+    gameState.targetWord = lowerArray.length ? lowerArray.at(-1) : wordAtBottom;
+    console.log('update latest/target: ', gameState.latestWord, gameState.targetWord);
+}
+
+//====BEST SCORES====//
+
+// Convert word pairs and set up a best scores object
+let bestScores = {};
+
+// Check and update the best score after a round
+function checkAndUpdateBestScoreAfterRound(currentScore) {
+    const pairKey = wordPair.currentPairKey; // Use currentPairKey directly
+    updateBestScore(pairKey, currentScore);
+    updateBestScoreUI(pairKey);
+}
+
+// Update the best score for a word pair in `localStorage`
+function updateBestScore(pairKey, score) {
+    // Update if score is lower than in object (or there's no best score in object)
+    if (!bestScores[pairKey] || score < bestScores[pairKey]) {
+        bestScores[pairKey] = score;
+
+        localStorage.setItem(pairKey, JSON.stringify(score));
+    }
+}
+
+// Update the best score display in the UI
+function updateBestScoreUI(pairKey) {
+    const bestScoreDisplay = document.getElementById('bestScore');
+    const bestScore = bestScores[pairKey] || "--";
+    bestScoreDisplay.innerText = `Best: ${bestScore}`;
+}
+
+//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
+function updateMoveCounterUI() {
+    document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
+}
+
+
+
+function focusTextInputBox() {inputField.focus()}
+
+function emptyInputField() {inputField.value = ''}
+
+////EMPTYING CONTAINERS and CONTAINER RACKS
+function clearInputUI() {
+    document.querySelectorAll('#normRack .wordCont, #flipRack .wordCont').forEach(wordCont => {
+        wordCont.querySelectorAll('div').forEach(tile => {
+            tile.textContent = '';
+            tile.classList.remove('tile');
+        });
+        wordCont.classList.remove('wordCont');
+    });
+}
+
+function logArrays(when) {
+    const normArray = gameState.normArray;
+    const flipArray = gameState.flipArray;
+
+    console.log(when, ": normArray Contents:", normArray, ". normArray items:", normArray.length);
+    console.log(when, ": flipArray Contents:", flipArray, ". flipArray items:", flipArray.length);
+
+}
+
+
+
+function updateDirectionUI(direction) {
+    const elementsToUpdate = [
+        document.getElementById('gameplayCont'),
+        document.getElementById('flipperAndDeleters')
+    ];
+
+    elementsToUpdate.forEach(element => {
+        if (element) {
+            if (direction === 'flip') element.setAttribute('data-flip', '')
+            else if (direction === 'norm') element.removeAttribute('data-flip');
+        }
+    });
+}
+
+function updateDeleterVisibility() {
+    const deleteNorm = document.getElementById('normDeleter');
+    const deleteFlip = document.getElementById('flipDeleter');
+
+    gameState.normArray.length < 1
+        ? deleteNorm.classList.add('invisible')
+        : deleteNorm.classList.remove('invisible');
+            
+    gameState.flipArray.length < 1
+        ? deleteFlip.classList.add('invisible')
+        : deleteFlip.classList.remove('invisible');
+}
+
 
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD
 document.addEventListener('DOMContentLoaded', (event) => {

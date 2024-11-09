@@ -16,12 +16,12 @@
 
         <div id="header">
             <button id="resetRound" class="function" onclick="updateGame('resetRound')">RESET</button>
-            <button id="gameLogo" onclick="togglePopup('rounds')"><img src="images/logo.png"></button>
+            <button id="gameLogo" onclick="togglePanel('rounds')"><img src="images/logo.png"></button>
             <button id="skipRound" class="function" onclick="updateGame('nextRound')">SKIP</button>
         </div>
 
         <div id="popupPanel" class="hidden">
-            <button class="closeButton" onclick="togglePopup('close')">x</button>
+            <button class="closeButton" onclick="togglePanel('close')">x</button>
             <div id="helpContent" class="popup-content">
                 <p>How To Play</p>
                 <h2>Get from the word at the top to the word at the bottom, using as few moves as possible.</h2>
@@ -109,15 +109,15 @@
 
         <div id="gameArea" class="gameArea hidden">
             
-            <div id="overlay" class="overlay full-screen visible" onclick="togglePopup('close')">All Rounds Completed!</div>
+            <div id="overlay" class="overlay full-screen visible" onclick="togglePanel('close')">All Rounds Completed!</div>
             <div id="movesCont">
                 <div id="moveCounter" class="moveCounter">Moves: 0</div>
                 <div id="bestScore">Best: --</div>
             </div>
 
-            <button id="openHelp" class="function help" onclick="togglePopup('help')">?</button>
+            <button id="openHelp" class="function help" onclick="togglePanel('help')">?</button>
 
-            <div id="resultPanel" class="post">
+            <div id="resultPanel" class="hidden">
                 <div id="resultMessage" class="result">Completed in X moves!<br>You know words good!</div>
                 <div id="starContainer" class="star-container">
                     <span class="star" id="star1">★</span>

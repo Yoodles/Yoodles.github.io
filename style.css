@@ -350,7 +350,7 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     justify-content: center; /* not sure */
     margin-left: auto;
     margin-right: auto;
-    opacity: 0;
+    /* opacity: 0; */
 }
 .wordCont.visible {opacity: 1}
 
@@ -454,15 +454,13 @@ input:focus {outline: none}
 #toggleFlip img {height: 12.3vw;}
 
 .deleter {
-    /* width: 90%; */
     background: none;
     border: none;
     transform: none;
     transition: opacity 0.2s ease-in;
-    opacity: 0;
 }
 /* .deleter.invisible {opacity: 0;} */
-.deleter.visible {opacity: 1;}
+/* .deleter.visible {opacity: 1;} */
 .deleter img {
     height: 7vw;
     font-size: 5vw;
@@ -487,15 +485,14 @@ div[data-flip] #flipDeleter img {transform: none}
     border: solid .5vw;
     border-radius: 2vw;
     /* font-size: 18px; */
+    display: flex;
     font-size: 4vw;
-    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
-
 }
-#resultPanel.active {display: flex}
+#resultPanel.hidden {display: none}
 
 .star-container {
     display: flex;
