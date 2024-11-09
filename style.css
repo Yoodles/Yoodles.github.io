@@ -253,13 +253,24 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     display: flex;
     margin: auto;
     height: 0;
-    transition: height 0.2s ease-in;
+    transition: height ease-in;
     background-color: aqua;
     /* transition: transform 0.5s ease-in-out; */
 }
 
 
 
+.rack {
+    transition-duration: 2s;
+}
+
+.slide-down-complete {transform: translateY(8vw);}
+.slide-up-complete {transform: translateY(-8vw);}
+
+.slide-complete {
+    transform: translateY(8vw);
+    transition-duration: 2s;
+}
 
 
 
@@ -392,9 +403,6 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 /* Transition durations as modifiers */
 .duration-1s { transition-duration: 1s; }
-
-
-
 
 
 

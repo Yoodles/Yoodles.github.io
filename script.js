@@ -464,14 +464,22 @@ function modifyHeight(action, rack, array) {
     let wordContHeight = parseFloat(window.getComputedStyle(startWordCont).height);
     // console.log('wordContHeight: ', wordContHeight); // Should log a number (e.g., 50)
 
-    let newHeight = array.length * wordContHeight + 'px';
-
     // console.log('wordContHeight: ', wordContHeight, '. newHeight: ', newHeight);
 
     // If Submit/Delete: New height of rack = number of words in array x wordCont height
-    if (action === 'submit' || action === 'delete') rack.style.height = newHeight;
+    if (action === 'submit' || action === 'delete') {
+        let newHeight = array.length * wordContHeight + 'px';
+        rack.style.height = newHeight;
     // If Complete: 
-    else if (action === 'complete') getDirectionalConfig().upperRack.style.transform = 'translateY(' + 18 * (window.innerWidth / 100) + wordContHeight + ')';
+    }
+    else if (action === 'complete') {
+        const allRacks = document.querySelectorAll('.rack');
+        startWordCont.classList.add('slide-down-complete');
+        getDirectionalConfig().upperRack.classList.add('slide-down-complete');
+        getDirectionalConfig().lowerRack.classList.add('slide-up-complete');
+        endWordCont.classList.add('slide-up-complete');
+        // getDirectionalConfig().upperRack.style.transform = 'translateY(' + 18 * (window.innerWidth / 100) + wordContHeight + ')';
+    }
 }
 
 
@@ -519,10 +527,10 @@ function updateGame(action) {
 
             ////UPDATE UI
             emptyInputField();
-            // modifyHeight('complete');
+            modifyHeight('complete');
 
-            togglePanel('result');            
-            toggleOverlay('popup-background');
+            // togglePanel('result');            
+            // toggleOverlay('popup-background');
             updateMoveCounterUI();
             break;
 
