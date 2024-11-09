@@ -266,10 +266,14 @@ button.function {
     position: relative;
     background: none;
     border: none;
-    transition: opacity 0.2s ease-in;
+    transition: opacity ease-in;
     opacity: 0;
 }
 .deleter.active {opacity: 1;}
+
+.deleter.fade-in, .deleter.fade-out {
+    transition-duration: 0.2s;
+}
 
 .deleter:hover {transform: scale(1.1);}
 .deleter img {height: 7vw;}
@@ -420,7 +424,11 @@ button.function {
 
 
 /* Rotate effects */
-.rotating {animation: verticalFlip 1.2s ease-in-out;}
+.rotating {
+    animation: verticalFlip 1.2s ease-in-out;
+    pointer-events: none;
+    /* cursor: wait; */
+}
 
 @keyframes verticalFlip {
     0% {transform: rotateX(0deg);}
@@ -626,6 +634,8 @@ z-index:
 70 #inputSet
 
 60 .overlay
+
+50 .deleter?
 
 */
 

@@ -11,8 +11,6 @@ const initialGameState = () => ({
     moveCounter: 0,
     normArray: [],
     flipArray: [],
-    normDeleter: 'upper',
-    flipDeleter: 'lower',
     latestWord: '',
     targetWord: '',
     latestMove: '',
@@ -45,7 +43,7 @@ function jumpToRound(pairKey) {
     
     // Set up the new word pair, calculate lengths, and initialize latest/target words
     setWordPairAndLengths(pairKey);
-
+    resetUI();
     // Verify that the correct words are set
     console.log(`Start word: ${wordPair.startWord}, End word: ${wordPair.endWord}`);
     console.log(`Current pairKey: ${pairKey}`);
@@ -220,7 +218,7 @@ function togglePanel(action) {
     const popup = document.getElementById('popupPanel');
     const resultPanel = document.getElementById('resultPanel');
 
-    let panel;
+    let panel = popup;
 
     if (action === 'close') {
         // Hide the overlay and the popup
@@ -232,7 +230,6 @@ function togglePanel(action) {
         
         panel = resultPanel;
     } else {
-        panel = popup;
 
         const helpContent = document.getElementById('helpContent');
         const roundsContent = document.getElementById('roundsContent');
@@ -246,12 +243,36 @@ function togglePanel(action) {
         else if (action === 'rounds') roundsContent.classList.remove('hidden');
     }
     // Show the overlay and the popup
+    console.log(panel);
     toggleOverlay('popup-background');
     panel.classList.remove('hidden');
 
 }
 
+function toggleFlip() {
+    // Toggle game direction and update latest/target words
+    gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
+    updateLatestAndTargetWords();
 
+    // Animation UI
+    // const inputSet = document.getElementById('inputSet');
+    const upperDeleter = document.getElementById('upperDeleter');
+    const deleters = document.querySelectorAll('.deleter');
+    const overlay = document.getElementById('overlay');
+    const flipper = document.getElementById('toggleFlip');
+
+    // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
+    toggleClassesInSequence([inputField, flipper], ['rotating', 'rotating'], [0, 1400]);
+
+    // toggleOverlay();
+    fadeIn(overlay, 600);
+    fadeOut(upperDeleter, 600);
+    setTimeout(() => {
+        updateDirectionUI(gameState.direction);
+        fadeOut(overlay, 1000);
+    }, 1000);
+
+}
 
 
 //FUNC: SUBMITTING A MOVE
@@ -468,10 +489,13 @@ function modifyHeight(action, rack, array) {
         const flipSet = document.getElementById('flipSet');
         const bothSets = document.querySelectorAll('.set');
         
-        startWordCont.classList.add('slide-down-complete');
-        getDirectionalConfig().upperRack.classList.add('slide-down-complete');
-        getDirectionalConfig().lowerRack.classList.add('slide-up-complete');
-        endWordCont.classList.add('slide-up-complete');
+        if (gameState.direction === 'norm') {
+            normSet.classList.add('slide-down-complete');
+            flipSet.classList.add('slide-up-complete');
+        } else {
+            normSet.classList.add('slide-up-complete');
+            flipSet.classList.add('slide-down-complete');
+        }
         // getDirectionalConfig().upperRack.style.transform = 'translateY(' + 18 * (window.innerWidth / 100) + wordContHeight + ')';
     }
 }
@@ -719,37 +743,8 @@ function logArrays(when) {
 
 
 
-function toggleFlip() {
-    // Toggle game direction and update latest/target words
 
-    console.log('gameDirection: ', gameState.direction);
-
-    gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
-
-    console.log('gameDirection: ', gameState.direction);
-
-
-    updateLatestAndTargetWords();
-
-    // Animation UI
-    const inputSet = document.getElementById('inputSet');
-    const deleters = document.querySelectorAll('.deleter');
-    const overlay = document.getElementById('overlay');
-
-    // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
-    toggleClassesInSequence([inputSet], ['rotating', 'rotating'], [0, 2000]);
-
-    // toggleOverlay();
-    fadeIn(overlay, 1000);
-    setTimeout(() => {
-        updateDirectionUI(gameState.direction);
-        fadeOut(overlay, 1000);
-    }, 1000);
-
-}
-
-
-function updateDirectionUI(direction) { //if RESET, how? *****
+function updateDirectionUI(direction) {
     const gameplayCont = document.getElementById('gameplayCont');
 
     if (direction === 'flip') gameplayCont.classList.add('flip');
@@ -757,8 +752,6 @@ function updateDirectionUI(direction) { //if RESET, how? *****
 
     updateDeleterVisibility();
 }
-
-
 
 function updateDeleterVisibility() {
     const upperDeleter = document.getElementById('upperDeleter');
