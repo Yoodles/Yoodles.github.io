@@ -311,10 +311,10 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     height: 100%;
     justify-content: center;
     align-items: center;
-    /* background-color: white; */
-    background-color: #f5f6fe;
+    background-color: white;
+    /* background-color: #f5f6fe; */
 
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity ease-in-out;
     z-index: 200;
     pointer-events: none; /* Non-interactive by default */
     color: transparent; /* No visible text */
@@ -322,9 +322,6 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     display: flex; /* Default is flex for easy alignment */
 }
 
-#overlay2 {
-    transition: opacity ease;
-}
 #inputAndSideButtons {z-index: 1000};
 
 .overlay.full-screen {position: fixed; width: 100vw; height: 100vh;}
@@ -376,14 +373,6 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     transition-duration: .2s;
 }
 
-.rack {opacity: 1}
-
-.rack.fade-in,
-.rack.fade-out {
-    opacity: 0;
-    /* transition-duration: .6s; */
-}
-
 
 
 /* Rotate effects */
@@ -397,10 +386,6 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
 
 /* Transition durations as modifiers */
 .duration-1s { transition-duration: 1s; }
-.duration-2s { transition-duration: 2s; }
-.duration-3s { transition-duration: 3s; }
-
-
 
 
 

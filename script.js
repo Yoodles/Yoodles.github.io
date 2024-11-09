@@ -250,41 +250,75 @@ function logArrays(when) {
 }
 
 
-function toggleOverlay(classNames = null) {
-    const overlay = document.getElementById('overlay');
+// function toggleOverlay(classNames = null) {
+//     const overlay = document.getElementById('overlay');
     
-    // if no parameters...
-    if (!classNames) {
-        // ...remove classes other than 'overlay'...
-        overlay.className = 'overlay visible'; // Clears previous mode classes
+//     // if no parameters...
+//     if (!classNames) {
+//         // ...remove classes other than 'overlay'...
+//         overlay.className = 'overlay visible'; // Clears previous mode classes
 
-        //...then fade out (=turn opaque)...
-        overlay.classList.add('invisible');
-        overlay.classList.remove('visible');
+//         //...then fade out (=turn opaque)...
+//         overlay.classList.add('invisible');
+//         overlay.classList.remove('visible');
 
-        //...and then add .hidden (turn off display)
-        setTimeout(() => {
-            overlay.classList.add('hidden');
-        }, 400);
+//         //...and then add .hidden (turn off display)
+//         setTimeout(() => {
+//             overlay.classList.add('hidden');
+//         }, 400);
 
-    // but if parameters...
-    } else {
+//     // but if parameters...
+//     } else {
 
-        overlay.className = 'overlay invisible'; // Clears previous mode classes
+//         overlay.className = 'overlay invisible'; // Clears previous mode classes
 
-        // Add specified classes
-        classNames.forEach(className => overlay.classList.add(className));
+//         // Add specified classes
+//         classNames.forEach(className => overlay.classList.add(className));
         
-        // overlay.classList.remove('hidden');
+//         // overlay.classList.remove('hidden');
 
-        //...then fade in (set opacity to 1)...
-        overlay.classList.add('visible');
-        overlay.classList.remove('invisible');
+//         //...then fade in (set opacity to 1)...
+//         overlay.classList.add('visible');
+//         overlay.classList.remove('invisible');
+//     }
+// }
+
+
+function toggleOverlay(mode) {
+    const overlay = document.getElementById('overlay');
+    let duration = 300;
+
+    switch (mode) {
+        case 'popup-background':
+            overlay.classList.add('full-screen', 'translucent');
+            duration = 600;
+            fadeIn(overlay, 500);
+            break;
+        case 'on-and-off':
+
+            break;
+        case 'initial':
+            duration = 500;
+            // fadeOut(overlay, 500);
+            break;
+        case 'message':
+            overlay.classList.add('message');
+            break;
+        default:
+            break;
     }
+
+    if (overlay.classList.contains('hidden')) {
+        fadeIn(overlay, duration);
+    }
+    else {
+        fadeOut(overlay, duration);
+        setTimeout(() => {
+            overlay.className = 'overlay hidden';
+        }, 1000);
+    }
+
 }
-
-
-
 
 
 
@@ -351,7 +385,6 @@ function renderResultPanel() {
 
 
 function togglePopup(action) {
-    const overlay = document.querySelector('.overlay');
     const popup = document.getElementById('popupPanel');
     const helpContent = document.getElementById('helpContent');
     const roundsContent = document.getElementById('roundsContent');
@@ -371,7 +404,7 @@ function togglePopup(action) {
 
         // Show the overlay and the popup
         // overlay.classList.add('translucent');
-        toggleOverlay(['translucent', 'full-screen']);
+        toggleOverlay('popup-background');
         popup.classList.remove('hidden');
     }
 }
@@ -495,11 +528,12 @@ function toggleFlip() {
     // Animation UI
     const inputFieldAndButtons = document.getElementById('inputAndSideButtons')
     const deleters = document.querySelectorAll('.deleter');
-    const overlay = document.getElementById('overlay2');
+    const overlay = document.getElementById('overlay');
 
     // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
     toggleClassesInSequence([inputFieldAndButtons], ['rotating', 'rotating'], [0, 2000]);
 
+    // toggleOverlay();
     fadeIn(overlay, 1000);
     setTimeout(() => {
         updateDirectionUI(gameState.direction);
@@ -509,22 +543,36 @@ function toggleFlip() {
 }
 
 
-
+//Element should start with .invisible or already be at opacity: 0.
 function fadeIn(element, duration = 500) {
-    // element.style.transition = `opacity ${duration}ms ease-in`;
     element.style.transitionDuration = `${duration}ms`;
 
+    // Always remove 'hidden' and reset display if it exists
+    element.classList.remove('hidden');
+    // element.style.display = ''; // Reset inline display property if previously set to 'none'
+
+    // Handle fade-in
     element.classList.remove('invisible', 'fade-out');
     element.classList.add('fade-in');
-  }
-  
-function fadeOut(element, duration = 500) {
-// element.style.transition = `opacity ${duration}ms ease-out`;
-element.style.transitionDuration = `${duration}ms`;
+}
 
-element.classList.remove('fade-in');
-element.classList.add('fade-out');
-setTimeout(() => element.classList.add('invisible'), duration); // Optional: hide after fade
+//Element should start with the fade-in or visible state (already at opacity: 1).
+function fadeOut(element, duration = 500, addHidden = false) {
+    element.style.transitionDuration = `${duration}ms`;
+
+    // Start fade-out transition
+    element.classList.remove('fade-in');
+    element.classList.add('fade-out');
+
+    // Handle post-transition state
+    setTimeout(() => {
+        if (addHidden) {
+            element.classList.add('hidden'); // Add 'hidden' for display: none
+            // element.style.display = 'none'; // Explicitly set display to none
+        }
+        else element.classList.add('invisible'); // Just make it invisible
+        
+    }, duration);
 }
   
 
@@ -566,6 +614,7 @@ function updateDeleterVisibility() {
     const deleteNorm = document.getElementById('normDeleter');
     const deleteFlip = document.getElementById('flipDeleter');
 
+    logArrays('updateDeleterVisibility');
     gameState.normArray.length < 1
         ? deleteNorm.classList.add('invisible')
         : deleteNorm.classList.remove('invisible');
@@ -733,6 +782,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     // Initialize UI
-    toggleOverlay();
+    toggleOverlay('initial');
     renderRoundList();
 });
