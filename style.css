@@ -205,7 +205,7 @@ button.function {
     position: relative;
     /* transition-delay: ? */
     flex-direction: column;
-    transition: transform 1s ease;
+    transition: transform ease;
 }
 .flip .set {flex-direction: column-reverse;}
 
@@ -218,13 +218,13 @@ button.function {
 .submit-slide-down
 .delete-slide-up */
 
-.submit-slide-down.complete {transform: translateY(20.5vw);}
-.submit-slide-up.complete {transform: translateY(-20.5vw);}
-.delete-slide-down.complete {transform: translateY(9vw);}
-.delete-slide-up.complete {transform: translateY(-8vw);}
+.subm.slide-down-complete {transform: translateY(9vw);}
+.subm.slide-up-complete {transform: translateY(-8vw);}
+.del.slide-down-complete {transform: translateY(20.5vw);}
+.del.slide-up-complete {transform: translateY(-20.5vw);}
 
-.slide-complete {
-    transform: translateY(7vw);
+
+.slide-up-complete, .slide-down-complete {
     transition-duration: 2s;
 }
 

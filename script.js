@@ -298,7 +298,7 @@ function submitMove() {
             toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
         }, 4000);
 
-        modifyHeight(action, upperRack, upperArray);
+        modifyHeight('submit', upperRack, upperArray);
 
         updateDeleterVisibility();
         emptyInputField();
@@ -465,10 +465,14 @@ function modifyHeight(action, rack, array) {
         const flipSet = document.getElementById('flipSet');
         // const bothSets = document.querySelectorAll('.set');
 
-        if (action === 'submit') newHeight = 18;
-        if (action === 'delete');
+        if (action === 'submit') {
+            normSet.classList.add('subm');
+            flipSet.classList.add('subm');
+        } else if (action === 'delete') {
+            normSet.classList.add('del');
+            flipSet.classList.add('del');
+        }
 
-        
         if (gameState.direction === 'norm') {
             normSet.classList.add('slide-down-complete');
             flipSet.classList.add('slide-up-complete');
