@@ -217,8 +217,6 @@ function renderResultPanel() {
 function togglePanel(action) {
     const popup = document.getElementById('popupPanel');
     const resultPanel = document.getElementById('resultPanel');
-    const helpContent = document.getElementById('helpContent');
-    const roundsContent = document.getElementById('roundsContent');
 
     let panel;
 
@@ -226,12 +224,17 @@ function togglePanel(action) {
         // Hide the overlay and the popup
         toggleOverlay();
         popup.classList.add('hidden');
+        resultPanel.classList.add('hidden');
+
     } else if (action === 'result') {
-        //resultPanel.classList.add('hidden');
         
         panel = resultPanel;
     } else {
         panel = popup;
+
+        const helpContent = document.getElementById('helpContent');
+        const roundsContent = document.getElementById('roundsContent');
+
         // Hide all content initially
         helpContent.classList.add('hidden');
         roundsContent.classList.add('hidden');
@@ -386,7 +389,7 @@ function toggleOverlay(mode) {
 
     switch (mode) {
         case 'popup-background':
-            overlay.classList.add('full-screen', 'translucent');
+            overlay.classList.add('full-screen', 'dark');
             duration = 1000;
             break;
         case 'on-and-off':

@@ -87,7 +87,7 @@ button.function.help {
     width: 100%;
     height: 11%;
     align-items: center;
-    z-index: 99;
+    z-index: 80;
     text-align: center;
     padding: 2vw 3vw;
 }
@@ -128,7 +128,7 @@ button.function.help {
     top: 0%;
     width: fit-content;
     font-size: 4vw;
-    z-index: 201;
+    z-index: 80;
 }
 #movesCont {
     left: 0%;
@@ -315,24 +315,30 @@ div[data-flip] #flipRack { order: 1; flex-direction: column;}
     /* background-color: #f5f6fe; */
 
     transition: opacity ease-in-out;
-    z-index: 200;
+    z-index: 60;
     pointer-events: none; /* Non-interactive by default */
     color: transparent; /* No visible text */
     opacity: 0;
     display: flex; /* Default is flex for easy alignment */
 }
+.overlay.full-screen {
+    z-index: 90;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
 
-#inputAndSideButtons {z-index: 1000};
 
-.overlay.full-screen {position: fixed; width: 100vw; height: 100vh;}
+#inputAndSideButtons {z-index: 70};
 
-.overlay.translucent {
+
+.overlay.dark {
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
+    z-index: 90;
     pointer-events: auto;
     cursor: pointer;
 }
-.overlay.translucent.invisible {pointer-events: none;}
+.overlay.dark.invisible {pointer-events: none;}
 .overlay.message {
     color: black;
     font-size: 16vw;
@@ -479,7 +485,7 @@ div[data-flip] #flipDeleter img {transform: none}
     background-color: rgb(255, 255, 255);
     position: absolute;
     top: 50%;
-    z-index: 101;
+    z-index: 100;
     width: 85%;
     height: 25vh;
     border: solid .5vw;
@@ -564,7 +570,7 @@ div[data-flip] #flipDeleter img {transform: none}
     overflow-y: auto;
     box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
     text-align: start;
-    z-index: 101;
+    z-index: 100;
 }
 
 .closeButton {
@@ -622,7 +628,22 @@ li .del.flip {transform: rotate(0.5turn);}
 
 
 
+/*
 
+z-index:
+
+100 #popupPanel #resultPanel
+
+90 .overlay.full-screen
+90 .overlay.dark
+
+80 .movesCont, .openHelp, (header?)
+
+70 #inputAndSideButtons
+
+60 .overlay
+
+*/
 
 
 
