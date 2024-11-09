@@ -205,32 +205,16 @@ button.function {
     position: relative;
     /* transition-delay: ? */
     flex-direction: column;
-    transition: transform ease;
+    transition: transform 1s ease;
 }
 .flip .set {flex-direction: column-reverse;}
 
-/* .compl-subm-down {transform: translateY(20.5vw);}
-.compl-subm-up {transform: translateY(-20.5vw);}
-.compl-del-down {transform: translateY(9vw);}
-.compl-del-up {transform: translateY(-8vw);} */
 
-/* .submit-slide-up
-.submit-slide-down
-.delete-slide-up */
 
 .subm.slide-down-complete {transform: translateY(9vw);}
-.subm.slide-up-complete {transform: translateY(-8vw);}
+.subm.slide-up-complete {transform: translateY(-9vw);}
 .del.slide-down-complete {transform: translateY(20.5vw);}
 .del.slide-up-complete {transform: translateY(-20.5vw);}
-
-
-.slide-up-complete, .slide-down-complete {
-    transition-duration: 2s;
-}
-
-
-
-
 
 
 
