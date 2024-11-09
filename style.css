@@ -263,12 +263,16 @@ button.function {
     align-items: center;
 }
 
+
 .deleter {
     position: relative;
     background: none;
     border: none;
     transition: opacity 0.2s ease-in;
+    opacity: 0;
 }
+.deleter.active {opacity: 1;}
+
 .deleter:hover {transform: scale(1.1);}
 .deleter img {height: 7vw;}
 #lowerDeleter img {transform: rotate(0.5turn)}

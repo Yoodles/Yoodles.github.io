@@ -372,29 +372,6 @@ function deleteMove(which) {
 }
 
 
-function toggleFlip() {
-    // Toggle game direction and update latest/target words
-    gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
-    updateLatestAndTargetWords();
-
-    // Animation UI
-    const inputSet = document.getElementById('inputSet');
-    const deleters = document.querySelectorAll('.deleter');
-    const overlay = document.getElementById('overlay');
-
-    // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
-    toggleClassesInSequence([inputSet], ['rotating', 'rotating'], [0, 2000]);
-
-    // toggleOverlay();
-    fadeIn(overlay, 1000);
-    setTimeout(() => {
-        updateDirectionUI(gameState.direction);
-        fadeOut(overlay, 1000);
-    }, 1000);
-
-}
-
-
 function toggleOverlay(mode) {
     const overlay = document.getElementById('overlay');
     let duration = 300;
@@ -740,51 +717,61 @@ function logArrays(when) {
 
 
 
+function toggleFlip() {
+    // Toggle game direction and update latest/target words
+    gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
+    updateLatestAndTargetWords();
+
+    // Animation UI
+    const inputSet = document.getElementById('inputSet');
+    const deleters = document.querySelectorAll('.deleter');
+    const overlay = document.getElementById('overlay');
+
+    // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
+    toggleClassesInSequence([inputSet], ['rotating', 'rotating'], [0, 2000]);
+
+    // toggleOverlay();
+    fadeIn(overlay, 1000);
+    setTimeout(() => {
+        updateDirectionUI(gameState.direction);
+        fadeOut(overlay, 1000);
+    }, 1000);
+
+}
+
+
 function updateDirectionUI(direction) { //if RESET, how? *****
-    const elementsToUpdate = [
-        document.getElementById('gameplayCont'),
-        document.getElementById('normSet'),
-        document.getElementById('flipperAndDeleters')
+    const gameplayCont = document.getElementById('gameplayCont');
+
+    if (direction === 'flip') gameplayCont.classList.add('flip');
+    else if (direction === 'norm') gameplayCont.classList.remove('flip');
+
+    const deleters = [
+        document.getElementById('upperDeleter'),
+        document.getElementById('lowerDeleter')
     ];
 
-    elementsToUpdate.forEach(element => {
-        if (element) {
-            if (direction === 'flip') element.classList.add('flip');
-            else if (direction === 'norm') element.classList.remove('flip');
-            // element.classList.toggle('flip');
-        }
+    deleters.forEach(deleter => {
+        deleter.classList.toggle('flip');
     });
 }
 
 
 
-// function updateDeleterVisibility() {
-//     const upperDeleter = document.getElementById('upperDeleter');
-//     const lowerDeleter = document.getElementById('lowerDeleter');
-
-//     const {upperArray, lowerArray} = getDirectionalConfig();
-
-//     upperArray.length < 1
-//         ? upperDeleter.classList.add('invisible')
-//         : upperDeleter.classList.remove('invisible');
-            
-//     lowerArray.length < 1
-//         ? lowerDeleter.classList.add('invisible')
-//         : lowerDeleter.classList.remove('invisible');
-// }
-
-
-
 function updateDeleterVisibility() {
-    const {upperArray, lowerArray} = getDirectionalConfig();
+    const upperDeleter = document.getElementById('upperDeleter');
+    const lowerDeleter = document.getElementById('lowerDeleter');
 
-    updateVisibility('upperDeleter', upperArray.length);
-    updateVisibility('lowerDeleter', lowerArray.length);
+    const normDeleter = upperDeleter.classList.contains('flip') ? lowerDeleter : upperDeleter;
+    
+    const flipDeleter = upperDeleter.classList.contains('flip') ? lowerDeleter : upperDeleter;
 
-    function updateVisibility(deleterId, arrayLength) {
-        const deleter = document.getElementById(deleterId);
-        deleter.classList.toggle('invisible', arrayLength < 1);
-    }
+    if (gameState.normArray.length > 0) normDeleter.classList.add('active');
+    else normDeleter.classList.remove('active');
+    
+    if (gameState.flipArray.length > 0) flipDeleter.classList.add('active');
+    else flipDeleter.classList.remove('active');
+
 }
 
 
