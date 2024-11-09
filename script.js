@@ -268,15 +268,17 @@ function submitMove() {
         let wordCont = prepareInputCont(upperRack, upperArray);
         makeTilesIn(wordCont, inputWord);
 
+        setTimeout(() => {
+            toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
+        }, 4000);
+
         if (inputWord === gameState.targetWord) updateGame('complete');
         else {
-            console.log('upperArray in submit: ', upperArray);
+
             modifyHeight('submit', upperRack, upperArray);
-            setTimeout(() => {
-                toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
-            }, 200);    
+            updateDeleterVisibility();
         }
-        updateDeleterVisibility();
+
         emptyInputField();
         updateMoveCounterUI();
     }

@@ -408,7 +408,7 @@ button.function {
 
 .wordCont.fade-in {
     transition-duration: .2s;
-    /* transition-delay: .2s; */
+    transition-delay: .4s;
     /* ↑ IF I WANT TO JUST START IT AFTER MODIFYHEIGHT */
 }
 .wordCont.fade-out {
