@@ -298,7 +298,7 @@ function submitMove() {
             toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
         }, 4000);
 
-        modifyHeight('submit', upperRack, upperArray);
+        modifyHeight(upperRack, upperArray);
 
         updateDeleterVisibility();
         emptyInputField();
@@ -368,8 +368,7 @@ function deleteMove(which) {
     toggleClassesInSequence(wordToDelete, ['visible', 'fade-out'], [0, 0]);
 
     setTimeout(() => {
-        modifyHeight('delete', dirConfig.rack, dirConfig.array);
-        
+        modifyHeight(dirConfig.rack, dirConfig.array);
     }, 200);
 
     updateDeleterVisibility();
@@ -455,21 +454,12 @@ function fadeOut(element, duration = 500, addHidden = false) {
 
 
 
-function modifyHeight(action, rack, array) {
-    // Get the height of startWordCont in pixels
-    // console.log('array: ', array, array.length);
-    let wordContHeight = parseFloat(window.getComputedStyle(startWordCont).height);
-    // console.log('wordContHeight: ', wordContHeight); // Should log a number (e.g., 50)
+function modifyHeight(rack, array) {
 
-    // console.log('wordContHeight: ', wordContHeight, '. newHeight: ', newHeight);
+    const wordContHeight = window.innerWidth * 11.5 / 100;
 
-    // If Submit/Delete: New height of rack = number of words in array x wordCont height
-    if (action === 'submit' || action === 'delete') {
-        let newHeight = array.length * wordContHeight + 'px';
-        rack.style.height = newHeight;
     // If Complete: 
-    }
-    else if (action === 'complete') {
+    if (gameState.isComplete) {
         const normSet = document.getElementById('normSet');
         const flipSet = document.getElementById('flipSet');
         const bothSets = document.querySelectorAll('.set');
@@ -483,17 +473,23 @@ function modifyHeight(action, rack, array) {
         }
         // getDirectionalConfig().upperRack.style.transform = 'translateY(' + 18 * (window.innerWidth / 100) + wordContHeight + ')';
     }
+        // If Submit/Delete: New height of rack = number of words in array x wordCont height
+    else {
+        let newHeight = array.length * wordContHeight + 'px';
+        rack.style.height = newHeight;
+    }
 }
 
 
 
 
 function undoMove() {
+    gameState.isComplete = false;
     switch (gameState.latestMove) {
         case 'submit':
-            deleteMove('top');
+            deleteMove('upper');
             break;
-        case 'delete-norm': //*****
+        case 'delete-norm': //***** wordConts[wordConts.length - 1];
             makeTilesIn(gameState.latestWord, normRack, gameState.normArray);
             break;
         case 'delete-flip':
@@ -523,21 +519,14 @@ function updateGame(action) {
         case 'complete':
             checkAndUpdateBestScoreAfterRound();
             renderResultPanel();
-            // updateLatestAndTargetWords();
 
-            // Store the current pairKey in localStorage as the last completed round
             localStorage.setItem('lastCompletedPair', currentPairKey);
 
-            ////UPDATE UI
-            emptyInputField();
-            modifyHeight('complete');
-
             // togglePanel('result');            
-            // toggleOverlay('popup-background');
-            updateMoveCounterUI();
             break;
 
         case 'nextRound':
+            gameState.isComplete = false;
             const currentIndex = wordPairDetails.findIndex(pair => pair.pairKey === currentPairKey);
             const nextPair = wordPairDetails[currentIndex + 1];
         
@@ -550,6 +539,7 @@ function updateGame(action) {
             break;
 
         case 'resetRound':
+            gameState.isComplete = false;
             toggleOverlay('default');
 
             resetGameState();
