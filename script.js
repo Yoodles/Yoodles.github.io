@@ -764,15 +764,19 @@ function updateDirectionUI(direction) {
     });
 }
 
-function updateDeleterVisibility() {
-    const deleteNorm = document.getElementById('normDeleter');
-    const deleteFlip = document.getElementById('flipDeleter');
 
-    gameState.normArray.length < 1
+
+function updateDeleterVisibility() {
+    const deleteNorm = document.getElementById('upperDeleter');
+    const deleteFlip = document.getElementById('lowerDeleter');
+
+const {upperArray, lowerArray} = getDirectionalConfig();
+
+    upperArray.length < 1
         ? deleteNorm.classList.add('invisible')
         : deleteNorm.classList.remove('invisible');
             
-    gameState.flipArray.length < 1
+    lowerArray.length < 1
         ? deleteFlip.classList.add('invisible')
         : deleteFlip.classList.remove('invisible');
 }

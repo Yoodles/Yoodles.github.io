@@ -222,7 +222,7 @@ button.function.help {
 }
 
 .set {
-    transition: transform 2s ease;
+    transition: transform 1s ease;
     display: flex;
     align-items: center;
     position: relative;
@@ -242,7 +242,6 @@ button.function.help {
     z-index: 70;
 }
 
-
 .rack {
     position: relative;
     display: flex;
@@ -251,14 +250,10 @@ button.function.help {
     transition: height ease-in;
     background-color: aqua;
     /* transition: transform 0.5s ease-in-out; */
-    transition-duration: 2s;
+    transition-duration: .2s;
 }
-
-#normRack,
-.flip #flipRack {flex-direction: column;}
-
-#flipRack,
-.flip #normRack {flex-direction: column-reverse;}
+#normRack, .flip #flipRack {flex-direction: column;}
+#flipRack, .flip #normRack {flex-direction: column-reverse;}
 
 
 
@@ -277,42 +272,19 @@ button.function.help {
     /* background: #edf6ffef; */
     align-items: center;
 }
-/* .flip #flipperAndDeleters { flex-direction: column-reverse; } */
 
 .deleter {
+    position: relative;
     background: none;
     border: none;
-    transform: none;
     transition: opacity 0.2s ease-in;
 }
+.deleter:hover {transform: scale(1.1);}
+.deleter img {height: 7vw;}
+#lowerDeleter img {transform: rotate(0.5turn)}
+
 /* .deleter.invisible {opacity: 0;} */
 /* .deleter.visible {opacity: 1;} */
-.deleter img {
-    height: 7vw;
-    font-size: 5vw;
-}
-#flipDeleter img {transform: rotate(0.5turn)}
-div[data-flip] #normDeleter img {transform: rotate(0.5turn)}
-div[data-flip] #flipDeleter img {transform: none}
-
-
-#toggleFlip {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
-    transition: transform 0.1s ease-out;
-
-}
-#toggleFlip:hover {transform: scale(1.1)}
-#toggleFlip img {height: 12.3vw;}
-
-
-
-
-
-
 
 
 .slide-down-complete {transform: translateY(8vw);}
@@ -322,6 +294,27 @@ div[data-flip] #flipDeleter img {transform: none}
     transform: translateY(8vw);
     transition-duration: 2s;
 }
+
+
+
+
+
+
+
+#toggleFlip {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
+    transition: transform 0.1s ease-out;
+}
+#toggleFlip:hover {transform: scale(1.1)}
+#toggleFlip img {height: 12.3vw;}
+
+
+
+
 
 
 
