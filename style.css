@@ -209,13 +209,26 @@ button.function {
 }
 .flip .set {flex-direction: column-reverse;}
 
-.slide-down-complete {transform: translateY(8vw);}
-.slide-up-complete {transform: translateY(-8vw);}
+/* .compl-subm-down {transform: translateY(20.5vw);}
+.compl-subm-up {transform: translateY(-20.5vw);}
+.compl-del-down {transform: translateY(9vw);}
+.compl-del-up {transform: translateY(-8vw);} */
+
+/* .submit-slide-up
+.submit-slide-down
+.delete-slide-up */
+
+.submit-slide-down.complete {transform: translateY(20.5vw);}
+.submit-slide-up.complete {transform: translateY(-20.5vw);}
+.delete-slide-down.complete {transform: translateY(9vw);}
+.delete-slide-up.complete {transform: translateY(-8vw);}
 
 .slide-complete {
     transform: translateY(7vw);
     transition-duration: 2s;
 }
+
+
 
 
 

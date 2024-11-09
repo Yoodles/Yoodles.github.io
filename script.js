@@ -298,7 +298,7 @@ function submitMove() {
             toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
         }, 4000);
 
-        modifyHeight(upperRack, upperArray);
+        modifyHeight(action, upperRack, upperArray);
 
         updateDeleterVisibility();
         emptyInputField();
@@ -368,7 +368,7 @@ function deleteMove(which) {
     toggleClassesInSequence(wordToDelete, ['visible', 'fade-out'], [0, 0]);
 
     setTimeout(() => {
-        modifyHeight(dirConfig.rack, dirConfig.array);
+        modifyHeight('delete', dirConfig.rack, dirConfig.array);
     }, 200);
 
     updateDeleterVisibility();
@@ -454,15 +454,20 @@ function fadeOut(element, duration = 500, addHidden = false) {
 
 
 
-function modifyHeight(rack, array) {
+function modifyHeight(action, rack, array) {
 
     const wordContHeight = window.innerWidth * 11.5 / 100;
+    let newHeight;
 
     // If Complete: 
     if (gameState.isComplete) {
         const normSet = document.getElementById('normSet');
         const flipSet = document.getElementById('flipSet');
-        const bothSets = document.querySelectorAll('.set');
+        // const bothSets = document.querySelectorAll('.set');
+
+        if (action === 'submit') newHeight = 18;
+        if (action === 'delete');
+
         
         if (gameState.direction === 'norm') {
             normSet.classList.add('slide-down-complete');
@@ -471,11 +476,10 @@ function modifyHeight(rack, array) {
             normSet.classList.add('slide-up-complete');
             flipSet.classList.add('slide-down-complete');
         }
-        // getDirectionalConfig().upperRack.style.transform = 'translateY(' + 18 * (window.innerWidth / 100) + wordContHeight + ')';
     }
         // If Submit/Delete: New height of rack = number of words in array x wordCont height
     else {
-        let newHeight = array.length * wordContHeight + 'px';
+        newHeight = array.length * wordContHeight + 'px';
         rack.style.height = newHeight;
     }
 }
