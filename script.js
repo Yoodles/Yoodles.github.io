@@ -14,6 +14,7 @@ const initialGameState = () => ({
     latestWord: '',
     targetWord: '',
     latestMove: '',
+    isComplete: false,
 });
 
 let gameState = initialGameState();
@@ -286,6 +287,7 @@ function submitMove() {
         updateLatestAndTargetWords();
         gameState.latestMove = 'submit';
         gameState.moveCounter++;
+        if (inputWord === gameState.targetWord) gameState.isComplete = true;
 
         // UPDATE UI (Build tiles, animations, etc.)
         let wordCont = prepareInputCont(upperRack, upperArray);
@@ -295,15 +297,13 @@ function submitMove() {
             toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
         }, 4000);
 
-        if (inputWord === gameState.targetWord) updateGame('complete');
-        else {
+        modifyHeight('submit', upperRack, upperArray);
 
-            modifyHeight('submit', upperRack, upperArray);
-            updateDeleterVisibility();
-        }
-
+        updateDeleterVisibility();
         emptyInputField();
         updateMoveCounterUI();
+
+        if (gameState.isComplete) updateGame('complete');
     }
 
     //GETTING THE INPUTWORD CONT READY
@@ -349,17 +349,6 @@ function deleteMove(which) {
                 ? {rack: flipRack, array: gameState.flipArray}
                 : {rack: normRack, array: gameState.normArray};
             break;
-        case 'norm':
-            dirConfig = {rack: normRack, array: gameState.normArray};
-            break;
-        case 'flip':
-            dirConfig = {rack: flipRack, array: gameState.flipArray};
-            break;
-        case 'top':
-            dirConfig = gameState.direction === 'norm'
-                ? {rack: normRack, array: gameState.normArray}
-                : {rack: flipRack, array: gameState.flipArray};
-            break;
     }
 
     // find all wordConts in the rack
@@ -375,15 +364,17 @@ function deleteMove(which) {
 
     updateLatestAndTargetWords();
 
+    // Apply the classes in sequence to trigger the fade-out effect
+    toggleClassesInSequence(wordToDelete, ['visible', 'fade-out'], [0, 0]);
 
     // if latest & target match after delete, trigger completion code
     if (gameState.latestWord === gameState.targetWord) updateGame('complete');
     else {
-        // Apply the classes in sequence to trigger the fade-out effect
-        toggleClassesInSequence(wordToDelete, ['visible', 'fade-out'], [0, 0]);
 
         setTimeout(() => {
             modifyHeight('delete', dirConfig.rack, dirConfig.array);
+            
+            // remove when? leave for undo *****
             wordToDelete.remove();
         }, 200);
 
@@ -538,7 +529,7 @@ function updateGame(action) {
         case 'complete':
             checkAndUpdateBestScoreAfterRound();
             renderResultPanel();
-            updateLatestAndTargetWords();
+            // updateLatestAndTargetWords();
 
             // Store the current pairKey in localStorage as the last completed round
             localStorage.setItem('lastCompletedPair', currentPairKey);
@@ -585,7 +576,6 @@ function resetUI() {
 
     document.getElementById('resultPanel').classList.remove('active');
 
-    updateDeleterVisibility();
     updateDirectionUI('norm');
     clearInputUI();
     emptyInputField();

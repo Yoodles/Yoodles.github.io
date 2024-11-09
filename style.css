@@ -213,7 +213,7 @@ button.function {
 .slide-up-complete {transform: translateY(-8vw);}
 
 .slide-complete {
-    transform: translateY(8vw);
+    transform: translateY(7vw);
     transition-duration: 2s;
 }
 
