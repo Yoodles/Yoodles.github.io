@@ -212,8 +212,6 @@ button.function.help {
     display: flex;
     flex-direction: column;
     width: 100%;
-
-    /* max-height: 80vh; */
     padding: 13vh 0;
     margin: auto;
     overflow-y: auto;
@@ -228,41 +226,24 @@ button.function.help {
     display: flex;
     align-items: center;
     position: relative;
-    flex-direction: column;
     /* transition-delay: ? */
+    flex-direction: column;
 }
-    
+.flip .set {flex-direction: column-reverse;}
 
-#racksAndInput {
+#inputAndSideButtons {
     display: flex;
     position: relative;
-    flex-direction: column;
     align-items: center;
+    width: 100%;
+    min-width: 60vw;
+    max-width: 70vw;
+    margin: auto;
+    z-index: 70;
 }
 
-#normRack { order: 1; flex-direction: column}
 
-.flip #startWord { order: 2; }
-
-.flip #endWord { order: 1; }
-
-
-.flip #normRack { order: 2; flex-direction: column-reverse;}
-
-#flipRack { order: 2; flex-direction: column-reverse; }
-.flip #flipRack { order: 1; flex-direction: column;}
-
-/* div[data-flip] #endWord { order: 1; } */
-
-/* div[data-flip] #normRack { order: 3; flex-direction: column-reverse;} */
-
-#inputAndSideButtons { order: 2; }
-/* div[data-flip] #inputAndSideButtons { order: 2; } */
-
-/* div[data-flip] #flipRack { order: 1; flex-direction: column;} */
-
-
-#normRack, #flipRack {
+.rack {
     position: relative;
     display: flex;
     margin: auto;
@@ -270,13 +251,16 @@ button.function.help {
     transition: height ease-in;
     background-color: aqua;
     /* transition: transform 0.5s ease-in-out; */
-}
-
-
-
-.rack {
     transition-duration: 2s;
 }
+
+#normRack,
+.flip #flipRack {flex-direction: column;}
+
+#flipRack,
+.flip #normRack {flex-direction: column-reverse;}
+
+
 
 .slide-down-complete {transform: translateY(8vw);}
 .slide-up-complete {transform: translateY(-8vw);}
@@ -354,7 +338,7 @@ button.function.help {
 }
 
 
-#inputAndSideButtons {z-index: 70};
+
 
 
 .overlay.dark {
@@ -422,14 +406,6 @@ button.function.help {
 
 
 
-#inputAndSideButtons {
-    display: flex;
-    position: relative;
-    align-items: center;
-    width: 100%;
-    min-width: 60vw;
-    max-width: 70vw;
-}
 
 #inputField {
     width: 100%;
