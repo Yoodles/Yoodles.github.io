@@ -11,6 +11,8 @@ const initialGameState = () => ({
     moveCounter: 0,
     normArray: [],
     flipArray: [],
+    normDeleter: 'upper',
+    flipDeleter: 'lower',
     latestWord: '',
     targetWord: '',
     latestMove: '',
@@ -720,6 +722,8 @@ function logArrays(when) {
 function toggleFlip() {
     // Toggle game direction and update latest/target words
     gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
+    gameState.normDeleter = gameState.normDeleter === 'upper' ? 'lower' : 'upper';
+    gameState.flipDeleter = gameState.flipDeleter === 'lower' ? 'upper' : 'lower';
     updateLatestAndTargetWords();
 
     // Animation UI
@@ -746,14 +750,14 @@ function updateDirectionUI(direction) { //if RESET, how? *****
     if (direction === 'flip') gameplayCont.classList.add('flip');
     else if (direction === 'norm') gameplayCont.classList.remove('flip');
 
-    const deleters = [
-        document.getElementById('upperDeleter'),
-        document.getElementById('lowerDeleter')
-    ];
+    // const deleters = [
+    //     document.getElementById('upperDeleter'),
+    //     document.getElementById('lowerDeleter')
+    // ];
 
-    deleters.forEach(deleter => {
-        deleter.classList.toggle('flip');
-    });
+    // deleters.forEach(deleter => {
+    //     deleter.classList.toggle('flip');
+    // });
 }
 
 
@@ -762,15 +766,52 @@ function updateDeleterVisibility() {
     const upperDeleter = document.getElementById('upperDeleter');
     const lowerDeleter = document.getElementById('lowerDeleter');
 
-    const normDeleter = upperDeleter.classList.contains('flip') ? lowerDeleter : upperDeleter;
-    
-    const flipDeleter = upperDeleter.classList.contains('flip') ? lowerDeleter : upperDeleter;
+    // let normDeleter, flipDeleter;
+    console.log('gameDirection: ', gameState.gameDirection);
+    logArrays('in updateDeleterVisibility');
+    const {upperArray, lowerArray} = getDirectionalConfig();
 
-    if (gameState.normArray.length > 0) normDeleter.classList.add('active');
-    else normDeleter.classList.remove('active');
+    if (upperArray.length > 0) {
+        if (gameState.gameDirection === 'norm') {
+            upperDeleter.classList.add('active');
+        }
+        else lowerDeleter.classList.add('active');
+        
+    } else {
+        if (gameState.gameDirection === 'norm') {
+            upperDeleter.classList.remove('active');
+        }
+        else lowerDeleter.classList.remove('active');
+    }
+    if (lowerArray.length > 0) {
+        if (gameState.gameDirection === 'norm') {
+            lowerDeleter.classList.add('active');
+        }
+        else upperDeleter.classList.add('active');
+        
+    } else {
+        if (gameState.gameDirection === 'norm') {
+            lowerDeleter.classList.remove('active');
+        }
+        else upperDeleter.classList.remove('active');
+    }    
+
+    // if (upperDeleter.classList.contains('flip')) {
+    //     normDeleter = lowerDeleter;
+    //     flipDeleter = upperDeleter;
+    // } else {
+    //     normDeleter = upperDeleter;
+    //     flipDeleter = lowerDeleter;
+    // }
+    // const normDeleter = upperDeleter.classList.contains('flip') ? lowerDeleter : upperDeleter;
+
+    // const flipDeleter = upperDeleter.classList.contains('flip') ? lowerDeleter : upperDeleter;
+
+    // if (gameState.normArray.length > 0) normDeleter.classList.add('active');
+    // else normDeleter.classList.remove('active');
     
-    if (gameState.flipArray.length > 0) flipDeleter.classList.add('active');
-    else flipDeleter.classList.remove('active');
+    // if (gameState.flipArray.length > 0) flipDeleter.classList.add('active');
+    // else flipDeleter.classList.remove('active');
 
 }
 
