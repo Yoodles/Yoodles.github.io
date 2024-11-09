@@ -725,6 +725,21 @@ function logArrays(when) {
 
 
 
+// function updateDirectionUI(direction) {
+//     const elementsToUpdate = [
+//         document.getElementById('gameplayCont'),
+//         document.getElementById('flipperAndDeleters')
+//     ];
+
+//     elementsToUpdate.forEach(element => {
+//         if (element) {
+//             if (direction === 'flip') element.setAttribute('data-flip', '')
+//             else if (direction === 'norm') element.removeAttribute('data-flip');
+//         }
+//     });
+// }
+
+
 function updateDirectionUI(direction) {
     const elementsToUpdate = [
         document.getElementById('gameplayCont'),
@@ -733,8 +748,8 @@ function updateDirectionUI(direction) {
 
     elementsToUpdate.forEach(element => {
         if (element) {
-            if (direction === 'flip') element.setAttribute('data-flip', '')
-            else if (direction === 'norm') element.removeAttribute('data-flip');
+            if (direction === 'flip') element.classList.add('flip');
+            else if (direction === 'norm') element.classList.remove('flip');
         }
     });
 }
