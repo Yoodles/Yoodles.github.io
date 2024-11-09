@@ -314,6 +314,16 @@ function deleteMove(which) {
     // determine which rack/array to delete from
     let dirConfig;
     switch (which) {
+        case 'upper':
+            dirConfig = gameState.direction === 'norm'
+                ? {rack: normRack, array: gameState.normArray}
+                : {rack: flipRack, array: gameState.flipArray};
+            break;
+        case 'lower':
+            dirConfig = gameState.direction === 'norm'
+                ? {rack: flipRack, array: gameState.flipArray}
+                : {rack: normRack, array: gameState.normArray};
+            break;
         case 'norm':
             dirConfig = {rack: normRack, array: gameState.normArray};
             break;

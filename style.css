@@ -262,6 +262,59 @@ button.function.help {
 
 
 
+
+
+
+#flipperAndDeleters {
+    display: flex;
+    left: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 47.5vw;
+    position: absolute;
+    width: 14vw; /* もしcolumnの幅をフレックスにするなら、min-widthを9vwに */
+    /* padding: 1.25vw; */
+    /* background: #edf6ffef; */
+    align-items: center;
+}
+/* .flip #flipperAndDeleters { flex-direction: column-reverse; } */
+
+.deleter {
+    background: none;
+    border: none;
+    transform: none;
+    transition: opacity 0.2s ease-in;
+}
+/* .deleter.invisible {opacity: 0;} */
+/* .deleter.visible {opacity: 1;} */
+.deleter img {
+    height: 7vw;
+    font-size: 5vw;
+}
+#flipDeleter img {transform: rotate(0.5turn)}
+div[data-flip] #normDeleter img {transform: rotate(0.5turn)}
+div[data-flip] #flipDeleter img {transform: none}
+
+
+#toggleFlip {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
+    transition: transform 0.1s ease-out;
+
+}
+#toggleFlip:hover {transform: scale(1.1)}
+#toggleFlip img {height: 12.3vw;}
+
+
+
+
+
+
+
+
 .slide-down-complete {transform: translateY(8vw);}
 .slide-up-complete {transform: translateY(-8vw);}
 
@@ -428,50 +481,7 @@ button.function.help {
 input:focus {outline: none}
 
 
-#flipperAndDeleters {
-    display: flex;
-    left: 100%;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 47.5vw;
-    position: absolute;
-    width: 14vw; /* もしcolumnの幅をフレックスにするなら、min-widthを9vwに */
-    /* padding: 1.25vw; */
-    /* background: #edf6ffef; */
-    align-items: center;
-}
-#flipperAndDeleters[data-flip] { flex-direction: column-reverse; }
 
-
-
-
-#toggleFlip {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
-    transition: transform 0.1s ease-out;
-
-}
-#toggleFlip:hover {transform: scale(1.1)}
-#toggleFlip img {height: 12.3vw;}
-
-.deleter {
-    background: none;
-    border: none;
-    transform: none;
-    transition: opacity 0.2s ease-in;
-}
-/* .deleter.invisible {opacity: 0;} */
-/* .deleter.visible {opacity: 1;} */
-.deleter img {
-    height: 7vw;
-    font-size: 5vw;
-}
-#flipDeleter img {transform: rotate(0.5turn)}
-div[data-flip] #normDeleter img {transform: rotate(0.5turn)}
-div[data-flip] #flipDeleter img {transform: none}
 
 
 
