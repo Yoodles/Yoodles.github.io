@@ -205,7 +205,7 @@ button.function {
     position: relative;
     /* transition-delay: ? */
     flex-direction: column;
-    transition: transform 1s ease;
+    transition: transform 0.8s ease;
 }
 .flip .set {flex-direction: column-reverse;}
 
@@ -235,8 +235,6 @@ button.function {
     margin: auto;
     height: 0;
     transition: height ease-in;
-    background-color: aqua;
-    /* transition: transform 0.5s ease-in-out; */
     transition-duration: .2s;
 }
 #normRack, .flip #flipRack {flex-direction: column;}
@@ -406,12 +404,9 @@ button.function {
 .fade-in { opacity: 1; transition: opacity ease-in; }
 .fade-out { opacity: 0; transition: opacity ease-out; }
 
-/* .fade-in:not(.exclude) {opacity: 1;}
-.fade-out:not(.exclude) {opacity: 0;} */
-
 .wordCont.fade-in {
     transition-duration: .2s;
-    transition-delay: .4s;
+    /* transition-delay: .4s; */
     /* ↑ IF I WANT TO JUST START IT AFTER MODIFYHEIGHT */
 }
 .wordCont.fade-out {
@@ -431,11 +426,6 @@ button.function {
     0% {transform: rotateX(0deg);}
     100% {transform: rotateX(720deg);}
 }
-
-
-/* Transition durations as modifiers */
-.duration-1s { transition-duration: 1s; }
-
 
 
 

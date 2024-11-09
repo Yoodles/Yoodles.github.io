@@ -215,40 +215,7 @@ function renderResultPanel() {
 }
 
 
-function togglePanel(action) {
-    const popup = document.getElementById('popupPanel');
-    const resultPanel = document.getElementById('resultPanel');
 
-    let panel = popup;
-
-    if (action === 'close') {
-        // Hide the overlay and the popup
-        toggleOverlay();
-        popup.classList.add('hidden');
-        resultPanel.classList.add('hidden');
-
-    } else if (action === 'result') {
-        
-        panel = resultPanel;
-    } else {
-
-        const helpContent = document.getElementById('helpContent');
-        const roundsContent = document.getElementById('roundsContent');
-
-        // Hide all content initially
-        helpContent.classList.add('hidden');
-        roundsContent.classList.add('hidden');
-        
-        // Show specific content based on the type
-        if (action === 'help') helpContent.classList.remove('hidden');
-        else if (action === 'rounds') roundsContent.classList.remove('hidden');
-    }
-    // Show the overlay and the popup
-    console.log(panel);
-    toggleOverlay('popup-background');
-    panel.classList.remove('hidden');
-
-}
 
 function toggleFlip() {
     // Toggle game direction and update latest/target words
@@ -264,10 +231,10 @@ function toggleFlip() {
 
     // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
     toggleClassesInSequence([inputField, flipper], ['rotating', 'rotating'], [0, 1400]);
+    toggleClassesInSequence([deleters], ['fade-out', 'fade-out'], [0, 800]);
 
     // toggleOverlay();
     fadeIn(overlay, 600);
-    fadeOut(upperDeleter, 600);
     setTimeout(() => {
         updateDirectionUI(gameState.direction);
         fadeOut(overlay, 1000);
@@ -293,6 +260,8 @@ function submitMove() {
         // UPDATE UI (Build tiles, animations, etc.)
         let wordCont = prepareInputCont(upperRack, upperArray);
         makeTilesIn(wordCont, inputWord);
+        wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
+
 
         setTimeout(() => {
             toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
@@ -448,22 +417,14 @@ function fadeOut(element, duration = 500, addHidden = false) {
 
     }, duration);
 }
-  
-
-// wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
-
-
 
 function modifyHeight(action, rack, array) {
-
     const wordContHeight = window.innerWidth * 11.5 / 100;
-    let newHeight;
 
     // If Complete: 
     if (gameState.isComplete) {
         const normSet = document.getElementById('normSet');
         const flipSet = document.getElementById('flipSet');
-        // const bothSets = document.querySelectorAll('.set');
 
         if (action === 'submit') {
             normSet.classList.add('subm');
@@ -481,22 +442,52 @@ function modifyHeight(action, rack, array) {
             flipSet.classList.add('slide-down-complete');
         }
     }
-        // If Submit/Delete: New height of rack = number of words in array x wordCont height
-    else {
-        newHeight = array.length * wordContHeight + 'px';
-        rack.style.height = newHeight;
-    }
+    else rack.style.height = array.length * wordContHeight + 'px';
 }
 
 
+function toggleResult() {
+    const resultPanel = document.getElementById('resultPanel');
+    resultPanel.classList.toggle('hidden');
+}
+
+function togglePanel(action) {
+    const popup = document.getElementById('popupPanel');
+
+    if (action === 'close') {
+        // Hide the overlay and the popup
+        toggleOverlay();
+        popup.classList.add('hidden');
+
+    } else {
+        const helpContent = document.getElementById('helpContent');
+        const roundsContent = document.getElementById('roundsContent');
+
+        // Hide all content initially
+        helpContent.classList.add('hidden');
+        roundsContent.classList.add('hidden');
+        
+        // Show specific content based on the type
+        if (action === 'help') helpContent.classList.remove('hidden');
+        else if (action === 'rounds') roundsContent.classList.remove('hidden');
+    }
+    // Show the overlay and the popup
+    toggleOverlay('popup-background');
+    popup.classList.remove('hidden');
+
+}
 
 
 function undoMove() {
     gameState.isComplete = false;
+    // gameState.moveCounter--;
+    toggleResult();
+
     switch (gameState.latestMove) {
         case 'submit':
             deleteMove('upper');
             break;
+
         case 'delete-norm': //***** wordConts[wordConts.length - 1];
             makeTilesIn(gameState.latestWord, normRack, gameState.normArray);
             break;
@@ -505,12 +496,9 @@ function undoMove() {
             break;
     }
 
-    updateBestScoreUI();
-    updateMoveCounterUI();
-    removeClass('post', 'complete');
+    updateMoveCounterUI(); //*****prob unnecessary
 
     const stars = document.getElementById('starContainer').querySelectorAll('.star');
-
     stars.forEach(star => {
         star.classList.remove('yellow');
     });
@@ -530,7 +518,9 @@ function updateGame(action) {
 
             localStorage.setItem('lastCompletedPair', currentPairKey);
 
-            // togglePanel('result');            
+            setTimeout(() => {
+                toggleResult();
+            }, 1200);           
             break;
 
         case 'nextRound':
