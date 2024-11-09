@@ -257,9 +257,7 @@ button.function {
     justify-content: space-around;
     height: 47.5vw;
     position: absolute;
-    width: 14vw; /* もしcolumnの幅をフレックスにするなら、min-widthを9vwに */
-    /* padding: 1.25vw; */
-    /* background: #edf6ffef; */
+    width: 14vw;
     align-items: center;
 }
 
