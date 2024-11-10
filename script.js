@@ -116,8 +116,6 @@ function toggleClassWithDelay(elements, className, action, delay) {
 
 
 
-
-
 // function toggleOverlay(classNames = null) {
 //     const overlay = document.getElementById('overlay');
     
@@ -514,10 +512,9 @@ function updateGame(action) {
     switch (action) {   
         case 'complete':
             checkAndUpdateBestScoreAfterRound();
-            renderResultPanel();
-
             localStorage.setItem('lastCompletedPair', currentPairKey);
 
+            renderResultPanel();
             setTimeout(() => {
                 toggleResult();
             }, 1200);           

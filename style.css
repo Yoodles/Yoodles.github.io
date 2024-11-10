@@ -405,12 +405,12 @@ button.function {
 .fade-out { opacity: 0; transition: opacity ease-out; }
 
 .wordCont.fade-in {
-    transition-duration: .2s;
+    transition-duration: .8s;
     /* transition-delay: .4s; */
     /* ↑ IF I WANT TO JUST START IT AFTER MODIFYHEIGHT */
 }
 .wordCont.fade-out {
-    transition-duration: .2s;
+    transition-duration: .8s;
 }
 
 
