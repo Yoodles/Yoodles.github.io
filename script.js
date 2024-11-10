@@ -54,7 +54,6 @@ function jumpToRound(pairKey) {
     // Update the best score UI for the selected round
     updateBestScoreUI(pairKey);
 
-    // Close the popup
     togglePanel('close');
 }
 
@@ -116,38 +115,7 @@ function toggleClassWithDelay(elements, className, action, delay) {
 
 
 
-// function toggleOverlay(classNames = null) {
-//     const overlay = document.getElementById('overlay');
-    
-//     // if no parameters...
-//     if (!classNames) {
-//         // ...remove classes other than 'overlay'...
-//         overlay.className = 'overlay visible'; // Clears previous mode classes
 
-//         //...then fade out (=turn opaque)...
-//         overlay.classList.add('invisible');
-//         overlay.classList.remove('visible');
-
-//         //...and then add .hidden (turn off display)
-//         setTimeout(() => {
-//             overlay.classList.add('hidden');
-//         }, 400);
-
-//     // but if parameters...
-//     } else {
-
-//         overlay.className = 'overlay invisible'; // Clears previous mode classes
-
-//         // Add specified classes
-//         classNames.forEach(className => overlay.classList.add(className));
-        
-//         // overlay.classList.remove('hidden');
-
-//         //...then fade in (set opacity to 1)...
-//         overlay.classList.add('visible');
-//         overlay.classList.remove('invisible');
-//     }
-// }
 
 
 
@@ -345,6 +313,38 @@ function deleteMove(which) {
     else wordToDelete.remove();
 }
 
+// function toggleOverlay(classNames = null) {
+//     const overlay = document.getElementById('overlay');
+    
+//     // if no parameters...
+//     if (!classNames) {
+//         // ...remove classes other than 'overlay'...
+//         overlay.className = 'overlay visible'; // Clears previous mode classes
+
+//         //...then fade out (=turn opaque)...
+//         overlay.classList.add('invisible');
+//         overlay.classList.remove('visible');
+
+//         //...and then add .hidden (turn off display)
+//         setTimeout(() => {
+//             overlay.classList.add('hidden');
+//         }, 400);
+
+//     // but if parameters...
+//     } else {
+
+//         overlay.className = 'overlay invisible'; // Clears previous mode classes
+
+//         // Add specified classes
+//         classNames.forEach(className => overlay.classList.add(className));
+        
+//         // overlay.classList.remove('hidden');
+
+//         //...then fade in (set opacity to 1)...
+//         overlay.classList.add('visible');
+//         overlay.classList.remove('invisible');
+//     }
+// }
 
 function toggleOverlay(mode) {
     const overlay = document.getElementById('overlay');
@@ -361,9 +361,6 @@ function toggleOverlay(mode) {
         case 'initial':
             duration = 500;
             // fadeOut(overlay, 500);
-            break;
-        case 'default':
-            duration = 500;
             break;
         case 'message':
             overlay.classList.add('message');
@@ -526,6 +523,7 @@ function updateGame(action) {
             const nextPair = wordPairDetails[currentIndex + 1];
         
             if (nextPair) {
+                resetGameState();
                 setWordPairAndLengths(nextPair.pairKey);
                 resetUI();
                 buildWordPairTiles();
@@ -535,7 +533,7 @@ function updateGame(action) {
 
         case 'resetRound':
             gameState.isComplete = false;
-            toggleOverlay('default');
+            toggleOverlay('initial');
 
             resetGameState();
             setWordPairAndLengths(currentPairKey);
