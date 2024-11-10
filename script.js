@@ -293,14 +293,11 @@ function submitMove() {
 
         makeTilesIn(wordCont, inputWord);
 
-        setTimeout(() => {
-            wordCont.classList.add('visible'); // Add .visible to trigger fade-in
+        setTimeout(() => wordCont.classList.add('visible'), 100);
+        // toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 1000]);
 
-            // toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 1000]);
-        }, 100);
-
+        // Adjust rack height and UI
         modifyHeight('submit', upperRack, upperArray);
-
         updateDeleterVisibility();
         emptyInputField();
         updateMoveCounterUI();
@@ -308,13 +305,6 @@ function submitMove() {
     }
 
 }
-
-
-
-function createTilesHTML() {
-    return '<div class="tile"></div>'.repeat(6);
-}
-
 
 
 // Prepare a wordCont for the input word
@@ -326,30 +316,29 @@ function prepareInputCont(rack, array) {
     // Use an existing wordCont if available
     if (positionInArray < wordContsInRack.length) {
         cont = wordContsInRack[positionInArray];
-
-    // ...otherwise, create new .wordCont and populate with tiles
     } else {
-        // cont = createWordContWithTiles();
-        // rack.appendChild(cont);
-
+        // Create a new .wordCont if none are available
         cont = document.createElement('div');
         cont.classList.add('wordCont');
-        cont.innerHTML = '<div class="tile"></div>'.repeat(6); // Add 6 tiles
         rack.appendChild(cont);
     }
 
-    // Clear tiles and remove .visible for reuse
+    // Reset tiles for reuse
     resetTiles(cont);
+
+    // Dynamically populate the wordCont with tiles if it doesn't already have them
+    if (!cont.hasChildNodes()) {
+        cont.innerHTML = createTilesHTML(); // Dynamically add 6 tiles
+    }
+
     cont.classList.remove('visible');
     return cont;
 }
 
-function createWordContWithTiles() {
-    const cont = document.createElement('div');
-    cont.classList.add('wordCont');
-    cont.innerHTML = createTilesHTML(); // Add 6 tiles using a string literal
-    return cont;
+function createTilesHTML() {
+    return '<div class="tile"></div>'.repeat(6);
 }
+
 
 // Reset the tiles inside an existing wordCont
 function resetTiles(wordCont) {
@@ -366,9 +355,7 @@ function makeTilesIn(wordCont, word) {
     wordCont.querySelectorAll('.tile').forEach((tile, i) => {
         const isVisible = i < word.length;
         tile.textContent = isVisible ? word[i].toUpperCase() : '';
-        tile.classList.toggle('tile', isVisible);
         tile.classList.toggle('hidden', !isVisible);
-        // if (isVisible) tile.style.transitionDelay = `${0.2 + i * 0.2}s`;
 
         if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${i * 0.2}s`;
     });
