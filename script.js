@@ -190,14 +190,14 @@ function toggleFlip() {
 
     // Animation UI
     // const inputSet = document.getElementById('inputSet');
-    const upperDeleter = document.getElementById('upperDeleter');
+    // const upperDeleter = document.getElementById('upperDeleter');
     const deleters = document.querySelectorAll('.deleter');
     const overlay = document.getElementById('overlay');
     const flipper = document.getElementById('toggleFlip');
 
     // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
     toggleClassesInSequence([inputField, flipper], ['rotating', 'rotating'], [0, 1400]);
-    toggleClassesInSequence([deleters], ['fade-out', 'fade-out'], [0, 800]);
+    toggleClassesInSequence([...deleters], ['fade-out', 'fade-out'], [0, 800]);
 
     // toggleOverlay();
     fadeIn(overlay, 600);
@@ -207,69 +207,6 @@ function toggleFlip() {
     }, 1000);
 
 }
-
-
-//FUNC: SUBMITTING A MOVE
-// function submitMove() {
-//     const inputWord = inputField.value.toLowerCase();
-
-//     if (isTotallyValid(inputWord, gameState.latestWord)) {
-//         const {upperRack, upperArray} = getDirectionalConfig();
-
-//         upperArray.push(inputWord);
-
-//         updateLatestAndTargetWords();
-//         gameState.latestMove = 'submit';
-//         gameState.moveCounter++;
-//         if (inputWord === gameState.targetWord) gameState.isComplete = true;
-
-//         // UPDATE UI (Build tiles, animations, etc.)
-//         let wordCont = prepareInputCont(upperRack, upperArray);
-//         makeTilesIn(wordCont, inputWord);
-//         wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
-
-
-//         setTimeout(() => {
-//             toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
-//         }, 4000);
-
-//         modifyHeight('submit', upperRack, upperArray);
-
-//         updateDeleterVisibility();
-//         emptyInputField();
-//         updateMoveCounterUI();
-//         if (gameState.isComplete) updateGame('complete');
-//     }
-
-//     //GETTING THE INPUTWORD CONT READY
-//     function prepareInputCont(rack, array) {
-//         const positionInArray = array.length;
-//         const wordContsInRack = rack.children;
-//         let cont;
-
-//         // If the array has fewer entries than there are divs in, then use rack's child at array length...
-//         if (wordContsInRack && positionInArray < wordContsInRack.length) {
-//             cont = wordContsInRack[positionInArray];
-//         // ...otherwise, use a new div added to rack.
-//         } else {
-//             cont = document.createElement('div');
-//             rack.appendChild(cont);
-//         }
-
-//         // Clear the wordCont in case of preexisting tiles
-//         cont.innerHTML = '';
-
-//         // Make 6 empty tileConts inside the wordCont
-//         for (let i = 0; i < 6; i++) {
-//             const tileCont = document.createElement('div');
-//             cont.appendChild(tileCont);
-//         }
-
-//         cont.classList.add('wordCont');
-//         return cont;
-//     }
-// }
-
 
 
 
@@ -301,8 +238,6 @@ function submitMove() {
 }
 
 function addWordToRack(rack, array, word) {
-
-    // Prepare a wordCont and populate it with tiles
     const wordCont = prepareInputCont(rack, array);
     makeTilesIn(wordCont, word);
 
@@ -312,8 +247,51 @@ function addWordToRack(rack, array, word) {
         wordCont.classList.add('visible');
     }, 100);
 
-
     return wordCont; // Return for further use if needed
+}
+
+
+
+function deleteMove(which) {
+    const {upperRack, upperArray, lowerRack, lowerArray} = getDirectionalConfig();
+    let rack, array;
+
+    if (which === 'upper') {
+        rack = upperRack;
+        array = upperArray;
+    } else if (which ==='lower') {
+        rack = lowerRack;
+        array = lowerArray;
+    }
+
+    // Update game state and arrays
+    if (array.length > 0) array.pop();
+
+    updateLatestAndTargetWords();
+    gameState.moveCounter--;
+    if (gameState.latestWord === gameState.targetWord) gameState.isComplete = true;
+
+    gameState.latestMove = `delete-${array === gameState.normArray ? 'norm' : 'flip'}-${array[array.length - 1]}`;
+    console.log('latestMove: ', gameState.latestMove);
+
+    // find all visible wordConts in the rack
+    const wordConts = Array.from(rack.querySelectorAll('.wordCont.visible'));
+    const wordContToDelete = wordConts[wordConts.length - 1];
+
+    // Apply the classes in sequence to trigger the fade-out effect
+    toggleClassesInSequence(wordContToDelete, ['visible', 'fade-out'], [0, 0]);
+    // toggleClassesInSequence(wordContToDelete, ['fade-out', 'visible'], [0, 200]);
+
+    // Reset tiles for future reuse after fade-out
+    setTimeout(() => {
+        resetTiles(wordContToDelete); // Reset tiles instead of removing the wordCont
+        modifyHeight('delete', rack, array);
+    }, 400);
+
+    updateDeleterVisibility();
+    emptyInputField();
+    updateMoveCounterUI();
+    if (gameState.isComplete) updateGame('complete');
 }
 
 
@@ -333,32 +311,14 @@ function prepareInputCont(rack, array) {
         rack.appendChild(cont);
     }
 
-    // Reset tiles for reuse
-    resetTiles(cont);
+    resetTiles(cont); // Reset tiles for reuse
 
-    // Dynamically populate the wordCont with tiles if it doesn't already have them
-    if (!cont.hasChildNodes()) {
-        cont.innerHTML = createTilesHTML(); // Dynamically add 6 tiles
-    }
+    // Dynamically populate wordCont with tiles if it has none
+    if (!cont.hasChildNodes()) cont.innerHTML = '<div class="tile"></div>'.repeat(6);
 
     cont.classList.remove('visible');
     return cont;
 }
-
-function createTilesHTML() {
-    return '<div class="tile"></div>'.repeat(6);
-}
-
-
-// Reset the tiles inside an existing wordCont
-function resetTiles(wordCont) {
-    wordCont.querySelectorAll('.tile').forEach(tile => {
-        tile.textContent = ''; // Clear text content
-        tile.classList.remove('hidden', 'fade-in', 'visible'); // Reset classes
-    });
-}
-
-
 
 // Generate tiles for the input word and populate the wordCont
 function makeTilesIn(wordCont, word) {
@@ -370,64 +330,18 @@ function makeTilesIn(wordCont, word) {
         if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${i * 0.2}s`;
     });
 }
-    
 
-
-
-
-function deleteMove(which) {
-    // determine which rack/array to delete from
-    const {upperRack, upperArray, lowerRack, lowerArray} = getDirectionalConfig();
-    let rack, array;
-
-    if (which === 'upper') {
-        rack = upperRack;
-        array = upperArray;
-    } else if (which ==='lower') {
-        rack = lowerRack;
-        array = lowerArray;
-    }
-
-    // find all visible wordConts in the rack
-    const wordConts = Array.from(rack.querySelectorAll('.wordCont.visible'));
-    const wordContToDelete = wordConts[wordConts.length - 1];
-
-    if (!wordContToDelete) {
-        console.warn('No visible wordConts to delete.');
-        return;
-    }
-    console.log('wordContToDelete: ', array[array.length -1]);
-
-    // Update game state and arrays
-    gameState.latestMove = `delete-${array === gameState.normArray ? 'norm' : 'flip'}-${array[array.length - 1]}`;
-    console.log('latestMove: ', gameState.latestMove);
-
-    // delete last entry in array (if non-empty) and last wordCont in rack
-    if (array.length > 0) array.pop();
-
-    updateLatestAndTargetWords();
-    gameState.moveCounter--;
-    if (gameState.latestWord === gameState.targetWord) gameState.isComplete = true;
-
-
-    // Apply the classes in sequence to trigger the fade-out effect
-    toggleClassesInSequence(wordContToDelete, ['visible', 'fade-out'], [0, 0]);
-    // toggleClassesInSequence(wordContToDelete, ['fade-out', 'visible'], [0, 200]);
-
-
-    // Reset tiles for future reuse after fade-out
-    setTimeout(() => {
-        console.log('before calling resetTiles');
-        resetTiles(wordContToDelete); // Reset tiles instead of removing the wordCont
-        modifyHeight('delete', rack, array);
-    }, 400);
-
-    updateDeleterVisibility();
-    emptyInputField();
-    updateMoveCounterUI();
-    if (gameState.isComplete) updateGame('complete');
-    // else wordContToDelete.remove();
+// Reset the tiles inside an existing wordCont
+function resetTiles(wordCont) {
+    wordCont.querySelectorAll('.tile').forEach(tile => {
+        tile.textContent = ''; // Clear text content
+        tile.classList.remove('hidden', 'fade-in', 'visible'); // Reset classes
+    });
 }
+
+
+
+
 
 
 function toggleOverlay(mode) {
@@ -499,7 +413,7 @@ function fadeOut(element, duration = 500, addHidden = false) {
 
 function modifyHeight(action, rack, array) {
     const wordContHeight = window.innerWidth * 11.5 / 100;
-
+    console.log('modify');
     // If Complete: 
     if (gameState.isComplete) {
         const normSet = document.getElementById('normSet');
@@ -580,8 +494,10 @@ function undoMove() {
 
         // Add the deleted word back to the rack
         addWordToRack(rack, array, word);
+        modifyHeight('undo-delete', rack, array); //*****
 
         updateLatestAndTargetWords();
+
         emptyInputField();
         updateMoveCounterUI(); //*****prob unnecessary
         updateDeleterVisibility();
@@ -599,32 +515,70 @@ function undoMove() {
 
 
 
+// function updateGame(action) {
+//     const currentPairKey = `${wordPair.startWord}-${wordPair.endWord}`;
 
+//     switch (action) {   
+//         case 'complete':
+//             checkBestScoreAndUpdate();
+//             localStorage.setItem('lastCompletedPair', currentPairKey);
+
+//             renderResultPanel();
+//             setTimeout(() => {
+//                 toggleResult();
+//             }, 1200);
+
+//             break;
+
+//         case 'nextRound':
+//             gameState.isComplete = false;
+//             const currentIndex = wordPairDetails.findIndex(pair => pair.pairKey === currentPairKey);
+//             const nextPair = wordPairDetails[currentIndex + 1];
+        
+//             if (nextPair) {
+//                 toggleOverlay('initial');
+//                 resetGameState();
+//                 setWordPairAndLengths(nextPair.pairKey);
+//                 resetUI();
+//                 buildWordPairTiles();
+//             } else document.getElementById('gameArea').innerText = "All Rounds Completed!";
+
+//             break;
+
+//         case 'resetRound':
+//             gameState.isComplete = false;
+//             toggleOverlay('initial');
+
+//             resetGameState();
+//             setWordPairAndLengths(currentPairKey);
+//             resetUI();
+//             buildWordPairTiles();
+//             break;
+//     };
+    
+//     // logArrays();
+//     console.log('latestMove: ', gameState.latestMove);
+//     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
+// }
 
 function updateGame(action) {
-    const currentPairKey = `${wordPair.startWord}-${wordPair.endWord}`;
-
     switch (action) {   
         case 'complete':
-            checkAndUpdateBestScoreAfterRound();
-            localStorage.setItem('lastCompletedPair', currentPairKey);
-
+            checkBestScoreAndUpdate();
+            localStorage.setItem('lastCompletedPair', wordPair.currentPairKey);
             renderResultPanel();
-            setTimeout(() => {
-                toggleResult();
-            }, 1200);           
+
+            setTimeout(() => toggleResult(), 1200);
+
             break;
 
         case 'nextRound':
-            gameState.isComplete = false;
-            const currentIndex = wordPairDetails.findIndex(pair => pair.pairKey === currentPairKey);
+            const currentIndex = wordPairDetails.findIndex(pair => pair.pairKey === wordPair.currentPairKey);
             const nextPair = wordPairDetails[currentIndex + 1];
         
             if (nextPair) {
-                resetGameState();
-                setWordPairAndLengths(nextPair.pairKey);
-                resetUI();
-                buildWordPairTiles();
+                wordPair.currentPairKey = nextPair.pairKey;
+                updateGame('reset');
             } else document.getElementById('gameArea').innerText = "All Rounds Completed!";
 
             break;
@@ -640,8 +594,7 @@ function updateGame(action) {
             break;
     };
     
-    // logArrays();
-    console.log('latestMove: ', gameState.latestMove);
+    logArrays();
     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
 }
 
@@ -702,10 +655,6 @@ function buildWordPairTiles() {
     makeTilesIn(endWordCont, wordPair.endWord);
 }
 
-
-
-
-
 // DIRECTIONAL CONFIGURATIONS
 function getDirectionalConfig() {
     if (gameState.direction === 'norm') {
@@ -744,7 +693,7 @@ function updateLatestAndTargetWords() {
 let bestScores = {};
 
 // Check and update the best score after a round
-function checkAndUpdateBestScoreAfterRound(currentScore) {
+function checkBestScoreAndUpdate(currentScore) {
     const pairKey = wordPair.currentPairKey; // Use currentPairKey directly
     updateBestScore(pairKey, currentScore);
     updateBestScoreUI(pairKey);
