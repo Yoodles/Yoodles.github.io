@@ -749,15 +749,32 @@ function focusTextInputBox() {inputField.focus()}
 function emptyInputField() {inputField.value = ''}
 
 ////EMPTYING CONTAINERS and CONTAINER RACKS
+// function clearInputUI() {
+//     document.querySelectorAll('#normRack .wordCont, #flipRack .wordCont').forEach(wordCont => {
+//         resetTiles(wordCont); // Clear and reset the tiles in the wordCont
+//         wordCont.classList.remove('visible'); // Ensure wordConts are hidden
+//     });
+// }
+
+
 function clearInputUI() {
-    document.querySelectorAll('#normRack .wordCont, #flipRack .wordCont').forEach(wordCont => {
-        wordCont.querySelectorAll('div').forEach(tile => {
-            tile.textContent = '';
-            tile.classList.remove('tile');
+    document.querySelectorAll('#normRack, #flipRack').forEach(rack => {
+        const wordConts = Array.from(rack.querySelectorAll('.wordCont'));
+
+        // Reset each wordCont to its default state
+        wordConts.forEach(wordCont => {
+            resetTiles(wordCont); // Clear and reset the tiles in the wordCont
+            wordCont.classList.remove('visible'); // Ensure wordConts are hidden*****
         });
-        wordCont.classList.remove('wordCont');
+
+        // If there are more than 10 wordConts, remove the excess
+        if (wordConts.length > 10) {
+            wordConts.slice(10).forEach(wordCont => wordCont.remove());
+        }
     });
 }
+
+
 
 function logArrays(when) {
     const normArray = gameState.normArray;
