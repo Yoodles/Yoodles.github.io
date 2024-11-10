@@ -395,7 +395,9 @@ button.function {
     margin-right: auto;
     /* opacity: 0; */
 }
-.wordCont.visible {opacity: 1}
+
+.rack .wordCont {opacity: 0}
+.rack .wordCont.visible {opacity: 1}
 
 
 
