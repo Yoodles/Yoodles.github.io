@@ -327,8 +327,6 @@ function prepareInputCont(rack, array) {
     if (positionInArray < wordContsInRack.length) {
         cont = wordContsInRack[positionInArray];
 
-        // resetTiles(cont); //Reset the tiles for reuse
-
     // ...otherwise, create new .wordCont and populate with tiles
     } else {
         // cont = createWordContWithTiles();
