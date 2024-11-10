@@ -13,7 +13,7 @@ const initialGameState = () => ({
     flipArray: [],
     latestWord: '',
     targetWord: '',
-    latestMove: '',
+    lastMove: '',
     isComplete: false,
 });
 
@@ -221,7 +221,7 @@ function submitMove() {
         updateLatestAndTargetWords();
         if (inputWord === gameState.targetWord) gameState.isComplete = true;
 
-        gameState.latestMove = 'submit';
+        gameState.lastMove = 'submit';
         gameState.moveCounter++;
 
         // Add the input word to the rack
@@ -264,15 +264,20 @@ function deleteMove(which) {
         array = lowerArray;
     }
 
-    // Update game state and arrays
-    if (array.length > 0) array.pop();
+    const wordToDelete = array[array.length - 1];
 
-    updateLatestAndTargetWords();
+    // Update game state and arrays
     gameState.moveCounter--;
+
+    console.log('delete ', wordToDelete);
+    
+    gameState.lastMove = `delete-${array === gameState.normArray ? 'norm' : 'flip'}-${array[array.length - 1]}`;
+    console.log('lastMove: ', gameState.lastMove);
+
+    if (array.length > 0) array.pop(); //🚨 MUST BE AFTER CHANGING lastMove
+    updateLatestAndTargetWords();
     if (gameState.latestWord === gameState.targetWord) gameState.isComplete = true;
 
-    gameState.latestMove = `delete-${array === gameState.normArray ? 'norm' : 'flip'}-${array[array.length - 1]}`;
-    console.log('latestMove: ', gameState.latestMove);
 
     // find all visible wordConts in the rack
     const wordConts = Array.from(rack.querySelectorAll('.wordCont.visible'));
@@ -411,32 +416,75 @@ function fadeOut(element, duration = 500, addHidden = false) {
     }, duration);
 }
 
+// function modifyHeight(action, rack, array) {
+//     const wordContHeight = window.innerWidth * 11.5 / 100;
+
+//     // If Complete: 
+//     if (gameState.isComplete) {
+//         const normSet = document.getElementById('normSet');
+//         const flipSet = document.getElementById('flipSet');
+
+//         if (action === 'submit') {
+//             normSet.classList.add('subm');
+//             flipSet.classList.add('subm');
+//         } else if (action === 'delete') {
+//             normSet.classList.add('del');
+//             flipSet.classList.add('del');
+//         }
+
+//         if (gameState.direction === 'norm') {
+//             normSet.classList.add('slide-down-complete');
+//             flipSet.classList.add('slide-up-complete');
+//         } else {
+//             normSet.classList.add('slide-up-complete');
+//             flipSet.classList.add('slide-down-complete');
+//         }
+//     }
+//     else rack.style.height = array.length * wordContHeight + 'px';
+// }
+
+
 function modifyHeight(action, rack, array) {
     const wordContHeight = window.innerWidth * 11.5 / 100;
-    console.log('modify');
-    // If Complete: 
-    if (gameState.isComplete) {
-        const normSet = document.getElementById('normSet');
-        const flipSet = document.getElementById('flipSet');
+    const normSet = document.getElementById('normSet');
+    const flipSet = document.getElementById('flipSet');
 
-        if (action === 'submit') {
-            normSet.classList.add('subm');
-            flipSet.classList.add('subm');
-        } else if (action === 'delete') {
-            normSet.classList.add('del');
-            flipSet.classList.add('del');
-        }
+    // Utility function to reset normSet and flipSet
+    const resetSets = () => {
+        normSet.className = 'set';
+        flipSet.className = 'set';
+    };
 
-        if (gameState.direction === 'norm') {
-            normSet.classList.add('slide-down-complete');
-            flipSet.classList.add('slide-up-complete');
-        } else {
-            normSet.classList.add('slide-up-complete');
-            flipSet.classList.add('slide-down-complete');
-        }
+    switch (action) {
+        case 'submit':
+            if (gameState.isComplete) {
+                normSet.classList.add('subm', gameState.direction === 'norm' ? 'slide-down-complete' : 'slide-up-complete');
+                flipSet.classList.add('subm', gameState.direction === 'norm' ? 'slide-up-complete' : 'slide-down-complete');
+            } else rack.style.height = array.length * wordContHeight + 'px';
+
+            break;
+
+        case 'delete':
+            if (!gameState.isComplete) rack.style.height = array.length * wordContHeight + 'px';
+            break;
+
+        case 'undo':
+            console.log('undo');
+            resetSets();
+            break;
+
+        case 'reset':
+            resetSets();
+            normRack.style.height = '0px';
+            flipRack.style.height = '0px';
+            break;
+
+        default:
+            console.warn(`Unknown action: ${action}`);
+            break;
     }
-    else rack.style.height = array.length * wordContHeight + 'px';
 }
+
 
 
 function toggleResult() {
@@ -474,27 +522,29 @@ function togglePanel(action) {
 function undoMove() {
     gameState.isComplete = false;
     toggleResult();
+    modifyHeight('undo'); //*****
 
-    if (gameState.latestMove === 'submit') deleteMove('upper');
+
+    if (gameState.lastMove === 'submit') deleteMove('upper'); // ✅
     else {
-        // Parse the latestMove string
-        const [actionType, rackType, word] = gameState.latestMove.split('-');
+        // Parse the lastMove string
+        const [actionType, rackType, word] = gameState.lastMove.split('-');
         if (actionType !== 'delete') {
             console.warn('Latest move is not a delete action.');
             return;
         }
+
+        console.log('gameState.lastMove: ', gameState.lastMove);
 
         // Determine the rack and array based on the rackType
         const { rack, array } = rackType === 'norm'
             ? { rack: normRack, array: gameState.normArray }
             : { rack: flipRack, array: gameState.flipArray };
 
-        // Re-add to array
-        array.push(word);
+        array.push(word); // Re-add to array
 
-        // Add the deleted word back to the rack
-        addWordToRack(rack, array, word);
-        modifyHeight('undo-delete', rack, array); //*****
+        addWordToRack(rack, array, word); //Re-add to rack
+        // modifyHeight('undo'); //*****
 
         updateLatestAndTargetWords();
 
@@ -505,6 +555,8 @@ function undoMove() {
         console.log(`Undo complete: Restored "${word}" to ${rackType} rack.`);
 
     }
+
+    logArrays();
 
     const stars = document.getElementById('starContainer').querySelectorAll('.star');
     stars.forEach(star => {
@@ -557,7 +609,7 @@ function undoMove() {
 //     };
     
 //     // logArrays();
-//     console.log('latestMove: ', gameState.latestMove);
+//     console.log('lastMove: ', gameState.lastMove);
 //     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
 // }
 
@@ -604,12 +656,13 @@ function resetUI() {
 
     document.getElementById('resultPanel').classList.remove('active');
 
+    modifyHeight('reset');
     updateDirectionUI('norm');
     clearInputUI();
     emptyInputField();
 
-    normRack.style.height = 0;
-    flipRack.style.height = 0;
+    // normRack.style.height = 0;
+    // flipRack.style.height = 0;
     //also reset .set
 
     const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
@@ -809,14 +862,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
     
-
     // Load the first word pair and initialize game state
-    const initialPairKey = wordPairDetails[0].pairKey;
-    setWordPairAndLengths(initialPairKey);
+    wordPair.currentPairKey = wordPairDetails[0].pairKey;
+    setWordPairAndLengths(wordPair.currentPairKey);
     buildWordPairTiles();
 
     // Update the best score UI for the initial pair
-    updateBestScoreUI(initialPairKey);
+    updateBestScoreUI(wordPair.currentPairKey);
 
     // Event listener for TEXT BOX (Enter Key)
     inputField.addEventListener('keypress', function(event) {

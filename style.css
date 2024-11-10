@@ -348,8 +348,8 @@ button.function {
     height: 100%;
     justify-content: center;
     align-items: center;
-    background-color: white;
-    /* background-color: #f5f6fe; */
+    /* background-color: white; */
+    background-color: #f5f6fe;
 
     transition: opacity ease-in-out;
     z-index: 60;
