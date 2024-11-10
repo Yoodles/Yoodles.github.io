@@ -279,7 +279,6 @@ function submitMove() {
     if (isTotallyValid(inputWord, gameState.latestWord)) {
         const {upperRack, upperArray} = getDirectionalConfig();
 
-        // Push the input word to the corresponding array
         upperArray.push(inputWord);
 
         updateLatestAndTargetWords();
@@ -288,13 +287,8 @@ function submitMove() {
         gameState.latestMove = 'submit';
         gameState.moveCounter++;
 
-        // Get or create the wordCont for the input word
-        const wordCont = prepareInputCont(upperRack, upperArray);
-
-        makeTilesIn(wordCont, inputWord);
-
-        setTimeout(() => wordCont.classList.add('visible'), 100);
-        // toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 1000]);
+        // Add the input word to the rack
+        addWordToRack(upperRack, upperArray, inputWord);
 
         // Adjust rack height and UI
         modifyHeight('submit', upperRack, upperArray);
@@ -304,6 +298,22 @@ function submitMove() {
         if (gameState.isComplete) updateGame('complete');
     }
 
+}
+
+function addWordToRack(rack, array, word) {
+
+    // Prepare a wordCont and populate it with tiles
+    const wordCont = prepareInputCont(rack, array);
+    makeTilesIn(wordCont, word);
+
+    // Make the wordCont visible with a fade-in effect
+    setTimeout(() => {
+        // toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 1000]);
+        wordCont.classList.add('visible');
+    }, 100);
+
+
+    return wordCont; // Return for further use if needed
 }
 
 
@@ -549,22 +559,42 @@ function togglePanel(action) {
 
 function undoMove() {
     gameState.isComplete = false;
-    // gameState.moveCounter--;
     toggleResult();
 
     if (gameState.latestMove === 'submit') deleteMove('upper');
     else {
-        'delete-norm'; //***** wordConts[wordConts.length - 1];
-        makeTilesIn(gameState.latestWord, normRack, gameState.normArray);
-        makeTilesIn(gameState.latestWord, flipRack, gameState.flipArray);
-    }
+        // Parse the latestMove string
+        const [actionType, rackType, word] = gameState.latestMove.split('-');
+        if (actionType !== 'delete') {
+            console.warn('Latest move is not a delete action.');
+            return;
+        }
 
-    updateMoveCounterUI(); //*****prob unnecessary
+        // Determine the rack and array based on the rackType
+        const { rack, array } = rackType === 'norm'
+            ? { rack: normRack, array: gameState.normArray }
+            : { rack: flipRack, array: gameState.flipArray };
+
+        // Re-add to array
+        array.push(word);
+
+        // Add the deleted word back to the rack
+        addWordToRack(rack, array, word);
+
+        updateLatestAndTargetWords();
+        emptyInputField();
+        updateMoveCounterUI(); //*****prob unnecessary
+        updateDeleterVisibility();
+
+        console.log(`Undo complete: Restored "${word}" to ${rackType} rack.`);
+
+    }
 
     const stars = document.getElementById('starContainer').querySelectorAll('.star');
     stars.forEach(star => {
         star.classList.remove('yellow');
     });
+
 }
 
 
@@ -742,21 +772,11 @@ function updateMoveCounterUI() {
     document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
 }
 
-
-
 function focusTextInputBox() {inputField.focus()}
 
 function emptyInputField() {inputField.value = ''}
 
 ////EMPTYING CONTAINERS and CONTAINER RACKS
-// function clearInputUI() {
-//     document.querySelectorAll('#normRack .wordCont, #flipRack .wordCont').forEach(wordCont => {
-//         resetTiles(wordCont); // Clear and reset the tiles in the wordCont
-//         wordCont.classList.remove('visible'); // Ensure wordConts are hidden
-//     });
-// }
-
-
 function clearInputUI() {
     document.querySelectorAll('#normRack, #flipRack').forEach(rack => {
         const wordConts = Array.from(rack.querySelectorAll('.wordCont'));
@@ -774,8 +794,6 @@ function clearInputUI() {
     });
 }
 
-
-
 function logArrays(when) {
     const normArray = gameState.normArray;
     const flipArray = gameState.flipArray;
@@ -784,9 +802,6 @@ function logArrays(when) {
     console.log(when, ": flipArray Contents:", flipArray, ". flipArray items:", flipArray.length);
 
 }
-
-
-
 
 function updateDirectionUI(direction) {
     const gameplayCont = document.getElementById('gameplayCont');
