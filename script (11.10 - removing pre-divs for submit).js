@@ -422,38 +422,6 @@ function deleteMove(which) {
     // else wordContToDelete.remove();
 }
 
-// function toggleOverlay(classNames = null) {
-//     const overlay = document.getElementById('overlay');
-    
-//     // if no parameters...
-//     if (!classNames) {
-//         // ...remove classes other than 'overlay'...
-//         overlay.className = 'overlay visible'; // Clears previous mode classes
-
-//         //...then fade out (=turn opaque)...
-//         overlay.classList.add('invisible');
-//         overlay.classList.remove('visible');
-
-//         //...and then add .hidden (turn off display)
-//         setTimeout(() => {
-//             overlay.classList.add('hidden');
-//         }, 400);
-
-//     // but if parameters...
-//     } else {
-
-//         overlay.className = 'overlay invisible'; // Clears previous mode classes
-
-//         // Add specified classes
-//         classNames.forEach(className => overlay.classList.add(className));
-        
-//         // overlay.classList.remove('hidden');
-
-//         //...then fade in (set opacity to 1)...
-//         overlay.classList.add('visible');
-//         overlay.classList.remove('invisible');
-//     }
-// }
 
 function toggleOverlay(mode) {
     const overlay = document.getElementById('overlay');
