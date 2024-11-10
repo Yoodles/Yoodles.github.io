@@ -270,31 +270,28 @@ function submitMove() {
     }
 }
 
+
 function deleteMove(which) {
     // determine which rack/array to delete from
-    let dirConfig;
-    switch (which) {
-        case 'upper':
-            dirConfig = gameState.direction === 'norm'
-                ? {rack: normRack, array: gameState.normArray}
-                : {rack: flipRack, array: gameState.flipArray};
-            break;
-        case 'lower':
-            dirConfig = gameState.direction === 'norm'
-                ? {rack: flipRack, array: gameState.flipArray}
-                : {rack: normRack, array: gameState.normArray};
-            break;
+    const {upperRack, upperArray, lowerRack, lowerArray} = getDirectionalConfig();
+    let rack, array;
+    if (which === 'upper') {
+        rack = upperRack;
+        array = upperArray;
+    } else if (which ==='lower') {
+        rack = lowerRack;
+        array = lowerArray;
     }
 
     // find all wordConts in the rack
-    let wordConts = dirConfig.rack.querySelectorAll('.wordCont');
+    let wordConts = rack.querySelectorAll('.wordCont');
     let wordToDelete = wordConts[wordConts.length - 1];
 
     // delete last entry in array (if non-empty) and last wordCont in rack
-    if (dirConfig.array.length > 0) dirConfig.array.pop();
+    if (array.length > 0) array.pop();
 
     updateLatestAndTargetWords();
-    gameState.latestMove = dirConfig.rack === normRack ? 'delete-norm' : 'delete-flip';
+    gameState.latestMove = rack === normRack ? 'delete-norm' : 'delete-flip';
     gameState.moveCounter--;
     if (gameState.latestWord === gameState.targetWord) gameState.isComplete = true;
 
@@ -303,7 +300,7 @@ function deleteMove(which) {
     toggleClassesInSequence(wordToDelete, ['visible', 'fade-out'], [0, 0]);
 
     setTimeout(() => {
-        modifyHeight('delete', dirConfig.rack, dirConfig.array);
+        modifyHeight('delete', rack, array);
     }, 200);
 
     updateDeleterVisibility();
