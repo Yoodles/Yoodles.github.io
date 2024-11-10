@@ -279,22 +279,23 @@ function submitMove() {
     if (isTotallyValid(inputWord, gameState.latestWord)) {
         const {upperRack, upperArray} = getDirectionalConfig();
 
+        // Push the input word to the corresponding array
         upperArray.push(inputWord);
 
         updateLatestAndTargetWords();
         gameState.latestMove = 'submit';
         gameState.moveCounter++;
+
         if (inputWord === gameState.targetWord) gameState.isComplete = true;
 
-        // UPDATE UI (Build tiles, animations, etc.)
+        // Get or create the wordCont for the input word
         let wordCont = prepareInputCont(upperRack, upperArray);
-        makeTilesIn(wordCont, inputWord);
-        wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
 
+        makeTilesIn(wordCont, inputWord);
 
         setTimeout(() => {
             toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
-        }, 4000);
+        }, 1000);
 
         modifyHeight('submit', upperRack, upperArray);
 
@@ -304,34 +305,69 @@ function submitMove() {
         if (gameState.isComplete) updateGame('complete');
     }
 
-    //GETTING THE INPUTWORD CONT READY
-    function prepareInputCont(rack, array) {
-        const positionInArray = array.length;
-        const wordContsInRack = rack.children;
-        let cont;
-
-        // If the array has fewer entries than there are divs in, then use rack's child at array length...
-        if (wordContsInRack && positionInArray < wordContsInRack.length) {
-            cont = wordContsInRack[positionInArray];
-        // ...otherwise, use a new div added to rack.
-        } else {
-            cont = document.createElement('div');
-            rack.appendChild(cont);
-        }
-
-        // Clear the wordCont in case of preexisting tiles
-        cont.innerHTML = '';
-
-        // Make 6 empty tileConts inside the wordCont
-        for (let i = 0; i < 6; i++) {
-            const tileCont = document.createElement('div');
-            cont.appendChild(tileCont);
-        }
-
-        cont.classList.add('wordCont');
-        return cont;
-    }
 }
+
+
+
+function createTilesHTML() {
+    return '<div class="tile"></div>'.repeat(6);
+}
+
+
+
+// Prepare a wordCont for the input word
+function prepareInputCont(rack, array) {
+    const positionInArray = array.length -1;
+    const wordContsInRack = rack.querySelectorAll('.wordCont');
+    let cont;
+
+    // Use an existing wordCont if available
+    if (positionInArray < wordContsInRack.length) {
+        cont = wordContsInRack[positionInArray];
+
+        resetTiles(cont); //Reset the tiles for reuse
+
+    // ...otherwise, create new .wordCont and populate with tiles
+    } else {
+        cont = createWordContWithTiles();
+        rack.appendChild(cont);
+    }
+    return cont;
+}
+
+function createWordContWithTiles() {
+    const cont = document.createElement('div');
+    cont.classList.add('wordCont');
+    cont.innerHTML = createTilesHTML(); // Add 6 tiles using a string literal
+    return cont;
+}
+
+// Reset the tiles inside an existing wordCont
+function resetTiles(wordCont) {
+    wordCont.querySelectorAll('.tile').forEach(tile => {
+        tile.textContent = ''; // Clear text content
+        tile.classList.remove('hidden', 'fade-in', 'visible'); // Reset classes
+    });
+}
+
+
+
+// Generate tiles for the input word and populate the wordCont
+function makeTilesIn(wordCont, word) {
+    wordCont.querySelectorAll('.tile').forEach((tile, i) => {
+        const isVisible = i < word.length;
+        tile.textContent = isVisible ? word[i].toUpperCase() : '';
+        tile.classList.toggle('tile', isVisible);
+        tile.classList.toggle('hidden', !isVisible);
+        // if (isVisible) tile.style.transitionDelay = `${0.2 + i * 0.2}s`;
+
+        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${i * 0.2}s`;
+    });
+}
+    
+
+
+
 
 function deleteMove(which) {
     // determine which rack/array to delete from
@@ -617,6 +653,7 @@ function resetUI() {
 
     normRack.style.height = 0;
     flipRack.style.height = 0;
+    //also reset .set
 
     const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
 
@@ -652,7 +689,7 @@ function setWordPairAndLengths(pairKey) {
         gameState.latestWord = wordPair.startWord;
         gameState.targetWord = wordPair.endWord;
 
-        console.log(`New round set: ${wordPair.startWord} -> ${wordPair.endWord}`);
+        console.log(`New round set: ${wordPair.startWord} -> ${wordPair.endWord}. Max. ${wordPair.maxLength}, Min. ${wordPair.minLength}`);
     }
 }
 
@@ -662,16 +699,7 @@ function buildWordPairTiles() {
 }
 
 
-////GENERATING WORD TILES////
-function makeTilesIn(wordCont, word) {
-    wordCont.querySelectorAll('div').forEach((tile, i) => {
-        const isVisible = i < word.length;
-        tile.textContent = isVisible ? word[i].toUpperCase() : '';
-        tile.classList.toggle('tile', isVisible);
-        tile.classList.toggle('hidden', !isVisible);
-        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${0.2 + i * 0.2}s`;
-    });
-}
+
 
 
 // DIRECTIONAL CONFIGURATIONS
