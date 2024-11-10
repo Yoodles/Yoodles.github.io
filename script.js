@@ -210,6 +210,69 @@ function toggleFlip() {
 
 
 //FUNC: SUBMITTING A MOVE
+// function submitMove() {
+//     const inputWord = inputField.value.toLowerCase();
+
+//     if (isTotallyValid(inputWord, gameState.latestWord)) {
+//         const {upperRack, upperArray} = getDirectionalConfig();
+
+//         upperArray.push(inputWord);
+
+//         updateLatestAndTargetWords();
+//         gameState.latestMove = 'submit';
+//         gameState.moveCounter++;
+//         if (inputWord === gameState.targetWord) gameState.isComplete = true;
+
+//         // UPDATE UI (Build tiles, animations, etc.)
+//         let wordCont = prepareInputCont(upperRack, upperArray);
+//         makeTilesIn(wordCont, inputWord);
+//         wordCont.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Ensure visibility
+
+
+//         setTimeout(() => {
+//             toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
+//         }, 4000);
+
+//         modifyHeight('submit', upperRack, upperArray);
+
+//         updateDeleterVisibility();
+//         emptyInputField();
+//         updateMoveCounterUI();
+//         if (gameState.isComplete) updateGame('complete');
+//     }
+
+//     //GETTING THE INPUTWORD CONT READY
+//     function prepareInputCont(rack, array) {
+//         const positionInArray = array.length;
+//         const wordContsInRack = rack.children;
+//         let cont;
+
+//         // If the array has fewer entries than there are divs in, then use rack's child at array length...
+//         if (wordContsInRack && positionInArray < wordContsInRack.length) {
+//             cont = wordContsInRack[positionInArray];
+//         // ...otherwise, use a new div added to rack.
+//         } else {
+//             cont = document.createElement('div');
+//             rack.appendChild(cont);
+//         }
+
+//         // Clear the wordCont in case of preexisting tiles
+//         cont.innerHTML = '';
+
+//         // Make 6 empty tileConts inside the wordCont
+//         for (let i = 0; i < 6; i++) {
+//             const tileCont = document.createElement('div');
+//             cont.appendChild(tileCont);
+//         }
+
+//         cont.classList.add('wordCont');
+//         return cont;
+//     }
+// }
+
+
+
+
 function submitMove() {
     const inputWord = inputField.value.toLowerCase();
 
@@ -270,7 +333,6 @@ function submitMove() {
     }
 }
 
-
 function deleteMove(which) {
     // determine which rack/array to delete from
     const {upperRack, upperArray, lowerRack, lowerArray} = getDirectionalConfig();
@@ -285,7 +347,12 @@ function deleteMove(which) {
 
     // find all wordConts in the rack
     let wordConts = rack.querySelectorAll('.wordCont');
-    let wordToDelete = wordConts[wordConts.length - 1];
+    let wordContToDelete = wordConts[wordConts.length - 1];
+
+    console.log('wordContToDelete: ', array[array.length -1]);
+
+    gameState.latestMove = `delete-${array === gameState.normArray ? 'norm' : 'flip'}-${array[array.length - 1]}`;
+    console.log('latestMove: ', gameState.latestMove);
 
     // delete last entry in array (if non-empty) and last wordCont in rack
     if (array.length > 0) array.pop();
@@ -297,7 +364,7 @@ function deleteMove(which) {
 
 
     // Apply the classes in sequence to trigger the fade-out effect
-    toggleClassesInSequence(wordToDelete, ['visible', 'fade-out'], [0, 0]);
+    toggleClassesInSequence(wordContToDelete, ['visible', 'fade-out'], [0, 0]);
 
     setTimeout(() => {
         modifyHeight('delete', rack, array);
@@ -307,7 +374,7 @@ function deleteMove(which) {
     emptyInputField();
     updateMoveCounterUI();
     if (gameState.isComplete) updateGame('complete');
-    else wordToDelete.remove();
+    else wordContToDelete.remove();
 }
 
 // function toggleOverlay(classNames = null) {
@@ -475,17 +542,11 @@ function undoMove() {
     // gameState.moveCounter--;
     toggleResult();
 
-    switch (gameState.latestMove) {
-        case 'submit':
-            deleteMove('upper');
-            break;
-
-        case 'delete-norm': //***** wordConts[wordConts.length - 1];
-            makeTilesIn(gameState.latestWord, normRack, gameState.normArray);
-            break;
-        case 'delete-flip':
-            makeTilesIn(gameState.latestWord, flipRack, gameState.flipArray);
-            break;
+    if (gameState.latestMove === 'submit') deleteMove('upper');
+    else {
+        'delete-norm'; //***** wordConts[wordConts.length - 1];
+        makeTilesIn(gameState.latestWord, normRack, gameState.normArray);
+        makeTilesIn(gameState.latestWord, flipRack, gameState.flipArray);
     }
 
     updateMoveCounterUI(); //*****prob unnecessary
