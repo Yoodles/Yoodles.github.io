@@ -294,8 +294,8 @@ function submitMove() {
         makeTilesIn(wordCont, inputWord);
 
         setTimeout(() => {
-            toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 2000]);
-        }, 1000);
+            toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 1000]);
+        }, 300);
 
         modifyHeight('submit', upperRack, upperArray);
 
@@ -373,6 +373,7 @@ function deleteMove(which) {
     // determine which rack/array to delete from
     const {upperRack, upperArray, lowerRack, lowerArray} = getDirectionalConfig();
     let rack, array;
+
     if (which === 'upper') {
         rack = upperRack;
         array = upperArray;
@@ -381,12 +382,17 @@ function deleteMove(which) {
         array = lowerArray;
     }
 
-    // find all wordConts in the rack
-    let wordConts = rack.querySelectorAll('.wordCont');
-    let wordContToDelete = wordConts[wordConts.length - 1];
+    // find all visible wordConts in the rack
+    const wordConts = Array.from(rack.querySelectorAll('.wordCont.visible'));
+    const wordContToDelete = wordConts[wordConts.length - 1];
 
+    if (!wordContToDelete) {
+        console.warn('No visible wordConts to delete.');
+        return;
+    }
     console.log('wordContToDelete: ', array[array.length -1]);
 
+    // Update game state and arrays
     gameState.latestMove = `delete-${array === gameState.normArray ? 'norm' : 'flip'}-${array[array.length - 1]}`;
     console.log('latestMove: ', gameState.latestMove);
 
@@ -394,23 +400,26 @@ function deleteMove(which) {
     if (array.length > 0) array.pop();
 
     updateLatestAndTargetWords();
-    gameState.latestMove = rack === normRack ? 'delete-norm' : 'delete-flip';
     gameState.moveCounter--;
     if (gameState.latestWord === gameState.targetWord) gameState.isComplete = true;
 
 
     // Apply the classes in sequence to trigger the fade-out effect
     toggleClassesInSequence(wordContToDelete, ['visible', 'fade-out'], [0, 0]);
+    toggleClassesInSequence(wordContToDelete, ['fade-out', 'visible'], [0, 200]);
 
+
+    // Reset tiles for future reuse after fade-out
     setTimeout(() => {
+        resetTiles(wordContToDelete); // Reset tiles instead of removing the wordCont
         modifyHeight('delete', rack, array);
-    }, 200);
+    }, 400);
 
     updateDeleterVisibility();
     emptyInputField();
     updateMoveCounterUI();
     if (gameState.isComplete) updateGame('complete');
-    else wordContToDelete.remove();
+    // else wordContToDelete.remove();
 }
 
 // function toggleOverlay(classNames = null) {
