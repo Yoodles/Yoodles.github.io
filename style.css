@@ -233,10 +233,10 @@ body.no-scroll {overflow: hidden;}
 
 
 
-.subm.slide-down-complete {transform: translateY(9vw);}
-.subm.slide-up-complete {transform: translateY(-9vw);}
-.del.slide-down-complete {transform: translateY(20.5vw);}
-.del.slide-up-complete {transform: translateY(-20.5vw);}
+.slide--subm.slide--down-complete {transform: translateY(9vw);}
+.slide--subm.slide-up-complete {transform: translateY(-9vw);}
+.slide--del.slide--down-complete {transform: translateY(20.5vw);}
+.slide--del.slide--up-complete {transform: translateY(-20.5vw);}
 
 
 
@@ -305,7 +305,7 @@ body.no-scroll {overflow: hidden;}
 
 
 
-#toggle-flip {
+#flippin-button {
     background: none;
     border: none;
     padding: 0;
@@ -313,8 +313,8 @@ body.no-scroll {overflow: hidden;}
     filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
     transition: transform 0.1s ease-out;
 }
-#toggle-flip:hover {transform: scale(1.1)}
-#toggle-flip img {height: 12.3vw;}
+#flippin-button:hover {transform: scale(1.1)}
+#flippin-button img {height: 12.3vw;}
 
 
 
@@ -380,7 +380,7 @@ body.no-scroll {overflow: hidden;}
     opacity: 0;
     display: flex; /* Default is flex for easy alignment */
 }
-.overlay.full-screen {
+.overlay.overlay--full-scr {
     z-index: 90;
     position: fixed;
     width: 100vw;
@@ -388,17 +388,14 @@ body.no-scroll {overflow: hidden;}
 }
 
 
-
-
-
-.overlay.dark {
+.overlay--dark {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 90;
     pointer-events: auto;
     cursor: pointer;
 }
-.overlay.dark.invisible {pointer-events: none;}
-.overlay.message {
+.overlay--dark.invisible {pointer-events: none;}
+.overlay--message {
     color: black;
     font-size: 16vw;
     text-align: center;

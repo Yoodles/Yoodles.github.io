@@ -119,17 +119,6 @@ function updateLatestAndTargetWords() {
     console.log('update latest/target: ', gameState.latestWord, gameState.targetWord);
 }
 
-
-
-function updateDirectionUI(direction) {
-    const gameplayCont = document.getElementById('gameplay-cont');
-
-    if (direction === 'flip') gameplayCont.classList.add('flip');
-    else if (direction === 'norm') gameplayCont.classList.remove('flip');
-
-    updateDeleterVisibility();
-}
-
 function updateDeleterVisibility() {
     const upperDeleter = document.getElementById('upper-deleter');
     const lowerDeleter = document.getElementById('lower-deleter');
@@ -142,6 +131,17 @@ function updateDeleterVisibility() {
     else lowerDeleter.classList.remove('active');
 
 }
+
+function updateDirectionUI(direction) {
+    const gameplayCont = document.getElementById('gameplay-cont');
+
+    if (direction === 'flip') gameplayCont.classList.add('flip');
+    else if (direction === 'norm') gameplayCont.classList.remove('flip');
+
+    updateDeleterVisibility();
+}
+
+
 
 ////BEST SCORES AND MOVE COUNTER ===============================================////
 
@@ -208,8 +208,9 @@ function prepareInputCont(rack, array) {
     // Use an existing .word-cont div if available
     if (positionInArray < wordContsInRack.length) {
         cont = wordContsInRack[positionInArray];
+    
+    // Otherwise create a new .word-cont div
     } else {
-        // Create a new .word-cont div if none are available
         cont = document.createElement('div');
         cont.classList.add('word-cont');
         rack.appendChild(cont);
@@ -268,6 +269,7 @@ function addClass(className, classToAdd) {
     const elems = document.querySelectorAll('.' + className);
     elems.forEach(el => el.classList.add(classToAdd));
 }
+
 function removeClass(className, classToRemove) {
     const elems = document.querySelectorAll('.' + className);
     elems.forEach(el => el.classList.remove(classToRemove));
@@ -321,7 +323,6 @@ function renderRoundList() {
     const roundList = document.getElementById('round-list');
     roundList.innerHTML = ''; // Clear existing list
 
-    // Define static grey stars to avoid repeated creation
     const greyStarsHTML = `
     <span class="star-container">
         <span class="star">★</span>
@@ -334,7 +335,7 @@ function renderRoundList() {
         // Create list item with static grey stars
         const listItem = document.createElement('li');
         listItem.innerHTML = `
-            ${pair.start.toUpperCase()} → ${pair.end.toUpperCase()}
+            ${pair.start.toUpperCase()} ↔︎ ${pair.end.toUpperCase()}
             ${greyStarsHTML}
         `;
 
@@ -358,17 +359,16 @@ function renderRoundList() {
 function updateStarColors(container, starRating) {
     const stars = container.querySelectorAll('.star');
     
-    // Reset all stars to grey
     stars.forEach((star, index) => {
-        star.classList.toggle('yellow', index < starRating); // Add 'yellow' to the appropriate stars
+        star.classList.toggle('yellow', index < starRating);
     });
 }
 
 
 
-function calculateStarRating(moves, score3star, score2star) {
-    if (moves <= score3star) return 3;
-    if (moves <= score2star) return 2;
+function calculateStarRating(howManyMoves, scoreFor3, scoreFor2) {
+    if (howManyMoves <= scoreFor3) return 3;
+    if (howManyMoves <= scoreFor2) return 2;
     return 1;
 }
 
@@ -376,12 +376,11 @@ function calculateStarRating(moves, score3star, score2star) {
 
 function prepareResultPanel() {
     const starContainer = document.getElementById('star-container');
-    const moves = gameState.moveCounter;
+    const howManyMoves = gameState.moveCounter;
     const message = document.getElementById('result-message');
-    const stars = starContainer.querySelectorAll('.star');
 
     // Calculate star rating
-    const starRating = calculateStarRating(moves, wordPair.score3star, wordPair.score2star);
+    const starRating = calculateStarRating(howManyMoves, wordPair.score3star, wordPair.score2star);
 
     // Update star colors based on the rating
     updateStarColors(starContainer, starRating);
@@ -395,14 +394,14 @@ function prepareResultPanel() {
 
 }
 
-function showOrHideResultPanel(which = null) {
+// ***** add fade?
+function showOrHideResultPanel(which) {
     const resultPanel = document.getElementById('result-panel');
     
     if (which === "hide") resultPanel.classList.add('hidden');
     else resultPanel.classList.toggle('hidden');
 
 }
-
 
 
 function toggleFlip() {
@@ -415,7 +414,7 @@ function toggleFlip() {
     // const upperDeleter = document.getElementById('upper-deleter');
     const deleters = document.querySelectorAll('.deleter');
     const overlay = document.getElementById('overlay');
-    const flipper = document.getElementById('toggle-flip');
+    const flipper = document.getElementById('flippin-button');
 
     // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
     toggleClassesInSequence([inputField, flipper], ['rotating', 'rotating'], [0, 1400]);
@@ -432,6 +431,7 @@ function toggleFlip() {
 
 
 ////MOVES ===============================================================////
+
 // SUBMIT
 function submitMove() {
     const inputWord = inputField.value.toLowerCase();
@@ -492,7 +492,6 @@ function deleteMove(which) {
     const wordConts = Array.from(rack.querySelectorAll('.word-cont.visible'));
     const wordContToDelete = wordConts[wordConts.length - 1];
 
-    // Apply the classes in sequence to trigger the fade-out effect
     toggleClassesInSequence(wordContToDelete, ['visible', 'fade-out'], [0, 0]);
     // toggleClassesInSequence(wordContToDelete, ['fade-out', 'visible'], [0, 200]);
 
@@ -563,8 +562,8 @@ function modifyHeight(action, rack, array) {
     switch (action) {
         case 'submit':
             if (gameState.isComplete) {
-                normSet.classList.add('subm', gameState.direction === 'norm' ? 'slide-down-complete' : 'slide-up-complete');
-                flipSet.classList.add('subm', gameState.direction === 'norm' ? 'slide-up-complete' : 'slide-down-complete');
+                normSet.classList.add('slide--subm', gameState.direction === 'norm' ? 'slide--down-complete' : 'slide--up-complete');
+                flipSet.classList.add('slide--subm', gameState.direction === 'norm' ? 'slide--up-complete' : 'slide--down-complete');
             } else rack.style.height = array.length * wordContHeight + 'px';
 
             break;
@@ -597,7 +596,7 @@ function toggleOverlay(mode) {
 
     switch (mode) {
         case 'popup-background':
-            overlay.classList.add('full-screen', 'dark');
+            overlay.classList.add('overlay--full-scr', 'overlay--dark');
             duration = 1000;
             break;
         case 'on-and-off':
@@ -608,7 +607,7 @@ function toggleOverlay(mode) {
             // fadeOut(overlay, 500);
             break;
         case 'message':
-            overlay.classList.add('message');
+            overlay.classList.add('overlay--message');
             break;
         default:
             break;
@@ -661,13 +660,10 @@ function fadeOut(element, duration = 500, addHidden = false) {
 
 
 function togglePanel(action) {
-    console.log('toggle called');
     const popup = document.getElementById('popup-panel');
 
     if (action === 'close') {
-        console.log('close switched');
-        // Hide the overlay and the popup
-        // toggleOverlay();
+        // toggleOverlay(); *****
         popup.classList.add('hidden');
 
     } else {
@@ -685,7 +681,7 @@ function togglePanel(action) {
         popup.classList.remove('hidden');
 
     }
-    // Show the overlay and the popup
+
     // toggleOverlay('popup-background');
 }
 
