@@ -5,23 +5,8 @@ const flipRack = document.getElementById('flipRack');
 const endWordCont = document.getElementById('endWord');
 
 
-//// INITIAL STATE AT START OF ROUND ////
-const initialGameState = () => ({
-    direction: 'norm',
-    moveCounter: 0,
-    normArray: [],
-    flipArray: [],
-    latestWord: '',
-    targetWord: '',
-    lastMove: '',
-    isComplete: false,
-});
 
-let gameState = initialGameState();
-
-function resetGameState() {
-    gameState = initialGameState();
-}
+////WORD PAIR OBJECT AND LOGIC ===============================================////
 
 let wordPair = {
     currentPairKey: '',  // Store the current pair key instead of an index
@@ -82,9 +67,25 @@ function jumpToRound(pairKey) {
 }
 
 
-function buildWordPairTiles() {
-    makeTilesIn(startWordCont, wordPair.startWord);
-    makeTilesIn(endWordCont, wordPair.endWord);
+
+////GAME STATE ===============================================================////
+
+//INITIAL GAMESTATE AT START OF ROUND
+const initialGameState = () => ({
+    direction: 'norm',
+    moveCounter: 0,
+    normArray: [],
+    flipArray: [],
+    latestWord: '',
+    targetWord: '',
+    lastMove: '',
+    isComplete: false,
+});
+
+let gameState = initialGameState();
+
+function resetGameState() {
+    gameState = initialGameState();
 }
 
 // DIRECTIONAL CONFIGURATIONS
@@ -115,8 +116,150 @@ function updateLatestAndTargetWords() {
 
     gameState.latestWord = upperArray.length ? upperArray.at(-1) : wordAtTop;
     gameState.targetWord = lowerArray.length ? lowerArray.at(-1) : wordAtBottom;
-    
+
     console.log('update latest/target: ', gameState.latestWord, gameState.targetWord);
+}
+
+
+
+function updateDirectionUI(direction) {
+    const gameplayCont = document.getElementById('gameplayCont');
+
+    if (direction === 'flip') gameplayCont.classList.add('flip');
+    else if (direction === 'norm') gameplayCont.classList.remove('flip');
+
+    updateDeleterVisibility();
+}
+
+function updateDeleterVisibility() {
+    const upperDeleter = document.getElementById('upperDeleter');
+    const lowerDeleter = document.getElementById('lowerDeleter');
+    const {upperArray, lowerArray} = getDirectionalConfig();
+
+    if (upperArray.length > 0) upperDeleter.classList.add('active');
+    else upperDeleter.classList.remove('active');
+
+    if (lowerArray.length > 0) lowerDeleter.classList.add('active');
+    else lowerDeleter.classList.remove('active');
+
+}
+
+////BEST SCORES AND MOVE COUNTER ===============================================////
+
+
+// Convert word pairs and set up a best scores object
+let bestScores = {};
+
+// Check and update the best score after a round
+function checkBestScoreAndUpdate(currentScore) {
+    const pairKey = wordPair.currentPairKey; // Use currentPairKey directly
+    updateBestScore(pairKey, currentScore);
+    updateBestScoreUI(pairKey);
+}
+
+// Update the best score for a word pair in `localStorage`
+function updateBestScore(pairKey, score) {
+    // Update if score is lower than in object (or there's no best score in object)
+    if (!bestScores[pairKey] || score < bestScores[pairKey]) {
+        bestScores[pairKey] = score;
+
+        localStorage.setItem(pairKey, JSON.stringify(score));
+    }
+}
+
+// Update the best score display in the UI
+function updateBestScoreUI(pairKey) {
+    const bestScoreDisplay = document.getElementById('bestScore');
+    const bestScore = bestScores[pairKey] || "--";
+    bestScoreDisplay.innerText = `Best: ${bestScore}`;
+}
+
+//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
+function updateMoveCounterUI() {
+    document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
+}
+
+
+
+
+////UTILITY FUNCTIONS ===========================================////
+
+function focusOnInputField() {inputField.focus()}
+
+function emptyInputField() {inputField.value = ''}
+
+function logArrays(when) {
+    const normArray = gameState.normArray;
+    const flipArray = gameState.flipArray;
+
+    console.log(when, ": normArray Contents:", normArray, ". normArray items:", normArray.length);
+    console.log(when, ": flipArray Contents:", flipArray, ". flipArray items:", flipArray.length);
+
+}
+
+
+////UI: BUILDING AND REMOVING WORD TILES ========================////
+
+// Prepare a wordCont for the input word
+function prepareInputCont(rack, array) {
+    const positionInArray = array.length -1;
+    const wordContsInRack = rack.querySelectorAll('.wordCont');
+    let cont;
+
+    // Use an existing wordCont if available
+    if (positionInArray < wordContsInRack.length) {
+        cont = wordContsInRack[positionInArray];
+    } else {
+        // Create a new .wordCont if none are available
+        cont = document.createElement('div');
+        cont.classList.add('wordCont');
+        rack.appendChild(cont);
+    }
+
+    resetTiles(cont); // Reset tiles for reuse
+
+    // Dynamically populate wordCont with tiles if it has none
+    if (!cont.hasChildNodes()) cont.innerHTML = '<div class="tile"></div>'.repeat(6);
+
+    cont.classList.remove('visible');
+    return cont;
+}
+
+// Generate tiles for the input word and populate the wordCont
+function makeTilesIn(wordCont, word) {
+    wordCont.querySelectorAll('.tile').forEach((tile, i) => {
+        const isVisible = i < word.length;
+        tile.textContent = isVisible ? word[i].toUpperCase() : '';
+        tile.classList.toggle('hidden', !isVisible);
+
+        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${i * 0.2}s`;
+    });
+}
+
+function buildWordPairTiles() {
+    makeTilesIn(startWordCont, wordPair.startWord);
+    makeTilesIn(endWordCont, wordPair.endWord);
+}
+
+// Reset the tiles inside an existing wordCont
+function resetTiles(wordCont) {
+    wordCont.querySelectorAll('.tile').forEach(tile => {
+        tile.textContent = ''; // Clear text content
+        tile.classList.remove('hidden', 'fade-in', 'visible'); // Reset classes
+    });
+}
+
+function addWordToRack(rack, array, word) {
+    const wordCont = prepareInputCont(rack, array);
+    makeTilesIn(wordCont, word);
+
+    // Make the wordCont visible with a fade-in effect
+    setTimeout(() => {
+        // toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 1000]);
+        wordCont.classList.add('visible');
+    }, 100);
+
+    return wordCont; // Return for further use if needed
 }
 
 
@@ -269,7 +412,8 @@ function toggleFlip() {
 }
 
 
-
+////MOVES ===============================================================////
+// SUBMIT
 function submitMove() {
     const inputWord = inputField.value.toLowerCase();
 
@@ -297,21 +441,7 @@ function submitMove() {
 
 }
 
-function addWordToRack(rack, array, word) {
-    const wordCont = prepareInputCont(rack, array);
-    makeTilesIn(wordCont, word);
-
-    // Make the wordCont visible with a fade-in effect
-    setTimeout(() => {
-        // toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 1000]);
-        wordCont.classList.add('visible');
-    }, 100);
-
-    return wordCont; // Return for further use if needed
-}
-
-
-
+// DELETE
 function deleteMove(which) {
     const {upperRack, upperArray, lowerRack, lowerArray} = getDirectionalConfig();
     let rack, array;
@@ -359,122 +489,53 @@ function deleteMove(which) {
     if (gameState.isComplete) updateGame('complete');
 }
 
-
-// Prepare a wordCont for the input word
-function prepareInputCont(rack, array) {
-    const positionInArray = array.length -1;
-    const wordContsInRack = rack.querySelectorAll('.wordCont');
-    let cont;
-
-    // Use an existing wordCont if available
-    if (positionInArray < wordContsInRack.length) {
-        cont = wordContsInRack[positionInArray];
-    } else {
-        // Create a new .wordCont if none are available
-        cont = document.createElement('div');
-        cont.classList.add('wordCont');
-        rack.appendChild(cont);
-    }
-
-    resetTiles(cont); // Reset tiles for reuse
-
-    // Dynamically populate wordCont with tiles if it has none
-    if (!cont.hasChildNodes()) cont.innerHTML = '<div class="tile"></div>'.repeat(6);
-
-    cont.classList.remove('visible');
-    return cont;
-}
-
-// Generate tiles for the input word and populate the wordCont
-function makeTilesIn(wordCont, word) {
-    wordCont.querySelectorAll('.tile').forEach((tile, i) => {
-        const isVisible = i < word.length;
-        tile.textContent = isVisible ? word[i].toUpperCase() : '';
-        tile.classList.toggle('hidden', !isVisible);
-
-        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${i * 0.2}s`;
-    });
-}
-
-// Reset the tiles inside an existing wordCont
-function resetTiles(wordCont) {
-    wordCont.querySelectorAll('.tile').forEach(tile => {
-        tile.textContent = ''; // Clear text content
-        tile.classList.remove('hidden', 'fade-in', 'visible'); // Reset classes
-    });
-}
+// UNDO
+function undoMove() {
+    gameState.isComplete = false;
+    toggleResult();
+    modifyHeight('undo'); //*****
 
 
-
-
-
-
-function toggleOverlay(mode) {
-    const overlay = document.getElementById('overlay');
-    let duration = 300;
-
-    switch (mode) {
-        case 'popup-background':
-            overlay.classList.add('full-screen', 'dark');
-            duration = 1000;
-            break;
-        case 'on-and-off':
-
-            break;
-        case 'initial':
-            duration = 500;
-            // fadeOut(overlay, 500);
-            break;
-        case 'message':
-            overlay.classList.add('message');
-            break;
-        default:
-            break;
-    }
-
-    if (overlay.classList.contains('hidden')) {
-        fadeIn(overlay, duration);
-    }
+    if (gameState.lastMove === 'submit') deleteMove('upper'); // ✅
     else {
-        fadeOut(overlay, duration);
-        setTimeout(() => {
-            overlay.className = 'overlay hidden';
-        }, 1000);
+        // Parse the lastMove string
+        const [actionType, rackType, word] = gameState.lastMove.split('-');
+        if (actionType !== 'delete') {
+            console.warn('Latest move is not a delete action.');
+            return;
+        }
+
+        console.log('gameState.lastMove: ', gameState.lastMove);
+
+        // Determine the rack and array based on the rackType
+        const { rack, array } = rackType === 'norm'
+            ? { rack: normRack, array: gameState.normArray }
+            : { rack: flipRack, array: gameState.flipArray };
+
+        array.push(word); // Re-add to array
+
+        addWordToRack(rack, array, word); //Re-add to rack
+        // modifyHeight('undo'); //*****
+
+        updateLatestAndTargetWords();
+
+        emptyInputField();
+        updateMoveCounterUI(); //*****prob unnecessary
+        updateDeleterVisibility();
+
+        console.log(`Undo complete: Restored "${word}" to ${rackType} rack.`);
+
     }
 
+    logArrays();
+
+    const stars = document.getElementById('starContainer').querySelectorAll('.star');
+    stars.forEach(star => {
+        star.classList.remove('yellow');
+    });
+
 }
 
-//Element should start with .invisible or already be at opacity: 0.
-function fadeIn(element, duration = 500) {
-    element.style.transitionDuration = `${duration}ms`;
-
-    // Always remove 'hidden' and reset display if it exists
-    element.classList.remove('hidden');
-    // element.style.display = ''; // Reset inline display property if previously set to 'none'
-
-    // Handle fade-in
-    element.classList.remove('invisible', 'fade-out');
-    element.classList.add('fade-in');
-}
-
-//Element should start with the fade-in or visible state (already at opacity: 1).
-function fadeOut(element, duration = 500, addHidden = false) {
-    element.style.transitionDuration = `${duration}ms`;
-
-    // Start fade-out transition
-    element.classList.remove('fade-in');
-    element.classList.add('fade-out');
-
-    // Handle post-transition state
-    setTimeout(() => {
-        if (addHidden) {
-            element.classList.add('hidden'); // Add 'hidden' for display: none
-            // element.style.display = 'none'; // Explicitly set display to none
-        }
-        else element.classList.add('invisible'); // Just make it invisible
-
-    }, duration);
-}
 
 // function modifyHeight(action, rack, array) {
 //     const wordContHeight = window.innerWidth * 11.5 / 100;
@@ -546,6 +607,73 @@ function modifyHeight(action, rack, array) {
 }
 
 
+function toggleOverlay(mode) {
+    const overlay = document.getElementById('overlay');
+    let duration = 300;
+
+    switch (mode) {
+        case 'popup-background':
+            overlay.classList.add('full-screen', 'dark');
+            duration = 1000;
+            break;
+        case 'on-and-off':
+
+            break;
+        case 'initial':
+            duration = 500;
+            // fadeOut(overlay, 500);
+            break;
+        case 'message':
+            overlay.classList.add('message');
+            break;
+        default:
+            break;
+    }
+
+    if (overlay.classList.contains('hidden')) {
+        fadeIn(overlay, duration);
+    }
+    else {
+        fadeOut(overlay, duration);
+        setTimeout(() => {
+            overlay.className = 'overlay hidden';
+        }, 1000);
+    }
+
+}
+
+//Element should start with .invisible or already be at opacity: 0.
+function fadeIn(element, duration = 500) {
+    element.style.transitionDuration = `${duration}ms`;
+
+    // Always remove 'hidden' and reset display if it exists
+    element.classList.remove('hidden');
+    // element.style.display = ''; // Reset inline display property if previously set to 'none'
+
+    // Handle fade-in
+    element.classList.remove('invisible', 'fade-out');
+    element.classList.add('fade-in');
+}
+
+//Element should start with the fade-in or visible state (already at opacity: 1).
+function fadeOut(element, duration = 500, addHidden = false) {
+    element.style.transitionDuration = `${duration}ms`;
+
+    // Start fade-out transition
+    element.classList.remove('fade-in');
+    element.classList.add('fade-out');
+
+    // Handle post-transition state
+    setTimeout(() => {
+        if (addHidden) {
+            element.classList.add('hidden'); // Add 'hidden' for display: none
+            // element.style.display = 'none'; // Explicitly set display to none
+        }
+        else element.classList.add('invisible'); // Just make it invisible
+
+    }, duration);
+}
+
 
 function toggleResult() {
     const resultPanel = document.getElementById('resultPanel');
@@ -575,53 +703,6 @@ function togglePanel(action) {
     // Show the overlay and the popup
     toggleOverlay('popup-background');
     popup.classList.remove('hidden');
-
-}
-
-
-function undoMove() {
-    gameState.isComplete = false;
-    toggleResult();
-    modifyHeight('undo'); //*****
-
-
-    if (gameState.lastMove === 'submit') deleteMove('upper'); // ✅
-    else {
-        // Parse the lastMove string
-        const [actionType, rackType, word] = gameState.lastMove.split('-');
-        if (actionType !== 'delete') {
-            console.warn('Latest move is not a delete action.');
-            return;
-        }
-
-        console.log('gameState.lastMove: ', gameState.lastMove);
-
-        // Determine the rack and array based on the rackType
-        const { rack, array } = rackType === 'norm'
-            ? { rack: normRack, array: gameState.normArray }
-            : { rack: flipRack, array: gameState.flipArray };
-
-        array.push(word); // Re-add to array
-
-        addWordToRack(rack, array, word); //Re-add to rack
-        // modifyHeight('undo'); //*****
-
-        updateLatestAndTargetWords();
-
-        emptyInputField();
-        updateMoveCounterUI(); //*****prob unnecessary
-        updateDeleterVisibility();
-
-        console.log(`Undo complete: Restored "${word}" to ${rackType} rack.`);
-
-    }
-
-    logArrays();
-
-    const stars = document.getElementById('starContainer').querySelectorAll('.star');
-    stars.forEach(star => {
-        star.classList.remove('yellow');
-    });
 
 }
 
@@ -659,76 +740,15 @@ function updateGame(action) {
 
             resetUI();
             buildWordPairTiles();
+
+            logArrays();
             break;
     };
     
-    logArrays();
     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
 }
 
 
-
-function resetUI() {
-    document.getElementById('resultPanel').classList.remove('active');
-
-    // Reset height adjustments and directions
-    modifyHeight('reset');
-    updateDirectionUI('norm'); //inludes deleter visibility
-
-    // Clear racks and input field
-    clearInputUI();
-    emptyInputField();
-
-    // Ensure correct words are displayed
-    makeTilesIn(startWordCont, wordPair.startWord);
-    makeTilesIn(endWordCont, wordPair.endWord);
-
-    // Update UI for best score and move counter
-    updateBestScoreUI(wordPair.currentPairKey);
-    updateMoveCounterUI();
-}
-
-
-
-
-
-//====BEST SCORES====//
-
-// Convert word pairs and set up a best scores object
-let bestScores = {};
-
-// Check and update the best score after a round
-function checkBestScoreAndUpdate(currentScore) {
-    const pairKey = wordPair.currentPairKey; // Use currentPairKey directly
-    updateBestScore(pairKey, currentScore);
-    updateBestScoreUI(pairKey);
-}
-
-// Update the best score for a word pair in `localStorage`
-function updateBestScore(pairKey, score) {
-    // Update if score is lower than in object (or there's no best score in object)
-    if (!bestScores[pairKey] || score < bestScores[pairKey]) {
-        bestScores[pairKey] = score;
-
-        localStorage.setItem(pairKey, JSON.stringify(score));
-    }
-}
-
-// Update the best score display in the UI
-function updateBestScoreUI(pairKey) {
-    const bestScoreDisplay = document.getElementById('bestScore');
-    const bestScore = bestScores[pairKey] || "--";
-    bestScoreDisplay.innerText = `Best: ${bestScore}`;
-}
-
-//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
-function updateMoveCounterUI() {
-    document.getElementById('moveCounter').innerText = "Moves: " + gameState.moveCounter;
-}
-
-function focusTextInputBox() {inputField.focus()}
-
-function emptyInputField() {inputField.value = ''}
 
 ////EMPTYING CONTAINERS and CONTAINER RACKS
 function clearInputUI() {
@@ -745,36 +765,28 @@ function clearInputUI() {
 }
 
 
-function logArrays(when) {
-    const normArray = gameState.normArray;
-    const flipArray = gameState.flipArray;
+function resetUI() {
+    document.getElementById('resultPanel').classList.remove('active');
 
-    console.log(when, ": normArray Contents:", normArray, ". normArray items:", normArray.length);
-    console.log(when, ": flipArray Contents:", flipArray, ". flipArray items:", flipArray.length);
+    // Reset height adjustments and directions
+    modifyHeight('reset');
+    updateDirectionUI('norm'); //inludes deleter visibility
 
+    // Clear racks and input field
+    clearInputUI();
+    emptyInputField();
+
+    buildWordPairTiles();
+
+    // Update UI for best score and move counter
+    updateBestScoreUI(wordPair.currentPairKey);
+    updateMoveCounterUI();
 }
 
-function updateDirectionUI(direction) {
-    const gameplayCont = document.getElementById('gameplayCont');
 
-    if (direction === 'flip') gameplayCont.classList.add('flip');
-    else if (direction === 'norm') gameplayCont.classList.remove('flip');
 
-    updateDeleterVisibility();
-}
 
-function updateDeleterVisibility() {
-    const upperDeleter = document.getElementById('upperDeleter');
-    const lowerDeleter = document.getElementById('lowerDeleter');
-    const {upperArray, lowerArray} = getDirectionalConfig();
 
-    if (upperArray.length > 0) upperDeleter.classList.add('active');
-    else upperDeleter.classList.remove('active');
-
-    if (lowerArray.length > 0) lowerDeleter.classList.add('active');
-    else lowerDeleter.classList.remove('active');
-
-}
 
 
 
