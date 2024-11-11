@@ -15,9 +15,9 @@
     <div id="app-container">
 
         <div id="header">
-            <button class="btn btn--reset btn--rectangle" onclick="updateGame('resetRound')">RESET</button>
+            <button class="btn btn--reset btn--rectangle btn--frame" onclick="updateGame('resetRound')">RESET</button>
             <button id="game-logo" class="btn btn--img" onclick="togglePanel('rounds')"><img src="images/logo.png"></button>
-            <button class="btn btn--skip btn--rectangle" onclick="updateGame('nextRound')">SKIP</button>
+            <button class="btn btn--skip btn--rectangle btn--frame" onclick="updateGame('nextRound')">SKIP</button>
         </div>
 
         <div id="popup-panel" class="hidden">
@@ -115,7 +115,7 @@
                 <div id="best-score">Best: --</div>
             </div>
 
-            <button class="btn btn--help" onclick="togglePanel('help')">?</button>
+            <button class="btn btn--help btn--frame" onclick="togglePanel('help')">?</button>
 
             <div id="result-panel" class="hidden">
                 <div id="result-message" class="result">Completed in X moves!<br>You know words good!</div>

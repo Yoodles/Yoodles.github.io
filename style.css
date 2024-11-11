@@ -22,7 +22,7 @@ body {
     overflow: hidden;
     font-family: 'Raleway', sans-serif;
     text-align: center;
-    background-color: #f5f6fe;
+    background-color: #f1f1f1;
     /* touch-action: manipulation; */
 }
 body.no-scroll {overflow: hidden;}
@@ -47,14 +47,22 @@ body.no-scroll {overflow: hidden;}
 }
 .btn:hover {filter: brightness(80%); transform: scale(1.1);}
 
+.btn--frame {
+    filter: drop-shadow(1vw 1vw 0.7vw rgba(0, 0, 0, 0.813));
+
+}
 
 .btn--rectangle {
+    font-size: 3.5vw;
+    font-weight: 400;
+    border: ridge black 0.3vw;
+    background: none;
+    border-radius: 1.3vw;
+}
+
+#header .btn--rectangle {
     height: 5vh;
     width: 15vw;
-    font-size: 3.5vw;
-    font-weight: 300;
-    border: solid 0.1vw;
-    border-radius: 0.42vw;
 }
 
 #result-panel .btn {
@@ -62,21 +70,18 @@ body.no-scroll {overflow: hidden;}
     width: 20vw;
 }
 
-.btn--reset, .btn--retry {
-    background-color: rgb(255, 192, 201);
-    border-color:  rgb(255, 92, 115, 0.5)
-}
-.btn--undo {
-    background-color: rgb(255, 251, 184);
-    border-color: rgba(255, 246, 85, 0.5);
+.btn--reset, .btn--retry, .btn--undo, .btn--next, .btn--skip {
+    filter: drop-shadow(1vw 1vw 0.7vw rgba(0, 0, 0, 0.813));
+
 }
 
-.btn--next {background-color: #ADD8E6}
 
 .btn--img {
     background: none;
     border: none;
-    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
+    filter: drop-shadow(1vw 1vw 0.7vw rgba(0, 0, 0, 0.506));
+
+    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
 }
 
 .btn--help {
@@ -102,6 +107,7 @@ body.no-scroll {overflow: hidden;}
 #moves-cont {
     left: 0%;
     margin: 1vw 3vw;
+    font-size: 4vw;
     width: fit-content;
     text-align: start;
     /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
@@ -143,7 +149,6 @@ body.no-scroll {overflow: hidden;}
 }
 #game-logo > img {
     width: 45vw;
-    /* margin: 10% 0; */
 }
 
 #game-area {
@@ -189,8 +194,8 @@ body.no-scroll {overflow: hidden;}
     flex: 1;
     display: flex;
     margin: 0 1vw 1vh 0;
-    background-color: #ebf4ff;
-    border: solid rgb(195, 195, 195) 0.1vw;
+    background-color: rgb(218, 218, 208);
+    border: solid rgb(255, 255, 243) 0.1vw;
     border-radius: 1vw;
     padding: 0;
     font-size: 4vw;
@@ -313,6 +318,7 @@ body.no-scroll {overflow: hidden;}
     display: flex;
     justify-content: center;
     background-color: #ffffff;
+    background: none;
     border: .2vw solid rgba(0, 0, 0, 0.148);
     margin: 0.7vw;
     align-items: center;
