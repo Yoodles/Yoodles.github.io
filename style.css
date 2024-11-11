@@ -27,7 +27,7 @@ body {
 }
 body.no-scroll {overflow: hidden;}
 
-#appContainer {
+#app-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,7 +36,7 @@ body.no-scroll {overflow: hidden;}
     height: calc(var(--vh, 1vh) * 100); /* Full viewport height based on custom property */
 }
 
-button {
+.btn {
     justify-content: center;
     cursor: pointer;
     border: solid 0.1vw;
@@ -48,20 +48,21 @@ button {
     text-align: center;
     touch-action: manipulation;
 }
-button.function:hover {filter: brightness(80%); transform: scale(1.1);}
+.btn.function:hover {filter: brightness(80%); transform: scale(1.1);}
 
+/* .btn--img */
 
-button.rectangle {
+.btn--rectangle {
     width: 15vw;
     height: 5vh;
 }
 
-button.function {
+.btn--func {
     padding-inline: 0;
     touch-action: none;
 }
 
-button.open-help {
+.btn--help {
     right: 0%;
     margin: 2vw 3vw;
     height: 6vw;
@@ -76,14 +77,14 @@ button.open-help {
 }
 
 
-#movesCont, #openHelp {
+#moves-cont, #open-help {
     position: absolute;
     top: 0%;
     width: fit-content;
     font-size: 4vw;
     z-index: 80;
 }
-#movesCont {
+#moves-cont {
     left: 0%;
     margin: 1vw 3vw;
     text-align: start;
@@ -91,7 +92,7 @@ button.open-help {
     text-shadow: 0.5vw 0.5vw 3vw rgba(0, 0, 0, 0.27);
 }
 
-button.close {
+.btn--close-panel {
     position: absolute;
     top: 0;
     right: 0;
@@ -119,7 +120,7 @@ button.close {
 
 
 
-#gameLogo {
+#game-logo {
     width: 45vw;
 
     align-self: baseline;
@@ -131,13 +132,13 @@ button.close {
     filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
 
 }
-#gameLogo > img {
+#game-logo > img {
     width: 100%;
     max-height: 11%;
     /* margin: 10% 0; */
 }
 
-#gameArea {
+#game-area {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -163,6 +164,7 @@ button.close {
     width: 100%;
     padding: 1vh 3vw;
 }
+.key--spacer {flex: 0.5}
 
 .key-row {
     display: flex;
@@ -194,19 +196,19 @@ button.close {
 }
 
 .key:last-of-type {margin: 0 0 1vh 0;}
-.key.special {flex: 1.5; font-size: 4vw}
-
-.key.backspace {max-width: 12%;}
-.key.enter {max-width: 14%;}
-
 .key:active {background-color: #a9a9a9;}
 
-.spacer {flex: 0.5}
+.key.key--special {flex: 1.5; font-size: 4vw}
+.key.key--backspace {max-width: 12%;}
+.key.key--enter {max-width: 14%;}
 
 
 
 
-#gameplayCont {
+
+
+
+#gameplay-cont {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -214,7 +216,7 @@ button.close {
     margin: auto;
     overflow-y: auto;
 }
-#gameplayCont.flip {
+#gameplay-cont.flip {
     flex-direction: column-reverse;
 
 }
@@ -238,7 +240,7 @@ button.close {
 
 
 
-#inputSet {
+#input-set {
     display: flex;
     position: relative;
     align-items: center;
@@ -257,15 +259,15 @@ button.close {
     transition: height ease-in;
     transition-duration: .2s;
 }
-#normRack, .flip #flipRack {flex-direction: column;}
-#flipRack, .flip #normRack {flex-direction: column-reverse;}
+#norm-rack, .flip #flip-rack {flex-direction: column;}
+#flip-rack, .flip #norm-rack {flex-direction: column-reverse;}
 
 
 
 
 
 
-#flipperAndDeleters {
+#flipper-and-deleters {
     display: flex;
     left: 100%;
     flex-direction: column;
@@ -292,7 +294,7 @@ button.close {
 
 .deleter:hover {transform: scale(1.1);}
 .deleter img {height: 7vw;}
-#lowerDeleter img {transform: rotate(0.5turn)}
+#lower-deleter img {transform: rotate(0.5turn)}
 
 
 
@@ -303,7 +305,7 @@ button.close {
 
 
 
-#toggleFlip {
+#toggle-flip {
     background: none;
     border: none;
     padding: 0;
@@ -311,8 +313,8 @@ button.close {
     filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
     transition: transform 0.1s ease-out;
 }
-#toggleFlip:hover {transform: scale(1.1)}
-#toggleFlip img {height: 12.3vw;}
+#toggle-flip:hover {transform: scale(1.1)}
+#toggle-flip img {height: 12.3vw;}
 
 
 
@@ -340,10 +342,10 @@ button.close {
     text-align: center;
     box-shadow: 3vw 3vw 5vw rgba(0, 0, 0, 0.081);
 }
-#gameplayCont .tile {height: 10vw; width: 10vw}
-#helpContent .tile {width: 5vw; height: 5vw; font-size: 4vw; box-shadow: none;}
+#gameplay-cont .tile {height: 10vw; width: 10vw}
+#help-content .tile {width: 5vw; height: 5vw; font-size: 4vw; box-shadow: none;}
 
-.setWord .tile {
+.set-word .tile {
     font-weight: bold;
     /* border: 0.5vw outset rgb(50, 50, 50); */
 }
@@ -359,9 +361,9 @@ button.close {
 
 
 
-/* Base overlay (covers gameArea by default, invisible) */
+/* Base overlay (covers game-area by default, invisible) */
 .overlay {
-    position: absolute; /* Default to gameArea coverage */
+    position: absolute; /* Default to game-area coverage */
     top: 0;
     left: 0;
     width: 100%;
@@ -408,7 +410,7 @@ button.close {
 .visible {opacity: 1; pointer-events: auto;}
 .invisible { opacity: 0; pointer-events: none;}
 
-.wordCont {
+.word-cont {
     display: flex;
     justify-content: center; /* not sure */
     margin-left: auto;
@@ -416,8 +418,8 @@ button.close {
     /* opacity: 0; */
 }
 
-.rack .wordCont {opacity: 0}
-.rack .wordCont.visible {opacity: 1}
+.rack .word-cont {opacity: 0}
+.rack .word-cont.visible {opacity: 1}
 
 
 
@@ -426,12 +428,12 @@ button.close {
 .fade-in { opacity: 1; transition: opacity ease-in; }
 .fade-out { opacity: 0; transition: opacity ease-out; }
 
-.wordCont.fade-in {
+.word-cont.fade-in {
     transition-duration: .8s;
     /* transition-delay: .4s; */
     /* ↑ IF I WANT TO JUST START IT AFTER MODIFYHEIGHT */
 }
-.wordCont.fade-out {
+.word-cont.fade-out {
     transition-duration: .8s;
 }
 
@@ -453,7 +455,7 @@ button.close {
 
 
 
-#inputField {
+#input-field {
     width: 100%;
     height: 14vw;
     text-transform: uppercase;
@@ -469,7 +471,6 @@ button.close {
     position: relative; /*redundant?*/
     margin: 2vw 0;
     transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-
 }
 input:focus {outline: none}
 
@@ -477,12 +478,7 @@ input:focus {outline: none}
 
 
 
-
-
-
-
-
-#resultPanel {
+#result-panel {
     background-color: rgb(255, 255, 255);
     position: absolute;
     top: 50%;
@@ -499,8 +495,8 @@ input:focus {outline: none}
     justify-content: space-evenly;
     box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
 }
-#resultPanel.hidden {display: none}
-#resultPanel button {
+#result-panel.hidden {display: none}
+#result-panel .btn {
     margin: 2vw;
 }
 
@@ -530,26 +526,26 @@ input:focus {outline: none}
 
 .popup-content .star {font-size: 5vw;}
 
-#resultPanel button {
+#result-panel .btn {
     height: 4vh;
     width: 20vw;
 }
 
-#resetRound, #retryRound {
+#reset-round, #retry-round {
     background-color: rgb(255, 192, 201);
     border-color:  rgb(255, 92, 115, 0.5)
 }
-#skipRound, #undoMove {
+#skip-round, #undo-move {
     background-color: rgb(255, 251, 184);
     border-color: rgba(255, 246, 85, 0.5);
 }
 
-#nextRound {background-color: #ADD8E6}
+#next-round {background-color: #ADD8E6}
 
 
 
 
-#roundList li {
+#word-pair-list li {
     padding: 1vw;
     border-bottom: .1vw solid #ddd;
     display: flex;
@@ -557,12 +553,12 @@ input:focus {outline: none}
     align-items: center;
     margin: 0;
 }
-#roundList li:hover {
+#word-pair-list li:hover {
     transform: scale(1.05);
     cursor: pointer;
 }
 
-#popupPanel {
+#popup-panel {
     position: fixed;
     width: 90%;
     height: 85%;
@@ -603,19 +599,19 @@ li {
     line-height: 5vh;
     margin-bottom: 2vh;
 }
-li.no-bullet {list-style-type: none;}
+li.li--no-bullet {list-style-type: none;}
 li div {align-items: baseline;}
 
 li .flipper {width: 5vw; margin: 0 0.6vw; vertical-align: -33%;}
 li .del {width: 3vw; margin: 0 0.7vw; vertical-align: -25%;}
 li .del.flip {transform: rotate(0.5turn);}
 
-.help-wordCont {
+.help__word-cont {
     display: inline-flex;
     flex-wrap: nowrap;
 }
 
-/* .help-wordCont:last-of-type {margin-bottom: 1vh;} */
+/* .help-word-cont:last-of-type {margin-bottom: 1vh;} */
 
 
 

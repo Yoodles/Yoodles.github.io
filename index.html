@@ -12,17 +12,17 @@
 </head>
 
 <body>
-    <div id="appContainer">
+    <div id="app-container">
 
         <div id="header">
-            <button id="resetRound" class="rectangle" onclick="updateGame('resetRound')">RESET</button>
-            <button id="gameLogo" onclick="togglePanel('rounds')"><img src="images/logo.png"></button>
-            <button id="skipRound" class="rectangle" onclick="updateGame('nextRound')">SKIP</button>
+            <button id="reset-round" class="btn btn--func btn--rectangle" onclick="updateGame('resetRound')">RESET</button>
+            <button id="game-logo" class="btn btn--img" onclick="togglePanel('rounds')"><img src="images/logo.png"></button>
+            <!-- <button id="skipRound" class="btn btn--rectangle" onclick="updateGame('nextRound')">SKIP</button> -->
         </div>
 
-        <div id="popupPanel" class="hidden">
-            <button class="close" onclick="togglePanel('close')">x</button>
-            <div id="helpContent" class="popup-content">
+        <div id="popup-panel" class="hidden">
+            <button class="btn btn--close-panel" onclick="togglePanel('close')">x</button>
+            <div id="help-content" class="popup-content">
                 <p>How To Play</p>
                 <h2>Get from the word at the top to the word at the bottom, using as few moves as possible.</h2>
                 
@@ -99,42 +99,42 @@
                 </ul>
             </div>
 
-            <div id="roundsContent" class="popup-content hidden">
+            <div id="rounds-content" class="popup-content hidden">
                 <p>Select a Round</p>
-                <ul id="roundList">
+                <ul id="round-list">
                     <!-- List of rounds here -->
                 </ul>
             </div>
         </div>
 
-        <div id="gameArea" class="gameArea hidden">
+        <div id="game-area" class="game-area hidden">
             
             <div id="overlay" class="overlay full-screen visible" onclick="togglePanel('close')">All Rounds Completed!</div>
-            <div id="movesCont">
-                <div id="moveCounter" class="moveCounter">Moves: 0</div>
-                <div id="bestScore">Best: --</div>
+            <div id="moves-cont">
+                <div id="move-counter" class="moveCounter">Moves: 0</div>
+                <div id="best-score">Best: --</div>
             </div>
 
-            <button class="function open-help" onclick="togglePanel('help')">?</button>
+            <button class="btn btn--func btn--help" onclick="togglePanel('help')">?</button>
 
-            <div id="resultPanel" class="hidden">
-                <div id="resultMessage" class="result">Completed in X moves!<br>You know words good!</div>
-                <div id="starContainer" class="star-container">
+            <div id="result-panel" class="hidden">
+                <div id="result-message" class="result">Completed in X moves!<br>You know words good!</div>
+                <div id="star-container" class="star-container">
                     <span class="star" id="star1">★</span>
                     <span class="star" id="star2">★</span>
                     <span class="star" id="star3">★</span>
                 </div>
-                <div id="resultButtons">
-                    <button id="retryRound" class="rectangle" onclick="updateGame('resetRound')">RETRY</button>
-                    <button id="undoMove" class="rectangle" onclick="undoMove()">UNDO</button>
-                    <button id="nextRound" class="rectangle" onclick="updateGame('nextRound')">NEXT</button>
+                <div id="result-buttons">
+                    <button id="retry-round" class="btn btn--func btn--rectangle" onclick="updateGame('resetRound')">RETRY</button>
+                    <button id="undo-move" class="btn btn--func btn--rectangle" onclick="undoMove()">UNDO</button>
+                    <button id="next-round" class="btn btn--func btn--rectangle" onclick="updateGame('nextRound')">NEXT</button>
                 </div>
             </div>
 
-            <div id="gameplayCont">
+            <div id="gameplay-cont">
 
-                <div id="normSet" class="set">
-                    <div id="startWord" class="wordCont setWord">
+                <div id="norm-set" class="set">
+                    <div id="start-word" class="word-cont set-word">
                         <div class="tile"></div>
                         <div class="tile"></div>
                         <div class="tile"></div>
@@ -143,7 +143,7 @@
                         <div class="tile"></div>
                     </div>
 
-                    <div id="normRack" class="rack">
+                    <div id="norm-rack" class="rack">
                         <div class="wordCont"></div>
                         <div class="wordCont"></div>
                         <div class="wordCont"></div>
@@ -154,20 +154,20 @@
                         <div class="wordCont"></div>
                         <div class="wordCont"></div>
                         <div class="wordCont"></div>
-                    </div>
-                </div>
-
-                <div id="inputSet">
-                    <input id="inputField" type ="text">
-                    <div id="flipperAndDeleters">
-                        <button id="upperDeleter" class="deleter" onclick="deleteMove('upper')"><img src="images/deleter.png"></button>
-                        <button id="toggleFlip" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
-                        <button id="lowerDeleter" class="deleter" onclick="deleteMove('lower')"><img src="images/deleter.png"></button>
                     </div>
                 </div>
 
-                <div id="flipSet" class="set">
-                    <div id="flipRack" class="rack">
+                <div id="input-set">
+                    <input id="input-field" type ="text">
+                    <div id="flipper-and-deleters">
+                        <button id="upper-deleter" class="btn btn--image deleter" onclick="deleteMove('upper')"><img src="images/deleter.png"></button>
+                        <button id="toggle-flip" class="btn btn--image" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
+                        <button id="lower-deleter" class="btn btn--image deleter" onclick="deleteMove('lower')"><img src="images/deleter.png"></button>
+                    </div>
+                </div>
+
+                <div id="flip-set" class="set">
+                    <div id="flip-rack" class="rack">
                         <div class="wordCont"></div>
                         <div class="wordCont"></div>
                         <div class="wordCont"></div>
@@ -180,7 +180,7 @@
                         <div class="wordCont"></div>
                     </div>
                     
-                    <div id="endWord" class="wordCont setWord">
+                    <div id="end-word" class="word-cont set-word">
                         <div class="tile"></div>
                         <div class="tile"></div>
                         <div class="tile"></div>
@@ -211,7 +211,7 @@
             </div>
             <!-- Second row -->
             <div class="key-row">
-                <div class="spacer"></div>
+                <div class="key--spacer"></div>
                 <button class="key">A</button>
                 <button class="key">S</button>
                 <button class="key">D</button>
@@ -221,11 +221,11 @@
                 <button class="key">J</button>
                 <button class="key">K</button>
                 <button class="key">L</button>
-                <div class="spacer"></div>
+                <div class="key--spacer"></div>
             </div>
             <!-- Third row -->
             <div class="key-row">
-                <button class="key special backspace">Del</button>
+                <button class="key key--special backspace">Del</button>
                 <button class="key">Z</button>
                 <button class="key">X</button>
                 <button class="key">C</button>
@@ -233,7 +233,7 @@
                 <button class="key">B</button>
                 <button class="key">N</button>
                 <button class="key">M</button>
-                <button class="key special enter">Enter</button>
+                <button class="key key--special enter">Enter</button>
 
             </div>
         </div>
