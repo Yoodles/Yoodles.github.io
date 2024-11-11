@@ -33,31 +33,91 @@ let wordPair = {
     score2star: 0
 };
 
-//Function to find Word Pair by pairKey
-function findWordPair(pairKey) {
-    return wordPairDetails.find(pair => pair.pairKey === pairKey);
+// Updates the wordPair object with pairKey, score benchmarks, lengths 
+function updateWordPairObj(pairKey) {
+    // Find the word pair by its pairKey
+    const wordPairData = wordPairDetails.find(pair => pair.pairKey === pairKey);
+
+    if (wordPairData) {
+        wordPair.currentPairKey = pairKey;  // Update currentPairKey
+
+        // Update the wordPair properties
+        wordPair.startWord = wordPairData.start;
+        wordPair.endWord = wordPairData.end;
+        wordPair.score3star = wordPairData.score.A;
+        wordPair.score2star = wordPairData.score.B;
+
+        // Set min and max lengths for the round
+        wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
+        wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
+
+        console.log(`Word pair updated: ${wordPair.startWord} -> ${wordPair.endWord}`);
+    } else {
+        console.error(`Invalid pairKey: "${pairKey}" - No matching word pair found.`);
+    }
+}
+
+// Function to find Word Pair by pairKey *****if unneeded globally, keep in jumpToRound?
+function getWordPairDetailsFor(pairKey) {
+    const pair = wordPairDetails.find(pair => pair.pairKey === pairKey);
+    if (!pair) console.warn(`Word pair with key "${pairKey}" not found.`);
+    return pair;
 }
 
 // Jump to a specific round when selected from the list
 function jumpToRound(pairKey) {
-    console.log(`Jumping to round: ${pairKey}`);
-    
-    // Set up the new word pair, calculate lengths, and initialize latest/target words
-    setWordPairAndLengths(pairKey);
+
+    const pair = getWordPairDetailsFor(pairKey); // Use getWordPairDetailsFor for consistency
+    if (!pair) return;
+
+    // Set the new word pair and reset the UI
+    updateWordPairObj(pairKey);
+    updateLatestAndTargetWords();
+
     resetUI();
-    // Verify that the correct words are set
-    console.log(`Start word: ${wordPair.startWord}, End word: ${wordPair.endWord}`);
-    console.log(`Current pairKey: ${pairKey}`);
-
     buildWordPairTiles();
-
-    // Update the best score UI for the selected round
-    updateBestScoreUI(pairKey);
-
     togglePanel('close');
+
+    console.log(`Jumped to round for '${pairKey}'. Start word "${wordPair.startWord}", End word "${wordPair.endWord}".`);
 }
 
 
+function buildWordPairTiles() {
+    makeTilesIn(startWordCont, wordPair.startWord);
+    makeTilesIn(endWordCont, wordPair.endWord);
+}
+
+// DIRECTIONAL CONFIGURATIONS
+function getDirectionalConfig() {
+    if (gameState.direction === 'norm') {
+        return {
+            upperRack: normRack,
+            lowerRack: flipRack,
+            upperArray: gameState.normArray,
+            lowerArray: gameState.flipArray,
+        };
+    } else { // i.e. is 'flip'
+        return {
+            upperRack: flipRack,
+            lowerRack: normRack,
+            upperArray: gameState.flipArray,
+            lowerArray: gameState.normArray,
+        };
+    }
+}
+
+// Update latest/target words based on WORDPAIR and direction
+function updateLatestAndTargetWords() {
+    const {upperArray, lowerArray} = getDirectionalConfig();
+
+    const wordAtTop = gameState.direction === 'norm' ? wordPair.startWord : wordPair.endWord;
+    const wordAtBottom = gameState.direction === 'norm' ? wordPair.endWord : wordPair.startWord;
+
+    gameState.latestWord = upperArray.length ? upperArray.at(-1) : wordAtTop;
+    gameState.targetWord = lowerArray.length ? lowerArray.at(-1) : wordAtBottom;
+    
+    console.log('update latest/target: ', gameState.latestWord, gameState.targetWord);
+}
 
 
 //====UTILITY FUNCTIONS====//
@@ -567,52 +627,6 @@ function undoMove() {
 
 
 
-// function updateGame(action) {
-//     const currentPairKey = `${wordPair.startWord}-${wordPair.endWord}`;
-
-//     switch (action) {   
-//         case 'complete':
-//             checkBestScoreAndUpdate();
-//             localStorage.setItem('lastCompletedPair', currentPairKey);
-
-//             renderResultPanel();
-//             setTimeout(() => {
-//                 toggleResult();
-//             }, 1200);
-
-//             break;
-
-//         case 'nextRound':
-//             gameState.isComplete = false;
-//             const currentIndex = wordPairDetails.findIndex(pair => pair.pairKey === currentPairKey);
-//             const nextPair = wordPairDetails[currentIndex + 1];
-        
-//             if (nextPair) {
-//                 toggleOverlay('initial');
-//                 resetGameState();
-//                 setWordPairAndLengths(nextPair.pairKey);
-//                 resetUI();
-//                 buildWordPairTiles();
-//             } else document.getElementById('gameArea').innerText = "All Rounds Completed!";
-
-//             break;
-
-//         case 'resetRound':
-//             gameState.isComplete = false;
-//             toggleOverlay('initial');
-
-//             resetGameState();
-//             setWordPairAndLengths(currentPairKey);
-//             resetUI();
-//             buildWordPairTiles();
-//             break;
-//     };
-    
-//     // logArrays();
-//     console.log('lastMove: ', gameState.lastMove);
-//     console.log(`'${action}'. latest/target word: ${gameState.latestWord}; ${gameState.targetWord}`);
-// }
-
 function updateGame(action) {
     switch (action) {
         case 'complete':
@@ -640,7 +654,9 @@ function updateGame(action) {
             // toggleOverlay('initial');
 
             resetGameState();
-            setWordPairAndLengths(wordPair.currentPairKey);
+            updateWordPairObj(wordPair.currentPairKey);
+            updateLatestAndTargetWords();
+
             resetUI();
             buildWordPairTiles();
             break;
@@ -653,85 +669,28 @@ function updateGame(action) {
 
 
 function resetUI() {
-
     document.getElementById('resultPanel').classList.remove('active');
 
+    // Reset height adjustments and directions
     modifyHeight('reset');
-    updateDirectionUI('norm');
+    updateDirectionUI('norm'); //inludes deleter visibility
+
+    // Clear racks and input field
     clearInputUI();
     emptyInputField();
 
-    const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
+    // Ensure correct words are displayed
+    makeTilesIn(startWordCont, wordPair.startWord);
+    makeTilesIn(endWordCont, wordPair.endWord);
 
-    updateBestScoreUI(pairKey);
+    // Update UI for best score and move counter
+    updateBestScoreUI(wordPair.currentPairKey);
     updateMoveCounterUI();
 }
 
 
 
 
-// FUNC: SETTING NEW WORD PAIR FOR ROUND; CALCULATING MIN./MAX. LENGTHS
-function setWordPairAndLengths(pairKey) {
-    // Find the word pair by its pairKey
-    const wordPairData = wordPairDetails.find(pair => pair.pairKey === pairKey);
-
-    if (wordPairData) {
-        wordPair.currentPairKey = pairKey;  // Update currentPairKey
-
-        // Set the word pair properties
-        wordPair.startWord = wordPairData.start;
-        wordPair.endWord = wordPairData.end;
-        wordPair.score3star = wordPairData.score.A;
-        wordPair.score2star = wordPairData.score.B;
-
-        // Set min and max lengths for the round
-        wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
-        wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
-
-        // Update game state
-        gameState.latestWord = wordPair.startWord;
-        gameState.targetWord = wordPair.endWord;
-
-        console.log(`New round set: ${wordPair.startWord} -> ${wordPair.endWord}. Max. ${wordPair.maxLength}, Min. ${wordPair.minLength}`);
-    }
-}
-
-function buildWordPairTiles() {
-    makeTilesIn(startWordCont, wordPair.startWord);
-    makeTilesIn(endWordCont, wordPair.endWord);
-}
-
-// DIRECTIONAL CONFIGURATIONS
-function getDirectionalConfig() {
-    if (gameState.direction === 'norm') {
-        return {
-            upperRack: normRack,
-            lowerRack: flipRack,
-            wordAtTop: wordPair.startWord,
-            wordAtBottom: wordPair.endWord,
-            upperArray: gameState.normArray,
-            lowerArray: gameState.flipArray,
-        };
-    } else { // i.e. is 'flip'
-        return {
-            upperRack: flipRack,
-            lowerRack: normRack,
-            wordAtTop: wordPair.endWord,
-            wordAtBottom: wordPair.startWord,
-            upperArray: gameState.flipArray,
-            lowerArray: gameState.normArray,
-        };
-    }
-}
-
-// FUNCTION: Update the latest and target word based on the current directional configuration
-function updateLatestAndTargetWords() {
-    const {upperArray, wordAtTop, lowerArray, wordAtBottom} = getDirectionalConfig();
-
-    gameState.latestWord = upperArray.length ? upperArray.at(-1) : wordAtTop;
-    gameState.targetWord = lowerArray.length ? lowerArray.at(-1) : wordAtBottom;
-    console.log('update latest/target: ', gameState.latestWord, gameState.targetWord);
-}
 
 //====BEST SCORES====//
 
@@ -773,21 +732,18 @@ function emptyInputField() {inputField.value = ''}
 
 ////EMPTYING CONTAINERS and CONTAINER RACKS
 function clearInputUI() {
-    document.querySelectorAll('#normRack, #flipRack').forEach(rack => {
-        const wordConts = Array.from(rack.querySelectorAll('.wordCont'));
-
-        // Reset each wordCont to its default state
-        wordConts.forEach(wordCont => {
-            resetTiles(wordCont); // Clear and reset the tiles in the wordCont
-            wordCont.classList.remove('visible'); // Ensure wordConts are hidden*****
-        });
-
-        // If there are more than 10 wordConts, remove the excess
-        if (wordConts.length > 10) {
-            wordConts.slice(10).forEach(wordCont => wordCont.remove());
-        }
+    document.querySelectorAll('#normRack .wordCont, #flipRack .wordCont').forEach(wordCont => {
+        resetTiles(wordCont); // Clear each wordCont for reuse
+        wordCont.classList.remove('visible');
     });
+
+    // Remove excess wordConts if any
+    while (normRack.children.length > 10) normRack.lastElementChild.remove();
+    while (flipRack.children.length > 10) flipRack.lastElementChild.remove();
+
+    // console.log('Racks after clear:', normRack.innerHTML, flipRack.innerHTML);
 }
+
 
 function logArrays(when) {
     const normArray = gameState.normArray;
@@ -865,7 +821,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         : wordPairDetails[0].pairKey;
 
     // Load the word pair and initialize game state
-    setWordPairAndLengths(wordPair.currentPairKey);
+    updateWordPairObj(wordPair.currentPairKey);
+    updateLatestAndTargetWords();
     buildWordPairTiles();
 
     // Update the best score UI for the initial pair
