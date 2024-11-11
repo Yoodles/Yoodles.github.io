@@ -54,6 +54,8 @@ function jumpToRound(pairKey) {
     const pair = getWordPairDetailsFor(pairKey);
     if (!pair) return;
 
+    resetGameState();
+
     // Set the new word pair and reset the UI
     updateWordPairObj(pairKey);
     updateLatestAndTargetWords();
@@ -353,18 +355,10 @@ function renderWordPairMenu() {
     });
 }
 
-
-
-
 function updateStarColors(container, starRating) {
     const stars = container.querySelectorAll('.star');
-    
-    stars.forEach((star, index) => {
-        star.classList.toggle('yellow', index < starRating);
-    });
+    stars.forEach((star, index) => star.classList.toggle('yellow', index < starRating));
 }
-
-
 
 function calculateStarRating(howManyMoves, scoreFor3, scoreFor2) {
     if (howManyMoves <= scoreFor3) return 3;
@@ -573,7 +567,6 @@ function modifyHeight(action, rack, array) {
             break;
 
         case 'undo':
-            console.log('undo');
             resetSets();
             break;
 
