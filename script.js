@@ -625,11 +625,13 @@ function updateGame(action) {
             break;
 
         case 'nextRound':
+            console.log(wordPair.currentPairKey);
             const currentIndex = wordPairDetails.findIndex(pair => pair.pairKey === wordPair.currentPairKey);
             const nextPair = wordPairDetails[currentIndex + 1];
         
             if (nextPair) {
                 wordPair.currentPairKey = nextPair.pairKey;
+                console.log(wordPair.currentPairKey);
                 updateGame('reset');
             } else document.getElementById('gameArea').innerText = "All Rounds Completed!";
 
@@ -660,10 +662,6 @@ function resetUI() {
     updateDirectionUI('norm');
     clearInputUI();
     emptyInputField();
-
-    // normRack.style.height = 0;
-    // flipRack.style.height = 0;
-    //also reset .set
 
     const pairKey = `${wordPair.startWord}-${wordPair.endWord}`;
 
@@ -831,9 +829,10 @@ function updateDeleterVisibility() {
 
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD
 document.addEventListener('DOMContentLoaded', (event) => {
+    const DEBUG = true;
 
-    console.log('localStorage contents:', { ...localStorage });
-
+    if (DEBUG) console.log('localStorage contents:', { ...localStorage });
+    // localStorage.clear();
 
     // Function to set custom --vh unit based on viewport height
     function setVhUnit() {
@@ -845,47 +844,58 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setVhUnit();
     window.addEventListener('resize', setVhUnit);
 
-
-    // localStorage.clear();
+    // Ensure wordPairDetails has data
+    if (wordPairDetails.length === 0) {
+        console.error('No word pairs available to initialize the game.');
+        return;
+    }
 
     // Initialize best scores for each word pair from localStorage if available, or default to 0
     wordPairDetails.forEach(pair => {
         const storedScore = localStorage.getItem(pair.pairKey);
-    
         try {
-            bestScores[pair.pairKey] = storedScore && storedScore !== 'undefined' 
-                ? JSON.parse(storedScore) 
+            bestScores[pair.pairKey] = storedScore && storedScore !== 'undefined'
+                ? JSON.parse(storedScore)
                 : 0;
         } catch (error) {
             console.warn(`Error parsing data for key: ${pair.pairKey}`, error);
             bestScores[pair.pairKey] = 0;
         }
     });
-    
-    // Load the first word pair and initialize game state
-    wordPair.currentPairKey = wordPairDetails[0].pairKey;
+
+    // Determine the starting word pair
+    const lastPairKey = localStorage.getItem('lastCompletedPair');
+    wordPair.currentPairKey = lastPairKey && wordPairDetails.some(pair => pair.pairKey === lastPairKey)
+        ? lastPairKey
+        : wordPairDetails[0].pairKey;
+
+    // Load the word pair and initialize game state
     setWordPairAndLengths(wordPair.currentPairKey);
     buildWordPairTiles();
 
     // Update the best score UI for the initial pair
     updateBestScoreUI(wordPair.currentPairKey);
 
-    // Event listener for TEXT BOX (Enter Key)
-    inputField.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') submitMove();
-    });
+    // Add event listeners
+    const keyboard = document.getElementById('keyboard');
 
-    // Event listener for onscreen keyboard (using event delegation)
-    document.getElementById('keyboard').addEventListener('click', function(event) {
-        const key = event.target.closest('.key');
-        if (!key) return; // Ignore clicks outside of keys
+    if (inputField) {
+        inputField.addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') submitMove();
+        });
+    }
+    if (keyboard) {
+        keyboard.addEventListener('click', function (event) {
+            const key = event.target.closest('.key');
+            if (!key) return; // Ignore clicks outside of keys
 
-        const keyValue = key.textContent;
+            const keyValue = key.textContent;
 
-        if (keyValue === 'Enter') submitMove();
-        else if (keyValue === 'Del') inputField.value = inputField.value.slice(0, -1);
-        else inputField.value += keyValue;
-    });
+            if (keyValue === 'Enter') submitMove();
+            else if (keyValue === 'Del') inputField.value = inputField.value.slice(0, -1);
+            else inputField.value += keyValue;
+        });
+    }
 
     // Initialize UI
     toggleOverlay('initial');
