@@ -319,7 +319,6 @@ function toggleClassWithDelay(elements, className, action, delay) {
 
 
 function renderRoundList() {
-    console.log('wordPairsAndDetails: ', wordPairsAndDetails);
     const roundList = document.getElementById('roundList');
     roundList.innerHTML = ''; // Clear existing list
 
@@ -333,33 +332,45 @@ function renderRoundList() {
     `;
 
     wordPairsAndDetails.forEach(pair => {
-        const bestScore = bestScores[pair.pairKey] || 0;
-
         // Create list item with static grey stars
         const listItem = document.createElement('li');
         listItem.innerHTML = `
             ${pair.start.toUpperCase()} → ${pair.end.toUpperCase()}
             ${greyStarsHTML}
         `;
-        
-        // Add 'yellow' class to stars based on the best score
-        const stars = listItem.querySelectorAll('.star');
-        stars.forEach((star, index) => {
-            if (index < bestScore) star.classList.add('yellow');
-        });
 
-        // Set up click event to jump to the specific round
+        // Calculate star rating based on the best score
+        const bestScore = bestScores[pair.pairKey] || 0;
+        const starRating = calculateStarRating(bestScore, pair.score.A, pair.score.B);
+
+        // Update star colors for the list item
+        const starContainer = listItem.querySelector('.star-container');
+        updateStarColors(starContainer, starRating);
+
+        // Add click event to jump to the specific round
         listItem.addEventListener('click', () => jumpToRound(pair.pairKey));
         roundList.appendChild(listItem);
     });
 }
 
 
-function updateStarColors(container, score) {
+
+
+function updateStarColors(container, starRating) {
     const stars = container.querySelectorAll('.star');
+    
+    // Reset all stars to grey
     stars.forEach((star, index) => {
-        star.classList.toggle('yellow', index < score); // Add "yellow" if within score range
+        star.classList.toggle('yellow', index < starRating); // Add 'yellow' to the appropriate stars
     });
+}
+
+
+
+function calculateStarRating(moves, score3star, score2star) {
+    if (moves <= score3star) return 3;
+    if (moves <= score2star) return 2;
+    return 1;
 }
 
 
@@ -370,19 +381,11 @@ function prepareResultPanel() {
     const message = document.getElementById('resultMessage');
     const stars = starContainer.querySelectorAll('.star');
 
-    // Reset star colors (all to grey by removing 'yellow')
-    stars.forEach(star => star.classList.remove('yellow'));
+    // Calculate star rating
+    const starRating = calculateStarRating(moves, wordPair.score3star, wordPair.score2star);
 
-    // Determine star rating based on score3star and score2star
-    let starRating;
-    if (moves <= wordPair.score3star) starRating = 3;
-    else if (moves <= wordPair.score2star) starRating = 2;
-    else starRating = 1;
-
-    // Add 'yellow' class to stars based on the starRating
-    stars.forEach((star, index) => {
-        if (index < starRating) star.classList.add('yellow');
-    });
+    // Update star colors based on the rating
+    updateStarColors(starContainer, starRating);
 
     // Update the result message based on the star rating
     if (starRating === 3) message.innerText = `Completed in ${gameState.moveCounter} moves!\nOutstanding!`;
@@ -509,7 +512,7 @@ function deleteMove(which) {
 // UNDO
 function undoMove() {
     gameState.isComplete = false;
-    showOrHideResultPanel();
+    showOrHideResultPanel('hide');
     modifyHeight('undo'); //*****
 
 
@@ -686,11 +689,13 @@ function fadeOut(element, duration = 500, addHidden = false) {
 
 
 function togglePanel(action) {
+    console.log('toggle called');
     const popup = document.getElementById('popupPanel');
 
     if (action === 'close') {
+        console.log('close switched');
         // Hide the overlay and the popup
-        toggleOverlay();
+        // toggleOverlay();
         popup.classList.add('hidden');
 
     } else {
@@ -704,11 +709,12 @@ function togglePanel(action) {
         // Show specific content based on the type
         if (action === 'help') helpContent.classList.remove('hidden');
         else if (action === 'rounds') roundsContent.classList.remove('hidden');
+
+        popup.classList.remove('hidden');
+
     }
     // Show the overlay and the popup
-    toggleOverlay('popup-background');
-    popup.classList.remove('hidden');
-
+    // toggleOverlay('popup-background');
 }
 
 
@@ -771,9 +777,8 @@ function clearInputUI() {
 
 
 function resetUI() {
-    // document.getElementById('resultPanel').classList.remove('active');
 
-    showOrHideResultPanel("off");
+    showOrHideResultPanel("hide");
 
     // Reset height adjustments and directions
     modifyHeight('reset');
