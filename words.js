@@ -6,7 +6,10 @@ const wordPairsArray = [
     "joe-lloyd 8 12",
     "couch-sofa 10 14",
     "black-white 8 11",
-    "topsy-turvy 8 11"
+    "topsy-turvy 8 11",
+    "doggy-kitty 8 11",
+    "cradle-grave 8 11",
+    "apple-orange 8 11"
 ];
 
 function parseWordPairs(wordPairsArray) {

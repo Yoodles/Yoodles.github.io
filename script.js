@@ -178,8 +178,7 @@ function updateBestScoreDisplay(pairKey) {
     bestScoreDisplay.innerText = `Best: ${bestScore}`;
 }
 
-
-//UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
+//UPDATE MOVECOUNTER ON SCREEN
 function updateMoveCounterUI() {
     document.getElementById('move-counter').innerText = "Moves: " + gameState.moveCounter;
 }
@@ -330,7 +329,7 @@ function renderWordPairMenu() {
     wordPairMenu.innerHTML = ''; // Clear existing list
 
     const greyStarsHTML = `
-    <span class="star-container">
+    <span class="star-cont">
         <span class="star">★</span>
         <span class="star">★</span>
         <span class="star">★</span>
@@ -350,21 +349,25 @@ function renderWordPairMenu() {
         const starRating = calculateStarRating(bestScore, pair.score.A, pair.score.B);
 
         // Update star colors for the list item
-        const starContainer = listItem.querySelector('.star-container');
+        const starContainer = listItem.querySelector('.star-cont');
         updateStarColors(starContainer, starRating);
 
         // Add click event to jump to the specific round
         listItem.addEventListener('click', () => jumpToRound(pair.pairKey));
         wordPairMenu.appendChild(listItem);
     });
+    console.log('Best Scores:', bestScores);
+
 }
 
 function updateStarColors(container, starRating) {
     const stars = container.querySelectorAll('.star');
     stars.forEach((star, index) => star.classList.toggle('yellow', index < starRating));
+    container.classList.toggle('unattempted', starRating === 0); // Add class for unattempted rounds
 }
 
 function calculateStarRating(howManyMoves, scoreFor3, scoreFor2) {
+    if (howManyMoves === 0) return 0; // No stars for unattempted rounds
     if (howManyMoves <= scoreFor3) return 3;
     if (howManyMoves <= scoreFor2) return 2;
     return 1;
@@ -373,7 +376,7 @@ function calculateStarRating(howManyMoves, scoreFor3, scoreFor2) {
 
 
 function prepareResultPanel() {
-    const starContainer = document.getElementById('star-container');
+    const starContainer = document.getElementById('star-cont');
     const howManyMoves = gameState.moveCounter;
     const message = document.getElementById('result-message');
 
@@ -404,7 +407,9 @@ function showOrHideResultPanel(which) {
 
 function toggleFlip() {
     // Toggle game direction and update latest/target words
-    gameState.direction = gameState.direction === 'norm' ? 'flip' : 'norm';
+    gameState.direction = gameState.direction === 'norm'
+        ? 'flip'
+        : 'norm';
     updateLatestAndTargetWords();
 
     // Animation UI
@@ -415,14 +420,14 @@ function toggleFlip() {
     const flipper = document.getElementById('flippin-button');
 
     // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
-    toggleClassesInSequence([inputField, flipper], ['rotating', 'rotating'], [0, 1400]);
+    toggleClassesInSequence([inputField, flipper], ['rotating', 'rotating'], [0, 1000]);
     toggleClassesInSequence([...deleters], ['fade-out', 'fade-out'], [0, 800]);
 
     // toggleOverlay();
-    fadeIn(overlay, 600);
+    fadeIn(overlay, 300);
     setTimeout(() => {
         updateDirectionUI(gameState.direction);
-        fadeOut(overlay, 1000);
+        fadeOut(overlay, 300);
     }, 1000);
 
 }
