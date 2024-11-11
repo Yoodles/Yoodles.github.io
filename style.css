@@ -234,7 +234,7 @@ body.no-scroll {overflow: hidden;}
 
 
 .slide--subm.slide--down-complete {transform: translateY(9vw);}
-.slide--subm.slide-up-complete {transform: translateY(-9vw);}
+.slide--subm.slide--up-complete {transform: translateY(-9vw);}
 .slide--del.slide--down-complete {transform: translateY(20.5vw);}
 .slide--del.slide--up-complete {transform: translateY(-20.5vw);}
 
