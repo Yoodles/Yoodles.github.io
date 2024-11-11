@@ -57,7 +57,7 @@ body.no-scroll {overflow: hidden;}
 }
 
 .btn--rectangle {
-    border-radius: 1.3vw;
+    border-radius: 1.5vw;
 }
 #header .btn--rectangle { height: 5vh; width: 15vw;}
 #result-panel .btn--rectangle { height: 4vh; width: 20vw;}
