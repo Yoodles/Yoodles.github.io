@@ -17,11 +17,11 @@
         <div id="header">
             <button id="reset-round" class="btn btn--func btn--rectangle" onclick="updateGame('resetRound')">RESET</button>
             <button id="game-logo" class="btn btn--img" onclick="togglePanel('rounds')"><img src="images/logo.png"></button>
-            <!-- <button id="skipRound" class="btn btn--rectangle" onclick="updateGame('nextRound')">SKIP</button> -->
+            <!-- <button id="skipRound" class="btn btn--func btn--rectangle" onclick="updateGame('nextRound')">SKIP</button> -->
         </div>
 
         <div id="popup-panel" class="hidden">
-            <button class="btn btn--close-panel" onclick="togglePanel('close')">x</button>
+            <button class="btn btn--func btn--close" onclick="togglePanel('close')">x</button>
             <div id="help-content" class="popup-content">
                 <p>How To Play</p>
                 <h2>Get from the word at the top to the word at the bottom, using as few moves as possible.</h2>
@@ -29,21 +29,21 @@
                 <ul>
                     <li>Each move must be a valid word.</li>
                     <li>You can change one letter...
-                        <div class="help-wordCont">
+                        <div class="help__word-cont">
                             <span class="tile">W</span>
-                            <span class="tile removed">O</span>
+                            <span class="tile tile--removed">O</span>
                             <span class="tile">R</span>
                             <span class="tile">D</span>
                             →
                             <span class="tile">W</span>
-                            <span class="tile added">A</span>
+                            <span class="tile tile--added">A</span>
                             <span class="tile">R</span>
                             <span class="tile">D</span>
                         </div>
                     </li>
 
-                    <li class="no-bullet">... add/remove one letter...
-                        <div class="help-wordCont">
+                    <li class="li--no-bullet">... add/remove one letter...
+                        <div class="help__word-cont">
                             <span class="tile">W</span>
                             <span class="tile">O</span>
                             <span class="tile">R</span>
@@ -52,14 +52,14 @@
                             <span class="tile">W</span>
                             <span class="tile">O</span>
                             <span class="tile">R</span>
-                            <span class="tile added">L</span>
+                            <span class="tile tile--added">L</span>
                             <span class="tile">D</span>
                         </div>
-                        <div class="help-wordCont">
+                        <div class="help__word-cont">
                             <span class="tile">W</span>
                             <span class="tile">A</span>
                             <span class="tile">R</span>
-                            <span class="tile removed">D</span>
+                            <span class="tile tile--removed">D</span>
                             →
                             <span class="tile">W</span>
                             <span class="tile">A</span>
@@ -67,41 +67,41 @@
                         </div>
                     </li>
 
-                    <li class="no-bullet">... or jumble all the letters.
-                        <div class="help-wordCont jumble">
-                            <span class="tile moved">W</span>
-                            <span class="tile moved">A</span>
-                            <span class="tile moved">R</span>
-                            <span class="tile moved">D</span>
+                    <li class="li--no-bullet">... or jumble all the letters.
+                        <div class="help__word-cont">
+                            <span class="tile tile--moved">W</span>
+                            <span class="tile tile--moved">A</span>
+                            <span class="tile tile--moved">R</span>
+                            <span class="tile tile--moved">D</span>
                             →
-                            <span class="tile added">D</span>
-                            <span class="tile added">R</span>
-                            <span class="tile added">A</span>
-                            <span class="tile added">W</span>
+                            <span class="tile tile--added">D</span>
+                            <span class="tile tile--added">R</span>
+                            <span class="tile tile--added">A</span>
+                            <span class="tile tile--added">W</span>
                         </div>
-                        <div class="help-wordCont">
-                            <span class="tile moved">W</span>
-                            <span class="tile moved">O</span>
-                            <span class="tile moved">R</span>
-                            <span class="tile moved">D</span>
-                            <span class="tile moved">S</span>
+                        <div class="help__word-cont">
+                            <span class="tile tile--moved">W</span>
+                            <span class="tile tile--moved">O</span>
+                            <span class="tile tile--moved">R</span>
+                            <span class="tile tile--moved">D</span>
+                            <span class="tile tile--moved">S</span>
                             →
-                            <span class="tile added">S</span>
-                            <span class="tile added">W</span>
-                            <span class="tile added">O</span>
-                            <span class="tile added">R</span>
-                            <span class="tile added">D</span>
+                            <span class="tile tile--added">S</span>
+                            <span class="tile tile--added">W</span>
+                            <span class="tile tile--added">O</span>
+                            <span class="tile tile--added">R</span>
+                            <span class="tile tile--added">D</span>
                         </div>
 
                     </li>
-                    <li>Clicking <img src="images/flipper.svg" class="flipper"> will flip the whole board. Sometimes it helps to work backwards.</li>
-                    <li>You can also undo a move by clicking <img src="images/deleter.png" class="del"> or <img src="images/deleter.png" class="del flip">.</li>
+                    <li>Clicking <img src="images/flipper.svg" class="help__flipper-icon"> will flip the whole board. Sometimes it helps to work backwards.</li>
+                    <li>You can also undo a move by clicking <img src="images/deleter.png" class="help__del-icon"> or <img src="images/deleter.png" class="help__del-icon icon-flipped">.</li>
                 </ul>
             </div>
 
             <div id="rounds-content" class="popup-content hidden">
                 <p>Select a Round</p>
-                <ul id="round-list">
+                <ul id="word-pair-menu">
                     <!-- List of rounds here -->
                 </ul>
             </div>
@@ -111,7 +111,7 @@
             
             <div id="overlay" class="overlay full-screen visible" onclick="togglePanel('close')">All Rounds Completed!</div>
             <div id="moves-cont">
-                <div id="move-counter" class="moveCounter">Moves: 0</div>
+                <div id="move-counter" class="move-counter">Moves: 0</div>
                 <div id="best-score">Best: --</div>
             </div>
 
@@ -144,16 +144,16 @@
                     </div>
 
                     <div id="norm-rack" class="rack">
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
                     </div>
                 </div>
 
@@ -168,16 +168,16 @@
 
                 <div id="flip-set" class="set">
                     <div id="flip-rack" class="rack">
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
-                        <div class="wordCont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
                     </div>
                     
                     <div id="end-word" class="word-cont set-word">
@@ -197,43 +197,43 @@
         <!-- Onscreen Keyboard -->
         <div id="keyboard">
             <!-- First row -->
-            <div class="key-row">
-                <button class="key">Q</button>
-                <button class="key">W</button>
-                <button class="key">E</button>
-                <button class="key">R</button>
-                <button class="key">T</button>
-                <button class="key">Y</button>
-                <button class="key">U</button>
-                <button class="key">I</button>
-                <button class="key">O</button>
-                <button class="key">P</button>
+            <div class="keyboard__row">
+                <button class="btn keyboard__key">Q</button>
+                <button class="btn keyboard__key">W</button>
+                <button class="btn keyboard__key">E</button>
+                <button class="btn keyboard__key">R</button>
+                <button class="btn keyboard__key">T</button>
+                <button class="btn keyboard__key">Y</button>
+                <button class="btn keyboard__key">U</button>
+                <button class="btn keyboard__key">I</button>
+                <button class="btn keyboard__key">O</button>
+                <button class="btn keyboard__key">P</button>
             </div>
             <!-- Second row -->
-            <div class="key-row">
-                <div class="key--spacer"></div>
-                <button class="key">A</button>
-                <button class="key">S</button>
-                <button class="key">D</button>
-                <button class="key">F</button>
-                <button class="key">G</button>
-                <button class="key">H</button>
-                <button class="key">J</button>
-                <button class="key">K</button>
-                <button class="key">L</button>
-                <div class="key--spacer"></div>
+            <div class="keyboard__row">
+                <div class="keyboard__spacer"></div>
+                <button class="btn keyboard__key">A</button>
+                <button class="btn keyboard__key">S</button>
+                <button class="btn keyboard__key">D</button>
+                <button class="btn keyboard__key">F</button>
+                <button class="btn keyboard__key">G</button>
+                <button class="btn keyboard__key">H</button>
+                <button class="btn keyboard__key">J</button>
+                <button class="btn keyboard__key">K</button>
+                <button class="btn keyboard__key">L</button>
+                <div class="keyboard__spacer"></div>
             </div>
             <!-- Third row -->
-            <div class="key-row">
-                <button class="key key--special key--backspace">Del</button>
-                <button class="key">Z</button>
-                <button class="key">X</button>
-                <button class="key">C</button>
-                <button class="key">V</button>
-                <button class="key">B</button>
-                <button class="key">N</button>
-                <button class="key">M</button>
-                <button class="key key--special key--enter">Enter</button>
+            <div class="keyboard__row">
+                <button class="btn keyboard__key keyboard__key--backspace">Del</button>
+                <button class="btn keyboard__key">Z</button>
+                <button class="btn keyboard__key">X</button>
+                <button class="btn keyboard__key">C</button>
+                <button class="btn keyboard__key">V</button>
+                <button class="btn keyboard__key">B</button>
+                <button class="btn keyboard__key">N</button>
+                <button class="btn keyboard__key">M</button>
+                <button class="btn keyboard__key keyboard__key--enter">Enter</button>
 
             </div>
         </div>

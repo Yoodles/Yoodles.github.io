@@ -39,35 +39,35 @@ body.no-scroll {overflow: hidden;}
 .btn {
     justify-content: center;
     cursor: pointer;
-    border: solid 0.1vw;
-    border-radius: 0.42vw;
     color: black;
-    font-family: 'Raleway', sans-serif;
-    font-size: 3.5vw;
-    font-weight: 300;
     text-align: center;
     touch-action: manipulation;
+    padding-inline: 0;
 }
-.btn.function:hover {filter: brightness(80%); transform: scale(1.1);}
+.btn:hover {filter: brightness(80%); transform: scale(1.1);}
 
 /* .btn--img */
 
 .btn--rectangle {
-    width: 15vw;
     height: 5vh;
+    width: 15vw;
+    font-size: 3.5vw;
+    font-weight: 300;
+    border: solid 0.1vw;
+    border-radius: 0.42vw;
 }
 
 .btn--func {
-    padding-inline: 0;
-    touch-action: none;
+    /* touch-action: none; */
 }
 
 .btn--help {
     right: 0%;
     margin: 2vw 3vw;
-    height: 6vw;
-    width: 6vw;
+    height: 7vw;
+    width: 7vw;
     background: none;
+    font-size: 5vw;
     border: .3vw solid;
     border-radius: 4vw;
     padding-inline: 0;
@@ -77,22 +77,21 @@ body.no-scroll {overflow: hidden;}
 }
 
 
-#moves-cont, #open-help {
+#moves-cont, .btn--help {
     position: absolute;
     top: 0%;
-    width: fit-content;
-    font-size: 4vw;
     z-index: 80;
 }
 #moves-cont {
     left: 0%;
     margin: 1vw 3vw;
+    width: fit-content;
     text-align: start;
     /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
     text-shadow: 0.5vw 0.5vw 3vw rgba(0, 0, 0, 0.27);
 }
 
-.btn--close-panel {
+.btn--close {
     position: absolute;
     top: 0;
     right: 0;
@@ -164,9 +163,9 @@ body.no-scroll {overflow: hidden;}
     width: 100%;
     padding: 1vh 3vw;
 }
-.key--spacer {flex: 0.5}
+.keyboard__spacer {flex: 0.5}
 
-.key-row {
+.keyboard__row {
     display: flex;
     width: 100%;
     height: 100%;
@@ -176,7 +175,8 @@ body.no-scroll {overflow: hidden;}
     justify-content: center;
 }
 
-.key {
+
+.keyboard__key {
     flex: 1;
     display: flex;
     margin: 0 1vw 1vh 0;
@@ -186,21 +186,17 @@ body.no-scroll {overflow: hidden;}
     padding: 0;
     font-size: 4vw;
     font-weight: bold;
-    text-align: center;
     color: rgb(23, 23, 23);
-    cursor: pointer;
     transition: background-color 0.1s ease;
     box-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.101);
     align-items: center;
-    user-select: none;
 }
 
-.key:last-of-type {margin: 0 0 1vh 0;}
-.key:active {background-color: #a9a9a9;}
+.keyboard__key:last-of-type {margin: 0 0 1vh 0;}
+.keyboard__key:active {background-color: #a9a9a9;}
 
-.key.key--special {flex: 1.5; font-size: 4vw}
-.key.key--backspace {max-width: 12%;}
-.key.key--enter {max-width: 14%;}
+.keyboard__key--backspace {max-width: 12%; flex: 1.5;}
+.keyboard__key--enter {max-width: 14%; flex: 1.5;}
 
 
 
@@ -292,14 +288,8 @@ body.no-scroll {overflow: hidden;}
     transition-duration: 0.2s;
 }
 
-.deleter:hover {transform: scale(1.1);}
 .deleter img {height: 7vw;}
 #lower-deleter img {transform: rotate(0.5turn)}
-
-
-
-
-
 
 
 
@@ -309,11 +299,9 @@ body.no-scroll {overflow: hidden;}
     background: none;
     border: none;
     padding: 0;
-    cursor: pointer;
     filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
     transition: transform 0.1s ease-out;
 }
-#flippin-button:hover {transform: scale(1.1)}
 #flippin-button img {height: 12.3vw;}
 
 
@@ -350,9 +338,9 @@ body.no-scroll {overflow: hidden;}
     /* border: 0.5vw outset rgb(50, 50, 50); */
 }
 
-.tile.added {background-color: rgb(219, 255, 219);}
-.tile.moved {background-color: rgb(255, 227, 231)}
-.tile.removed {background-color: rgb(255, 227, 231)}
+.tile.tile--added {background-color: rgb(219, 255, 219);}
+.tile.tile--moved {background-color: rgb(255, 227, 231)}
+.tile.tile--removed {background-color: rgb(255, 227, 231)}
 
 
 /* transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1); */
@@ -542,7 +530,7 @@ input:focus {outline: none}
 
 
 
-#word-pair-list li {
+#word-pair-menu li {
     padding: 1vw;
     border-bottom: .1vw solid #ddd;
     display: flex;
@@ -550,7 +538,7 @@ input:focus {outline: none}
     align-items: center;
     margin: 0;
 }
-#word-pair-list li:hover {
+#word-pair-menu li:hover {
     transform: scale(1.05);
     cursor: pointer;
 }
@@ -569,7 +557,6 @@ input:focus {outline: none}
     text-align: start;
     z-index: 100;
 }
-
 
 
 .popup-content {
@@ -599,9 +586,9 @@ li {
 li.li--no-bullet {list-style-type: none;}
 li div {align-items: baseline;}
 
-li .flipper {width: 5vw; margin: 0 0.6vw; vertical-align: -33%;}
-li .del {width: 3vw; margin: 0 0.7vw; vertical-align: -25%;}
-li .del.flip {transform: rotate(0.5turn);}
+li .help__flipper-icon {width: 5vw; margin: 0 0.6vw; vertical-align: -33%;}
+li .help__del-icon {width: 3vw; margin: 0 0.7vw; vertical-align: -25%;}
+.icon-flipped {transform: rotate(0.5turn);}
 
 .help__word-cont {
     display: inline-flex;

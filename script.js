@@ -318,10 +318,10 @@ function toggleClassWithDelay(elements, className, action, delay) {
 }
 
 
-
-function renderRoundList() {
-    const roundList = document.getElementById('round-list');
-    roundList.innerHTML = ''; // Clear existing list
+// ***** update after completion?
+function renderWordPairMenu() {
+    const wordPairMenu = document.getElementById('word-pair-menu');
+    wordPairMenu.innerHTML = ''; // Clear existing list
 
     const greyStarsHTML = `
     <span class="star-container">
@@ -349,7 +349,7 @@ function renderRoundList() {
 
         // Add click event to jump to the specific round
         listItem.addEventListener('click', () => jumpToRound(pair.pairKey));
-        roundList.appendChild(listItem);
+        wordPairMenu.appendChild(listItem);
     });
 }
 
@@ -840,5 +840,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Initialize UI
     toggleOverlay('initial');
-    renderRoundList();
+    renderWordPairMenu();
 });
