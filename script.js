@@ -62,6 +62,8 @@ function jumpToRound(pairKey) {
 
     resetInitialUI();
     buildWordPairTiles();
+    updateBestScoreDisplay(pairKey);
+
     togglePanel('close');
 
     console.log(`Jumped to round for '${pairKey}'. Start word "${wordPair.startWord}", End word "${wordPair.endWord}".`);
@@ -152,28 +154,30 @@ function updateDirectionUI(direction) {
 let bestScores = {};
 
 // Check and update the best score after a round
-function checkBestScoreAndUpdate(currentScore) {
-    const pairKey = wordPair.currentPairKey; // Use currentPairKey directly
-    updateBestScore(pairKey, currentScore);
-    updateBestScoreUI(pairKey);
-}
+function checkBestScoreAndUpdate() {
+    const pairKey = wordPair.currentPairKey; // Current round's pair key
+    const score = gameState.moveCounter;
 
-// Update the best score for a word pair in `localStorage`
-function updateBestScore(pairKey, score) {
-    // Update if score is lower than in object (or there's no best score in object)
+    console.log(pairKey);
+    console.log(bestScores);
+
+    // Update if score is lower than in object (or there's no best score)
     if (!bestScores[pairKey] || score < bestScores[pairKey]) {
         bestScores[pairKey] = score;
-
-        localStorage.setItem(pairKey, JSON.stringify(score));
+        localStorage.setItem(pairKey, JSON.stringify(score)); // Persist new best score
     }
+
+    // Update the UI with the new best score
+    updateBestScoreDisplay(pairKey);
 }
 
 // Update the best score display in the UI
-function updateBestScoreUI(pairKey) {
+function updateBestScoreDisplay(pairKey) {
     const bestScoreDisplay = document.getElementById('best-score');
     const bestScore = bestScores[pairKey] || "--";
     bestScoreDisplay.innerText = `Best: ${bestScore}`;
 }
+
 
 //UPDATE MOVECOUNTER ON SCREEN - ❓ COMBINE?
 function updateMoveCounterUI() {
@@ -714,7 +718,7 @@ function updateGame(action) {
             resetInitialUI();
 
             buildWordPairTiles();
-            updateBestScoreUI(wordPair.currentPairKey);
+            updateBestScoreDisplay(wordPair.currentPairKey);
 
             logArrays();
             break;
@@ -808,7 +812,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     updateLatestAndTargetWords();
 
     buildWordPairTiles();
-    updateBestScoreUI(wordPair.currentPairKey);
+    updateBestScoreDisplay(wordPair.currentPairKey);
 
     // Add event listeners
     const keyboard = document.getElementById('keyboard');
