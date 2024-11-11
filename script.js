@@ -614,35 +614,33 @@ function undoMove() {
 // }
 
 function updateGame(action) {
-    switch (action) {   
+    switch (action) {
         case 'complete':
             checkBestScoreAndUpdate();
             localStorage.setItem('lastCompletedPair', wordPair.currentPairKey);
             renderResultPanel();
-
             setTimeout(() => toggleResult(), 1200);
-
             break;
 
         case 'nextRound':
-            console.log(wordPair.currentPairKey);
+            console.log('Current Pair Key:', wordPair.currentPairKey);
             const currentIndex = wordPairDetails.findIndex(pair => pair.pairKey === wordPair.currentPairKey);
             const nextPair = wordPairDetails[currentIndex + 1];
         
             if (nextPair) {
                 wordPair.currentPairKey = nextPair.pairKey;
-                console.log(wordPair.currentPairKey);
-                updateGame('reset');
+                console.log('Next Pair Key:', wordPair.currentPairKey);
+                updateGame('resetRound');
             } else document.getElementById('gameArea').innerText = "All Rounds Completed!";
 
             break;
 
         case 'resetRound':
             gameState.isComplete = false;
-            toggleOverlay('initial');
+            // toggleOverlay('initial');
 
             resetGameState();
-            setWordPairAndLengths(currentPairKey);
+            setWordPairAndLengths(wordPair.currentPairKey);
             resetUI();
             buildWordPairTiles();
             break;
@@ -668,9 +666,6 @@ function resetUI() {
     updateBestScoreUI(pairKey);
     updateMoveCounterUI();
 }
-
-
-
 
 
 
@@ -832,7 +827,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const DEBUG = true;
 
     if (DEBUG) console.log('localStorage contents:', { ...localStorage });
-    // localStorage.clear();
+    localStorage.clear();
 
     // Function to set custom --vh unit based on viewport height
     function setVhUnit() {
