@@ -21,7 +21,7 @@ let wordPair = {
 // Updates the wordPair object with pairKey, score benchmarks, lengths 
 function updateWordPairObj(pairKey) {
     // Find the word pair by its pairKey
-    const wordPairData = wordPairDetails.find(pair => pair.pairKey === pairKey);
+    const wordPairData = wordPairsAndDetails.find(pair => pair.pairKey === pairKey);
 
     if (wordPairData) {
         wordPair.currentPairKey = pairKey;  // Update currentPairKey
@@ -44,7 +44,7 @@ function updateWordPairObj(pairKey) {
 
 // Function to find Word Pair by pairKey *****if unneeded globally, keep in jumpToRound?
 function getWordPairDetailsFor(pairKey) {
-    const pair = wordPairDetails.find(pair => pair.pairKey === pairKey);
+    const pair = wordPairsAndDetails.find(pair => pair.pairKey === pairKey);
     if (!pair) console.warn(`Word pair with key "${pairKey}" not found.`);
     return pair;
 }
@@ -52,7 +52,7 @@ function getWordPairDetailsFor(pairKey) {
 // Jump to a specific round when selected from the list
 function jumpToRound(pairKey) {
 
-    const pair = getWordPairDetailsFor(pairKey); // Use getWordPairDetailsFor for consistency
+    const pair = getWordPairDetailsFor(pairKey);
     if (!pair) return;
 
     // Set the new word pair and reset the UI
@@ -318,11 +318,8 @@ function toggleClassWithDelay(elements, className, action, delay) {
 
 
 
-
-
-
-
 function renderRoundList() {
+    console.log('wordPairsAndDetails: ', wordPairsAndDetails);
     const roundList = document.getElementById('roundList');
     roundList.innerHTML = ''; // Clear existing list
 
@@ -335,7 +332,7 @@ function renderRoundList() {
     </span>
     `;
 
-    wordPairDetails.forEach(pair => {
+    wordPairsAndDetails.forEach(pair => {
         const bestScore = bestScores[pair.pairKey] || 0;
 
         // Create list item with static grey stars
@@ -358,10 +355,23 @@ function renderRoundList() {
 }
 
 
-function renderResultPanel() {
+function updateStarColors(container, score) {
+    const stars = container.querySelectorAll('.star');
+    stars.forEach((star, index) => {
+        star.classList.toggle('yellow', index < score); // Add "yellow" if within score range
+    });
+}
+
+
+
+function prepareResultPanel() {
     const starContainer = document.getElementById('starContainer');
     const moves = gameState.moveCounter;
     const message = document.getElementById('resultMessage');
+    const stars = starContainer.querySelectorAll('.star');
+
+    // Reset star colors (all to grey by removing 'yellow')
+    stars.forEach(star => star.classList.remove('yellow'));
 
     // Determine star rating based on score3star and score2star
     let starRating;
@@ -370,9 +380,6 @@ function renderResultPanel() {
     else starRating = 1;
 
     // Add 'yellow' class to stars based on the starRating
-    const stars = starContainer.querySelectorAll('.star');
-    stars.forEach(star => star.classList.remove('yellow'));
-
     stars.forEach((star, index) => {
         if (index < starRating) star.classList.add('yellow');
     });
@@ -381,8 +388,18 @@ function renderResultPanel() {
     if (starRating === 3) message.innerText = `Completed in ${gameState.moveCounter} moves!\nOutstanding!`;
     else if (starRating === 2) message.innerText = `Completed in ${gameState.moveCounter} moves!\nGreat job!`;
     else message.innerText = `Completed in ${gameState.moveCounter} moves!\nYou know words good!!`;
+
+    console.log(`Rendered result panel with ${starRating} stars.`);
+
 }
 
+function showOrHideResultPanel(which = null) {
+    const resultPanel = document.getElementById('resultPanel');
+    
+    if (which === "hide") resultPanel.classList.add('hidden');
+    else resultPanel.classList.toggle('hidden');
+
+}
 
 
 
@@ -492,7 +509,7 @@ function deleteMove(which) {
 // UNDO
 function undoMove() {
     gameState.isComplete = false;
-    toggleResult();
+    showOrHideResultPanel();
     modifyHeight('undo'); //*****
 
 
@@ -524,16 +541,8 @@ function undoMove() {
         updateDeleterVisibility();
 
         console.log(`Undo complete: Restored "${word}" to ${rackType} rack.`);
-
     }
-
     logArrays();
-
-    const stars = document.getElementById('starContainer').querySelectorAll('.star');
-    stars.forEach(star => {
-        star.classList.remove('yellow');
-    });
-
 }
 
 
@@ -675,10 +684,6 @@ function fadeOut(element, duration = 500, addHidden = false) {
 }
 
 
-function toggleResult() {
-    const resultPanel = document.getElementById('resultPanel');
-    resultPanel.classList.toggle('hidden');
-}
 
 function togglePanel(action) {
     const popup = document.getElementById('popupPanel');
@@ -713,14 +718,14 @@ function updateGame(action) {
         case 'complete':
             checkBestScoreAndUpdate();
             localStorage.setItem('lastCompletedPair', wordPair.currentPairKey);
-            renderResultPanel();
-            setTimeout(() => toggleResult(), 1200);
+            prepareResultPanel();
+            setTimeout(() => showOrHideResultPanel(), 1200);
             break;
 
         case 'nextRound':
             console.log('Current Pair Key:', wordPair.currentPairKey);
-            const currentIndex = wordPairDetails.findIndex(pair => pair.pairKey === wordPair.currentPairKey);
-            const nextPair = wordPairDetails[currentIndex + 1];
+            const currentIndex = wordPairsAndDetails.findIndex(pair => pair.pairKey === wordPair.currentPairKey);
+            const nextPair = wordPairsAndDetails[currentIndex + 1];
         
             if (nextPair) {
                 wordPair.currentPairKey = nextPair.pairKey;
@@ -766,7 +771,9 @@ function clearInputUI() {
 
 
 function resetUI() {
-    document.getElementById('resultPanel').classList.remove('active');
+    // document.getElementById('resultPanel').classList.remove('active');
+
+    showOrHideResultPanel("off");
 
     // Reset height adjustments and directions
     modifyHeight('reset');
@@ -807,14 +814,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setVhUnit();
     window.addEventListener('resize', setVhUnit);
 
-    // Ensure wordPairDetails has data
-    if (wordPairDetails.length === 0) {
+    // Ensure wordPairsAndDetails has data
+    if (wordPairsAndDetails.length === 0) {
         console.error('No word pairs available to initialize the game.');
         return;
     }
 
     // Initialize best scores for each word pair from localStorage if available, or default to 0
-    wordPairDetails.forEach(pair => {
+    wordPairsAndDetails.forEach(pair => {
         const storedScore = localStorage.getItem(pair.pairKey);
         try {
             bestScores[pair.pairKey] = storedScore && storedScore !== 'undefined'
@@ -828,9 +835,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Determine the starting word pair
     const lastPairKey = localStorage.getItem('lastCompletedPair');
-    wordPair.currentPairKey = lastPairKey && wordPairDetails.some(pair => pair.pairKey === lastPairKey)
+    wordPair.currentPairKey = lastPairKey && wordPairsAndDetails.some(pair => pair.pairKey === lastPairKey)
         ? lastPairKey
-        : wordPairDetails[0].pairKey;
+        : wordPairsAndDetails[0].pairKey;
 
     // Load the word pair and initialize game state
     updateWordPairObj(wordPair.currentPairKey);
