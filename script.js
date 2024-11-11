@@ -827,13 +827,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
     if (keyboard) {
         keyboard.addEventListener('click', function (event) {
-            const key = event.target.closest('.key');
+            const key = event.target.closest('.keyboard__key');
             if (!key) return; // Ignore clicks outside of keys
 
-            const keyValue = key.textContent;
+            const keyValue = key.textContent.trim();
 
-            if (keyValue === 'Enter') submitMove();
-            else if (keyValue === 'Del') inputField.value = inputField.value.slice(0, -1);
+            if (key.classList.contains('keyboard__key--enter')) submitMove();
+            else if (key.classList.contains('keyboard__key--backspace')) inputField.value = inputField.value.slice(0, -1);
             else inputField.value += keyValue;
         });
     }
