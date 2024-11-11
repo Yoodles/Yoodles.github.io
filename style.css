@@ -473,9 +473,7 @@ input:focus {outline: none}
     box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
 }
 #result-panel.hidden {display: none}
-#result-panel .btn {
-    margin: 2vw;
-}
+#result-panel .btn {margin: 2vw;}
 
 .star-container {
     display: flex;
