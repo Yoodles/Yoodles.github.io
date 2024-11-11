@@ -48,27 +48,33 @@ body.no-scroll {overflow: hidden;}
 .btn:hover {filter: brightness(80%); transform: scale(1.1);}
 
 .btn--frame {
-    filter: drop-shadow(1vw 1vw 0.7vw rgba(0, 0, 0, 0.813));
+    background: none;
+    border: ridge black 0.3vw;
+    font-size: 3.5vw;
+    font-weight: 400;
+    filter: drop-shadow(1vw 1vw 0.8vw rgba(0, 0, 0, 0.483));
 
 }
 
 .btn--rectangle {
-    font-size: 3.5vw;
-    font-weight: 400;
-    border: ridge black 0.3vw;
-    background: none;
     border-radius: 1.3vw;
 }
+#header .btn--rectangle { height: 5vh; width: 15vw;}
+#result-panel .btn--rectangle { height: 4vh; width: 20vw;}
 
-#header .btn--rectangle {
-    height: 5vh;
-    width: 15vw;
+.btn--help {
+    right: 0%;
+    margin: 2vw 3vw;
+    height: 6vw;
+    width: 6vw;
+    font-size: 4vw;
+    font-weight: 400;
+    border-radius: 4vw;
+    /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
+    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
 }
 
-#result-panel .btn {
-    height: 4vh;
-    width: 20vw;
-}
+
 
 .btn--reset, .btn--retry, .btn--undo, .btn--next, .btn--skip {
     filter: drop-shadow(1vw 1vw 0.7vw rgba(0, 0, 0, 0.813));
@@ -84,19 +90,7 @@ body.no-scroll {overflow: hidden;}
     /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
 }
 
-.btn--help {
-    right: 0%;
-    margin: 2vw 3vw;
-    height: 7vw;
-    width: 7vw;
-    background: none;
-    font-size: 5vw;
-    font-weight: bold;
-    border: 0.5vw solid black;
-    border-radius: 4vw;
-    /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
-    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
-}
+
 
 
 #moves-cont, .btn--help {
