@@ -58,7 +58,7 @@ function jumpToRound(pairKey) {
     updateWordPairObj(pairKey);
     updateLatestAndTargetWords();
 
-    resetUI();
+    resetInitialUI();
     buildWordPairTiles();
     togglePanel('close');
 
@@ -714,11 +714,14 @@ function updateGame(action) {
             // toggleOverlay('initial');
 
             resetGameState();
+
             updateWordPairObj(wordPair.currentPairKey);
             updateLatestAndTargetWords();
 
-            resetUI();
+            resetInitialUI();
+
             buildWordPairTiles();
+            updateBestScoreUI(wordPair.currentPairKey);
 
             logArrays();
             break;
@@ -744,7 +747,7 @@ function clearInputUI() {
 }
 
 
-function resetUI() {
+function resetInitialUI() {
 
     showOrHideResultPanel("hide");
 
@@ -755,11 +758,6 @@ function resetUI() {
     // Clear racks and input field
     clearInputUI();
     emptyInputField();
-
-    buildWordPairTiles();
-
-    // Update UI for best score and move counter
-    updateBestScoreUI(wordPair.currentPairKey);
     updateMoveCounterUI();
 }
 
@@ -775,7 +773,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const DEBUG = true;
 
     if (DEBUG) console.log('localStorage contents:', { ...localStorage });
-    localStorage.clear();
+    // localStorage.clear();
 
     // Function to set custom --vh unit based on viewport height
     function setVhUnit() {
@@ -815,9 +813,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Load the word pair and initialize game state
     updateWordPairObj(wordPair.currentPairKey);
     updateLatestAndTargetWords();
-    buildWordPairTiles();
 
-    // Update the best score UI for the initial pair
+    buildWordPairTiles();
     updateBestScoreUI(wordPair.currentPairKey);
 
     // Add event listeners
