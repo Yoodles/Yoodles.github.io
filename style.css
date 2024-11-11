@@ -43,10 +43,10 @@ body.no-scroll {overflow: hidden;}
     text-align: center;
     touch-action: manipulation;
     padding-inline: 0;
+    align-items: center;
 }
 .btn:hover {filter: brightness(80%); transform: scale(1.1);}
 
-/* .btn--img */
 
 .btn--rectangle {
     height: 5vh;
@@ -57,8 +57,26 @@ body.no-scroll {overflow: hidden;}
     border-radius: 0.42vw;
 }
 
-.btn--func {
-    /* touch-action: none; */
+#result-panel .btn {
+    height: 4vh;
+    width: 20vw;
+}
+
+.btn--reset, .btn--retry {
+    background-color: rgb(255, 192, 201);
+    border-color:  rgb(255, 92, 115, 0.5)
+}
+.btn--undo {
+    background-color: rgb(255, 251, 184);
+    border-color: rgba(255, 246, 85, 0.5);
+}
+
+.btn--next {background-color: #ADD8E6}
+
+.btn--img {
+    background: none;
+    border: none;
+    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
 }
 
 .btn--help {
@@ -68,10 +86,9 @@ body.no-scroll {overflow: hidden;}
     width: 7vw;
     background: none;
     font-size: 5vw;
-    border: .3vw solid;
+    font-weight: bold;
+    border: 0.5vw solid black;
     border-radius: 4vw;
-    padding-inline: 0;
-    /* font-weight: bold; */
     /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
     filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
 }
@@ -97,12 +114,11 @@ body.no-scroll {overflow: hidden;}
     right: 0;
     background: transparent;
     border: none;
-    padding: 3vw 5vw;
+    margin: 3vw 5vw;
     font-size: 7vw;
-    color: #333;
     transform: scale(1, 0.9);
-    transition: background-color 0.1s ease;
 }
+.btn.btn--close:hover {transform: scale(1.1, 1)}
 
 #header {
     /* display: inline-flex; */
@@ -120,20 +136,13 @@ body.no-scroll {overflow: hidden;}
 
 
 #game-logo {
-    width: 45vw;
-
-    align-self: baseline;
-    background: none;
-    border: none;
+    /* align-self: baseline; */
     padding: 0;
-    cursor: pointer;
     /* filter: drop-shadow(1vw 1vw 1vw rgb(0 0 0 / 0.4)); */
     filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
-
 }
 #game-logo > img {
-    width: 100%;
-    max-height: 11%;
+    width: 45vw;
     /* margin: 10% 0; */
 }
 
@@ -180,26 +189,21 @@ body.no-scroll {overflow: hidden;}
     flex: 1;
     display: flex;
     margin: 0 1vw 1vh 0;
-    background-color: #d3d3d3;
-    border: 0;
+    background-color: #ebf4ff;
+    border: solid rgb(195, 195, 195) 0.1vw;
     border-radius: 1vw;
     padding: 0;
     font-size: 4vw;
     font-weight: bold;
-    color: rgb(23, 23, 23);
     transition: background-color 0.1s ease;
     box-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.101);
-    align-items: center;
 }
 
 .keyboard__key:last-of-type {margin: 0 0 1vh 0;}
-.keyboard__key:active {background-color: #a9a9a9;}
+.keyboard__key:active {background-color: #e3e3e3;}
 
 .keyboard__key--backspace {max-width: 12%; flex: 1.5;}
 .keyboard__key--enter {max-width: 14%; flex: 1.5;}
-
-
-
 
 
 
@@ -277,8 +281,6 @@ body.no-scroll {overflow: hidden;}
 
 .deleter {
     position: relative;
-    background: none;
-    border: none;
     transition: opacity ease-in;
     opacity: 0;
 }
@@ -296,17 +298,11 @@ body.no-scroll {overflow: hidden;}
 
 
 #flippin-button {
-    background: none;
-    border: none;
     padding: 0;
-    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
+    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
     transition: transform 0.1s ease-out;
 }
 #flippin-button img {height: 12.3vw;}
-
-
-
-
 
 
 
@@ -347,9 +343,6 @@ body.no-scroll {overflow: hidden;}
 
 
 
-
-
-/* Base overlay (covers game-area by default, invisible) */
 .overlay {
     position: absolute; /* Default to game-area coverage */
     top: 0;
@@ -374,7 +367,6 @@ body.no-scroll {overflow: hidden;}
     width: 100vw;
     height: 100vh;
 }
-
 
 .overlay--dark {
     background-color: rgba(0, 0, 0, 0.5);
@@ -510,23 +502,6 @@ input:focus {outline: none}
 .star-container .star:nth-child(3).yellow { transition-delay: 0.6s; }
 
 .popup-content .star {font-size: 5vw;}
-
-#result-panel .btn {
-    height: 4vh;
-    width: 20vw;
-}
-
-#reset-round, #retry-round {
-    background-color: rgb(255, 192, 201);
-    border-color:  rgb(255, 92, 115, 0.5)
-}
-#skip-round, #undo-move {
-    background-color: rgb(255, 251, 184);
-    border-color: rgba(255, 246, 85, 0.5);
-}
-
-#next-round {background-color: #ADD8E6}
-
 
 
 

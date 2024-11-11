@@ -15,13 +15,13 @@
     <div id="app-container">
 
         <div id="header">
-            <button id="reset-round" class="btn btn--func btn--rectangle" onclick="updateGame('resetRound')">RESET</button>
+            <button class="btn btn--reset btn--rectangle" onclick="updateGame('resetRound')">RESET</button>
             <button id="game-logo" class="btn btn--img" onclick="togglePanel('rounds')"><img src="images/logo.png"></button>
-            <!-- <button id="skipRound" class="btn btn--func btn--rectangle" onclick="updateGame('nextRound')">SKIP</button> -->
+            <button class="btn btn--skip btn--rectangle" onclick="updateGame('nextRound')">SKIP</button>
         </div>
 
         <div id="popup-panel" class="hidden">
-            <button class="btn btn--func btn--close" onclick="togglePanel('close')">x</button>
+            <button class="btn btn--close" onclick="togglePanel('close')">x</button>
             <div id="help-content" class="popup-content">
                 <p>How To Play</p>
                 <h2>Get from the word at the top to the word at the bottom, using as few moves as possible.</h2>
@@ -109,13 +109,13 @@
 
         <div id="game-area" class="game-area hidden">
             
-            <div id="overlay" class="overlay full-screen visible" onclick="togglePanel('close')">All Rounds Completed!</div>
+            <div id="overlay" class="overlay overlay--full-scr visible" onclick="togglePanel('close')">All Rounds Completed!</div>
             <div id="moves-cont">
                 <div id="move-counter" class="move-counter">Moves: 0</div>
                 <div id="best-score">Best: --</div>
             </div>
 
-            <button class="btn btn--func btn--help" onclick="togglePanel('help')">?</button>
+            <button class="btn btn--help" onclick="togglePanel('help')">?</button>
 
             <div id="result-panel" class="hidden">
                 <div id="result-message" class="result">Completed in X moves!<br>You know words good!</div>
@@ -125,9 +125,9 @@
                     <span class="star" id="star3">★</span>
                 </div>
                 <div id="result-buttons">
-                    <button id="retry-round" class="btn btn--func btn--rectangle" onclick="updateGame('resetRound')">RETRY</button>
-                    <button id="undo-move" class="btn btn--func btn--rectangle" onclick="undoMove()">UNDO</button>
-                    <button id="next-round" class="btn btn--func btn--rectangle" onclick="updateGame('nextRound')">NEXT</button>
+                    <button class="btn btn--retry btn--rectangle" onclick="updateGame('resetRound')">RETRY</button>
+                    <button class="btn btn--undo btn--rectangle" onclick="undoMove()">UNDO</button>
+                    <button class="btn btn--next btn--rectangle" onclick="updateGame('nextRound')">NEXT</button>
                 </div>
             </div>
 
@@ -160,9 +160,9 @@
                 <div id="input-set">
                     <input id="input-field" type ="text">
                     <div id="flipper-and-deleters">
-                        <button id="upper-deleter" class="btn btn--image deleter" onclick="deleteMove('upper')"><img src="images/deleter.png"></button>
-                        <button id="flippin-button" class="btn btn--image" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
-                        <button id="lower-deleter" class="btn btn--image deleter" onclick="deleteMove('lower')"><img src="images/deleter.png"></button>
+                        <button id="upper-deleter" class="btn btn--img deleter" onclick="deleteMove('upper')"><img src="images/deleter.png"></button>
+                        <button id="flippin-button" class="btn btn--img" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
+                        <button id="lower-deleter" class="btn btn--img deleter" onclick="deleteMove('lower')"><img src="images/deleter.png"></button>
                     </div>
                 </div>
 
