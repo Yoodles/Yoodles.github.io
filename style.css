@@ -50,11 +50,58 @@ button {
 }
 button.function:hover {filter: brightness(80%); transform: scale(1.1);}
 
-button.function {
+
+button.rectangle {
     width: 15vw;
     height: 5vh;
+}
+
+button.function {
     padding-inline: 0;
     touch-action: none;
+}
+
+button.open-help {
+    right: 0%;
+    margin: 2vw 3vw;
+    height: 6vw;
+    width: 6vw;
+    background: none;
+    border: .3vw solid;
+    border-radius: 4vw;
+    padding-inline: 0;
+    /* font-weight: bold; */
+    /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
+    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
+}
+
+
+#movesCont, #openHelp {
+    position: absolute;
+    top: 0%;
+    width: fit-content;
+    font-size: 4vw;
+    z-index: 80;
+}
+#movesCont {
+    left: 0%;
+    margin: 1vw 3vw;
+    text-align: start;
+    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
+    text-shadow: 0.5vw 0.5vw 3vw rgba(0, 0, 0, 0.27);
+}
+
+button.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    border: none;
+    padding: 3vw 5vw;
+    font-size: 7vw;
+    color: #333;
+    transform: scale(1, 0.9);
+    transition: background-color 0.1s ease;
 }
 
 #header {
@@ -101,35 +148,8 @@ button.function {
     font-size: 5vw;
 }
 
-#movesCont, #openHelp {
-    position: absolute;
-    top: 0%;
-    width: fit-content;
-    font-size: 4vw;
-    z-index: 80;
-}
-#movesCont {
-    left: 0%;
-    margin: 1vw 3vw;
-    text-align: start;
-    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
-    text-shadow: 0.5vw 0.5vw 3vw rgba(0, 0, 0, 0.27);
-}
 
-#openHelp {
-    right: 0%;
-    margin: 2vw 3vw;
-    height: 6vw;
-    width: 6vw;
-    background: none;
-    border: .3vw solid;
-    border-radius: 4vw;
-    padding-inline: 0;
-    /* font-weight: bold; */
-    text-align: center;
-    /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
-    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
-}
+
 
 
 
@@ -557,20 +577,7 @@ input:focus {outline: none}
     z-index: 100;
 }
 
-.closeButton {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: transparent;
-    border: none;
-    padding: 3vw 5vw;
-    font-size: 7vw;
-    cursor: pointer;
-    color: #333;
-    transform: scale(1, 0.9);
-    transition: background-color 0.1s ease;
 
-}
 
 .popup-content {
     height: 90%;

@@ -15,13 +15,13 @@
     <div id="appContainer">
 
         <div id="header">
-            <button id="resetRound" class="function" onclick="updateGame('resetRound')">RESET</button>
+            <button id="resetRound" class="rectangle" onclick="updateGame('resetRound')">RESET</button>
             <button id="gameLogo" onclick="togglePanel('rounds')"><img src="images/logo.png"></button>
-            <button id="skipRound" class="function" onclick="updateGame('nextRound')">SKIP</button>
+            <button id="skipRound" class="rectangle" onclick="updateGame('nextRound')">SKIP</button>
         </div>
 
         <div id="popupPanel" class="hidden">
-            <button class="closeButton" onclick="togglePanel('close')">x</button>
+            <button class="close" onclick="togglePanel('close')">x</button>
             <div id="helpContent" class="popup-content">
                 <p>How To Play</p>
                 <h2>Get from the word at the top to the word at the bottom, using as few moves as possible.</h2>
@@ -115,7 +115,7 @@
                 <div id="bestScore">Best: --</div>
             </div>
 
-            <button id="openHelp" class="function help" onclick="togglePanel('help')">?</button>
+            <button class="function open-help" onclick="togglePanel('help')">?</button>
 
             <div id="resultPanel" class="hidden">
                 <div id="resultMessage" class="result">Completed in X moves!<br>You know words good!</div>
@@ -125,9 +125,9 @@
                     <span class="star" id="star3">★</span>
                 </div>
                 <div id="resultButtons">
-                    <button id="retryRound" class="function" onclick="updateGame('resetRound')">RETRY</button>
-                    <button id="undoMove" class="function" onclick="undoMove()">UNDO</button>
-                    <button id="nextRound" class="function" onclick="updateGame('nextRound')">NEXT</button>
+                    <button id="retryRound" class="rectangle" onclick="updateGame('resetRound')">RETRY</button>
+                    <button id="undoMove" class="rectangle" onclick="undoMove()">UNDO</button>
+                    <button id="nextRound" class="rectangle" onclick="updateGame('nextRound')">NEXT</button>
                 </div>
             </div>
 
