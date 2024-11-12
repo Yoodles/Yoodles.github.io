@@ -69,8 +69,10 @@ body {
 
 .shadow {
     background: none;
-    filter: drop-shadow(5vw 4vw 0.7vw rgba(0, 0, 0, 0.813));
+    /* filter: drop-shadow(5vw 4vw 0.7vw rgba(0, 0, 0, 0.813)); */
     transition: transform 0.1s ease-out;
+    filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813));
+
 
     /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
     /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
