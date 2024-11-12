@@ -769,8 +769,6 @@ function resetInitialUI() {
 
 
 
-
-
 function showPathFinderDialog() {
     const dialog = document.getElementById('pathFinderDialog');
     dialog.classList.remove('hidden');
@@ -778,13 +776,27 @@ function showPathFinderDialog() {
     const runButton = document.getElementById('runPathFinder');
     const closeButton = document.getElementById('closeDialog');
 
+    // Dynamically generate the maxSteps dropdown if not already present
+    const maxStepsDropdown = document.getElementById('maxStepsDropdown');
+    if (maxStepsDropdown.children.length === 0) {
+        for (let i = 1; i <= 10; i++) { // Populate dropdown with step options (1–10)
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = `${i} ${i === 1 ? 'step' : 'steps'}`;
+            if (i === 6) option.selected = true; // Default to 6 steps
+            maxStepsDropdown.appendChild(option);
+        }
+    }
+
     // Attach event listeners
     runButton.addEventListener('click', () => {
         const startWord = document.getElementById('startWordInput').value.toLowerCase();
         const endWord = document.getElementById('endWordInput').value.toLowerCase();
+        const maxSteps = parseInt(maxStepsDropdown.value, 10);
 
         if (startWord && endWord) {
-            const result = findAllShortestPaths(startWord, endWord, wordList);
+            console.log(`Looking for paths from "${startWord}" to "${endWord}" with a maximum of ${maxSteps} steps...`);
+            const result = findShortestPath(startWord, endWord, maxSteps);
             console.log(result); // Log the result or display it in your UI
         } else {
             alert('Please enter both a start word and an end word.');
@@ -798,70 +810,74 @@ function showPathFinderDialog() {
 
 
 
-function findAllShortestPaths(startWord, endWord, wordList) {
-    // Validate word lengths
-    if (startWord.length < 3 || startWord.length > 6 || endWord.length < 3 || endWord.length > 6) {
-        console.error('Both words must be between 3 and 6 letters long.');
-        return [];
-    }
 
-    const minLength = Math.max(3, Math.min(startWord.length, endWord.length) - 1);
-    const maxLength = Math.min(6, Math.max(startWord.length, endWord.length) + 1);
-    const maxSteps = 6; // Limit the maximum number of steps
-    let shortestSteps = Infinity; // Track the shortest path length found
-    const paths = []; // Store all valid shortest paths
+function findShortestPath(startWord, endWord, maxSteps = 6) {
+    console.log(`Looking for paths from "${startWord}" to "${endWord}"...`);
 
-    // BFS setup
-    const queue = [{ word: startWord, path: [startWord], steps: 0 }];
-    const visited = new Set([startWord]);
+    const minLength = Math.max(3, Math.min(startWord.length, endWord.length) - 1); // Min valid word length
+    const maxLength = Math.min(6, Math.max(startWord.length, endWord.length) + 1); // Max valid word length
 
-    while (queue.length > 0) {
-        const { word, path, steps } = queue.shift();
+    // To terminate the search manually
+    let searchTerminated = false;
 
-        // If we exceed the max allowed steps, terminate
-        if (steps > maxSteps) break;
+    const cancelSearch = () => {
+        searchTerminated = true;
+        console.log("Search canceled.");
+    };
 
-        // If we've reached the endWord and matched shortest steps, add path to results
-        if (word === endWord) {
-            if (steps < shortestSteps) {
-                shortestSteps = steps;
-                paths.length = 0; // Clear previous paths
+    // Initialize variables
+    let shortestPaths = [];
+    let shortestLength = Infinity;
+
+    const queue = [[startWord]]; // BFS queue initialized with the start word
+    const visited = new Set(); // Tracks visited words to avoid redundant checks
+    visited.add(startWord);
+
+    console.log("Starting search...");
+
+    while (queue.length > 0 && !searchTerminated) {
+        const path = queue.shift(); // Get the first path in the queue
+        const lastWord = path[path.length - 1];
+
+        // Stop exploring if path exceeds maxSteps or already found shortest path
+        if (path.length > maxSteps || path.length > shortestLength) continue;
+
+        // If the endWord is reached
+        if (lastWord === endWord) {
+            if (path.length < shortestLength) {
+                shortestPaths = [path]; // Found a shorter path
+                shortestLength = path.length;
+                console.log(`Found a ${shortestLength}-step path: ${path.join(" -> ")}`);
+            } else if (path.length === shortestLength) {
+                shortestPaths.push(path); // Found another shortest path
             }
-            if (steps === shortestSteps) paths.push(path);
-            continue; // Skip further exploration for this branch
+            continue;
         }
 
-        // Generate valid neighbors
+        // Generate valid next moves
         for (let length = minLength; length <= maxLength; length++) {
-            if (!wordList[length]) continue; // Skip lengths without valid words
+            if (!wordList[length]) continue; // Skip if no words of this length exist
 
-            wordList[length].forEach(neighbor => {
-                if (!visited.has(neighbor) && isOneMoveApart(word, neighbor)) {
-                    visited.add(neighbor);
-                    queue.push({
-                        word: neighbor,
-                        path: [...path, neighbor],
-                        steps: steps + 1
-                    });
+            for (const nextWord of wordList[length]) {
+                // Check if the word hasn't been visited and is a valid move
+                if (!visited.has(nextWord) && isOneMoveApart(lastWord, nextWord)) {
+                    visited.add(nextWord); // Mark as visited
+                    queue.push([...path, nextWord]); // Add the new path to the queue
                 }
-            });
+            }
         }
     }
 
-    if (paths.length === 0) {
-        console.log(`No paths found from "${startWord}" to "${endWord}" within ${maxSteps} steps.`);
-        return [];
+    // Report results
+    if (shortestPaths.length > 0) {
+        console.log(`Search completed. Found ${shortestPaths.length} shortest path(s):`);
+        shortestPaths.forEach(path => console.log(path.join(" -> ")));
+    } else {
+        console.log(`No path found from "${startWord}" to "${endWord}" within ${maxSteps} steps.`);
     }
 
-    console.log(`Found ${paths.length} shortest paths from "${startWord}" to "${endWord}" in ${shortestSteps} steps:`);
-    paths.forEach((path, index) => console.log(`${index + 1}: ${path.join(' → ')}`));
-
-    return paths;
+    return shortestPaths;
 }
-
-
-
-
 
 
 

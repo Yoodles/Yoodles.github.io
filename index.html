@@ -241,18 +241,17 @@
         </div>
 
         <div id="pathFinderDialog" class="dialog hidden">
-            <div class="dialog-content">
-                <label for="startWordInput">Start Word:</label>
-                <input type="text" id="startWordInput" placeholder="Enter start word" />
+            <label for="startWordInput">Start Word:</label>
+            <input id="startWordInput" type="text" placeholder="Enter start word">
         
-                <label for="endWordInput">End Word:</label>
-                <input type="text" id="endWordInput" placeholder="Enter end word" />
+            <label for="endWordInput">End Word:</label>
+            <input id="endWordInput" type="text" placeholder="Enter end word">
         
-                <div class="dialog-buttons">
-                    <button id="runPathFinder">Run</button>
-                    <button id="closeDialog">Cancel</button>
-                </div>
-            </div>
+            <label for="maxStepsDropdown">Max Steps:</label>
+            <select id="maxStepsDropdown"></select>
+        
+            <button id="runPathFinder">Run Path Finder</button>
+            <button id="closeDialog">Close</button>
         </div>
         
     </div>

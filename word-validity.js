@@ -14,9 +14,7 @@ function isOneMoveApart(word1, word2) {
       }
 
       function isScramble(word1, word2) {
-          if (word1 === word2) {
-              return false;
-          }
+          if (word1 === word2) return false;
           let sortedCompared = word1.split('').sort().join('');
           let sortedInput = word2.split('').sort().join('');
           return sortedCompared === sortedInput;
