@@ -1,5 +1,3 @@
-// import { wordList } from './words.js';
-// import { wordPair } from './script.js';
 
 //=====MOVES====✅
 

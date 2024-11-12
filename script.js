@@ -844,3 +844,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
     toggleOverlay('initial');
     renderWordPairMenu();
 });
+
+
+
+
+const result = findShortestPathWithPath(
+    wordPair.startWord,
+    wordPair.endWord,
+    wordPair
+);
+
+function findShortestPathWithPath(startWord, endWord, wordPair) {
+    // Define the BFS queue and the visited set
+    const queue = [{ word: startWord, moves: 0, path: [startWord] }];
+    const visited = new Set([startWord]); // Start word is already visited
+
+    // Get min/max word lengths for valid transitions
+    const minLength = Math.max(wordPair.minLength, Math.min(startWord.length, endWord.length) - 1);
+    const maxLength = Math.min(wordPair.maxLength, Math.max(startWord.length, endWord.length) + 1);
+
+    // BFS loop
+    while (queue.length > 0) {
+        const { word, moves, path } = queue.shift();
+
+        // If we've reached the endWord, return the move count and path
+        if (word === endWord) {
+            console.log(`Shortest path found: ${path.join(' → ')}`);
+            return { moves, path };
+        }
+
+        // Generate neighbors (valid words one move apart)
+        for (let length = minLength; length <= maxLength; length++) {
+            if (!wordList[length]) continue; // Skip lengths without valid words
+
+            wordList[length].forEach(neighbor => {
+                if (!visited.has(neighbor) && isOneMoveApart(word, neighbor)) {
+                    visited.add(neighbor);
+                    queue.push({
+                        word: neighbor,
+                        moves: moves + 1,
+                        path: [...path, neighbor] // Extend the path with the neighbor
+                    });
+                }
+            });
+        }
+    }
+
+    // If the endWord is not reachable
+    console.log(`No path found from "${startWord}" to "${endWord}".`);
+    return { moves: -1, path: [] };
+}
+
