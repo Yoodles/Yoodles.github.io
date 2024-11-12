@@ -45,7 +45,7 @@ body.no-scroll {overflow: hidden;}
     padding-inline: 0;
     align-items: center;
 }
-.btn:hover {filter: brightness(80%); transform: scale(1.1);}
+.btn:hover {transform: scale(1.1);}
 
 .btn--frame {
     background: none;
