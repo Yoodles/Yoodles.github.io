@@ -17,7 +17,9 @@
         <div id="header">
             <button class="btn btn--reset btn--rectangle btn--frame shadow" onclick="updateGame('resetRound')">RESET</button>
             <button id="game-logo" class="btn btn--img shadow" onclick="togglePanel('rounds')"><img src="images/logo.png"></button>
-            <button class="btn btn--skip btn--rectangle btn--frame shadow" onclick="updateGame('nextRound')">SKIP</button>
+            <!-- <button class="btn btn--skip btn--rectangle btn--frame shadow" onclick="updateGame('nextRound')">SKIP</button> -->
+            <button class="btn btn--skip btn--rectangle btn--frame shadow" onclick="showPathFinderDialog()">SKIP</button>
+
         </div>
 
         <div id="popup-panel" class="hidden">
@@ -237,6 +239,22 @@
 
             </div>
         </div>
+
+        <div id="pathFinderDialog" class="dialog hidden">
+            <div class="dialog-content">
+                <label for="startWordInput">Start Word:</label>
+                <input type="text" id="startWordInput" placeholder="Enter start word" />
+        
+                <label for="endWordInput">End Word:</label>
+                <input type="text" id="endWordInput" placeholder="Enter end word" />
+        
+                <div class="dialog-buttons">
+                    <button id="runPathFinder">Run</button>
+                    <button id="closeDialog">Cancel</button>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
     <script src="script.js"></script>

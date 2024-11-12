@@ -771,6 +771,103 @@ function resetInitialUI() {
 
 
 
+function showPathFinderDialog() {
+    const dialog = document.getElementById('pathFinderDialog');
+    dialog.classList.remove('hidden');
+
+    const runButton = document.getElementById('runPathFinder');
+    const closeButton = document.getElementById('closeDialog');
+
+    // Attach event listeners
+    runButton.addEventListener('click', () => {
+        const startWord = document.getElementById('startWordInput').value.toLowerCase();
+        const endWord = document.getElementById('endWordInput').value.toLowerCase();
+
+        if (startWord && endWord) {
+            const result = findAllShortestPaths(startWord, endWord, wordList);
+            console.log(result); // Log the result or display it in your UI
+        } else {
+            alert('Please enter both a start word and an end word.');
+        }
+    });
+
+    closeButton.addEventListener('click', () => {
+        dialog.classList.add('hidden');
+    });
+}
+
+
+
+function findAllShortestPaths(startWord, endWord, wordList) {
+    // Validate word lengths
+    if (startWord.length < 3 || startWord.length > 6 || endWord.length < 3 || endWord.length > 6) {
+        console.error('Both words must be between 3 and 6 letters long.');
+        return [];
+    }
+
+    const minLength = Math.max(3, Math.min(startWord.length, endWord.length) - 1);
+    const maxLength = Math.min(6, Math.max(startWord.length, endWord.length) + 1);
+    const maxSteps = 6; // Limit the maximum number of steps
+    let shortestSteps = Infinity; // Track the shortest path length found
+    const paths = []; // Store all valid shortest paths
+
+    // BFS setup
+    const queue = [{ word: startWord, path: [startWord], steps: 0 }];
+    const visited = new Set([startWord]);
+
+    while (queue.length > 0) {
+        const { word, path, steps } = queue.shift();
+
+        // If we exceed the max allowed steps, terminate
+        if (steps > maxSteps) break;
+
+        // If we've reached the endWord and matched shortest steps, add path to results
+        if (word === endWord) {
+            if (steps < shortestSteps) {
+                shortestSteps = steps;
+                paths.length = 0; // Clear previous paths
+            }
+            if (steps === shortestSteps) paths.push(path);
+            continue; // Skip further exploration for this branch
+        }
+
+        // Generate valid neighbors
+        for (let length = minLength; length <= maxLength; length++) {
+            if (!wordList[length]) continue; // Skip lengths without valid words
+
+            wordList[length].forEach(neighbor => {
+                if (!visited.has(neighbor) && isOneMoveApart(word, neighbor)) {
+                    visited.add(neighbor);
+                    queue.push({
+                        word: neighbor,
+                        path: [...path, neighbor],
+                        steps: steps + 1
+                    });
+                }
+            });
+        }
+    }
+
+    if (paths.length === 0) {
+        console.log(`No paths found from "${startWord}" to "${endWord}" within ${maxSteps} steps.`);
+        return [];
+    }
+
+    console.log(`Found ${paths.length} shortest paths from "${startWord}" to "${endWord}" in ${shortestSteps} steps:`);
+    paths.forEach((path, index) => console.log(`${index + 1}: ${path.join(' → ')}`));
+
+    return paths;
+}
+
+
+
+
+
+
+
+
+
+
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD
 document.addEventListener('DOMContentLoaded', (event) => {
     const DEBUG = true;
@@ -845,54 +942,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
     toggleOverlay('initial');
     renderWordPairMenu();
 });
-
-
-
-
-const result = findShortestPathWithPath(
-    wordPair.startWord,
-    wordPair.endWord,
-    wordPair
-);
-
-function findShortestPathWithPath(startWord, endWord, wordPair) {
-    // Define the BFS queue and the visited set
-    const queue = [{ word: startWord, moves: 0, path: [startWord] }];
-    const visited = new Set([startWord]); // Start word is already visited
-
-    // Get min/max word lengths for valid transitions
-    const minLength = Math.max(wordPair.minLength, Math.min(startWord.length, endWord.length) - 1);
-    const maxLength = Math.min(wordPair.maxLength, Math.max(startWord.length, endWord.length) + 1);
-
-    // BFS loop
-    while (queue.length > 0) {
-        const { word, moves, path } = queue.shift();
-
-        // If we've reached the endWord, return the move count and path
-        if (word === endWord) {
-            console.log(`Shortest path found: ${path.join(' → ')}`);
-            return { moves, path };
-        }
-
-        // Generate neighbors (valid words one move apart)
-        for (let length = minLength; length <= maxLength; length++) {
-            if (!wordList[length]) continue; // Skip lengths without valid words
-
-            wordList[length].forEach(neighbor => {
-                if (!visited.has(neighbor) && isOneMoveApart(word, neighbor)) {
-                    visited.add(neighbor);
-                    queue.push({
-                        word: neighbor,
-                        moves: moves + 1,
-                        path: [...path, neighbor] // Extend the path with the neighbor
-                    });
-                }
-            });
-        }
-    }
-
-    // If the endWord is not reachable
-    console.log(`No path found from "${startWord}" to "${endWord}".`);
-    return { moves: -1, path: [] };
-}
-
