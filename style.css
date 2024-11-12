@@ -35,6 +35,20 @@ body {
     height: calc(var(--vh, 1vh) * 100); /* Full viewport height based on custom property */
 }
 
+#header {
+    /* display: inline-flex; */
+    display: grid;
+    grid-template-columns: 15vw auto 15vw;
+    justify-content: space-between;
+    width: 100%;
+    height: 11%;
+    align-items: center;
+    z-index: 80;
+    text-align: center;
+    padding: 2vw 3vw;
+}
+
+
 .btn {
     justify-content: center;
     cursor: pointer;
@@ -59,7 +73,6 @@ body {
 
     /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
     /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
-
 }
 
 .btn--img {border: none;}
@@ -110,30 +123,14 @@ body {
 }
 
 
-#header {
-    /* display: inline-flex; */
-    display: grid;
-    grid-template-columns: 15vw auto 15vw;
-    justify-content: space-between;
-    width: 100%;
-    height: 11%;
-    align-items: center;
-    z-index: 80;
-    text-align: center;
-    padding: 2vw 3vw;
-}
-
-
-
 #game-logo {
-    /* align-self: baseline; */
     padding: 0;
     /* filter: drop-shadow(1vw 1vw 1vw rgb(0 0 0 / 0.4)); */
-    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
+    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
 }
 #game-logo > img {
     width: 45vw;
-    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
+    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
 
 }
 

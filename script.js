@@ -725,7 +725,7 @@ function updateGame(action) {
             buildWordPairTiles();
             updateBestScoreDisplay(wordPair.currentPairKey);
 
-            console.log(result);
+            // console.log(result);
             logArrays();
             break;
     };
