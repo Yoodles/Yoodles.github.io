@@ -52,6 +52,20 @@ body.no-scroll {overflow: hidden;}
     font-size: 3.5vw;
     font-weight: 400;
     filter: drop-shadow(1vw 1vw 0.8vw rgba(0, 0, 0, 0.483));
+}
+
+.shadow {
+    background: none;
+    filter: drop-shadow(1vw 1vw 0.7vw rgba(0, 0, 0, 0.813));
+
+    /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
+    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
+
+}
+
+.btn--img {
+    border: none;
+    /* filter: drop-shadow(1vw 1vw 0.7vw rgba(0, 0, 0, 0.506)); */
 
 }
 
@@ -67,26 +81,10 @@ body.no-scroll {overflow: hidden;}
     width: 6vw;
     font-size: 4vw;
     font-weight: 400;
-    border-radius: 4vw;
-    /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
-    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
+    border-radius: 50%;
 }
 
 
-
-.btn--reset, .btn--retry, .btn--undo, .btn--next, .btn--skip {
-    filter: drop-shadow(1vw 1vw 0.7vw rgba(0, 0, 0, 0.813));
-
-}
-
-
-.btn--img {
-    background: none;
-    border: none;
-    filter: drop-shadow(1vw 1vw 0.7vw rgba(0, 0, 0, 0.506));
-
-    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
-}
 
 
 
