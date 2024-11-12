@@ -173,7 +173,8 @@ body {
     animation-duration: 0.2s;
     flex: 1;
     position: relative;
-    filter: drop-shadow(1vw 1vw 0.7vw rgba(0, 0, 0, 0.813));
+    /* filter: drop-shadow(1vw 1vw .2vw rgba(128, 121, 121, 0.813)); */
+    filter: drop-shadow(1vw 1vw .2vw rgba(128, 121, 121, 0.813));
 
     /* box-shadow: 3vw 3vw 5vw rgba(0, 0, 0, 0.081); */
 }
