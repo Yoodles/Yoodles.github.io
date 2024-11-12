@@ -5,13 +5,14 @@
   user-select: none;
   font: inherit;
   font-size: inherit;
+  text-align: center;
   vertical-align: baseline;
 }
 
 @font-face {
     font-family: 'Raleway';
     src: url('../fonts/Raleway-VariableFont_wght.ttf') format('truetype');
-    font-weight: 100 900;
+    font-weight: 100 300 500 900;
     font-style: normal;
 }
 
@@ -21,9 +22,8 @@ body {
     width: 100vw;
     overflow: hidden;
     font-family: 'Raleway', sans-serif;
-    text-align: center;
     background-color: #f1f1f1;
-    /* touch-action: manipulation; */
+    touch-action: manipulation;
 }
 body.no-scroll {overflow: hidden;}
 
@@ -40,7 +40,6 @@ body.no-scroll {overflow: hidden;}
     justify-content: center;
     cursor: pointer;
     color: black;
-    text-align: center;
     touch-action: manipulation;
     padding-inline: 0;
     align-items: center;
@@ -56,9 +55,8 @@ body.no-scroll {overflow: hidden;}
 
 }
 
-.btn--rectangle {
-    border-radius: 1.5vw;
-}
+.btn--rectangle {border-radius: 10%;}
+
 #header .btn--rectangle { height: 5vh; width: 15vw;}
 #result-panel .btn--rectangle { height: 4vh; width: 20vw;}
 
@@ -143,6 +141,8 @@ body.no-scroll {overflow: hidden;}
 }
 #game-logo > img {
     width: 45vw;
+    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
+
 }
 
 #game-area {
@@ -207,6 +207,16 @@ body.no-scroll {overflow: hidden;}
 
 
 
+
+
+
+
+.slide--subm.slide--down-complete {transform: translateY(9vw);}
+.slide--subm.slide--up-complete {transform: translateY(-9vw);}
+.slide--del.slide--down-complete {transform: translateY(20.5vw);}
+.slide--del.slide--up-complete {transform: translateY(-20.5vw);}
+
+
 #gameplay-cont {
     display: flex;
     flex-direction: column;
@@ -215,10 +225,7 @@ body.no-scroll {overflow: hidden;}
     margin: auto;
     overflow-y: auto;
 }
-#gameplay-cont.flip {
-    flex-direction: column-reverse;
-
-}
+#gameplay-cont.flip {flex-direction: column-reverse}
 
 .set {
     display: flex;
@@ -232,23 +239,6 @@ body.no-scroll {overflow: hidden;}
 
 
 
-.slide--subm.slide--down-complete {transform: translateY(9vw);}
-.slide--subm.slide--up-complete {transform: translateY(-9vw);}
-.slide--del.slide--down-complete {transform: translateY(20.5vw);}
-.slide--del.slide--up-complete {transform: translateY(-20.5vw);}
-
-
-
-#input-set {
-    display: flex;
-    position: relative;
-    align-items: center;
-    width: 100%;
-    min-width: 60vw;
-    max-width: 70vw;
-    margin: auto;
-    z-index: 70;
-}
 
 .rack {
     position: relative;
@@ -264,7 +254,16 @@ body.no-scroll {overflow: hidden;}
 
 
 
-
+#input-set {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    min-width: 60vw;
+    max-width: 70vw;
+    margin: auto;
+    z-index: 70;
+}
 
 #flipper-and-deleters {
     display: flex;
@@ -297,8 +296,6 @@ body.no-scroll {overflow: hidden;}
 
 
 #flippin-button {
-    padding: 0;
-    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
     transition: transform 0.1s ease-out;
 }
 #flippin-button img {height: 12.3vw;}
@@ -307,6 +304,25 @@ body.no-scroll {overflow: hidden;}
 
 
 /*=====WORD CONTAINERS & TILES=====*/
+
+/* .tile {
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    background: none;
+    border: .2vw solid rgba(0, 0, 0, 0.148);
+    margin: 0.7vw;
+    align-items: center;
+    font-size: 4.5vw;
+    font-weight: 300;
+    border-radius: 1vw;
+    animation-name: fadeIn;
+    animation-duration: 0.2s;
+    flex: 1;
+    position: relative;
+    text-align: center;
+    box-shadow: 3vw 3vw 5vw rgba(0, 0, 0, 0.081);
+} */
 
 .tile {
     display: flex;
@@ -579,8 +595,8 @@ li .help__del-icon {width: 3vw; margin: 0 0.7vw; vertical-align: -25%;}
 
 z-index:
 
-110 #popupPanel #resultPanel
-
+110 #popupPanel
+100 #resultPanel
 90 .overlay.full-screen
 90 .overlay.dark
 
