@@ -61,7 +61,7 @@ body {
 
 .btn--frame {
     background: none;
-    border: ridge black 0.3vw;
+    border: ridge black 0.4vw;
     font-size: 3.5vw;
     font-weight: 400;
     /* filter: drop-shadow(1vw 1vw 0.8vw rgba(0, 0, 0, 0.483)); */
@@ -69,7 +69,8 @@ body {
 
 .shadow {
     background: none;
-    filter: drop-shadow(1vw 1vw 0.7vw rgba(0, 0, 0, 0.813));
+    filter: drop-shadow(5vw 4vw 0.7vw rgba(0, 0, 0, 0.813));
+    transition: transform 0.1s ease-out;
 
     /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
     /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
@@ -77,7 +78,7 @@ body {
 
 .btn--img {border: none;}
 
-.btn--rectangle {border-radius: 10%;}
+.btn--rectangle {border-radius: 1vw;}
 
 #header .btn--rectangle { height: 5vh; width: 15vw;}
 #result-panel .btn--rectangle { height: 4vh; width: 20vw;}
