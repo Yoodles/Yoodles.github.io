@@ -531,7 +531,7 @@ input:focus {outline: none}
     overflow-y: auto;
     box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
     text-align: start;
-    z-index: 100;
+    z-index: 110;
 }
 
 
@@ -579,7 +579,7 @@ li .help__del-icon {width: 3vw; margin: 0 0.7vw; vertical-align: -25%;}
 
 z-index:
 
-100 #popupPanel #resultPanel
+110 #popupPanel #resultPanel
 
 90 .overlay.full-screen
 90 .overlay.dark
