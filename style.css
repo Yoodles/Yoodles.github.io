@@ -51,7 +51,8 @@ body {
     padding: 2vw 3vw;
 }
 
-
+/* #game-logo {padding: 0;} */
+#game-logo > img {width: 45vw;}
 
 
 /*=====KEYBOARD=====*/
@@ -84,7 +85,6 @@ body {
     font-size: 4vw;
     font-weight: bold;
     transition: background-color 0.1s ease;
-    box-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.101);
 }
 
 .keyboard__key:last-of-type {margin: 0 0 1vh 0;}
@@ -92,7 +92,6 @@ body {
 
 .keyboard__key--backspace {max-width: 12%; flex: 1.5;}
 .keyboard__key--enter {max-width: 14%; flex: 1.5;}
-
 
 
 .btn {
@@ -111,12 +110,7 @@ body {
     box-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.101);
 }
 
-.btn--frame {
-    background: none;
-    border: solid black 0.4vw;
-    font-size: 3.5vw;
-    font-weight: 400;
-}
+
 
 .shadow {
     /* filter: drop-shadow(5vw 4vw 0.7vw rgba(0, 0, 0, 0.813)); */
@@ -144,14 +138,17 @@ body {
     filter: drop-shadow(.2vw .2vw .6vw rgba(128, 121, 121, 0.813));
 }
 
+
 .btn--help {
     right: 0%;
     margin: 2vw 3vw;
     height: 6vw;
     width: 6vw;
+    border: solid black 0.4vw;
+    border-radius: 50%;
+    background: none;
     font-size: 4vw;
     font-weight: 400;
-    border-radius: 50%;
 }
 
 .btn--close {
@@ -181,13 +178,7 @@ body {
     margin: 1vw 4vw;
     font-size: 3vw;
     text-align: start;
-    /* text-shadow: 0.5vw 0.5vw 3vw rgba(0, 0, 0, 0.27); */
 }
-
-
-/* #game-logo {padding: 0;} */
-#game-logo > img {width: 45vw;}
-
 
 
 /*=====WORD CONTAINERS & TILES=====*/
@@ -197,26 +188,25 @@ body {
     display: flex;
     justify-content: center;
     background: none;
-    border: .1vw solid rgba(0, 0, 0, 0.148);
+    border: .1vw solid rgb(112, 112, 112);
     margin: 0.7vw;
     align-items: center;
     font-size: 4vw;
     font-weight: 300;
-    border: ridge rgba(0, 0, 0, 0.419) 0.5vw;
+    border: ridge rgb(112, 112, 112) 0.5vw;
 
     border-radius: 1.2vw;
     animation-name: fadeIn;
     animation-duration: 0.2s;
     flex: 1;
     position: relative;
-    filter: drop-shadow(1vw 1vw .2vw rgba(128, 121, 121, 0.813));
+    filter: drop-shadow(1vw 1vw .7vw rgba(128, 121, 121, 0.813));
 }
 #gameplay-cont .tile {height: 10vw; width: 10vw}
 #help-content .tile {width: 5vw; height: 5vw; font-size: 4vw; box-shadow: none;}
 
 .set-word .tile {
-    font-weight: 300;
-
+    font-weight: 500;
 }
 
 .tile.tile--added {background-color: rgb(219, 255, 219);}
