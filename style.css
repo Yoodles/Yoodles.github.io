@@ -206,7 +206,6 @@ body {
 .tile {
     display: flex;
     justify-content: center;
-    /* background-color: #ffffff; */
     background: none;
     border: .1vw solid rgba(0, 0, 0, 0.148);
     margin: 0.7vw;
