@@ -1,8 +1,6 @@
 const inputField = document.getElementById('input-field');
-const startWordCont = document.getElementById('start-word');
 const normRack = document.getElementById('norm-rack'); 
 const flipRack = document.getElementById('flip-rack');
-const endWordCont = document.getElementById('end-word');
 
 
 
@@ -237,11 +235,14 @@ function makeTilesIn(wordCont, word) {
         tile.textContent = isVisible ? word[i].toUpperCase() : '';
         tile.classList.toggle('hidden', !isVisible);
 
-        if (isVisible && (wordCont === startWordCont || wordCont === endWordCont)) tile.style.animationDelay = `${i * 0.2}s`;
+        if (isVisible) tile.style.animationDelay = `${i * 0.2}s`;
     });
 }
 
 function buildWordPairTiles() {
+    const startWordCont = document.getElementById('start-word');
+    const endWordCont = document.getElementById('end-word');
+
     makeTilesIn(startWordCont, wordPair.startWord);
     makeTilesIn(endWordCont, wordPair.endWord);
 }

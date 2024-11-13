@@ -95,7 +95,7 @@ body {
 .btn {
     justify-content: center;
     cursor: pointer;
-    color: black;
+    color: rgba(50, 50, 47, 0.876);
     touch-action: manipulation;
     padding-inline: 0;
     align-items: center;
@@ -103,34 +103,32 @@ body {
 .btn:not(#game-logo):hover {transform: scale(1.1);}
 
 .btn--fill {
-    background-color: rgb(218, 218, 208);
+    background-color: rgba(229, 229, 217, 0.801);
     border: solid rgb(197, 197, 181) 0.1vw;
+    box-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.101);
 }
 
 .btn--frame {
     background: none;
-    border: ridge black 0.4vw;
+    border: solid black 0.4vw;
     font-size: 3.5vw;
     font-weight: 400;
-    /* filter: drop-shadow(1vw 1vw 0.8vw rgba(0, 0, 0, 0.483)); */
 }
 
 .shadow {
     /* filter: drop-shadow(5vw 4vw 0.7vw rgba(0, 0, 0, 0.813)); */
     transition: transform 0.1s ease-out;
+
     filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813));
-
-
+    
     /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
     /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
 }
 
 .btn--img {background: none; border: none;}
 
-.btn--rectangle {border-radius: 1vw;}
-
-#header .btn--rectangle { height: 5vh; width: 15vw;}
-#result-panel .btn--rectangle { height: 4vh; width: 20vw;}
+#header .btn--fill { height: 5vh; width: 15vw; border-radius: 1vw;}
+#result-panel .btn--fill { height: 4vh; width: 20vw; border-radius: 1vw;}
 
 .btn--help {
     right: 0%;
@@ -215,15 +213,14 @@ body {
     align-items: center;
     font-size: 4vw;
     font-weight: 300;
-    border: ridge black 0.3vw;
+    border: ridge rgba(0, 0, 0, 0.419) 0.5vw;
 
-    border-radius: 1vw;
+    border-radius: 1.2vw;
     animation-name: fadeIn;
     animation-duration: 0.2s;
     flex: 1;
     position: relative;
     /* filter: drop-shadow(1vw 1vw .2vw rgba(128, 121, 121, 0.813)); */
-    filter: drop-shadow(1.3vw 1.3vw .7vw rgba(128, 121, 121, 0.813));
 
     /* box-shadow: 3vw 3vw 5vw rgba(0, 0, 0, 0.081); */
 }
@@ -464,6 +461,8 @@ body {
     position: relative; /*redundant?*/
     margin: 2vw 0;
     transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    filter: drop-shadow(.3vw .3vw .4vw rgba(128, 121, 121, 0.813));
+
 }
 input:focus {outline: none}
 
