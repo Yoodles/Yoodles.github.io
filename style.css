@@ -46,6 +46,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 80;
+    background-color: #f1f1f1;
 }
 #game-logo > img {width: 45vw;}
 
