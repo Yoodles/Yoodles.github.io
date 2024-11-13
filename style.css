@@ -156,7 +156,7 @@ body {
     box-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.101);
 }
 
-.btn--reset {position: absolute; top: 2vw; left: 4vw;}
+.btn--reset {position: absolute; top: 7vh; left: 4vw;}
 
 
 .shadow {
@@ -235,12 +235,12 @@ body {
     display: flex;
     justify-content: center;
     background: none;
-    border: .1vw solid rgb(193, 193, 193);
+    /* border: .1vw solid rgb(193, 193, 193); */
     margin: 0.7vw;
     align-items: center;
     font-size: 3.7vw;
     font-weight: 300;
-    border: ridge rgb(112, 112, 112) 0.5vw;
+    border: ridge rgb(112, 112, 112) 0.3vw;
 
     border-radius: 1.2vw;
     animation-name: fadeIn;

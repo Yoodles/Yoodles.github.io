@@ -15,8 +15,18 @@
     <div id="app-container">
 
         <div id="header">
+            <div id="moves-cont" class="shadow--min">
+                <div id="move-counter" class="move-counter">Moves: 0</div>
+                <div id="best-score">Best: --</div>
+            </div>
             <button id="game-logo" class="btn btn--img shadow" onclick="togglePanel('rounds')"><img src="images/logo.png"></button>
+
+            <button class="btn btn--help shadow--min" onclick="togglePanel('help')">?</button>
+
         </div>
+
+        <button class="btn btn--reset btn--fill shadow" onclick="updateGame('resetRound')">RESET</button>
+
 
         <div id="popup-panel" class="panel panel--popup hidden">
             <button class="btn btn--close" onclick="togglePanel('close')">x</button>
@@ -111,18 +121,8 @@
             
             <div class="fade-bar fade-bar--top"></div>
 
-
-            <button class="btn btn--reset btn--fill shadow" onclick="updateGame('resetRound')">RESET</button>
-
             <!-- <button class="btn btn--skip btn--fill shadow" onclick="showPathFinderDialog()">SKIP</button> -->
 
-
-            <div id="moves-cont" class="shadow--min">
-                <div id="move-counter" class="move-counter">Moves: 0</div>
-                <div id="best-score">Best: --</div>
-            </div>
-
-            <button class="btn btn--help shadow--min" onclick="togglePanel('help')">?</button>
 
             <div id="result-panel" class="panel panel--result hidden">
                 <div id="result-message" class="result">Completed in X moves!<br>You know words good!</div>

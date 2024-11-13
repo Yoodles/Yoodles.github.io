@@ -585,7 +585,9 @@ function modifyHeight(action, rack, array) {
             break;
         case 'reset':
             resetSets();
-            rack.style.height = '0px';
+            normRack.style.height = '0px';
+            flipRack.style.height = '0px';
+
             break;
         default:
             console.warn(`Unknown action: ${action}`);
