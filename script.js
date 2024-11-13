@@ -572,7 +572,11 @@ function modifyHeight(action, rack, array) {
             break;
 
         case 'delete':
-            if (!gameState.isComplete) rack.style.height = array.length * wordContHeight + 'px';
+            if (gameState.isComplete) {
+                normSet.classList.add('slide--del', gameState.direction === 'norm' ? 'slide--down-complete' : 'slide--up-complete');
+                flipSet.classList.add('slide--del', gameState.direction === 'norm' ? 'slide--up-complete' : 'slide--down-complete');
+            }
+            else rack.style.height = array.length * wordContHeight + 'px';
             break;
 
         case 'undo':
