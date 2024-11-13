@@ -443,30 +443,22 @@ input:focus {outline: none}
     position: absolute;
 
     /* top: 50%; */
-
-
     margin: auto;
     background-color: rgb(255, 255, 255);
 
-    border: solid .5vw;
-    border: 1vw solid var(--color-tone-6);
-
+    border: solid .5vw grey;
     border-radius: 3vw;
     
     padding: 4vw;
 
-
     justify-content: center;
-
     align-content: center;
     align-items: center;
 
     font-size: 18px;
 
-
     box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
     z-index: 100;
-
 
 }
 
