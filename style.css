@@ -263,7 +263,7 @@ body {
 #help-content .tile {width: 5vw; height: 5vw; font-size: 4vw; box-shadow: none;}
 
 .set-word .tile {
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .tile.tile--added {background-color: rgb(219, 255, 219);}
