@@ -357,7 +357,7 @@ function renderWordPairMenu() {
         listItem.addEventListener('click', () => jumpToRound(pair.pairKey));
         wordPairMenu.appendChild(listItem);
     });
-    console.log('Best Scores:', bestScores);
+    // console.log('Best Scores:', bestScores);
 
 }
 
