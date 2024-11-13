@@ -56,10 +56,9 @@ body {
     flex-direction: column;
     width: 100%;
     /* height: 62%; */
-    /* overflow-y: hidden; */
+    overflow-y: hidden;
     align-items: center;
     background: var(--main-bg-color); /* Consistent background */
-
 }
 
 
@@ -77,17 +76,27 @@ body {
 
 .fade-bar {
     position: absolute; /* Keeps the bar fixed at its boundary */
-    pointer-events: none; /* Allow interaction with scrolling content */
-    height: 10vh; /* Adjust as needed */
+    pointer-events: none;
+    height: 7vh; /* Adjust as needed */
     width: 100%;
     z-index: 80;
 }
-.fade-bar--top {
+/* .fade-bar--top {
     top: 0;
     background: linear-gradient(
         to bottom,
         var(--main-bg-color) 0%,
         rgba(var(--main-bg-color-rgb), 0) 100%
+    );
+} */
+
+
+.fade-bar--top {
+    top: 0;
+    background: linear-gradient(
+        to bottom,
+        #f1f1f1 0%,
+        rgba(255, 255, 255, 0) 100%
     );
 }
 
@@ -95,8 +104,8 @@ body {
     bottom: 0;
     background: linear-gradient(
         to top,
-        var(--main-bg-color) 0%,
-        rgba(var(--main-bg-color-rgb), 0) 100%
+        #f1f1f1 0%,
+        rgba(255, 255, 255, 0) 100%
     );
 }
 
