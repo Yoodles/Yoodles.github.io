@@ -21,7 +21,7 @@
 
         </div>
 
-        <div id="popup-panel" class="hidden">
+        <div id="popup-panel" class="panel panel--popup hidden">
             <button class="btn btn--close" onclick="togglePanel('close')">x</button>
             <div id="help-content" class="popup-content">
                 <p>How To Play</p>
@@ -118,7 +118,7 @@
 
             <button class="btn btn--help shadow--min" onclick="togglePanel('help')">?</button>
 
-            <div id="result-panel" class="hidden">
+            <div id="result-panel" class="panel panel--result hidden">
                 <div id="result-message" class="result">Completed in X moves!<br>You know words good!</div>
                 <div id="star-cont" class="star-cont">
                     <span class="star" id="star1">★</span>
@@ -239,7 +239,7 @@
             </div>
         </div>
 
-        <div id="pathFinderDialog" class="dialog hidden">
+        <div id="pathFinderDialog" class="dialog panel panel--dialog hidden">
             <div class="dialog-content">
                 <label for="startWordInput">Start Word:</label>
                 <input type="text" id="startWordInput" placeholder="Enter start word" />

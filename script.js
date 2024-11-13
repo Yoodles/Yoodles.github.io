@@ -3,7 +3,6 @@ const normRack = document.getElementById('norm-rack');
 const flipRack = document.getElementById('flip-rack');
 
 
-
 ////WORD PAIR OBJECT AND LOGIC ===============================================////
 
 let wordPair = {
@@ -864,9 +863,23 @@ function findShortestPath(startWord, endWord, maxSteps = 6) {
         }
 
         // If there's more work to do, continue in the next chunk
+        // if (queue.length > 0) {
+        //     setTimeout(processQueue, 0);
+        // } else {
+        //     if (foundPaths.length === 0) {
+        //         console.log(`No paths found from "${startWord}" to "${endWord}" within ${maxSteps} steps.`);
+        //     } else {
+        //         console.log(`Search complete. Found ${foundPaths.length} path(s) of ${shortestPathLength} steps:`, foundPaths);
+        //     }
+        // }
+        // If there's more work to do, continue in the next chunk
         if (queue.length > 0) {
-            setTimeout(processQueue, 0);
+            // Use a slightly delayed `setTimeout` to reduce strain on the event loop
+            setTimeout(() => {
+                processQueue();
+            }, 1); // A minimal delay of 1ms allows the browser to handle other tasks
         } else {
+            // Log results after the search is complete
             if (foundPaths.length === 0) {
                 console.log(`No paths found from "${startWord}" to "${endWord}" within ${maxSteps} steps.`);
             } else {

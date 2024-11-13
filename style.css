@@ -82,8 +82,8 @@ body {
     margin: 0 1vw 1vh 0;
     border-radius: 1vw;
     padding: 0;
-    font-size: 4vw;
-    font-weight: bold;
+    font-size: 3.6vw;
+    font-weight: 500;
     transition: background-color 0.1s ease;
 }
 
@@ -188,10 +188,10 @@ body {
     display: flex;
     justify-content: center;
     background: none;
-    border: .1vw solid rgb(112, 112, 112);
+    border: .1vw solid rgb(193, 193, 193);
     margin: 0.7vw;
     align-items: center;
-    font-size: 4vw;
+    font-size: 3.7vw;
     font-weight: 300;
     border: ridge rgb(112, 112, 112) 0.5vw;
 
@@ -319,9 +319,7 @@ body {
 
 
 
-#flippin-button {
-    transition: transform 0.1s ease-out;
-}
+#flippin-button {transition: transform 0.1s ease-out;}
 #flippin-button img {height: 12.3vw;}
 
 
@@ -423,7 +421,7 @@ body {
     width: 100%;
     height: 14vw;
     text-transform: uppercase;
-    border: 0.3vw dashed #373737;
+    border: 0.3vw dashed #545454;
     /* border: .6vw inset #373737; */
     background: none;
     font-family: 'Raleway';
@@ -441,28 +439,51 @@ body {
 input:focus {outline: none}
 
 
-
-
-
-#result-panel {
+.panel {
     background-color: rgb(255, 255, 255);
+    border: solid .5vw;
+    border-radius: 2vw;
+    align-items: center;
+    box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
+
+}
+
+
+.panel--popup {
+    position: fixed;
+    width: 90%;
+    height: 85%;
+    border-radius: 3vw;
+    border: 1vw solid var(--color-tone-6);
+    align-content: center;
+    padding: 4vw;
+    overflow-y: auto;
+    box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
+    text-align: start;
+    z-index: 110;
+}
+
+
+.popup-content {
+    height: 90%;
+    padding: 0 4vw;
+    overflow-y: auto; /* Make the content inside the pop-up scrollable */
+}
+
+.panel--result {
     position: absolute;
     top: 50%;
     z-index: 100;
     width: 85%;
     height: 25vh;
-    border: solid .5vw;
-    border-radius: 2vw;
+
     /* font-size: 18px; */
-    display: flex;
     font-size: 4vw;
     flex-direction: column;
-    align-items: center;
     justify-content: space-evenly;
-    box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
 }
-#result-panel.hidden {display: none}
-#result-panel .btn {margin: 2vw;}
+.panel--result.hidden {display: none}
+.panel--result .btn {margin: 2vw;}
 
 .star-cont {
     display: flex;
@@ -508,27 +529,7 @@ input:focus {outline: none}
     cursor: pointer;
 }
 
-#popup-panel {
-    position: fixed;
-    width: 90%;
-    height: 85%;
-    border-radius: 3vw;
-    border: 1vw solid var(--color-tone-6);
-    background-color: white;
-    align-content: center;
-    padding: 4vw;
-    overflow-y: auto;
-    box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
-    text-align: start;
-    z-index: 110;
-}
 
-
-.popup-content {
-    height: 90%;
-    padding: 0 4vw;
-    overflow-y: auto; /* Make the content inside the pop-up scrollable */
-}
 
 p {
     font-size: 5vw;
