@@ -797,7 +797,7 @@ function showPathFinderDialog() {
 
         if (startWord && endWord) {
             console.log(`Looking for paths from "${startWord}" to "${endWord}" with a maximum of ${maxSteps} steps...`);
-            const result = findShortestPathIterative(startWord, endWord, maxSteps);
+            const result = findShortestPath(startWord, endWord, maxSteps);
             console.log(result); // Log the result or display it in your UI
         } else {
             alert('Please enter both a start word and an end word.');
@@ -810,62 +810,50 @@ function showPathFinderDialog() {
 }
 
 
-
-function findShortestPathIterative(startWord, endWord, maxSteps = 6) {
+function findShortestPath(startWord, endWord, maxSteps = 6) {
     console.log(`Looking for paths from "${startWord}" to "${endWord}"...`);
     const minLength = Math.max(3, Math.min(startWord.length, endWord.length) - 1);
     const maxLength = Math.min(6, Math.max(startWord.length, endWord.length) + 1);
 
+    const queue = [[startWord]]; // BFS queue initialized with the start word as the only path
+    const visited = new Set(); // Track visited words to avoid redundant searches
+    visited.add(startWord);
+
     let foundPaths = [];
-    let steps = 2; // Start by looking for two-step paths
+    let shortestPathLength = Infinity;
 
-    while (steps <= maxSteps) {
-        console.log(`Starting search for paths with a maximum of ${steps} steps...`);
-        foundPaths = findPathsWithLimit(startWord, endWord, steps, minLength, maxLength);
-
-        if (foundPaths.length > 0) {
-            console.log(`Found ${foundPaths.length} path(s) with ${steps} steps:`, foundPaths);
-            return foundPaths; // Return as soon as paths are found
-        }
-
-        console.log(`No paths found with ${steps} steps. Trying ${steps + 1}-step paths...`);
-        steps++;
-    }
-
-    console.log(`No paths found within ${maxSteps} steps.`);
-    return []; // Return an empty array if no paths are found
-}
-
-function findPathsWithLimit(startWord, endWord, stepLimit, minLength, maxLength) {
-    const queue = [[startWord]]; // Initialize queue with the start word
-    const visited = new Set(); // Track visited words to avoid revisiting
-
-    const foundPaths = [];
+    console.log(`Starting search for paths with up to ${maxSteps} steps...`);
 
     while (queue.length > 0) {
         const path = queue.shift();
-        const currentWord = path.at(-1); // Last word in the current path
+        const currentWord = path.at(-1);
 
-        if (path.length > stepLimit + 1) {
-            // Stop exploring paths longer than the step limit
-            continue;
+        // Log the current path length being explored
+        if (path.length > shortestPathLength + 1) break;
+        if (path.length <= maxSteps + 1) {
+            console.log(`Now exploring paths of length ${path.length - 1}...`);
         }
 
-        // If the endWord is reached, record the path
+        // If the end word is reached, record the path
         if (currentWord === endWord) {
             foundPaths.push(path);
+            shortestPathLength = path.length - 1; // Shortest path length is updated
+            console.log(`Found a path of ${shortestPathLength} steps: ${path.join(" → ")}`);
             continue;
         }
 
-        // Mark the word as visited
-        visited.add(currentWord);
-
-        // Generate valid next words (neighbors) using isOneMoveApart
+        // Generate valid neighbors (only words 1 move apart)
         const neighbors = getValidNeighbors(currentWord, minLength, maxLength, visited);
-
         for (const neighbor of neighbors) {
-            queue.push([...path, neighbor]); // Add new path to the queue
+            visited.add(neighbor);
+            queue.push([...path, neighbor]);
         }
+    }
+
+    if (foundPaths.length === 0) {
+        console.log(`No paths found from "${startWord}" to "${endWord}" within ${maxSteps} steps.`);
+    } else {
+        console.log(`Search complete. Found ${foundPaths.length} path(s) of ${shortestPathLength} steps:`, foundPaths);
     }
 
     return foundPaths;
@@ -875,10 +863,9 @@ function getValidNeighbors(currentWord, minLength, maxLength, visited) {
     const neighbors = [];
     const wordLength = currentWord.length;
 
-    // Check word lengths within allowed range
     for (let length = minLength; length <= maxLength; length++) {
         const wordSet = wordList[length];
-        if (!wordSet) continue; // Skip missing lengths
+        if (!wordSet) continue;
 
         wordSet.forEach(candidateWord => {
             if (!visited.has(candidateWord) && isOneMoveApart(currentWord, candidateWord)) {
@@ -889,6 +876,8 @@ function getValidNeighbors(currentWord, minLength, maxLength, visited) {
 
     return neighbors;
 }
+
+
 
 
 
