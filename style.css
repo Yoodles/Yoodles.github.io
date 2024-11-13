@@ -250,7 +250,7 @@ body {
     font-size: 3.7vw;
     font-weight: 300;
     /* border: ridge rgb(112, 112, 112) 0.3vw; */
-    border: ridge rgb(59, 59, 59) 0.3vw;
+    border: ridge rgb(59, 59, 59) 0.5vw;
 
     border-radius: 1.2vw;
     animation-name: fadeIn;
