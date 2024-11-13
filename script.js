@@ -550,7 +550,6 @@ function undoMove() {
 }
 
 
-
 function modifyHeight(action, rack, array) {
     const wordContHeight = window.innerWidth * 11.5 / 100;
     const normSet = document.getElementById('norm-set');
@@ -562,38 +561,38 @@ function modifyHeight(action, rack, array) {
         flipSet.className = 'set';
     };
 
+    // Utility function to add the appropriate classes
+    const addSlideClasses = (actionType) => {
+        const directionClass = gameState.direction === 'norm' ? 'down' : 'up';
+        const normClass = `slide-${directionClass}--comp-${actionType}`;
+        const flipClass = `slide-${directionClass === 'down' ? 'up' : 'down'}--comp-${actionType}`;
+
+        normSet.classList.add(normClass);
+        flipSet.classList.add(flipClass);
+    };
+
     switch (action) {
         case 'submit':
-            if (gameState.isComplete) {
-                normSet.classList.add('slide--subm', gameState.direction === 'norm' ? 'slide--down-complete' : 'slide--up-complete');
-                flipSet.classList.add('slide--subm', gameState.direction === 'norm' ? 'slide--up-complete' : 'slide--down-complete');
-            } else rack.style.height = array.length * wordContHeight + 'px';
-
-            break;
-
-        case 'delete':
-            if (gameState.isComplete) {
-                normSet.classList.add('slide--del', gameState.direction === 'norm' ? 'slide--down-complete' : 'slide--up-complete');
-                flipSet.classList.add('slide--del', gameState.direction === 'norm' ? 'slide--up-complete' : 'slide--down-complete');
-            }
+            if (gameState.isComplete) addSlideClasses('sbmt');
             else rack.style.height = array.length * wordContHeight + 'px';
             break;
-
+        case 'delete':
+            if (gameState.isComplete) addSlideClasses('del');
+            else rack.style.height = array.length * wordContHeight + 'px';
+            break;
         case 'undo':
             resetSets();
             break;
-
         case 'reset':
             resetSets();
-            normRack.style.height = '0px';
-            flipRack.style.height = '0px';
+            rack.style.height = '0px';
             break;
-
         default:
             console.warn(`Unknown action: ${action}`);
             break;
     }
 }
+
 
 
 function toggleOverlay(mode) {

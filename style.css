@@ -220,13 +220,11 @@ body {
 
 
 
+.slide-down--comp-sbmt { transform: translateY(9vw); }
+.slide-up--comp-sbmt { transform: translateY(-9vw); }
+.slide-down--comp-del { transform: translateY(20.5vw); }
+.slide-up--comp-del { transform: translateY(-20.5vw); }
 
-
-
-.slide--subm.slide--down-complete {transform: translateY(9vw);}
-.slide--subm.slide--up-complete {transform: translateY(-9vw);}
-.slide--del.slide--down-complete {transform: translateY(20.5vw);}
-.slide--del.slide--up-complete {transform: translateY(-20.5vw);}
 
 
 #game-area {
