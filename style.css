@@ -115,6 +115,8 @@ body {
     text-align: end;
     align-items: center;
     gap: 1vw;
+    
+    pointer-events: all;
 }
 .display--min-max b {font-weight: 500;}
 
@@ -704,11 +706,13 @@ z-index:
 
 
 
-.css-test {
+#css-test {
     height: 100%;
     width: 100%;
+    z-index: 800;
+    pointer-events: all;
 }
-.css-test.off {display: none}
+#css-test.off {display: none}
 
 
 

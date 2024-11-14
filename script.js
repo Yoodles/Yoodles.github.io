@@ -1099,10 +1099,9 @@ function getValidNeighbors(currentWord, minLength, maxLength, visited, pathLengt
 
 
 
-
-
 function testUI() {
-    
+    console.log('hey');
+    document.getElementById('css-test').classList.toggle('off');
 }
 
 
