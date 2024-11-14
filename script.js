@@ -72,7 +72,7 @@ function updateMinMaxDisplay() {
 
     // Update the inner HTML with the wordPair's min and max lengths
     minMaxLengthsElement.innerHTML = `
-        <span class="tile tile--min-max"></span>${wordPair.minLength} — ${wordPair.maxLength}
+        <span class="tile tile--min-max"></span><span>: ${wordPair.minLength} – ${wordPair.maxLength}</span>
     `;
 }
 

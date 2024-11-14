@@ -91,6 +91,7 @@ body {
 
 
 .display {
+    margin-bottom: auto;
     font-size: 3.5vw;
     z-index: 80;
 
@@ -102,10 +103,13 @@ body {
 
 .display--min-max {
     display: inline-flex;
+    align-items: middle;
 }
-.display--min-max .tile {
-    height: 2vw;
-    width: 2vw;
+
+.tile--min-max {
+    font-size: unset;
+    width: 3.5vw;
+    height: 3.5vw;
 }
 
 
@@ -127,9 +131,6 @@ body {
 }
 
 .btn--reset {
-    /* position: absolute; */
-    /* right: 3vw; */
-    /* top: 7vh; */
     font-size: 3vw;
     left: 4vw;
     height: 4vh;
@@ -137,7 +138,6 @@ body {
     border-radius: 1vw;
 }
 
-.btn--reset { height: 5vh; width: 15vw; border-radius: 1vw;}
 .btn--help {
     /* right: 0%; */
     margin: 2vw 3vw;
@@ -236,28 +236,48 @@ body {
 .tile {
     display: flex;
     justify-content: center;
-    background: none;
-    /* border: .1vw solid rgb(193, 193, 193); */
     margin: 0.7vw;
-    align-items: center;
-    font-size: 3.7vw;
-    font-weight: 400;
-    /* border: ridge rgb(112, 112, 112) 0.3vw; */
-    border: ridge var(--tile-color) 0.5vw;
 
-    border-radius: 1.2vw;
+    background: none;
+
+    /* border: .1vw solid rgb(193, 193, 193); */
+
+    align-items: center;
+    font-weight: 400;
+    border: ridge var(--tile-color);
+
+    border-radius: 14%;
+
     animation-name: fadeIn;
     animation-duration: 0.2s;
-    flex: 1;
-    position: relative;
-    filter: drop-shadow(1vw 1vw .7vw rgba(128, 121, 121, 0.813));
+
 }
-#gameplay-cont .tile {height: 10vw; width: 10vw}
-#help-content .tile {width: 5vw; height: 5vw; font-size: 4vw; box-shadow: none;}
+#gameplay-cont .tile {
+    height: 10vw;
+    width: 10vw;
+
+    border-width: 0.5vw;
+    font-size: 3.7vw;
+
+    filter: drop-shadow(1vw 1vw .7vw rgba(128, 121, 121, 0.813));
+
+}
 
 .set-word .tile {
     font-weight: 500;
 }
+.tile--help, .tile--min-max {
+    border-width: 0.2vw;
+    font-size: 3vw;
+    box-shadow: none;}
+
+.tile--help {width: 5vw; height: 5vw;}
+
+
+
+
+
+
 
 .tile.tile--added {background-color: rgb(219, 255, 219);}
 .tile.tile--moved {background-color: rgb(255, 227, 231)}
