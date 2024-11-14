@@ -26,7 +26,7 @@ function updateWordPairObj(pairKey) {
         wordPair.startWord = wordPairData.start;
         wordPair.endWord = wordPairData.end;
 
-        wordPair.maxLength = Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1;
+        wordPair.maxLength = Math.min(Math.max(wordPair.startWord.length, wordPair.endWord.length) + 1, 6);
         wordPair.minLength = Math.max(Math.min(wordPair.startWord.length, wordPair.endWord.length) - 1, 3);
 
         wordPair.score3star = wordPairData.score.A;
@@ -68,11 +68,11 @@ function jumpToRound(pairKey) {
 }
 
 function updateMinMaxDisplay() {
-    const minMaxLengthsElement = document.getElementById('min-max-lengths');
+    const minMaxLengths = document.getElementById('min-max-lengths');
 
     // Update the inner HTML with the wordPair's min and max lengths
-    minMaxLengthsElement.innerHTML = `
-        <span class="tile tile--min-max"></span><span>: ${wordPair.minLength} – ${wordPair.maxLength}</span>
+    minMaxLengths.innerHTML = `
+        <span class="tile tile--min-max"></span><span><b>:</b></span><span> ${wordPair.minLength} – ${wordPair.maxLength}</span>
     `;
 }
 
@@ -823,12 +823,11 @@ function showPathFinderDialog() {
     });
 }
 
-
-
+//max-length *****
 function findShortestPath(startWord, endWord, maxSteps = 6) {
     console.log(`Looking for paths from "${startWord}" to "${endWord}"...`);
-    const minLength = Math.max(3, Math.min(startWord.length, endWord.length) - 1);
-    const maxLength = Math.min(6, Math.max(startWord.length, endWord.length) + 1);
+    const minLength = Math.max(3, Math.min(startWord.length, endWord.length) - 1, 3);
+    const maxLength = Math.min(6, Math.max(startWord.length, endWord.length) + 1, 6);
 
     const queue = [[startWord]]; // BFS queue initialized with the start word as the only path
     const visited = new Map(); // Track visited words and their shortest known path length

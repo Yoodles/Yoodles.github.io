@@ -11,6 +11,8 @@
   font-size: inherit;
   text-align: center;
   vertical-align: baseline;
+  font-variant-numeric: lining-nums; /* <numeric-figure-values> */
+
 }
 
 @font-face {
@@ -103,11 +105,15 @@ body {
 
 .display--min-max {
     display: inline-flex;
-    align-items: middle;
+    text-align: end;
+    align-items: center;
+    gap: 1vw;
 }
+.display--min-max b {font-weight: 500;}
 
 .tile--min-max {
-    font-size: unset;
+    /* font-size: unset; */
+    border-width: 1vw;
     width: 3.5vw;
     height: 3.5vw;
 }
@@ -236,7 +242,6 @@ body {
 .tile {
     display: flex;
     justify-content: center;
-    margin: 0.7vw;
 
     background: none;
 
@@ -255,6 +260,7 @@ body {
 #gameplay-cont .tile {
     height: 10vw;
     width: 10vw;
+    margin: 0.7vw;
 
     border-width: 0.5vw;
     font-size: 3.7vw;
@@ -266,12 +272,14 @@ body {
 .set-word .tile {
     font-weight: 500;
 }
-.tile--help, .tile--min-max {
-    border-width: 0.2vw;
-    font-size: 3vw;
-    box-shadow: none;}
 
-.tile--help {width: 5vw; height: 5vw;}
+.tile--help {
+    width: 5vw;
+    height: 5vw;
+    margin: 0.4vw;
+    border-width: .4vw;
+    font-size: 3vw;
+}
 
 
 
