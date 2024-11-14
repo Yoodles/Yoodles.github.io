@@ -31,23 +31,21 @@
     font-family: 'Raleway', sans-serif;
     display: inline-block;
     /* height: fit-content; */
-    width: 80%;
-    aspect-ratio: 5/3;
-    /* height: fit-content; */
-    height: fit-content;
-    /* overflow: hidden; */
+    width: 90%;
+    aspect-ratio: 5/2;
+    height: auto;
     vertical-align: baseline;
 
     border: solid black 0.5px;
     /* gap: 0vw; */
-    --arrow-color: rgb(185, 185, 185);
+    --arrow-color: rgb(92, 92, 92);
     --arrow-angle: -92deg;
-    --arrow-length: 25vh;
+    --arrow-length: 22vh;
     --arrow-thickness: 0.3vh;
 }
 
 
-.arrow-shaft {
+.logo__arrow-shaft {
     position: absolute;
     top: 50%;
     /* bottom: 0; */
@@ -62,7 +60,8 @@
     z-index: 0;
 }
 
-.arrow-shaft::before, .arrow-shaft::after {
+.logo__arrow-shaft::before,
+.logo__arrow-shaft::after {
     content: 'V';
     position: absolute;
     color: var(--arrow-color);
@@ -71,12 +70,13 @@
     z-index: 0;
 }
 
-.arrow-shaft::before {
+.logo__arrow-shaft::before {
     transform: translate(-100%, -50%) rotate(-91deg); left: var(--arrow-length);}
 
-.arrow-shaft::after {transform: translate(100%, -50%) rotate(89deg); right: var(--arrow-length);}
+.logo__arrow-shaft::after {transform: translate(100%, -50%) rotate(89deg); right: var(--arrow-length);}
 
-.word-container {
+
+.logo__name-cont {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -85,10 +85,14 @@
     display: inline-block;
     z-index: 1; /* Ensure text appears above the arrow */
     white-space: nowrap;
+    border: solid 1px grey;
 }
 
+.logo__name-cont * {
+    margin: 0;
+}
 
-.word-and-ward {
+.logo__one-word {
     font-size: 6vh;
     font-weight: 300;
     line-height: 1;
@@ -100,12 +104,46 @@
     font-kerning: normal;
     font-feature-settings: "liga" on, "kern" on;
     letter-spacing: -0.3vh;
+    overflow: visible;
+
 }
 
-.w1 {font-weight: 500}
-.ord {font-weight: 300}
-.w2 {font-weight: 400}
-.ard {font-weight: 200}
+.logo__one-word {
+    width: fit-content;
+}
+
+.logo__one-word.word {
+    /* text-align: start; */
+    transform: translateX(8%);
+    border: solid 0.3px lightpink;
+}
+.logo__one-word.ward {
+    /* text-align: end; */
+    transform: translateX(-8%);
+    border: solid 0.3px lightblue;
+}
+
+.logo__w {
+    font-weight: 500;
+    transform: translateX(0%);
+
+    /* width: 2.3vw; */
+}
+.logo__ord {
+    font-weight: 300;
+    transform: translateX(-10%);
+
+}
+.logo__w2 {
+    font-weight: 400;
+    transform: translateX(4%);
+
+}
+.logo__ard {
+    font-weight: 200;
+    transform: translateX(0%);
+
+}
 
 
 
