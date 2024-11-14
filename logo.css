@@ -17,6 +17,19 @@
 
 
 
+/*
+    filter: drop-shadow(5vw 4vw 0.7vw rgba(0, 0, 0, 0.813));
+    filter: drop-shadow(.2vw .2vw .6vw rgba(128, 121, 121, 0.813));
+
+
+    filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813));
+    
+    filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
+
+*/
+
+
+
 #css-test {
     height: 100%;
     width: 100%;
@@ -71,22 +84,23 @@
     font-size: 4vh;
     z-index: 0;
 }
-.logo__arrow-shaft::before {
-    transform: translate(-100%, -46%) rotate(-91deg); left: var(--arrow-length);}
+.logo__arrow-shaft::before {transform: translate(-100%, -46%) rotate(-91deg); left: var(--arrow-length);}
 .logo__arrow-shaft::after {transform: translate(100%, -47%) rotate(89deg); right: var(--arrow-length);}
 
 
 
 
 .logo__name-cont {
+    /* font-family: 'Raleway', Light; */
+
     gap: 0vw;
     display: inline-flex;
     position: relative;
     background: none;
     display: inline-block;
-    z-index: 1; /* Ensure text appears above the arrow */
+    z-index: 1;
     white-space: nowrap;
-    border: solid 1px rgb(224, 224, 224);
+    /* border: solid 1px rgb(224, 224, 224); */
     padding: 2vh;
 }
 
@@ -94,7 +108,6 @@
 
 
 .logo__one-word {
-
     display: inline-flex;
     gap: 0vw;
     position: relative;
@@ -108,16 +121,19 @@
     font-feature-settings: "liga" on, "kern" on;
     letter-spacing: -.1vh;
 
+    filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813));
+
+
 }
 
 
 .logo__one-word.w-ord {
     transform: translateX(var(--adjustment));
-    border: solid 0.1px rgba(255, 192, 203, 0.827);
+    /* border: solid 0.1px rgba(255, 192, 203, 0.827); */
 }
 .logo__one-word.w-ard {
     transform: translateX(var(--adjustment));
-    border: solid 0.1px rgba(180, 236, 255, 0.765);
+    /* border: solid 0.1px rgba(180, 236, 255, 0.765); */
 }
 
 
