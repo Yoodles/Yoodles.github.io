@@ -20,7 +20,10 @@
 
             <button class="btn btn--reset btn--fill shadow" onclick="updateGame('resetRound')">RESET</button>
 
-            <button id="game-logo" class="btn btn--img shadow" onclick="togglePanel('rounds')"><img src="images/logo.png"></button>
+            <button id="game-logo" class="btn btn--img shadow" onclick="testUI()"><img src="images/logo.png"></button>
+
+            <!-- <button id="game-logo" class="btn btn--img shadow" onclick="togglePanel('rounds')"><img src="images/logo.png"></button> -->
+
 
             <button class="btn btn--help btn--fill shadow--min" onclick="togglePanel('help')">?</button>
 
@@ -138,7 +141,7 @@
                     <div id="best-score" class="shadow--min">Best: --</div>
                 </div>
                 <!-- <div onclick="testUI()" id="min-max-lengths" class="display display--min-max shadow--min"></div> -->
-                <div onclick="testUI()" id="min-max-lengths" class="display display--min-max shadow--min"></div>
+                <div onclick="togglePanel('rounds')" id="min-max-lengths" class="display display--min-max shadow--min"></div>
 
 
             </div>
