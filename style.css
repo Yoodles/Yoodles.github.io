@@ -4,6 +4,16 @@
     --tile-color: rgb(59, 59, 59);
 }
 
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/Raleway-VariableFont_wght.ttf') format('truetype'),
+    url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;500;700&display=swap');
+    font-weight: 100 200 300 400 500 900;
+    font-style: normal;
+}
+
+
+
 *, *:before, *:after {
   box-sizing: border-box;
   user-select: none;
@@ -15,11 +25,10 @@
 
 }
 
-@font-face {
-    font-family: 'Raleway';
-    src: url('../fonts/Raleway-VariableFont_wght.ttf') format('truetype');
-    font-weight: 100 300 400 500 900;
-    font-style: normal;
+html, body, .tile, .logo {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 body {
@@ -28,9 +37,6 @@ body {
     font-family: 'Raleway', sans-serif;
     background-color: var(--main-bg-color);
     touch-action: manipulation;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
 }
 
 #app-container {
@@ -40,6 +46,8 @@ body {
     align-items: center;
     width: 100vw;
     height: calc(var(--vh, 1vh) * 100); /* Full viewport height based on custom property */
+    background-color: #f1f1f1;
+
 }
 
 #header {
@@ -50,7 +58,7 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 80;
-    background-color: #f1f1f1;
+    /* background-color: #f1f1f1; */
 }
 
 #game-logo > img {width: 45vw;}
@@ -692,3 +700,160 @@ z-index:
 }
 #W2 {font-weight: 250; transform: translate(-0.15vw)}
 #ARD {transform: translate(-1vw)} */
+
+
+
+
+.css-test {
+    height: 100%;
+    width: 100%;
+}
+.css-test.off {display: none}
+
+
+
+
+
+
+
+.logo {
+    position: relative;
+
+    font-family: 'Raleway', sans-serif;
+    display: inline-block;
+    /* height: fit-content; */
+    width: 80%;
+    aspect-ratio: 5/3;
+    /* height: fit-content; */
+    height: fit-content;
+    /* overflow: hidden; */
+    vertical-align: baseline;
+
+    border: solid black 0.5px;
+    /* gap: 0vw; */
+    --arrow-color: rgb(185, 185, 185);
+    --arrow-angle: -92deg;
+    --arrow-length: 25vh;
+    --arrow-thickness: 0.3vh;
+}
+
+
+.arrow-shaft {
+    position: absolute;
+    top: 50%;
+    /* bottom: 0; */
+    left: 50%;
+
+    width: var(--arrow-length);
+    height: var(--arrow-thickness);
+
+    background-color: var(--arrow-color);
+    transform: translate(-50%, 0%) rotate(113.2deg);
+    transform-origin: center;
+    z-index: 10;
+}
+
+.arrow-shaft::before, .arrow-shaft::after {
+    content: 'V';
+    position: absolute;
+    color: var(--arrow-color);
+    font-weight: 300;
+    font-size: 4.5vh;
+    z-index: 1;
+}
+
+.arrow-shaft::before {
+    transform: translate(-100%, -50%) rotate(-91deg); left: var(--arrow-length);}
+
+.arrow-shaft::after {transform: translate(100%, -50%) rotate(89deg); right: var(--arrow-length);}
+
+.word-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    display: inline-block;
+    z-index: 1; /* Ensure text appears above the arrow */
+    white-space: nowrap;
+}
+
+
+.word-and-ward {
+    font-size: 6vh;
+    font-weight: 300;
+    line-height: 1;
+    padding: 0;
+    margin: auto 0;
+    display: inline-block;
+    z-index: 200;
+    font-variant: normal;
+    font-kerning: normal;
+    font-feature-settings: "liga" on, "kern" on;
+    letter-spacing: -0.3vh;
+}
+
+.word-and-ward::first-letter {font-weight: 500;}
+
+.word {
+    transform: translateX(2%);
+}
+.ward {
+    transform: translateX(-2%);
+}
+
+
+
+.test-deleter {
+    height: 10vw;
+    width: 90%;
+    font-size: 5vw;
+    background: none;
+    border: none
+}
+
+.test-flip {
+    border: none;
+    background: none;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+    font-size: 5.5vw;
+
+    height: 30vw;
+    width: 90%;
+    padding: 0;
+
+    /* margin: 0; */
+    /* background: #ffc0cb66; */
+}
+.test-flip__top { /* "M" */
+    transform: rotate(180deg) translate(-0.15vw, -0.2vw);
+    margin: 0;
+    text-shadow: -2px -4px rgba(0, 0, 0, 0.181);
+
+}
+.test-flip__bottom {  /* "W" */
+    transform: translate(-0.15vw, -2.7vw);
+    margin: 0;
+    text-shadow: 2px 4px rgba(0, 0, 0, 0.181);
+}
+
+
+/* Ensuring aspect ratio */
+/* .logo {
+    aspect-ratio: 16 / 9;
+    width: 50vw;
+    height: auto;
+} */
+
+
+
+/*
+@media (max-width: 800px) {
+    .logo {
+        width: 100%;
+        height: auto;
+    }
+}
+*/

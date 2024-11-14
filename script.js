@@ -1101,6 +1101,14 @@ function getValidNeighbors(currentWord, minLength, maxLength, visited, pathLengt
 
 
 
+function testUI() {
+    
+}
+
+
+
+
+
 // INITIALIZE GAME DISPLAY AFTER GAMELOAD
 
 

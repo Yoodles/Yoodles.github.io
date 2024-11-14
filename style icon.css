@@ -41,83 +41,84 @@ body {
     /* height: fit-content; */
     width: 80%;
     aspect-ratio: 5/3;
-    height: auto;
-    overflow: hidden;
+    /* height: fit-content; */
+    height: fit-content;
+    /* overflow: hidden; */
     vertical-align: baseline;
-    font-variant: normal;
-    font-kerning: normal;
-    font-feature-settings: "liga" on, "kern" on;
-    letter-spacing: 0;
-    margin: auto;
+
     border: solid black 0.5px;
     /* gap: 0vw; */
-    --arrow-color: rgb(152, 152, 152);
+    --arrow-color: rgb(185, 185, 185);
     --arrow-angle: -92deg;
-    --arrow-length: 50vw;
-    --arrow-thickness: 0.7vw;
+    --arrow-length: 25vh;
+    --arrow-thickness: 0.3vh;
 }
 
 
 .arrow-shaft {
     position: absolute;
-    top: 0;
-    bottom: 9;
-    /* left: 50%; */
-    left: 0;
-    width: 100%;
-    /* width: var(--arrow-length); */
+    top: 50%;
+    /* bottom: 0; */
+    left: 50%;
+
+    width: var(--arrow-length);
     height: var(--arrow-thickness);
+
     background-color: var(--arrow-color);
-    transform: translate(-50%, -50%) rotate(-66.9deg);
+    transform: translate(-50%, 0%) rotate(113.2deg);
     transform-origin: center;
-    z-index: 0;
+    z-index: 10;
 }
 
 .arrow-shaft::before, .arrow-shaft::after {
     content: 'V';
     position: absolute;
     color: var(--arrow-color);
-    font-weight: 400;
-    font-size: 8vw;
+    font-weight: 300;
+    font-size: 4.5vh;
     z-index: 1;
 }
 
 .arrow-shaft::before {
-    transform: translate(-100%, -46%) rotate(-91deg); left: var(--arrow-length);}
+    transform: translate(-100%, -50%) rotate(-91deg); left: var(--arrow-length);}
 
-.arrow-shaft::after {transform: translate(100%, -46.5%) rotate(89deg); right: var(--arrow-length);}
+.arrow-shaft::after {transform: translate(100%, -50%) rotate(89deg); right: var(--arrow-length);}
 
 .word-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
+    background: none;
     display: inline-block;
     z-index: 1; /* Ensure text appears above the arrow */
     white-space: nowrap;
 }
 
-.word, .ward {
-    /* position: absolute; */
-    font-size: 8.1vw;
-    font-weight: 200;
-}
 
 .word-and-ward {
-    font-size: 8vw;
+    font-size: 6vh;
     font-weight: 300;
     line-height: 1;
-    /* letter-spacing: -0.04vw; */
     padding: 0;
     margin: auto 0;
     display: inline-block;
     z-index: 200;
+    font-variant: normal;
+    font-kerning: normal;
+    font-feature-settings: "liga" on, "kern" on;
+    letter-spacing: -0.3vh;
 }
 
-.word-and-ward::first-letter {
-    font-weight: 500;
+.word-and-ward::first-letter {font-weight: 500;}
+
+.word {
+    transform: translateX(2%);
 }
+.ward {
+    transform: translateX(-2%);
+}
+
 
 
 /* 
@@ -137,7 +138,7 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 #ARD {transform: translate(-1vw)} */
 
 
-#game-logo > img {width: 45vw;}
+#game-logo > img {width: 60vw;}
 
 
 /* Ensuring aspect ratio */
@@ -215,18 +216,6 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 
 
 
-
-
-#input-set {
-    display: flex;
-    position: relative;
-    align-items: center;
-    width: 100%;
-    margin: auto;
-    margin-top: 10vh;
-    z-index: 70;
-}
-
 #flipper-and-deleters {
     display: flex;
     left: 100%;
@@ -239,14 +228,11 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 }
 
 
-.deleter {
-    position: relative;
-}
+.deleter {position: relative;}
 
 
 .deleter img {height: 7vw;}
 #lower-deleter img {transform: rotate(0.5turn)}
-
 
 
 
@@ -268,10 +254,44 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     font-weight: 105;
     border-radius: 4vw;
     text-align: center;
-    position: relative; /*redundant?*/
-    margin: 2vw 0;
     filter: drop-shadow(.3vw .3vw .4vw rgba(128, 121, 121, 0.813));
+}
+
+
+
+
+.deleters {
+    height: 10vw;
+    width: 90%;
+    font-size: 5vw;
+    background: none;
+    border: none
+}
+
+#toggleFlip {
+    border: none;
+    background: none;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+    font-size: 5.5vw;
+
+    height: 30vw;
+    width: 90%;
+    padding: 0;
+
+    /* margin: 0; */
+    /* background: #ffc0cb66; */
+}
+#toggleTop { /* "M" */
+    transform: rotate(180deg) translate(-0.15vw, -0.2vw);
+    margin: 0;
+    text-shadow: -2px -4px rgba(0, 0, 0, 0.181);
 
 }
-input:focus {outline: none}
+#toggleBottom {  /* "W" */
+    transform: translate(-0.15vw, -2.7vw);
+    margin: 0;
+    text-shadow: 2px 4px rgba(0, 0, 0, 0.181);
 
+}
