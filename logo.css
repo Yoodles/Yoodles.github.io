@@ -38,9 +38,9 @@
     height: auto;
     vertical-align: baseline;
 
-    --arrow-color: rgb(92, 92, 92);
+    --arrow-color: rgb(181, 181, 181);
     --arrow-angle: -92deg;
-    --arrow-length: 22vh;
+    --arrow-length: 25vh;
     --arrow-thickness: 0.3vh;
 
     border: solid black 0.5px;
@@ -57,7 +57,7 @@
     height: var(--arrow-thickness);
 
     background-color: var(--arrow-color);
-    transform: translate(-50%, 0%) rotate(113.2deg);
+    transform: translate(-43.5%, 0%) rotate(113.2deg);
     transform-origin: center;
     z-index: 0;
 }
@@ -79,7 +79,6 @@
 
 
 .logo__name-cont {
-    
     gap: 0vw;
     display: inline-flex;
     position: relative;
@@ -100,7 +99,6 @@
     gap: 0vw;
     position: relative;
 
-    font-weight: 300;
     line-height: 1;
     padding: 0;
     margin: auto 0;
@@ -108,7 +106,7 @@
     font-variant: normal;
     font-kerning: normal;
     font-feature-settings: "liga" on, "kern" on;
-    letter-spacing: 0vh;
+    letter-spacing: -.1vh;
 
 }
 
