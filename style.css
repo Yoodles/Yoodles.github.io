@@ -28,6 +28,9 @@ body {
     font-family: 'Raleway', sans-serif;
     background-color: var(--main-bg-color);
     touch-action: manipulation;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 #app-container {

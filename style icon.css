@@ -4,28 +4,53 @@
     --tile-color: rgb(59, 59, 59);
 }
 
-*, *:before, *:after {
-  box-sizing: border-box;
-  user-select: none;
-  text-align: center;
-  vertical-align: baseline;
-  /* font-variant-numeric: lining-nums; */
-
-}
 
 @font-face {
     font-family: 'Raleway';
-    src: url('../fonts/Raleway-VariableFont_wght.ttf') format('truetype');
-    font-weight: 100 300 400 500 600 700 900;
+    src: url('../fonts/Raleway-VariableFont_wght.ttf') format('truetype'),
+        url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;500;700&display=swap');
+    font-weight: 100 300 500 700 900;
+
     font-style: normal;
 }
 
+
+/* montserrat */
+
+html, body, .tile, .logo {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
 body {
-    margin-top: 20vh;
     font-family: 'Raleway', sans-serif;
+    margin-top: 20vh;
     display: flex;
     flex-direction: column;
     padding: 15vh 10vw;
+}
+
+
+
+.logo {
+    position: relative;
+
+    font-family: 'Raleway', sans-serif;
+    display: inline-block;
+    /* height: fit-content; */
+    width: 80%;
+    aspect-ratio: 5/3;
+    height: auto;
+    overflow: hidden;
+    vertical-align: baseline;
+    font-variant: normal;
+    font-kerning: normal;
+    font-feature-settings: "liga" on, "kern" on;
+    letter-spacing: 0;
+    margin: auto;
+    border: solid black 0.5px;
+    /* gap: 0vw; */
     --arrow-color: rgb(152, 152, 152);
     --arrow-angle: -92deg;
     --arrow-length: 50vw;
@@ -33,21 +58,22 @@ body {
 }
 
 
-
-.logo {display: inline;}
-
-.line-with-v {
-    display: block;
-    margin-left: 12vh;
-    width: var(--arrow-length);
+.arrow-shaft {
+    position: absolute;
+    top: 0;
+    bottom: 9;
+    /* left: 50%; */
+    left: 0;
+    width: 100%;
+    /* width: var(--arrow-length); */
     height: var(--arrow-thickness);
     background-color: var(--arrow-color);
-    position: absolute;
-    transform: rotate(-66.9deg);
-    z-index: 1;
+    transform: translate(-50%, -50%) rotate(-66.9deg);
+    transform-origin: center;
+    z-index: 0;
 }
 
-.line-with-v::before, .line-with-v::after {
+.arrow-shaft::before, .arrow-shaft::after {
     content: 'V';
     position: absolute;
     color: var(--arrow-color);
@@ -56,29 +82,41 @@ body {
     z-index: 1;
 }
 
-.line-with-v::before {
-    left: var(--arrow-length);
-    transform: translate(-100%, -46%) rotate(-91deg);
+.arrow-shaft::before {
+    transform: translate(-100%, -46%) rotate(-91deg); left: var(--arrow-length);}
+
+.arrow-shaft::after {transform: translate(100%, -46.5%) rotate(89deg); right: var(--arrow-length);}
+
+.word-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: inline-block;
+    z-index: 1; /* Ensure text appears above the arrow */
+    white-space: nowrap;
 }
-
-.line-with-v::after {
-    right: var(--arrow-length);
-    transform: translate(100%, -46.5%) rotate(89deg);
-}
-
-
 
 .word, .ward {
+    /* position: absolute; */
     font-size: 8.1vw;
     font-weight: 200;
 }
 
-.word::first-letter {font-size: 14px;}
+.word-and-ward {
+    font-size: 8vw;
+    font-weight: 300;
+    line-height: 1;
+    /* letter-spacing: -0.04vw; */
+    padding: 0;
+    margin: auto 0;
+    display: inline-block;
+    z-index: 200;
+}
 
 .word-and-ward::first-letter {
-    /* font-weight: 600; */
-    color: red;
-    text-decoration: dashed;
+    font-weight: 500;
 }
 
 
@@ -101,6 +139,24 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 
 #game-logo > img {width: 45vw;}
 
+
+/* Ensuring aspect ratio */
+/* .logo {
+    aspect-ratio: 16 / 9;
+    width: 50vw;
+    height: auto;
+} */
+
+
+
+/*
+@media (max-width: 800px) {
+    .logo {
+        width: 100%;
+        height: auto;
+    }
+}
+*/
 
 
 
@@ -166,9 +222,8 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     position: relative;
     align-items: center;
     width: 100%;
-    /* min-width: 60vw; */
     margin: auto;
-    margin-top: 20vh;
+    margin-top: 10vh;
     z-index: 70;
 }
 
@@ -177,9 +232,9 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     left: 100%;
     flex-direction: column;
     justify-content: space-around;
-    height: 47.5vw;
+    height: 20.5vw;
     position: absolute;
-    width: 14vw;
+    width: 29vw;
     align-items: center;
 }
 
@@ -200,9 +255,8 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 #flippin-button img {height: 12.3vw;}
 
 
-
 #input-field {
-    width: 80%;
+    width: 70%;
     height: 14vw;
     text-transform: uppercase;
     border: 0.3vw dashed #545454;
@@ -216,7 +270,6 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     text-align: center;
     position: relative; /*redundant?*/
     margin: 2vw 0;
-    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
     filter: drop-shadow(.3vw .3vw .4vw rgba(128, 121, 121, 0.813));
 
 }

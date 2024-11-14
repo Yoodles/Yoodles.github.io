@@ -17,11 +17,12 @@
     <!-- <div class="angled-arrow"></div> -->
 
 
-
-
     <div class="logo">
-        <div class="line-with-v"></div>
-        <span class="word-and-ward word">WORD</span><span class="word-and-ward ward">WARD</span>
+        <div class="arrow-shaft"></div>
+        <div class="word-container">
+            <span class="word-and-ward word">WORD</span>
+            <span class="word-and-ward ward">WARD</span>
+        </div>
     </div>
 
 
@@ -29,19 +30,14 @@
 
     <button class="btn btn--help btn--fill shadow--min" onclick="togglePanel('help')">?</button>
 
-    <div id="input-set">
-        <input id="input-field" type ="text">
-        <div id="flipper-and-deleters">
-            <button id="upper-deleter" class="btn btn--img shadow deleter" onclick="deleteMove('upper')"><img src="images/deleter.png"></button>
-            <button id="flippin-button" class="btn btn--img shadow" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
-            <button id="lower-deleter" class="btn btn--img shadow deleter" onclick="deleteMove('lower')"><img src="images/deleter.png"></button>
-        </div>
+
+    <input id="input-field" type ="text">
+    <div id="flipper-and-deleters">
+        <button id="upper-deleter" class="btn btn--img shadow deleter" onclick="deleteMove('upper')"><img src="images/deleter.png"></button>
+        <button id="flippin-button" class="btn btn--img shadow" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
+        <button id="lower-deleter" class="btn btn--img shadow deleter" onclick="deleteMove('lower')"><img src="images/deleter.png"></button>
     </div>
 
-
-    <script src="script.js"></script>
-    <script src="words.js"></script>
-    <script src="word-validity.js"></script>
 
 </body>
 </html>
