@@ -26,22 +26,24 @@
 
 
 .logo {
+    display: flex;
     position: relative;
+    justify-content: center;
+    align-items: center;
 
     font-family: 'Raleway', sans-serif;
-    display: inline-block;
-    /* height: fit-content; */
+
     width: 90%;
     aspect-ratio: 5/2;
     height: auto;
     vertical-align: baseline;
 
-    border: solid black 0.5px;
-    /* gap: 0vw; */
     --arrow-color: rgb(92, 92, 92);
     --arrow-angle: -92deg;
     --arrow-length: 22vh;
     --arrow-thickness: 0.3vh;
+
+    border: solid black 0.5px;
 }
 
 
@@ -62,25 +64,27 @@
 
 .logo__arrow-shaft::before,
 .logo__arrow-shaft::after {
-    content: 'V';
+    content: 'v';
     position: absolute;
     color: var(--arrow-color);
-    font-weight: 300;
-    font-size: 4.5vh;
+    font-weight: 500;
+    font-size: 4vh;
     z-index: 0;
 }
-
 .logo__arrow-shaft::before {
-    transform: translate(-100%, -50%) rotate(-91deg); left: var(--arrow-length);}
+    transform: translate(-100%, -46%) rotate(-91deg); left: var(--arrow-length);}
 
-.logo__arrow-shaft::after {transform: translate(100%, -50%) rotate(89deg); right: var(--arrow-length);}
+.logo__arrow-shaft::after {transform: translate(100%, -47%) rotate(89deg); right: var(--arrow-length);}
+
+
 
 
 .logo__name-cont {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    
+    gap: 0vw;
+    display: inline-flex;
+    position: relative;
+    /* transform: translate(-50%, -50%); */
     background: none;
     display: inline-block;
     z-index: 1; /* Ensure text appears above the arrow */
@@ -92,18 +96,25 @@
     margin: 0;
 }
 
+
+.logo__one-word {
+    display: inline-flex;
+    gap: 0vw;
+    position: relative;
+}
+
 .logo__one-word {
     font-size: 6vh;
     font-weight: 300;
     line-height: 1;
     padding: 0;
     margin: auto 0;
-    display: inline-block;
+    /* display: inline-block; */
     z-index: 200;
     font-variant: normal;
     font-kerning: normal;
     font-feature-settings: "liga" on, "kern" on;
-    letter-spacing: -0.3vh;
+    letter-spacing: 0vh;
     overflow: visible;
 
 }
@@ -121,6 +132,17 @@
     /* text-align: end; */
     transform: translateX(-8%);
     border: solid 0.3px lightblue;
+}
+
+
+.logo__word-elem {
+    display: inline-block; /* Ensure transform works predictably */
+    transform: translateX(var(--adjustment)); /* Fine-tune spacing */
+    font-size: 5vw; /* Scale text size */
+    line-height: 1; /* Avoid extra spacing */
+    font-weight: normal; /* Default weight */
+    margin: 0;
+    padding: 0;
 }
 
 .logo__w {

@@ -12,7 +12,12 @@
     font-style: normal;
 }
 
-
+@font-face {
+    font-family: 'Raleway-Light';
+    src: url('../fonts/Raleway-Light.tff') format('truetype');
+    font-weight: 100 200 300 400 500;
+    font-style: normal;
+}
 
 *, *:before, *:after {
   box-sizing: border-box;
