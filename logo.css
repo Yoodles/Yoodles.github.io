@@ -1,20 +1,9 @@
 
 /* h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;} */
-/* #W1 {font-weight: 250; transform: translate(0.65vw)}
-#ORD {transform:translate(0.4vw)}
-#SLASH {
-    content: '';
-    position: relative;
-    height: 19vw;
-    border-top: 0;
-    border-right: 0.4vw solid rgba(119, 119, 119, 0.563);
+/* 
     transform: translate(0.80vw, 0.5vw) skewX(-23.1deg);
     width: 0.2vw;
 }
-#W2 {font-weight: 250; transform: translate(-0.15vw)}
-#ARD {transform: translate(-1vw)} */
-
-
 
 
 /*
@@ -63,14 +52,17 @@
 .logo__arrow-shaft {
     position: absolute;
     top: 50%;
-    /* bottom: 0; */
-    left: 50%;
+    bottom: 0;
+    /* left: 43.5%; */
+    left: 33.5%;
 
     width: var(--arrow-length);
     height: var(--arrow-thickness);
 
     background-color: var(--arrow-color);
-    transform: translate(-43.5%, 0%) rotate(113.2deg);
+    transform: rotate(113.2deg);
+    /* transform: translate(-43.5%, 0%) rotate(113.2deg); */
+
     transform-origin: center;
     z-index: 0;
 }
@@ -91,8 +83,6 @@
 
 
 .logo__name-cont {
-    /* font-family: 'Raleway', Light; */
-
     gap: 0vw;
     display: inline-flex;
     position: relative;
@@ -122,8 +112,6 @@
     letter-spacing: -.1vh;
 
     filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813));
-
-
 }
 
 
@@ -198,8 +186,6 @@
     width: 50vw;
     height: auto;
 } */
-
-
 
 /*
 @media (max-width: 800px) {

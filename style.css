@@ -37,22 +37,27 @@ html, body, .tile, .logo {
 }
 
 body {
+    height: calc(var(--vh, 1vh) * 100); /* Full viewport height based on custom property */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
+
     overflow: hidden;
     font-family: 'Raleway', sans-serif;
     background-color: var(--main-bg-color);
     touch-action: manipulation;
 }
 
-#app-container {
+.game-wrapper {
+    width: 100%;
+    max-width: 60vh;        
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: calc(var(--vh, 1vh) * 100); /* Full viewport height based on custom property */
-    background-color: #f1f1f1;
 
+    aspect-ratio: 3 / 4;
+    /* margin: 0 auto; */
+    background-color: #f1f1f1;
 }
 
 #header {
