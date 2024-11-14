@@ -98,10 +98,7 @@ body {
     z-index: 80;
 
 }
-.display--moves-score div {
-    /* margin: 1vw 4vw; */
-    text-align: start;
-}
+.display--moves-score div {text-align: start;}
 
 .display--min-max {
     display: inline-flex;
