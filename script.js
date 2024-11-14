@@ -60,12 +60,21 @@ function jumpToRound(pairKey) {
     resetInitialUI();
     buildWordPairTiles();
     updateBestScoreDisplay(pairKey);
+    updateMixMaxDisplay();
 
     togglePanel('close');
 
     console.log(`Jumped to round for '${pairKey}'. Start word "${wordPair.startWord}", End word "${wordPair.endWord}".`);
 }
 
+function updateMinMaxDisplay() {
+    const minMaxLengthsElement = document.getElementById('min-max-lengths');
+
+    // Update the inner HTML with the wordPair's min and max lengths
+    minMaxLengthsElement.innerHTML = `
+        <span class="tile tile--min-max">${wordPair.minLength} — ${wordPair.maxLength}</span>
+    `;
+}
 
 
 ////GAME STATE ===============================================================////
@@ -729,6 +738,7 @@ function updateGame(action) {
 
             buildWordPairTiles();
             updateBestScoreDisplay(wordPair.currentPairKey);
+            updateMixMaxDisplay();
 
             // console.log(result);
             logArrays();

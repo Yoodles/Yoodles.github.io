@@ -1,6 +1,7 @@
 :root {
     --vh: 1vh;
     --main-bg-color: #f1f1f1;
+    --tile-color: rgb(59, 59, 59);
 }
 
 *, *:before, *:after {
@@ -15,14 +16,12 @@
 @font-face {
     font-family: 'Raleway';
     src: url('../fonts/Raleway-VariableFont_wght.ttf') format('truetype');
-    font-weight: 100 300 500 900;
+    font-weight: 100 300 400 500 900;
     font-style: normal;
 }
 
-
 body {
     margin: 0;
-    width: 100vw;
     overflow: hidden;
     font-family: 'Raleway', sans-serif;
     background-color: var(--main-bg-color);
@@ -39,15 +38,17 @@ body {
 }
 
 #header {
-    display: flex;
+    display: inline-flex;
     width: 100%;
     height: 11%;
-    margin: auto;
-    justify-content: center;
+    padding: 3vw;
+    justify-content: space-between;
     align-items: center;
     z-index: 80;
     background-color: #f1f1f1;
 }
+
+#game-logo {z-index: }
 #game-logo > img {width: 45vw;}
 
 #game-area {
@@ -83,33 +84,76 @@ body {
     width: 100%;
     z-index: 80;
 }
-/* .fade-bar--top {
-    top: 0;
-    background: linear-gradient(
-        to bottom,
-        var(--main-bg-color) 0%,
-        rgba(var(--main-bg-color-rgb), 0) 100%
-    );
-} */
+.fade-bar--top {top: 0; background: linear-gradient(to bottom, #f1f1f1 0%, rgba(255, 255, 255, 0) 100%);}
+.fade-bar--bottom {bottom: 0; background: linear-gradient(to top, #f1f1f1 0%, rgba(255, 255, 255, 0) 100%);}
 
 
-.fade-bar--top {
-    top: 0;
-    background: linear-gradient(
-        to bottom,
-        #f1f1f1 0%,
-        rgba(255, 255, 255, 0) 100%
-    );
+
+
+
+.btn {
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(50, 50, 47, 0.876);
+    touch-action: manipulation;
+    padding-inline: 0;
+    align-items: center;
+}
+.btn:not(#game-logo):hover {transform: scale(1.1);}
+
+.btn--fill {
+    background-color: rgba(229, 229, 217, 0.801);
+    border: solid rgb(197, 197, 181) 0.2vw;
+    box-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.101);
 }
 
-.fade-bar--bottom {
-    bottom: 0;
-    background: linear-gradient(
-        to top,
-        #f1f1f1 0%,
-        rgba(255, 255, 255, 0) 100%
-    );
+.btn--reset {
+    /* position: absolute; */
+    /* right: 3vw; */
+    /* top: 7vh; */
+    font-size: 3vw;
+    left: 4vw;
+    height: 4vh;
+    width: 12vw;
+    border-radius: 1vw;
 }
+
+.btn--reset { height: 5vh; width: 15vw; border-radius: 1vw;}
+.btn--help {
+    /* right: 0%; */
+    margin: 2vw 3vw;
+    height: 6vw;
+    width: 6vw;
+    border: solid black 0.4vw;
+    border-radius: 50%;
+    background: none;
+    font-size: 4vw;
+    font-weight: 400;
+}
+
+.shadow {
+    /* filter: drop-shadow(5vw 4vw 0.7vw rgba(0, 0, 0, 0.813)); */
+    transition: transform 0.1s ease-out;
+
+    /* filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813)); */
+    
+    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
+}
+
+.shadow--min {
+    filter: drop-shadow(.2vw .2vw .6vw rgba(128, 121, 121, 0.813));
+}
+
+.btn--img {
+    background: none;
+    border: none;
+    filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813));
+        /* filter: drop-shadow(1vw 1vw 1vw rgb(0 0 0 / 0.4)); */
+    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
+}
+
+
+
 
 
 /*=====KEYBOARD=====*/
@@ -132,7 +176,6 @@ body {
     justify-content: center;
 }
 
-
 .keyboard__key {
     flex: 1;
     display: flex;
@@ -151,72 +194,8 @@ body {
 .keyboard__key--enter {max-width: 14%; flex: 1.5;}
 
 
-.btn {
-    justify-content: center;
-    cursor: pointer;
-    color: rgba(50, 50, 47, 0.876);
-    touch-action: manipulation;
-    padding-inline: 0;
-    align-items: center;
-}
-.btn:not(#game-logo):hover {transform: scale(1.1);}
-
-.btn--fill {
-    background-color: rgba(229, 229, 217, 0.801);
-    border: solid rgb(197, 197, 181) 0.2vw;
-    box-shadow: 1vw 2vw 2vw rgba(0, 0, 0, 0.101);
-}
-
-.btn--reset {
-    position: absolute;
-    right: 3vw;
-    /* top: 7vh; */
-    font-size: 3vw;
-    /* left: 4vw; */
-    height: 4vh;
-    width: 12vw;
-    border-radius: 1vw;
-}
-
-
-.shadow {
-    /* filter: drop-shadow(5vw 4vw 0.7vw rgba(0, 0, 0, 0.813)); */
-    transition: transform 0.1s ease-out;
-
-    /* filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813)); */
-    
-    /* box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.101); */
-    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
-}
-
-.btn--img {
-    background: none;
-    border: none;
-    filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813));
-        /* filter: drop-shadow(1vw 1vw 1vw rgb(0 0 0 / 0.4)); */
-    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
-}
-
-#header .btn--fill { height: 5vh; width: 15vw; border-radius: 1vw;}
 #result-panel .btn--fill { height: 4vh; width: 20vw; border-radius: 1vw;}
 
-
-.shadow--min {
-    filter: drop-shadow(.2vw .2vw .6vw rgba(128, 121, 121, 0.813));
-}
-
-
-.btn--help {
-    right: 0%;
-    margin: 2vw 3vw;
-    height: 6vw;
-    width: 6vw;
-    border: solid black 0.4vw;
-    border-radius: 50%;
-    background: none;
-    font-size: 4vw;
-    font-weight: 400;
-}
 
 .btn--close {
     position: absolute;
@@ -232,15 +211,10 @@ body {
 
 
 
-
-
-#moves-cont, .btn--help {
+#moves-cont {
     position: absolute;
     top: 0%;
     z-index: 80;
-}
-
-#moves-cont {
     left: 0%;
     margin: 1vw 4vw;
     font-size: 3vw;
@@ -261,7 +235,7 @@ body {
     font-size: 3.7vw;
     font-weight: 400;
     /* border: ridge rgb(112, 112, 112) 0.3vw; */
-    border: ridge rgb(59, 59, 59) 0.5vw;
+    border: ridge var(--tile-color) 0.5vw;
 
     border-radius: 1.2vw;
     animation-name: fadeIn;
