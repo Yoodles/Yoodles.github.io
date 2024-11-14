@@ -56,7 +56,7 @@ body {
     display: flex;
     flex-direction: column;
 
-    aspect-ratio: 3 / 4;
+    /* aspect-ratio: 3 / 4; */
     /* margin: 0 auto; */
     background-color: #f1f1f1;
 }

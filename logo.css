@@ -20,6 +20,7 @@
 
 
 #css-test {
+    /* position: absolute; */
     height: 100%;
     width: 100%;
     z-index: 800;
@@ -42,7 +43,7 @@
 
     --arrow-color: rgb(181, 181, 181);
     --arrow-angle: -92deg;
-    --arrow-length: 25vh;
+    --arrow-length: 30vh;
     --arrow-thickness: 0.3vh;
 
     border: solid black 0.5px;
@@ -60,9 +61,7 @@
     height: var(--arrow-thickness);
 
     background-color: var(--arrow-color);
-    transform: rotate(113.2deg);
-    /* transform: translate(-43.5%, 0%) rotate(113.2deg); */
-
+    transform: rotate(114.2deg);
     transform-origin: center;
     z-index: 0;
 }
@@ -73,7 +72,7 @@
     position: absolute;
     color: var(--arrow-color);
     font-weight: 500;
-    font-size: 4vh;
+    font-size: 3.4vh;
     z-index: 0;
 }
 .logo__arrow-shaft::before {transform: translate(-100%, -46%) rotate(-91deg); left: var(--arrow-length);}
@@ -134,7 +133,7 @@
 }
 
 .logo__w, .logo__w2 {
-    font-weight: 400;
+    font-weight: 300;
 
 }
 .logo__ord, .logo__ard {
