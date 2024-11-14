@@ -1,0 +1,224 @@
+:root {
+    --vh: 1vh;
+    --main-bg-color: #f1f1f1;
+    --tile-color: rgb(59, 59, 59);
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  user-select: none;
+  text-align: center;
+  vertical-align: baseline;
+  /* font-variant-numeric: lining-nums; */
+
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/Raleway-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 300 400 500 600 700 900;
+    font-style: normal;
+}
+
+body {
+    margin-top: 20vh;
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 15vh 10vw;
+    --arrow-color: rgb(152, 152, 152);
+    --arrow-angle: -92deg;
+    --arrow-length: 50vw;
+    --arrow-thickness: 0.7vw;
+}
+
+
+
+.logo {display: inline;}
+
+.line-with-v {
+    display: block;
+    margin-left: 12vh;
+    width: var(--arrow-length);
+    height: var(--arrow-thickness);
+    background-color: var(--arrow-color);
+    position: absolute;
+    transform: rotate(-66.9deg);
+    z-index: 1;
+}
+
+.line-with-v::before, .line-with-v::after {
+    content: 'V';
+    position: absolute;
+    color: var(--arrow-color);
+    font-weight: 400;
+    font-size: 8vw;
+    z-index: 1;
+}
+
+.line-with-v::before {
+    left: var(--arrow-length);
+    transform: translate(-100%, -46%) rotate(-91deg);
+}
+
+.line-with-v::after {
+    right: var(--arrow-length);
+    transform: translate(100%, -46.5%) rotate(89deg);
+}
+
+
+
+.word, .ward {
+    font-size: 8.1vw;
+    font-weight: 200;
+}
+
+.word::first-letter {font-size: 14px;}
+
+.word-and-ward::first-letter {
+    /* font-weight: 600; */
+    color: red;
+    text-decoration: dashed;
+}
+
+
+/* 
+h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
+#W1 {font-weight: 250; transform: translate(0.65vw)}
+#ORD {transform:translate(0.4vw)}
+#SLASH {
+    content: '';
+    position: relative;
+    height: 19vw;
+    border-top: 0;
+    border-right: 0.4vw solid rgba(120, 120, 120, 0.563);
+    transform: translate(0.80vw, 0.5vw) skewX(-23.1deg);
+    width: 0.2vw;
+}
+#W2 {font-weight: 250; transform: translate(-0.15vw)}
+#ARD {transform: translate(-1vw)} */
+
+
+#game-logo > img {width: 45vw;}
+
+
+
+
+.btn {
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(50, 50, 47, 0.876);
+    touch-action: manipulation;
+    padding-inline: 0;
+    align-items: center;
+}
+.btn:not(#game-logo, .btn--close):hover {transform: scale(1.1);}
+
+
+
+.btn--reset {
+    font-size: 3vw;
+    left: 4vw;
+    height: 4vh;
+    width: 12vw;
+    border-radius: 1vw;
+}
+
+.btn--help {
+    /* right: 0%; */
+    margin: 2vw 3vw;
+    height: 6vw;
+    width: 6vw;
+    border: solid black 0.4vw;
+    border-radius: 50%;
+    background: none;
+    font-size: 4vw;
+    font-weight: 400;
+}
+
+.shadow {
+    /* filter: drop-shadow(5vw 4vw 0.7vw rgba(0, 0, 0, 0.813)); */
+    transition: transform 0.1s ease-out;
+
+    /* filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813)); */
+    
+    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
+}
+
+.shadow--min {
+    filter: drop-shadow(.2vw .2vw .6vw rgba(128, 121, 121, 0.813));
+}
+
+.btn--img {
+    background: none;
+    border: none;
+    filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813));
+        /* filter: drop-shadow(1vw 1vw 1vw rgb(0 0 0 / 0.4)); */
+    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
+}
+
+
+
+
+
+#input-set {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    /* min-width: 60vw; */
+    margin: auto;
+    margin-top: 20vh;
+    z-index: 70;
+}
+
+#flipper-and-deleters {
+    display: flex;
+    left: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 47.5vw;
+    position: absolute;
+    width: 14vw;
+    align-items: center;
+}
+
+
+.deleter {
+    position: relative;
+}
+
+
+.deleter img {height: 7vw;}
+#lower-deleter img {transform: rotate(0.5turn)}
+
+
+
+
+
+#flippin-button {transition: transform 0.1s ease-out;}
+#flippin-button img {height: 12.3vw;}
+
+
+
+#input-field {
+    width: 80%;
+    height: 14vw;
+    text-transform: uppercase;
+    border: 0.3vw dashed #545454;
+    /* border: .6vw inset #373737; */
+    background: none;
+    font-family: 'Raleway';
+    font-size: 5.7vw;
+    letter-spacing: 1.18vw;
+    font-weight: 105;
+    border-radius: 4vw;
+    text-align: center;
+    position: relative; /*redundant?*/
+    margin: 2vw 0;
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    filter: drop-shadow(.3vw .3vw .4vw rgba(128, 121, 121, 0.813));
+
+}
+input:focus {outline: none}
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
+
+    <title>WORDWARD</title>
+    <link rel="stylesheet" type="text/css" href="style icon.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+</head>
+
+<body>
+
+
+    <!-- <div class="angled-arrow"></div> -->
+
+
+
+
+    <div class="logo">
+        <div class="line-with-v"></div>
+        <span class="word-and-ward word">WORD</span><span class="word-and-ward ward">WARD</span>
+    </div>
+
+
+    <button id="game-logo" class="btn btn--img shadow" onclick="togglePanel('rounds')"><img src="images/logo.png"></button>
+
+    <button class="btn btn--help btn--fill shadow--min" onclick="togglePanel('help')">?</button>
+
+    <div id="input-set">
+        <input id="input-field" type ="text">
+        <div id="flipper-and-deleters">
+            <button id="upper-deleter" class="btn btn--img shadow deleter" onclick="deleteMove('upper')"><img src="images/deleter.png"></button>
+            <button id="flippin-button" class="btn btn--img shadow" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
+            <button id="lower-deleter" class="btn btn--img shadow deleter" onclick="deleteMove('lower')"><img src="images/deleter.png"></button>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+    <script src="words.js"></script>
+    <script src="word-validity.js"></script>
+
+</body>
+</html>
