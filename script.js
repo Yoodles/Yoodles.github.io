@@ -60,7 +60,7 @@ function jumpToRound(pairKey) {
     resetInitialUI();
     buildWordPairTiles();
     updateBestScoreDisplay(pairKey);
-    updateMixMaxDisplay();
+    updateMinMaxDisplay();
 
     togglePanel('close');
 
@@ -72,7 +72,7 @@ function updateMinMaxDisplay() {
 
     // Update the inner HTML with the wordPair's min and max lengths
     minMaxLengthsElement.innerHTML = `
-        <span class="tile tile--min-max">${wordPair.minLength} — ${wordPair.maxLength}</span>
+        <span class="tile tile--min-max"></span>${wordPair.minLength} — ${wordPair.maxLength}
     `;
 }
 
@@ -738,7 +738,7 @@ function updateGame(action) {
 
             buildWordPairTiles();
             updateBestScoreDisplay(wordPair.currentPairKey);
-            updateMixMaxDisplay();
+            updateMinMaxDisplay();
 
             // console.log(result);
             logArrays();
@@ -1154,6 +1154,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     buildWordPairTiles();
     updateBestScoreDisplay(wordPair.currentPairKey);
+    updateMinMaxDisplay();
+
 
     // Add event listeners
     const keyboard = document.getElementById('keyboard');

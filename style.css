@@ -48,7 +48,6 @@ body {
     background-color: #f1f1f1;
 }
 
-#game-logo {z-index: }
 #game-logo > img {width: 45vw;}
 
 #game-area {
@@ -61,7 +60,7 @@ body {
     padding: 5vh 0;
     overflow-y: hidden;
     align-items: center;
-    background: var(--main-bg-color); /* Consistent background */
+    background: var(--main-bg-color);
 }
 
 
@@ -83,11 +82,31 @@ body {
     height: 7vh; /* Adjust as needed */
     width: 100%;
     z-index: 80;
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 0 3vw;
 }
 .fade-bar--top {top: 0; background: linear-gradient(to bottom, #f1f1f1 0%, rgba(255, 255, 255, 0) 100%);}
 .fade-bar--bottom {bottom: 0; background: linear-gradient(to top, #f1f1f1 0%, rgba(255, 255, 255, 0) 100%);}
 
 
+.display {
+    font-size: 3.5vw;
+    z-index: 80;
+
+}
+.display--moves-score div {
+    /* margin: 1vw 4vw; */
+    text-align: start;
+}
+
+.display--min-max {
+    display: inline-flex;
+}
+.display--min-max .tile {
+    height: 2vw;
+    width: 2vw;
+}
 
 
 
@@ -209,17 +228,6 @@ body {
 }
 .btn.btn--close:hover {transform: scale(1.1, 1)}
 
-
-
-#moves-cont {
-    position: absolute;
-    top: 0%;
-    z-index: 80;
-    left: 0%;
-    margin: 1vw 4vw;
-    font-size: 3vw;
-    text-align: start;
-}
 
 
 /*=====WORD CONTAINERS & TILES=====*/
