@@ -1,18 +1,10 @@
 
-/* h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;} */
 /* 
     transform: translate(0.80vw, 0.5vw) skewX(-23.1deg);
-    width: 0.2vw;
-}
 
-
-/*
     filter: drop-shadow(5vw 4vw 0.7vw rgba(0, 0, 0, 0.813));
     filter: drop-shadow(.2vw .2vw .6vw rgba(128, 121, 121, 0.813));
-
-
     filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813));
-    
     filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272));
 
 */
@@ -34,38 +26,44 @@
     justify-content: center;
     align-items: center;
 
-    font-family: 'Raleway', sans-serif;
-
     width: 100%;
     aspect-ratio: 5/3;
     height: auto;
-    vertical-align: baseline;
 
     --arrow-color: rgb(181, 181, 181);
-    --arrow-angle: -92deg;
+    --arrow-angle: 114.2deg;
     --arrow-length: 30vh;
     --arrow-thickness: 0.3vh;
 
+    line-height: 1;
     border: solid black 0.5px;
+
+}
+
+.logo * {
+    font-family: 'Raleway', sans-serif;
+    font-variant: normal;
+    font-kerning: normal;
+    font-feature-settings: "liga" on, "kern" on;
 }
 
 
 .logo__arrow-shaft {
     position: absolute;
     top: 50%;
-    bottom: 0;
-    left: 27.3%;
-    /* left: 33.5%; */
+    left: 52.5%;
+    transform: translate(-50%, -50%) rotate(var(--arrow-angle, 114.2deg));
 
-    width: var(--arrow-length);
+    /* width: var(--arrow-length); */
+    width: 50%;
+
     height: var(--arrow-thickness);
-
     background-color: var(--arrow-color);
-    transform: rotate(114.2deg);
+
 
     transform-origin: center;
     z-index: 0;
-    filter: drop-shadow(0.1vh -1.1vh 1vh rgba(128, 121, 121, 0.813));
+    /* filter: drop-shadow(0.1vh -1.1vh 1vh rgba(128, 121, 121, 0.813)); */
 }
 
 .logo__arrow-shaft::before,
@@ -77,71 +75,58 @@
     font-size: 3.6vh;
     z-index: 0;
 }
-.logo__arrow-shaft::before {transform: translate(-100%, -46%) rotate(-91deg); left: var(--arrow-length);}
-.logo__arrow-shaft::after {transform: translate(100%, -47%) rotate(89deg); right: var(--arrow-length);}
+/* .logo__arrow-shaft::before {transform: translate(-100%, -46%) rotate(-91deg); left: var(--arrow-length);}
+.logo__arrow-shaft::after {transform: translate(100%, -47%) rotate(89deg); right: var(--arrow-length);} */
+
+.logo__arrow-shaft::before {transform: translate(-50%, -46%) rotate(-91deg); right: 0;}
+.logo__arrow-shaft::after {transform: translate(50%, -47%) rotate(89deg); left: 0;}
 
 
 
-
-.logo__name-cont {
-    gap: 0vw;
+.logo__wdwd {
     display: inline-flex;
+    gap: 0;
     position: relative;
-    background: none;
-    /* display: inline-block; */
-    z-index: 1;
-    white-space: nowrap;
-    /* border: solid 1px rgb(224, 224, 224); */
     padding: 2vh;
+
+    background: none;
+    white-space: nowrap;
+    
+    /* Fallback for older browsers */
+    /* box-shadow: 1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813); */
+
+    border: solid 1px rgb(224, 224, 224);
+    overflow: visible;
 }
 
-.logo__name-cont * {margin: 0; padding: 0; vertical-align: baseline;}
-
-.logo__one-word {
-    display: inline-flex;
-    gap: 0vw;
-    position: relative;
-
-    line-height: 1;
+.logo__wdwd * {
+    margin: 0;
     padding: 0;
-    margin: auto 0;
-    z-index: 200;
-    font-variant: normal;
-    font-kerning: normal;
-    font-feature-settings: "liga" on, "kern" on;
-    letter-spacing: -.1vh;
+    vertical-align: baseline;
+}
 
-    /* filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813)); */
+.logo__wdwd__half {
+    display: inline-flex;
+    gap: 0;
+    position: relative;
 
     filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813));
+
+
+    transform: translateX(var(--adjustment, 0));
+    border: solid 0.1px rgba(180, 236, 255, 0.765);
 }
 
 
-.logo__one-word.w-ord {
-    transform: translateX(var(--adjustment));
-    /* border: solid 0.1px rgba(255, 192, 203, 0.827); */
-}
-.logo__one-word.w-ard {
-    transform: translateX(var(--adjustment));
-    /* border: solid 0.1px rgba(180, 236, 255, 0.765); */
-}
-
-
-.logo__word-elem {
+.logo__wdwd__elem {
     display: inline-block;
-    transform: translateX(var(--adjustment));
+    transform: translateX(var(--adjustment, 0));
     font-size: 8vh;
-    line-height: 1;
-    font-weight: normal;
-}
-
-.logo__w, .logo__w2 {
-    font-weight: 300;
-
-}
-.logo__ord, .logo__ard {
     font-weight: 200;
+    letter-spacing: -0.05em;
 }
+
+.logo__wdwd__w {font-weight: 300;}
 
 
 
