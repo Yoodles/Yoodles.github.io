@@ -51,7 +51,7 @@ body {
 
 .game-wrapper {
     width: 100%;
-    max-width: 70vh;
+    max-width: 75vh;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -69,25 +69,22 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 80;
-    /* background-color: #f1f1f1; */
 }
 
 #game-logo {width: 45%}
 #game-logo > img {width: 100%}
-
-.game {
-    flex: 1;
-}
 
 #game-area {
     position: relative;
     display: flex;
     flex: 1;
     flex-direction: column;
+    justify-content: center;
     width: 100%;
+    padding: 1% 3%;
     /* height: 62%; */
     overflow-y: hidden;
-    align-items: center;
+    /* align-items: center; */
     background: var(--main-bg-color);
 }
 
@@ -96,7 +93,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 10vh 0;
+    padding: 8vh 0;
     margin: auto;
     overflow-y: scroll;
 }
@@ -105,14 +102,16 @@ body {
 
 
 .fade-bar {
-    position: absolute; /* Keeps the bar fixed at its boundary */
+    position: absolute;
     pointer-events: none;
-    height: 7vh; /* Adjust as needed */
+    height: 9%;
     width: 100%;
+    /* left: 0;
+    right: 0; */
     z-index: 85;
     display: inline-flex;
     justify-content: space-between;
-    padding: 0 3%;
+    /* padding: 0; */
 }
 .fade-bar--top {top: 0; background: linear-gradient(to bottom, #f1f1f1 0%, rgba(255, 255, 255, 0) 100%);}
 .fade-bar--bottom {bottom: 0; background: linear-gradient(to top, #f1f1f1 0%, rgba(255, 255, 255, 0) 100%);}
@@ -122,7 +121,6 @@ body {
     margin-bottom: auto;
     font-size: 2.5vh;
     z-index: 80;
-
 }
 .display--moves-score div {text-align: start;}
 
@@ -138,7 +136,6 @@ body {
 .display--min-max b {font-weight: 500;}
 
 .tile--min-max {
-    /* font-size: unset; */
     border-width: 1vh;
     width: 2.5vh;
     height: 2.5vh;
@@ -265,7 +262,7 @@ body {
     background: transparent;
     border: none;
     margin: 3vh 5vh;
-    font-size: 6vh;
+    font-size: 4.5vh;
     transform: scale(1, 0.9);
 }
 .btn.btn--close:hover {transform: scale(1.1, 1)}
@@ -278,7 +275,7 @@ body {
 .tile {
     display: flex;
     justify-content: center;
-
+    
     background: none;
 
     /* border: .1vh solid rgb(193, 193, 193); */
@@ -293,23 +290,20 @@ body {
     animation-duration: 0.2s;
 
 }
+
 #gameplay-cont .tile {
     height: 6vh;
     width: 6vh;
-    margin: 0.7vh;
+    margin: 0.6vh;
 
     border-width: 70%;
     font-size: 3vh;
 
-    /* filter: drop-shadow(1vw 1vw .7vw rgba(128, 121, 121, 0.813)); */
-    filter: drop-shadow(3% 3% .3% rgba(128, 121, 121, 0.813));
-
-
+    filter: drop-shadow(0.4vh 0.4vh 0.3vh rgba(128, 121, 121, 0.813));
 }
 
-.set-word .tile {
-    font-weight: 500;
-}
+.set-word .tile {font-weight: 500;}
+
 
 .tile--help {
     width: 3vh;

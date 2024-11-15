@@ -17,12 +17,49 @@
     <div class="game-wrapper">
         <div id="header">
             <button class="btn btn--reset btn--fill shadow" onclick="updateGame('resetRound')">RESET</button>
-            <button id="game-logo" class="btn btn--img shadow" onclick="testUI()"><img src="images/logo.png"></button>
+            <!-- <button id="game-logo" class="btn btn--img shadow" onclick="testUI()"><img src="images/logo.png"></button> -->
+            
+            <div class="logo">
+                <div class="logo__wdwd">
+                    <div class="logo__arrow-shaft"></div>
+                    <span class="logo__wdwd__half" style="--adjustment: .4vh;">
+                        <span class="logo__wdwd__elem logo__wdwd__w" style="--adjustment: .3vh;">W</span>
+                        <span class="logo__wdwd__elem" style="--adjustment: 0vh;">ORD</span>
+                    </span>
+                    <span class="logo__wdwd__half" style="--adjustment: 0vh;">
+                        <span class="logo__wdwd__elem logo__wdwd__w" style="--adjustment: 0vh;">W</span>
+                        <span class="logo__wdwd__elem" style="--adjustment: -.9vh;">ARD</span>
+                    </span>
+                </div>
+            </div>
+
+            <div id="css-test" class="off">
+
+                <div class="logo">
+                    
+                    <div class="logo__wdwd">
+                        <div class="logo__arrow-shaft"></div>
+                        <span class="logo__wdwd__half" style="--adjustment: .4vh;">
+                            <span class="logo__wdwd__elem logo__wdwd__w" style="--adjustment: .3vh;">W</span>
+                            <span class="logo__wdwd__elem" style="--adjustment: 0vh;">ORD</span>
+                        </span>
+                        <span class="logo__wdwd__half" style="--adjustment: 0vh;">
+                            <span class="logo__wdwd__elem logo__wdwd__w" style="--adjustment: 0vh;">W</span>
+                            <span class="logo__wdwd__elem" style="--adjustment: -.9vh;">ARD</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="test__flipper">
+
+                </div>
+            </div>
+            
             <!-- <button id="game-logo" class="btn btn--img shadow" onclick="togglePanel('rounds')"><img src="images/logo.png"></button> -->
             <button class="btn btn--help btn--fill shadow--min" onclick="togglePanel('help')">?</button>
         </div>
 
-        <div class="game">
+        <!-- <div class="game"> -->
             <div id="popup-panel" class="panel panel--popup hidden">
                 <button class="btn btn--close" onclick="togglePanel('close')">x</button>
                 <div id="help-content" class="popup-content">
@@ -107,28 +144,6 @@
                     <ul id="word-pair-menu">
                         <!-- List of rounds here -->
                     </ul>
-                </div>
-            </div>
-
-            <div id="css-test" class="off">
-
-                <div class="logo">
-                    
-                    <div class="logo__wdwd">
-                        <div class="logo__arrow-shaft"></div>
-                        <span class="logo__wdwd__half" style="--adjustment: .4vh;">
-                            <span class="logo__wdwd__elem logo__wdwd__w" style="--adjustment: .3vh;">W</span>
-                            <span class="logo__wdwd__elem" style="--adjustment: 0vh;">ORD</span>
-                        </span>
-                        <span class="logo__wdwd__half" style="--adjustment: 0vh;">
-                            <span class="logo__wdwd__elem logo__wdwd__w" style="--adjustment: 0vh;">W</span>
-                            <span class="logo__wdwd__elem" style="--adjustment: -.9vh;">ARD</span>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="test__flipper">
-
                 </div>
             </div>
 
@@ -288,7 +303,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
 
     </div>
 
