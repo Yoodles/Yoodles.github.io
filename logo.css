@@ -20,20 +20,19 @@
 #css-test.off {display: none}
 
 
-.logo-wrap {
-    height: 10vh;
-    width: 80%;
-}
 
 .logo {
     display: flex;
-    position: relative;
+    /* position: relative; */
     justify-content: center;
     align-items: center;
 
-    width: 100%;
+    /* width: 100%; */
     aspect-ratio: 5/2;
-    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    margin: auto 0;
 
     --arrow-color: rgb(181, 181, 181);
     --arrow-angle: 114.2deg;
@@ -41,7 +40,7 @@
     --arrow-thickness: 0.3vh;
 
     line-height: 1;
-    border: solid black 0.5px;
+    /* border: solid black 0.5px; */
 
 }
 
@@ -92,7 +91,9 @@
     display: inline-flex;
     gap: 0;
     position: relative;
+    height: 100%;
     padding: 2vh;
+    /* max-width: 100%; */
 
     background: none;
     white-space: nowrap;
@@ -100,7 +101,7 @@
     /* Fallback for older browsers */
     /* box-shadow: 1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813); */
 
-    border: solid 1px rgb(224, 224, 224);
+    /* border: solid 1px rgb(224, 224, 224); */
     overflow: visible;
 }
 
