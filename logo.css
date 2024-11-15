@@ -55,7 +55,7 @@
     transform: translate(-50%, -50%) rotate(var(--arrow-angle, 114.2deg));
 
     /* width: var(--arrow-length); */
-    width: 50%;
+    width: 42%;
 
     height: var(--arrow-thickness);
     background-color: var(--arrow-color);
