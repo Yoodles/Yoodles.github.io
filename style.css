@@ -43,7 +43,7 @@ body {
     align-items: center;
     margin: 0;
 
-    overflow: hidden;
+    /* overflow: hidden; */
     font-family: 'Raleway', sans-serif;
     background-color: var(--main-bg-color);
     touch-action: manipulation;
@@ -157,8 +157,8 @@ body {
 
 .btn--fill {
     background-color: rgba(229, 229, 217, 0.801);
-    border: solid rgb(197, 197, 181) 2%;
-    box-shadow: 1% 2% 2% rgba(0, 0, 0, 0.101);
+    border: solid rgb(197, 197, 181) .2vh;
+    box-shadow: 1vh 1vh 1.5vh rgba(0, 0, 0, 0.101);
 }
 
 .btn--reset {
@@ -298,7 +298,7 @@ body {
     width: 6vh;
     margin: 0.6vh;
 
-    border-width: 70%;
+    border-width: 10%;
     font-size: 3vh;
 
     filter: drop-shadow(0.4vh 0.4vh 0.3vh rgba(128, 121, 121, 0.813));
