@@ -55,14 +55,16 @@
     transform: translate(-50%, -50%) rotate(var(--arrow-angle, 114.2deg));
 
     /* width: var(--arrow-length); */
-    width: 42%;
 
+    width: 42%;
     height: var(--arrow-thickness);
     background-color: var(--arrow-color);
 
-
     transform-origin: center;
     z-index: 0;
+
+    box-shadow: .1vh .1vh 4vh rgba(101, 100, 100, 0.813);
+
     /* filter: drop-shadow(0.1vh -1.1vh 1vh rgba(128, 121, 121, 0.813)); */
 }
 
