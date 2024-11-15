@@ -37,7 +37,7 @@
     font-family: 'Raleway', sans-serif;
 
     width: 100%;
-    aspect-ratio: 5/2;
+    aspect-ratio: 5/3;
     height: auto;
     vertical-align: baseline;
 
@@ -54,16 +54,18 @@
     position: absolute;
     top: 50%;
     bottom: 0;
-    /* left: 43.5%; */
-    left: 33.5%;
+    left: 27.3%;
+    /* left: 33.5%; */
 
     width: var(--arrow-length);
     height: var(--arrow-thickness);
 
     background-color: var(--arrow-color);
     transform: rotate(114.2deg);
+
     transform-origin: center;
     z-index: 0;
+    filter: drop-shadow(0.1vh -1.1vh 1vh rgba(128, 121, 121, 0.813));
 }
 
 .logo__arrow-shaft::before,
@@ -72,7 +74,7 @@
     position: absolute;
     color: var(--arrow-color);
     font-weight: 500;
-    font-size: 3.4vh;
+    font-size: 3.6vh;
     z-index: 0;
 }
 .logo__arrow-shaft::before {transform: translate(-100%, -46%) rotate(-91deg); left: var(--arrow-length);}
@@ -86,15 +88,14 @@
     display: inline-flex;
     position: relative;
     background: none;
-    display: inline-block;
+    /* display: inline-block; */
     z-index: 1;
     white-space: nowrap;
     /* border: solid 1px rgb(224, 224, 224); */
     padding: 2vh;
 }
 
-.logo__name-cont * {margin: 0; padding: 0;}
-
+.logo__name-cont * {margin: 0; padding: 0; vertical-align: baseline;}
 
 .logo__one-word {
     display: inline-flex;
@@ -109,6 +110,8 @@
     font-kerning: normal;
     font-feature-settings: "liga" on, "kern" on;
     letter-spacing: -.1vh;
+
+    /* filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813)); */
 
     filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813));
 }

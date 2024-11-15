@@ -696,6 +696,14 @@ z-index:
 
 
 
+.high-contrast {
+    filter: contrast(2); /* Doubles the contrast */
+}
+
+.low-contrast {
+    filter: contrast(0.5); /* Reduces contrast by half */
+}
+
 
 
 .matching-letter {
