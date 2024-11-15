@@ -20,6 +20,10 @@
 #css-test.off {display: none}
 
 
+.logo-wrap {
+    height: 10vh;
+}
+
 .logo {
     display: flex;
     position: relative;
@@ -27,7 +31,7 @@
     align-items: center;
 
     width: 100%;
-    aspect-ratio: 5/3;
+    aspect-ratio: 5/2;
     height: auto;
 
     --arrow-color: rgb(181, 181, 181);
