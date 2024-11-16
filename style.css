@@ -203,13 +203,8 @@ body {
 .btn--img {
     background: none;
     border: none;
-    /* filter: drop-shadow(1.2vw 1.2vw .6vw rgba(128, 121, 121, 0.813)); */
     filter: drop-shadow(1.2% 1.2% .6% rgba(128, 121, 121, 0.813));
 
-    /* filter: drop-shadow(1vw 1vw 1vw rgb(0 0 0 / 0.4)); */
-    /* filter: drop-shadow(.5vw .5vw .4vw rgba(0, 0, 0, 0.272)); */
-    /* filter: drop-shadow(1% 1% 1% rgb(0 0 0 / 0.4)); */
-    /* filter: drop-shadow(.5% .5% .4% rgba(0, 0, 0, 0.272)); */
 }
 
 
@@ -298,7 +293,7 @@ body {
     width: 6vh;
     margin: 0.6vh;
 
-    border-width: 10%;
+    border-width: 0.2vh;
     font-size: 3vh;
 
     filter: drop-shadow(0.4vh 0.4vh 0.3vh rgba(128, 121, 121, 0.813));
