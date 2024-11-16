@@ -232,7 +232,6 @@ body {
     display: flex;
     width: 100%;
     height: 100%;
-    user-select: none;
     margin: 0 auto;
     touch-action: manipulation;
     justify-content: center;
@@ -241,8 +240,8 @@ body {
 .keyboard__key {
     flex: 1;
     display: flex;
-    margin: 0 1% 1% 0;
-    border-radius: .8vh;
+    margin: 0 1.3% 1.3% 0;
+    border-radius: .3rem;
     padding: 0;
     font-size: 1rem;
     font-weight: 500;
