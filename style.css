@@ -5,13 +5,6 @@
     --btn-color: rgba(229, 229, 217, 0.801);
     --btn-border-color: rgb(197, 197, 181)
 
-    /* --font-size-base: 16px;
-    --spacing-small: 0.5rem;
-    --spacing-medium: 1rem;
-    --spacing-large: 2rem;
-
-    --color-primary: #f1f1f1;
-    --color-secondary: #333; */
 }
 
 
@@ -226,7 +219,7 @@ body {
     width: 100%;
     padding: 2% 2%;
 }
-.keyboard__spacer {flex: 0.5}
+.keyboard__spacer {flex: 0.6}
 
 .keyboard__row {
     display: flex;
@@ -251,8 +244,8 @@ body {
 .keyboard__key:last-of-type {margin: 0 0 1vh 0;}
 .keyboard__key:active {background-color: #e3e3e3;}
 
-.keyboard__key--backspace {max-width: 12%; flex: 1.5;}
-.keyboard__key--enter {max-width: 14%; flex: 1.5;}
+.keyboard__key--backspace {max-width: 12%; flex: 1.4;}
+.keyboard__key--enter {flex: 1.8}
 
 
 
