@@ -113,9 +113,11 @@ body {
 .display {
     margin-bottom: auto;
     /* font-size: 2.5vh; */
+    line-height: 1.4;
     z-index: 80;
+
 }
-.display--moves-score div {text-align: start;}
+.display--moves-score div {text-align: start}
 
 .display__colon {
     font-weight: 500;
@@ -273,7 +275,7 @@ body {
     background: none;
 
     font-weight: 400;
-    border: 0.1rem ridge var(--tile-color);
+    border: 0.08rem ridge var(--tile-color);
     margin: 0.2em;
 
     animation-name: fadeIn;
