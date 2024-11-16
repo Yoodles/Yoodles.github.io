@@ -37,7 +37,7 @@
 }
 
 html {
-    font-size: clamp(18px, 1.4vh, 22px)
+    font-size: clamp(16px, 2.5vw, 2.5vh)
 }
 
 html, body, .tile, .logo {
@@ -69,6 +69,10 @@ body {
     flex-direction: column;
     position: relative;
 
+    justify-content: center;
+    align-items: center;
+
+
 
     border: 0.3px grey solid; 
 }
@@ -91,6 +95,7 @@ body {
     flex: 1;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100%;
     /* height: 62%; */
     overflow-y: hidden;
@@ -198,7 +203,6 @@ body {
 }
 
 .shadow {
-    /* filter: drop-shadow(5% 4% 0.7% rgba(0, 0, 0, 0.813)); */
     transition: transform 0.1s ease-out;
 
     
@@ -206,7 +210,6 @@ body {
 }
 
 .shadow--min {
-    /* filter: drop-shadow(.2vw .2vw .6vw rgba(128, 121, 121, 0.813)); */
     filter: drop-shadow(.2vh .2vh .6vh rgba(128, 121, 121, 0.813));
 }
 
@@ -218,7 +221,10 @@ body {
 }
 
 
+.shadow--top {
+    filter: drop-shadow(1vh 1vh .6vh rgba(128, 121, 121, 0.813));
 
+}
 
 
 /*=====KEYBOARD=====*/
@@ -520,54 +526,35 @@ input:focus {outline: none}
 
 
 .panel {
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    /* justify-self: center; */
 
-    /* top: 50%; */
-    margin: auto;
     background-color: rgb(255, 255, 255);
 
-    border: solid .5% grey;
-    border-radius: 3%;
+    border: solid .1rem grey;
+    border-radius: .8rem;
     
     padding: 2%;
 
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+    font-size: 1rem;
 
-    font-size: 8vh;
-
-    /* box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2); */
-    box-shadow: 0 0.5% 2% 0 rgba(0,0,0,.2);
+    box-shadow: .3rem .3rem .5rem rgba(0,0,0,.2);
 
     z-index: 100;
 
-}
 
-.panel--popup {
-    width: 90%;
-    height: 85%;
-    overflow-y: auto;
-    /* box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2); */
-    box-shadow: 0 0.4vh 1.6vh 0 rgba(0,0,0,.2);
-    text-align: start;
-    z-index: 110;
 }
+.panel.hidden {display: none}
+.panel--popup {width: 90%; height: 90%;}
 
-.panel--result {
-    width: 85%;
-    height: 25vh;
-}
+.panel--result {width: 85%; height: 25vh;}
 .panel--result.hidden {display: none}
 .panel--result .btn {margin: 2vh;}
 
 
 .panel--dialog {
-    display: flex;
     width: 70%;
-
 }
 
 .panel--dialog.hidden {display: none;}
@@ -588,7 +575,6 @@ input:focus {outline: none}
 
 
 .popup-content {
-    height: 90%;
     padding: 0 4%;
     overflow-y: auto; /* Make the content inside the pop-up scrollable */
 }
