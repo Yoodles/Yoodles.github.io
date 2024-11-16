@@ -10,21 +10,22 @@
 
 .logo {
     display: flex;
-    /* position: relative; */
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 
-    /* width: 100%; */
     /* aspect-ratio: 5/2; */
-    max-height: 100%;
-    max-width: 70%;
-    width: auto;
-    margin: auto 0;
+    /* height: 100%; */
+    max-width: 40%;
+    width: 50%;
+    /* height: 90%; */
+    margin: auto;
+    max-height: 95%;
+    /* padding: 10% 0; */
 
     --arrow-color: rgb(181, 181, 181);
     --arrow-angle: 114.2deg;
     --arrow-length: 40%;
-    --arrow-thickness: 0.2vh;
+    --arrow-thickness: 0.1rem;
 
     line-height: 1;
 
@@ -41,8 +42,8 @@
 .logo__arrow-shaft {
     position: absolute;
     top: 50%;
-    left: 52.5%;
-    transform: translate(-50%, -50%) rotate(var(--arrow-angle, 114.2deg));
+    left: 33%;
+    transform: translateY(-50%) rotate(var(--arrow-angle, 114.2deg));
 
     width: var(--arrow-length);
 
@@ -73,12 +74,10 @@
     display: inline-flex;
     gap: 0;
     position: relative;
-    height: 10%;
 
     background: none;
     white-space: nowrap;
     
-    /* border: solid 1px rgb(224, 224, 224); */
     overflow: visible;
 }
 
@@ -100,12 +99,12 @@
 .logo__wdwd__elem {
     display: inline-block;
     transform: translateX(var(--adjustment, 0));
-    font-size: 6vh;
+    font-size: 2.5em;
     font-weight: 200;
     letter-spacing: -0.05em;
 }
 
-.logo__wdwd__w {font-weight: 300;}
+.logo__wdwd__w {font-weight: 400;}
 
 
 

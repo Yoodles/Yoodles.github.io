@@ -79,6 +79,7 @@ body {
 
 #header {
     display: flex;
+    position: relative;
     justify-content: space-between;
     align-items: center;
 
@@ -397,12 +398,12 @@ input:focus {outline: none}
 
 
 #flipper-and-deleters {
+    position: absolute;
     display: flex;
-    right: 0%;
+    right: 3%;
     flex-direction: column;
     justify-content: space-around;
     height: 27.5vh;
-    position: absolute;
     width: 12%;
     align-items: center;
 }
