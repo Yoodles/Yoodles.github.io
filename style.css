@@ -80,12 +80,11 @@ body {
 #header {
     display: flex;
     position: relative;
-    justify-content: space-between;
     align-items: center;
 
     width: 100%;
     height: 14%;
-    padding: 0 3%;
+    padding: 0;
     /* overflow: hidden; */
     z-index: 80;
 }
@@ -182,24 +181,23 @@ body {
 }
 
 .btn--reset {
-    left: 4%;
-    height: 40%;
-    width: 10%;
-    border-radius: 0.6vh;
+    position: absolute;
+    left: 3%;
+    height: 33%;
+    width: 14%;
+    border-radius: 0.3rem;
 }
 
 .btn--help {
-    height: 2rem;
-    width: 2rem;
+    position: absolute;
+    right: 3%;
+    height: 1.8rem;
+    width: 1.8rem;
     border: solid black .1rem;
     border-radius: 50%;
     background: none;
     font-size: 1.2rem;
     font-weight: 500;
-}
-
-.shadow {
-    transition: transform 0.1s ease-out;
 }
 
 .shadow--min {
@@ -283,7 +281,7 @@ body {
     background: none;
 
     font-weight: 400;
-    border: 0.06em ridge var(--tile-color);
+    border: 0.1rem ridge var(--tile-color);
     margin: 0.2em;
 
     animation-name: fadeIn;
@@ -301,10 +299,19 @@ body {
 
 
 .tile--help, .tile--min-max {
+
+    border-radius: 12%;
+}
+
+.tile--help {
     height: 1.4rem;
     width: 1.4rem;
     font-size: 1.1rem;
-    border-radius: 12%;
+}
+
+.tile--min-max {
+    height: 1.2rem;
+    width: 1.2rem;
 }
 
 .tile.tile--added {background-color: rgb(219, 255, 219);}

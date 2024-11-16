@@ -16,7 +16,7 @@
 <body>
     <div class="game-wrapper">
         <div id="header">
-            <button class="btn btn--reset btn--fill shadow" onclick="updateGame('resetRound')">RESET</button>
+            <button class="btn btn--reset btn--fill" onclick="updateGame('resetRound')">RESET</button>
             <!-- <button id="game-logo" class="btn btn--img shadow" onclick="testUI()"><img src="images/logo.png"></button> -->
             
             <div class="logo">
@@ -33,7 +33,7 @@
                 </div>
             </div>
             
-            <!-- <button id="game-logo" class="btn btn--img shadow" onclick="togglePanel('rounds')"><img src="images/logo.png"></button> -->
+            <!-- <button id="game-logo" class="btn btn--img" onclick="togglePanel('rounds')"><img src="images/logo.png"></button> -->
             <button class="btn btn--help shadow--top" onclick="togglePanel('help')">?</button>
         </div>
 
@@ -167,7 +167,7 @@
                 </div>
 
                 <div id="input-set">
-                    <input id="input-field" type ="text">
+                    <input id="input-field" class="shadow--min" type ="text">
                     <div id="flipper-and-deleters">
                         <button id="upper-deleter" class="btn btn--img shadow--top deleter" onclick="deleteMove('upper')"><img src="images/deleter.png"></button>
                         <button id="flippin-button" class="btn btn--img shadow--top" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
