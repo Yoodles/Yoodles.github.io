@@ -114,8 +114,9 @@ body {
 }
 .display--moves-score div {text-align: start;}
 
-.display__colon {
-    margin: 0 1em;
+.display b {
+    font-weight: 500;
+    margin: 0 .1em;
 }
 
 .display--min-max {
@@ -125,7 +126,6 @@ body {
     text-wrap: nowrap;
     pointer-events: all;
 }
-.display--min-max b {font-weight: 500;}
 
 .tile--min-max {
     width: 2.5vh;
