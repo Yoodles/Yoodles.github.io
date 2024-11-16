@@ -67,11 +67,7 @@ function jumpToRound(pairKey) {
     console.log(`Jumped to round for '${pairKey}'. Start word "${wordPair.startWord}", End word "${wordPair.endWord}".`);
 }
 
-function updateMinMaxDisplay() {
-    document.getElementById('min-max-lengths').innerHTML = `
-        <span class="tile tile--min-max"></span><span class="display__colon">:</span><span> ${wordPair.minLength} – ${wordPair.maxLength}</span>
-    `;
-}
+
 
 
 ////GAME STATE ===============================================================////
@@ -186,7 +182,11 @@ function updateMoveCounterUI() {
     document.getElementById('move-counter').innerHTML = "<span class='display__colon'>:</span>" + gameState.moveCounter;
 }
 
-
+function updateMinMaxDisplay() {
+    document.getElementById('min-max-lengths').innerHTML = `
+        <span class="tile tile--min-max"></span><span class="display__colon">:</span><span> ${wordPair.minLength} – ${wordPair.maxLength}</span>
+    `;
+}
 
 
 ////UTILITY FUNCTIONS ===========================================////
