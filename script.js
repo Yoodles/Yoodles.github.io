@@ -68,11 +68,8 @@ function jumpToRound(pairKey) {
 }
 
 function updateMinMaxDisplay() {
-    const minMaxLengths = document.getElementById('min-max-lengths');
-
-    // Update the inner HTML with the wordPair's min and max lengths
-    minMaxLengths.innerHTML = `
-        <span class="tile tile--min-max"></span><span><b>:</b></span><span> ${wordPair.minLength} – ${wordPair.maxLength}</span>
+    document.getElementById('min-max-lengths').innerHTML = `
+        <span class="tile tile--min-max"></span><span class="colon">:</span><span> ${wordPair.minLength} – ${wordPair.maxLength}</span>
     `;
 }
 
@@ -181,12 +178,12 @@ function checkBestScoreAndUpdate() {
 function updateBestScoreDisplay(pairKey) {
     const bestScoreDisplay = document.getElementById('best-score');
     const bestScore = bestScores[pairKey] || "--";
-    bestScoreDisplay.innerHTML = `Best<b>:</b> ${bestScore}`;
+    bestScoreDisplay.innerHTML = `Best<span class="colon">:</span>${bestScore}`;
 }
 
 //UPDATE MOVECOUNTER ON SCREEN
 function updateMoveCounterUI() {
-    document.getElementById('move-counter').innerHTML = "Moves<b>:</b> " + gameState.moveCounter;
+    document.getElementById('move-counter').innerHTML = "<span class='colon'>:</span>" + gameState.moveCounter;
 }
 
 
