@@ -114,7 +114,7 @@ body {
 }
 .display--moves-score div {text-align: start;}
 
-.display b {
+.display__colon {
     font-weight: 500;
     margin: 0 .1em;
 }
