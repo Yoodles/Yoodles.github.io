@@ -208,7 +208,7 @@ body {
 
 
 .shadow--top {
-    filter: drop-shadow(1vh 1vh .6vh rgba(128, 121, 121, 0.813));
+    filter: drop-shadow(.2rem .3rem .1rem rgba(165, 156, 156, 0.813));
 
 }
 
