@@ -60,7 +60,7 @@ body {
 .game-wrapper {
     width: 100%;
     max-width: 75vh;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -278,22 +278,22 @@ body {
 
     animation-name: fadeIn;
     animation-duration: 0.2s;
-    font-size: 1.2em;
-
 }
 
 .word-cont .tile {
     height: 6vh;
     width: 6vh;
     border-radius: 12%;
+    font-size: 1.2em;
     filter: drop-shadow(0.4vh 0.4vh 0.3vh rgba(128, 121, 121, 0.813));
 }
 .word-cont.set-word .tile {font-weight: 500;}
 
 
 .tile--help, .tile--min-max {
-    width: 3.2vh;
-    height: 3.2vh;
+    height: 1.5rem;
+    width: 1.5rem;
+    font-size: 1.2rem;
     border-radius: 12%;
 }
 
