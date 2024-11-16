@@ -265,8 +265,6 @@ body {
 .keyboard__key--enter {max-width: 14%; flex: 1.5;}
 
 
-#result-panel .btn--fill { height: 5vh; width: 15vh; border-radius: 1vh;}
-
 
 .btn--close {
     position: absolute;
@@ -287,12 +285,12 @@ body {
 .tile {
     display: flex;
     justify-content: center;
-    
+    align-items: center;
+
     background: none;
 
-    align-items: center;
     font-weight: 400;
-    border: 0.08em ridge var(--tile-color);
+    border: 0.06em ridge var(--tile-color);
     margin: 0.2em;
 
     animation-name: fadeIn;
@@ -303,7 +301,7 @@ body {
     height: 5.2vh;
     width: 5.2vh;
     border-radius: 12%;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     filter: drop-shadow(0.4vh 0.4vh 0.3vh rgba(128, 121, 121, 0.813));
 }
 .word-cont.set-word .tile {font-weight: 500;}
@@ -385,7 +383,7 @@ body {
     border: .2vh dashed #545454;
 
     background: none;
-    font-size: 1rem;
+    font-size: 1.4rem;
     letter-spacing: 0.3rem;
     font-weight: 100;
     border-radius: 2vh;
@@ -548,10 +546,17 @@ input:focus {outline: none}
 .panel.hidden {display: none}
 .panel--popup {width: 90%; height: 90%;}
 
-.panel--result {width: 85%; height: 25vh;}
+.panel--result {
+    width: 85%;
+    height: 25vh;
+    justify-content: center;
+}
 .panel--result.hidden {display: none}
-.panel--result .btn {margin: 2vh;}
-
+/* .panel--result .btn {margin: 2vh;} */
+.result__buttons {
+    display: inline-flex;
+    width: 70%;
+}
 
 .panel--dialog {
     width: 70%;
