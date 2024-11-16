@@ -114,6 +114,10 @@ body {
 }
 .display--moves-score div {text-align: start;}
 
+.display__colon {
+    margin: 0 1em;
+}
+
 .display--min-max {
     display: inline-flex;
     text-align: end;

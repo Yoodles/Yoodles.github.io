@@ -181,12 +181,12 @@ function checkBestScoreAndUpdate() {
 function updateBestScoreDisplay(pairKey) {
     const bestScoreDisplay = document.getElementById('best-score');
     const bestScore = bestScores[pairKey] || "--";
-    bestScoreDisplay.innerText = `Best: ${bestScore}`;
+    bestScoreDisplay.innerHTML = `Best<b>:</b> ${bestScore}`;
 }
 
 //UPDATE MOVECOUNTER ON SCREEN
 function updateMoveCounterUI() {
-    document.getElementById('move-counter').innerText = "Moves: " + gameState.moveCounter;
+    document.getElementById('move-counter').innerHTML = "Moves<b>:</b> " + gameState.moveCounter;
 }
 
 
