@@ -60,7 +60,7 @@ body {
     touch-action: manipulation;
 }
 
-.game-wrapper {
+.game-wrap {
     height: 100%;
     width: 100%;
     max-width: 75vh;
@@ -83,7 +83,7 @@ body {
     align-items: center;
 
     width: 100%;
-    height: 14%;
+    height: 13%;
     padding: 0;
     /* overflow: hidden; */
     z-index: 80;
@@ -607,28 +607,31 @@ input:focus {outline: none}
 
 
 #word-pair-menu li {
-    padding: 0.5vh;
-    border-bottom: .1vh solid #ddd;
+    /* padding: 2%; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0;
 }
+#word-pair-menu li:not(:last-of-type) {
+    border-bottom: .05rem solid #ddd;
+}
 #word-pair-menu li:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
     cursor: pointer;
 }
 
 
 
 p {
-    font-size: 4vh;
+    font-size: 1.4rem;
     font-weight: 400;
     letter-spacing: -.05rem;
     margin-top: 0;
+    text-align: start;
 }
 
-h2, li {font-size: 2.5vh;}
+h2, li {font-size: 1rem;}
 
 ul {
     width: 100%;
@@ -636,14 +639,15 @@ ul {
 }
 li {
     text-align: start;
-    line-height: 5vh;
+    line-height: 2rem;
     margin-bottom: 2vh;
 }
-li.li--no-bullet {list-style-type: none;}
+
+.li--no-bullet {list-style-type: none;}
 li div {align-items: baseline;}
 
-li .help__flipper-icon {width: 2.8vh; margin: 0 0.2vh; vertical-align: -33%;}
-li .help__del-icon {width: 2vh; margin: 0 0.5vh; vertical-align: -25%;}
+.help__flipper-icon {width: 1.2em; margin: 0 0.05em; vertical-align: -33%;}
+.help__del-icon {width: 1.2em; margin: 0 0.05rm; vertical-align: -25%;}
 .icon-flipped {transform: rotate(0.5turn);}
 
 .help__word-cont {
