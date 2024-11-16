@@ -291,7 +291,7 @@ body {
 .word-cont.set-word .tile {font-weight: 500;}
 
 
-.tile--help {
+.tile--help, .tile--min-max {
     width: 3.2vh;
     height: 3.2vh;
     border-radius: 12%;
