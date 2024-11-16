@@ -118,15 +118,12 @@ body {
     display: inline-flex;
     text-align: end;
     align-items: center;
-    flex-wrap: nowrap;
-    gap: 5%;
-
+    text-wrap: nowrap;
     pointer-events: all;
 }
 .display--min-max b {font-weight: 500;}
 
 .tile--min-max {
-    border-width: 1vh;
     width: 2.5vh;
     height: 2.5vh;
 }
