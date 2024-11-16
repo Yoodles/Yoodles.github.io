@@ -49,6 +49,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     /* aspect-ratio: 3 / 4; */
     /* margin: 0 auto; */
