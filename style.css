@@ -12,13 +12,6 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'Raleway-Light';
-    src: url('../fonts/Raleway-Light.tff') format('truetype');
-    font-weight: 100 200 300 400 500;
-    font-style: normal;
-}
-
 *, *:before, *:after {
   box-sizing: border-box;
   user-select: none;
@@ -185,10 +178,7 @@ body {
     /* filter: drop-shadow(5% 4% 0.7% rgba(0, 0, 0, 0.813)); */
     transition: transform 0.1s ease-out;
 
-    /* filter: drop-shadow(5% 4% 0.7% rgba(0, 0, 0, 0.813)); */
-
     /* filter: drop-shadow(.2% .2% .6% rgba(128, 121, 121, 0.813)); */
-
 
     /* filter: drop-shadow(1.2% 1.2% .6% rgba(128, 121, 121, 0.813)); */
     
@@ -197,13 +187,13 @@ body {
 
 .shadow--min {
     /* filter: drop-shadow(.2vw .2vw .6vw rgba(128, 121, 121, 0.813)); */
-    filter: drop-shadow(.2% .2% .6% rgba(128, 121, 121, 0.813));
+    filter: drop-shadow(.2vh .2vh .6vh rgba(128, 121, 121, 0.813));
 }
 
 .btn--img {
     background: none;
     border: none;
-    filter: drop-shadow(1.2% 1.2% .6% rgba(128, 121, 121, 0.813));
+    filter: drop-shadow(1.2vh 1.2vh .6vh rgba(128, 121, 121, 0.813));
 
 }
 

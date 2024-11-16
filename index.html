@@ -37,273 +37,270 @@
             <button class="btn btn--help btn--fill shadow--min" onclick="togglePanel('help')">?</button>
         </div>
 
-        <!-- <div class="game"> -->
-            <div id="popup-panel" class="panel panel--popup hidden">
-                <button class="btn btn--close" onclick="togglePanel('close')">x</button>
-                <div id="help-content" class="popup-content">
-                    <p>How To Play</p>
-                    <h2>Get from the word at the top to the word at the bottom, using as few moves as possible.</h2>
-                    
-                    <ul>
-                        <li>Each move must be a valid word.</li>
-                        <li>You can change one letter...
-                            <div class="help__word-cont">
-                                <span class="tile tile--help">W</span>
-                                <span class="tile tile--help tile--removed">O</span>
-                                <span class="tile tile--help">R</span>
-                                <span class="tile tile--help">D</span>
-                                →
-                                <span class="tile tile--help">W</span>
-                                <span class="tile tile--help tile--added">A</span>
-                                <span class="tile tile--help">R</span>
-                                <span class="tile tile--help">D</span>
-                            </div>
-                        </li>
-
-                        <li class="li--no-bullet">... add/remove one letter...
-                            <div class="help__word-cont">
-                                <span class="tile tile--help">W</span>
-                                <span class="tile tile--help">O</span>
-                                <span class="tile tile--help">R</span>
-                                <span class="tile tile--help">D</span>
-                                →
-                                <span class="tile tile--help">W</span>
-                                <span class="tile tile--help">O</span>
-                                <span class="tile tile--help">R</span>
-                                <span class="tile tile--help tile--added">L</span>
-                                <span class="tile tile--help">D</span>
-                            </div>
-                            <div class="help__word-cont">
-                                <span class="tile tile--help">W</span>
-                                <span class="tile tile--help">A</span>
-                                <span class="tile tile--help">R</span>
-                                <span class="tile tile--help tile--removed">D</span>
-                                →
-                                <span class="tile tile--help">W</span>
-                                <span class="tile tile--help">A</span>
-                                <span class="tile tile--help">R</span>
-                            </div>
-                        </li>
-
-                        <li class="li--no-bullet">... or jumble all the letters.
-                            <div class="help__word-cont">
-                                <span class="tile tile--help tile--moved">W</span>
-                                <span class="tile tile--help tile--moved">A</span>
-                                <span class="tile tile--help tile--moved">R</span>
-                                <span class="tile tile--help tile--moved">D</span>
-                                →
-                                <span class="tile tile--help tile--added">D</span>
-                                <span class="tile tile--help tile--added">R</span>
-                                <span class="tile tile--help tile--added">A</span>
-                                <span class="tile tile--help tile--added">W</span>
-                            </div>
-                            <div class="help__word-cont">
-                                <span class="tile tile--help tile--moved">W</span>
-                                <span class="tile tile--help tile--moved">O</span>
-                                <span class="tile tile--help tile--moved">R</span>
-                                <span class="tile tile--help tile--moved">D</span>
-                                <span class="tile tile--help tile--moved">S</span>
-                                →
-                                <span class="tile tile--help tile--added">S</span>
-                                <span class="tile tile--help tile--added">W</span>
-                                <span class="tile tile--help tile--added">O</span>
-                                <span class="tile tile--help tile--added">R</span>
-                                <span class="tile tile--help tile--added">D</span>
-                            </div>
-
-                        </li>
-                        <li>Clicking <img src="images/flipper.svg" class="help__flipper-icon"> will flip the whole board. Sometimes it helps to work backwards.</li>
-                        <li>You can also undo a move by clicking <img src="images/deleter.png" class="help__del-icon"> or <img src="images/deleter.png" class="help__del-icon icon-flipped">.</li>
-                    </ul>
-                </div>
-
-                <div id="rounds-content" class="popup-content hidden">
-                    <p>Select a Round</p>
-                    <ul id="word-pair-menu">
-                        <!-- List of rounds here -->
-                    </ul>
-                </div>
-            </div>
-
-            <!-- <div id="game-area" class="game-area hidden"> -->
-            <div id="game-area" class="game-area">    
-                <div id="overlay" class="overlay overlay--full-scr visible" onclick="togglePanel('close')">All Rounds Completed!</div>
+        <div id="popup-panel" class="panel panel--popup hidden">
+            <button class="btn btn--close" onclick="togglePanel('close')">x</button>
+            <div id="help-content" class="popup-content">
+                <p>How To Play</p>
+                <h2>Get from the word at the top to the word at the bottom, using as few moves as possible.</h2>
                 
-                <div class="fade-bar fade-bar--top">
-                    <div class="display display--moves-score">
-                        <div id="move-counter" class="shadow--min">Moves: 0</div>
-                        <div id="best-score" class="shadow--min">Best: --</div>
-                    </div>
-                    <!-- <div onclick="testUI()" id="min-max-lengths" class="display display--min-max shadow--min"></div> -->
-                    <div onclick="togglePanel('rounds')" id="min-max-lengths" class="display display--min-max shadow--min"></div>
+                <ul>
+                    <li>Each move must be a valid word.</li>
+                    <li>You can change one letter...
+                        <div class="help__word-cont">
+                            <span class="tile tile--help">W</span>
+                            <span class="tile tile--help tile--removed">O</span>
+                            <span class="tile tile--help">R</span>
+                            <span class="tile tile--help">D</span>
+                            →
+                            <span class="tile tile--help">W</span>
+                            <span class="tile tile--help tile--added">A</span>
+                            <span class="tile tile--help">R</span>
+                            <span class="tile tile--help">D</span>
+                        </div>
+                    </li>
 
+                    <li class="li--no-bullet">... add/remove one letter...
+                        <div class="help__word-cont">
+                            <span class="tile tile--help">W</span>
+                            <span class="tile tile--help">O</span>
+                            <span class="tile tile--help">R</span>
+                            <span class="tile tile--help">D</span>
+                            →
+                            <span class="tile tile--help">W</span>
+                            <span class="tile tile--help">O</span>
+                            <span class="tile tile--help">R</span>
+                            <span class="tile tile--help tile--added">L</span>
+                            <span class="tile tile--help">D</span>
+                        </div>
+                        <div class="help__word-cont">
+                            <span class="tile tile--help">W</span>
+                            <span class="tile tile--help">A</span>
+                            <span class="tile tile--help">R</span>
+                            <span class="tile tile--help tile--removed">D</span>
+                            →
+                            <span class="tile tile--help">W</span>
+                            <span class="tile tile--help">A</span>
+                            <span class="tile tile--help">R</span>
+                        </div>
+                    </li>
 
-                </div>
-
-                <div id="result-panel" class="panel panel--result hidden">
-                    <div id="result-message" class="result">Completed in X moves!<br>You know words good!</div>
-                    <div id="star-cont" class="star-cont">
-                        <span class="star" id="star1">★</span>
-                        <span class="star" id="star2">★</span>
-                        <span class="star" id="star3">★</span>
-                    </div>
-                    <div>
-                        <button class="btn btn--retry btn--fill" onclick="updateGame('resetRound')">RETRY</button>
-                        <button class="btn btn--undo btn--fill" onclick="undoMove()">UNDO</button>
-                        <button class="btn btn--next btn--fill" onclick="updateGame('nextRound')">NEXT</button>
-                    </div>
-                </div>
-
-                <div id="gameplay-cont">
-
-                    <div id="norm-set" class="set">
-                        <div id="start-word" class="word-cont set-word">
-                            <div class="tile"></div>
-                            <div class="tile"></div>
-                            <div class="tile"></div>
-                            <div class="tile"></div>
-                            <div class="tile"></div>
-                            <div class="tile"></div>
+                    <li class="li--no-bullet">... or jumble all the letters.
+                        <div class="help__word-cont">
+                            <span class="tile tile--help tile--moved">W</span>
+                            <span class="tile tile--help tile--moved">A</span>
+                            <span class="tile tile--help tile--moved">R</span>
+                            <span class="tile tile--help tile--moved">D</span>
+                            →
+                            <span class="tile tile--help tile--added">D</span>
+                            <span class="tile tile--help tile--added">R</span>
+                            <span class="tile tile--help tile--added">A</span>
+                            <span class="tile tile--help tile--added">W</span>
+                        </div>
+                        <div class="help__word-cont">
+                            <span class="tile tile--help tile--moved">W</span>
+                            <span class="tile tile--help tile--moved">O</span>
+                            <span class="tile tile--help tile--moved">R</span>
+                            <span class="tile tile--help tile--moved">D</span>
+                            <span class="tile tile--help tile--moved">S</span>
+                            →
+                            <span class="tile tile--help tile--added">S</span>
+                            <span class="tile tile--help tile--added">W</span>
+                            <span class="tile tile--help tile--added">O</span>
+                            <span class="tile tile--help tile--added">R</span>
+                            <span class="tile tile--help tile--added">D</span>
                         </div>
 
-                        <div id="norm-rack" class="rack">
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                        </div>
-                    </div>
+                    </li>
+                    <li>Clicking <img src="images/flipper.svg" class="help__flipper-icon"> will flip the whole board. Sometimes it helps to work backwards.</li>
+                    <li>You can also undo a move by clicking <img src="images/deleter.png" class="help__del-icon"> or <img src="images/deleter.png" class="help__del-icon icon-flipped">.</li>
+                </ul>
+            </div>
 
-                    <div id="input-set">
-                        <input id="input-field" type ="text">
-                        <div id="flipper-and-deleters">
-                            <button id="upper-deleter" class="btn btn--img shadow deleter" onclick="deleteMove('upper')"><img src="images/deleter.png"></button>
-                            <button id="flippin-button" class="btn btn--img shadow" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
-                            <button id="lower-deleter" class="btn btn--img shadow deleter" onclick="deleteMove('lower')"><img src="images/deleter.png"></button>
-                        </div>
-                    </div>
+            <div id="rounds-content" class="popup-content hidden">
+                <p>Select a Round</p>
+                <ul id="word-pair-menu">
+                    <!-- List of rounds here -->
+                </ul>
+            </div>
+        </div>
 
-                    <div id="flip-set" class="set">
-                        <div id="flip-rack" class="rack">
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                            <div class="word-cont"></div>
-                        </div>
-                        
-                        <div id="end-word" class="word-cont set-word">
-                            <div class="tile"></div>
-                            <div class="tile"></div>
-                            <div class="tile"></div>
-                            <div class="tile"></div>
-                            <div class="tile"></div>
-                            <div class="tile"></div>
-                        </div>
-                    </div>
-
+        <!-- <div id="game-area" class="game-area hidden"> -->
+        <div id="game-area" class="game-area">    
+            <div id="overlay" class="overlay overlay--full-scr visible" onclick="togglePanel('close')">All Rounds Completed!</div>
+            
+            <div class="fade-bar fade-bar--top">
+                <div class="display display--moves-score">
+                    <div id="move-counter" class="shadow--min">Moves: 0</div>
+                    <div id="best-score" class="shadow--min">Best: --</div>
                 </div>
+                <!-- <div onclick="testUI()" id="min-max-lengths" class="display display--min-max shadow--min"></div> -->
+                <div onclick="togglePanel('rounds')" id="min-max-lengths" class="display display--min-max shadow--min"></div>
 
-                <div class="fade-bar fade-bar--bottom"></div>
 
+            </div>
 
-            </div>    
-
-            <!-- Onscreen Keyboard -->
-            <div id="keyboard">
-                <!-- First row -->
-                <div class="keyboard__row">
-                    <button class="btn btn--fill keyboard__key">Q</button>
-                    <button class="btn btn--fill keyboard__key">W</button>
-                    <button class="btn btn--fill keyboard__key">E</button>
-                    <button class="btn btn--fill keyboard__key">R</button>
-                    <button class="btn btn--fill keyboard__key">T</button>
-                    <button class="btn btn--fill keyboard__key">Y</button>
-                    <button class="btn btn--fill keyboard__key">U</button>
-                    <button class="btn btn--fill keyboard__key">I</button>
-                    <button class="btn btn--fill keyboard__key">O</button>
-                    <button class="btn btn--fill keyboard__key">P</button>
+            <div id="result-panel" class="panel panel--result hidden">
+                <div id="result-message" class="result">Completed in X moves!<br>You know words good!</div>
+                <div id="star-cont" class="star-cont">
+                    <span class="star" id="star1">★</span>
+                    <span class="star" id="star2">★</span>
+                    <span class="star" id="star3">★</span>
                 </div>
-                <!-- Second row -->
-                <div class="keyboard__row">
-                    <div class="keyboard__spacer"></div>
-                    <button class="btn btn--fill keyboard__key">A</button>
-                    <button class="btn btn--fill keyboard__key">S</button>
-                    <button class="btn btn--fill keyboard__key">D</button>
-                    <button class="btn btn--fill keyboard__key">F</button>
-                    <button class="btn btn--fill keyboard__key">G</button>
-                    <button class="btn btn--fill keyboard__key">H</button>
-                    <button class="btn btn--fill keyboard__key">J</button>
-                    <button class="btn btn--fill keyboard__key">K</button>
-                    <button class="btn btn--fill keyboard__key">L</button>
-                    <div class="keyboard__spacer"></div>
-                </div>
-                <!-- Third row -->
-                <div class="keyboard__row">
-                    <button class="btn btn--fill keyboard__key keyboard__key--backspace">Del</button>
-                    <button class="btn btn--fill keyboard__key">Z</button>
-                    <button class="btn btn--fill keyboard__key">X</button>
-                    <button class="btn btn--fill keyboard__key">C</button>
-                    <button class="btn btn--fill keyboard__key">V</button>
-                    <button class="btn btn--fill keyboard__key">B</button>
-                    <button class="btn btn--fill keyboard__key">N</button>
-                    <button class="btn btn--fill keyboard__key">M</button>
-                    <button class="btn btn--fill keyboard__key keyboard__key--enter">Enter</button>
-
+                <div>
+                    <button class="btn btn--retry btn--fill" onclick="updateGame('resetRound')">RETRY</button>
+                    <button class="btn btn--undo btn--fill" onclick="undoMove()">UNDO</button>
+                    <button class="btn btn--next btn--fill" onclick="updateGame('nextRound')">NEXT</button>
                 </div>
             </div>
 
-            <div id="pathFinderDialog" class="dialog panel panel--dialog hidden">
-                <div class="dialog-content">
-                    <label for="startWordInput">Start Word:</label>
-                    <input type="text" id="startWordInput" placeholder="Enter start word" />
-            
-                    <label for="endWordInput">End Word:</label>
-                    <input type="text" id="endWordInput" placeholder="Enter end word" />
-            
-                    <label for="maxStepsDropdown">Max Steps:</label>
-                    <select id="maxStepsDropdown"></select>
+            <div id="gameplay-cont">
 
-                    <div class="dialog-buttons">
-                        <button id="runPathFinder">Find Paths</button>
-                        <button id="closeDialog">Cancel</button>
+                <div id="norm-set" class="set">
+                    <div id="start-word" class="word-cont set-word">
+                        <div class="tile"></div>
+                        <div class="tile"></div>
+                        <div class="tile"></div>
+                        <div class="tile"></div>
+                        <div class="tile"></div>
+                        <div class="tile"></div>
+                    </div>
+
+                    <div id="norm-rack" class="rack">
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
                     </div>
                 </div>
-            </div>
 
-            <div id="css-test" class="off">
+                <div id="input-set">
+                    <input id="input-field" type ="text">
+                    <div id="flipper-and-deleters">
+                        <button id="upper-deleter" class="btn btn--img shadow deleter" onclick="deleteMove('upper')"><img src="images/deleter.png"></button>
+                        <button id="flippin-button" class="btn btn--img shadow" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
+                        <button id="lower-deleter" class="btn btn--img shadow deleter" onclick="deleteMove('lower')"><img src="images/deleter.png"></button>
+                    </div>
+                </div>
 
-                <div class="logo">
+                <div id="flip-set" class="set">
+                    <div id="flip-rack" class="rack">
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                        <div class="word-cont"></div>
+                    </div>
                     
-                    <div class="logo__wdwd">
-                        <div class="logo__arrow-shaft"></div>
-                        <span class="logo__wdwd__half" style="--adjustment: .4vh;">
-                            <span class="logo__wdwd__elem logo__wdwd__w" style="--adjustment: .3vh;">W</span>
-                            <span class="logo__wdwd__elem" style="--adjustment: 0vh;">ORD</span>
-                        </span>
-                        <span class="logo__wdwd__half" style="--adjustment: 0vh;">
-                            <span class="logo__wdwd__elem logo__wdwd__w" style="--adjustment: 0vh;">W</span>
-                            <span class="logo__wdwd__elem" style="--adjustment: -.9vh;">ARD</span>
-                        </span>
+                    <div id="end-word" class="word-cont set-word">
+                        <div class="tile"></div>
+                        <div class="tile"></div>
+                        <div class="tile"></div>
+                        <div class="tile"></div>
+                        <div class="tile"></div>
+                        <div class="tile"></div>
                     </div>
                 </div>
 
-                <div class="test__flipper">
+            </div>
 
+            <div class="fade-bar fade-bar--bottom"></div>
+
+
+        </div>    
+
+        <div id="keyboard">
+            <!-- First row -->
+            <div class="keyboard__row">
+                <button class="btn btn--fill keyboard__key">Q</button>
+                <button class="btn btn--fill keyboard__key">W</button>
+                <button class="btn btn--fill keyboard__key">E</button>
+                <button class="btn btn--fill keyboard__key">R</button>
+                <button class="btn btn--fill keyboard__key">T</button>
+                <button class="btn btn--fill keyboard__key">Y</button>
+                <button class="btn btn--fill keyboard__key">U</button>
+                <button class="btn btn--fill keyboard__key">I</button>
+                <button class="btn btn--fill keyboard__key">O</button>
+                <button class="btn btn--fill keyboard__key">P</button>
+            </div>
+            <!-- Second row -->
+            <div class="keyboard__row">
+                <div class="keyboard__spacer"></div>
+                <button class="btn btn--fill keyboard__key">A</button>
+                <button class="btn btn--fill keyboard__key">S</button>
+                <button class="btn btn--fill keyboard__key">D</button>
+                <button class="btn btn--fill keyboard__key">F</button>
+                <button class="btn btn--fill keyboard__key">G</button>
+                <button class="btn btn--fill keyboard__key">H</button>
+                <button class="btn btn--fill keyboard__key">J</button>
+                <button class="btn btn--fill keyboard__key">K</button>
+                <button class="btn btn--fill keyboard__key">L</button>
+                <div class="keyboard__spacer"></div>
+            </div>
+            <!-- Third row -->
+            <div class="keyboard__row">
+                <button class="btn btn--fill keyboard__key keyboard__key--backspace">Del</button>
+                <button class="btn btn--fill keyboard__key">Z</button>
+                <button class="btn btn--fill keyboard__key">X</button>
+                <button class="btn btn--fill keyboard__key">C</button>
+                <button class="btn btn--fill keyboard__key">V</button>
+                <button class="btn btn--fill keyboard__key">B</button>
+                <button class="btn btn--fill keyboard__key">N</button>
+                <button class="btn btn--fill keyboard__key">M</button>
+                <button class="btn btn--fill keyboard__key keyboard__key--enter">Enter</button>
+
+            </div>
+        </div>
+
+        <div id="pathFinderDialog" class="dialog panel panel--dialog hidden">
+            <div class="dialog-content">
+                <label for="startWordInput">Start Word:</label>
+                <input type="text" id="startWordInput" placeholder="Enter start word" />
+        
+                <label for="endWordInput">End Word:</label>
+                <input type="text" id="endWordInput" placeholder="Enter end word" />
+        
+                <label for="maxStepsDropdown">Max Steps:</label>
+                <select id="maxStepsDropdown"></select>
+
+                <div class="dialog-buttons">
+                    <button id="runPathFinder">Find Paths</button>
+                    <button id="closeDialog">Cancel</button>
                 </div>
             </div>
-        <!-- </div> -->
+        </div>
+
+        <div id="css-test" class="off">
+
+            <div class="logo">
+                
+                <div class="logo__wdwd">
+                    <div class="logo__arrow-shaft"></div>
+                    <span class="logo__wdwd__half" style="--adjustment: .4vh;">
+                        <span class="logo__wdwd__elem logo__wdwd__w" style="--adjustment: .3vh;">W</span>
+                        <span class="logo__wdwd__elem" style="--adjustment: 0vh;">ORD</span>
+                    </span>
+                    <span class="logo__wdwd__half" style="--adjustment: 0vh;">
+                        <span class="logo__wdwd__elem logo__wdwd__w" style="--adjustment: 0vh;">W</span>
+                        <span class="logo__wdwd__elem" style="--adjustment: -.9vh;">ARD</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="test__flipper">
+
+            </div>
+        </div>
 
     </div>
 
