@@ -53,7 +53,6 @@ body {
 
     overflow: hidden;
     font-family: 'Raleway', sans-serif;
-    background-color: var(--main-bg-color);
     touch-action: manipulation;
 }
 
@@ -65,7 +64,7 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    background-color: #f1f1f1;
+    background-color: var(--main-bg-color);
     border: 0.3px grey solid; 
 }
 
