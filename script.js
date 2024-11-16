@@ -179,7 +179,7 @@ function updateBestScoreDisplay(pairKey) {
 
 //UPDATE MOVECOUNTER ON SCREEN
 function updateMoveCounterUI() {
-    document.getElementById('move-counter').innerHTML = "<span class='display__colon'>:</span>" + gameState.moveCounter;
+    document.getElementById('move-counter').innerHTML = "Moves<span class='display__colon'>:</span>" + gameState.moveCounter;
 }
 
 function updateMinMaxDisplay() {

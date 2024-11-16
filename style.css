@@ -37,7 +37,7 @@
 }
 
 html {
-    font-size: clamp(14px, 1.5vw, 18px)
+    font-size: clamp(16px, 1.5vw, 18px)
 }
 
 html, body, .tile, .logo {
@@ -365,21 +365,41 @@ body {
     display: flex;
     position: relative;
     align-items: center;
+    justify-content: center;
     width: 100%;
-    /* min-width: 60vw;
-    max-width: 70vw; */
+
     margin: auto;
     z-index: 70;
 }
 
+#input-field {
+    width: 60%;
+    height: 8vh;
+    text-transform: uppercase;
+    border: .2vh dashed #545454;
+
+    background: none;
+    font-size: 1rem;
+    letter-spacing: 0.3rem;
+    font-weight: 100;
+    border-radius: 2vh;
+    text-align: center;
+    margin: 3%;
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    filter: drop-shadow(.3% .3% .4% rgba(128, 121, 121, 0.813));
+
+}
+input:focus {outline: none}
+
+
 #flipper-and-deleters {
     display: flex;
-    left: 100%;
+    right: 0%;
     flex-direction: column;
     justify-content: space-around;
     height: 27.5vh;
-    /* position: absolute; */
-    width: 12vh;
+    position: absolute;
+    width: 12%;
     align-items: center;
 }
 
@@ -403,7 +423,7 @@ body {
 
 
 #flippin-button {transition: transform 0.1s ease-out;}
-#flippin-button img {height: 9vh;}
+#flippin-button img {height: 7vh;}
 
 
 
@@ -497,28 +517,6 @@ body {
 }
 
 
-
-
-
-#input-field {
-    width: 80%;
-    height: 9vh;
-    text-transform: uppercase;
-    border: .2vh dashed #545454;
-
-    /* border: .6vw inset #373737; */
-    background: none;
-    font-size: 4vh;
-    letter-spacing: 0.3rem;
-    font-weight: 100;
-    border-radius: 2vh;
-    text-align: center;
-    margin: 3%;
-    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-    filter: drop-shadow(.3% .3% .4% rgba(128, 121, 121, 0.813));
-
-}
-input:focus {outline: none}
 
 
 .panel {
