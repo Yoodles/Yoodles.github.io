@@ -101,45 +101,6 @@
 
 
 
-
-
-
-.test-deleter {
-    height: 10vw;
-    width: 90%;
-    font-size: 5vw;
-    background: none;
-    border: none
-}
-
-.test-flip {
-    border: none;
-    background: none;
-    outline: none;
-    user-select: none;
-    cursor: pointer;
-    font-size: 5.5vw;
-
-    height: 30vw;
-    width: 90%;
-    padding: 0;
-
-    /* margin: 0; */
-    /* background: #ffc0cb66; */
-}
-.test-flip__top { /* "M" */
-    transform: rotate(180deg) translate(-0.15vw, -0.2vw);
-    margin: 0;
-    text-shadow: -2px -4px rgba(0, 0, 0, 0.181);
-
-}
-.test-flip__bottom {  /* "W" */
-    transform: translate(-0.15vw, -2.7vw);
-    margin: 0;
-    text-shadow: 2px 4px rgba(0, 0, 0, 0.181);
-}
-
-
 /* Ensuring aspect ratio */
 /* .logo {
     aspect-ratio: 16 / 9;
