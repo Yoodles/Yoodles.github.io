@@ -44,6 +44,7 @@
             <div class="fade-bar fade-bar--top fade-bar--btns">
                 
             </div>
+
             <div id="help-content" class="popup-content">
 
                 <p>How To Play</p>
@@ -151,7 +152,7 @@
 
             <div id="gameplay-cont">
 
-                <div id="norm-set" class="set">
+                <div id="norm-set" class="set shadow--tile-set">
                     <div id="start-word" class="word-row word-row--init-pair">
                         <div class="tile"></div>
                         <div class="tile"></div>
@@ -177,14 +178,19 @@
 
                 <div id="input-set">
                     <input id="input-field" class="shadow--min" type ="text">
-                    <div id="flipper-and-deleters">
+                    <div id="flippin-button" class="btn btn--img shadow--top" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
+                    <div id="deleters">
+                        <button id="upper-deleter" class="btn btn--img shadow--top deleter" onclick="deleteMove('upper')"><img src="images/deleter.png"></button>
+                        <button id="lower-deleter" class="btn btn--img shadow--top deleter" onclick="deleteMove('lower')"><img src="images/deleter.png"></button>
+                    </div>
+                    <!-- <div id="flipper-and-deleters">
                         <button id="upper-deleter" class="btn btn--img shadow--top deleter" onclick="deleteMove('upper')"><img src="images/deleter.png"></button>
                         <button id="flippin-button" class="btn btn--img shadow--top" onclick="toggleFlip()"><img src="images/flipper.svg"></button>
                         <button id="lower-deleter" class="btn btn--img shadow--top deleter" onclick="deleteMove('lower')"><img src="images/deleter.png"></button>
-                    </div>
+                    </div> -->
                 </div>
 
-                <div id="flip-set" class="set">
+                <div id="flip-set" class="set shadow--tile-set">
                     <div id="flip-rack" class="rack">
                         <div class="word-row"></div>
                         <div class="word-row"></div>
