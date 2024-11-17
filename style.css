@@ -201,7 +201,9 @@ body {
 
 
 .shadow--min {
-    filter: drop-shadow(0 0 .1em rgba(128, 121, 121, 0.813));
+    /* filter: drop-shadow(0 0 .1em rgba(128, 121, 121, 0.813)); */
+    filter: drop-shadow(.05em .05em .05em #666666);
+
 }
 
 .btn--img {
@@ -398,7 +400,6 @@ body {
     text-align: center;
     margin: 3%;
     transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-    filter: drop-shadow(.3% .3% .4% rgba(128, 121, 121, 0.813));
 
 }
 input:focus {outline: none}
@@ -590,8 +591,6 @@ input:focus {outline: none}
 .star {
     color: grey;
     transition: background-color 0.3s ease-in-out;
-    /* display: inline-block; */
-
 }
 
 .star.yellow {
