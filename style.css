@@ -435,16 +435,9 @@ input:focus {outline: none}
 }
 
 /* Styling for the bottom "W" */
-.flip-w--bottom {
-    margin-top: -0.2rem; /* Adjust spacing between W's */
-}
+.flip-w--bottom {margin-top: -0.2rem}
 
-/* Ensure button scales proportionally across devices */
-#flippin-button2 {
-    font-size: calc(1rem + 0.5vw); /* Responsive font size */
-}
-
-#deleters {
+/* #deleters {
     position: absolute;
     display: flex;
     right: 10%;
@@ -456,7 +449,7 @@ input:focus {outline: none}
 
 
     display: none;
-}
+} */
 
 
 
@@ -476,7 +469,7 @@ input:focus {outline: none}
 .deleter--upper {transform: rotate(0.5turn)}
 #lower-deleter img {transform: rotate(0.5turn)}
 
-#deleters2 {
+#deleters {
     position: absolute;
     display: flex;
     right: 3%;
