@@ -423,10 +423,10 @@ input:focus {outline: none}
 #deleters {
     position: absolute;
     display: flex;
-    right: 3%;
+    right: 10%;
     flex-direction: column;
-    justify-content: space-around;
-    height: 27.5vh;
+    justify-content: space-between;
+    height: 22.5vh;
     width: 12%;
     align-items: center;
 }
