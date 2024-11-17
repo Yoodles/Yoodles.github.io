@@ -417,14 +417,31 @@ input:focus {outline: none}
 
 
 #flippin-button {
-    /* position: absolute; */
+    position: absolute;
+    /* top: 50%; */
     width: 3.5rem;
     height: 5.5rem;
+    left: calc(50% + 35%); /* Offset to the right of the input field */
+
 
     flex-direction: column;
 
 }
 
+#deleter-group {
+    position: absolute;
+    display: flex;
+    left: calc(50% + 35%); /* Match flippin-button horizontal position */
+
+    flex-direction: column;
+    justify-content: space-between;
+    height: 23vh;
+    /* width: 12%; */
+    width: auto;
+    /* align-items: center; */
+    font-size: 2rem;
+    font-weight: 400;
+}
 
 /* Individual "W" styling */
 .flip-w {
@@ -441,22 +458,9 @@ input:focus {outline: none}
     margin-bottom: -0.2rem; /* Adjust spacing between W's */
 }
 
-/* Styling for the bottom "W" */
 .flip-w--bottom {margin-top: -0.2rem}
 
-/* #deleters {
-    position: absolute;
-    display: flex;
-    right: 10%;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 22.5vh;
-    width: 12%;
-    align-items: center;
 
-
-    display: none;
-} */
 
 
 
@@ -475,22 +479,6 @@ input:focus {outline: none}
 .deleter img {height: 4vh;}
 .deleter--upper {transform: rotate(0.5turn)}
 #lower-deleter img {transform: rotate(0.5turn)}
-
-#deleter-set {
-    /* position: absolute; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 23vh;
-    /* width: 12%; */
-    width: auto;
-    /* align-items: center; */
-    font-size: 2rem;
-    font-weight: 400;
-
-}
-
-
 
 
 #flippin-button {transition: transform 0.1s ease-out;}
