@@ -673,7 +673,7 @@ h1 {
 }
 
 p {
-    margin-bottom: 1.1rem;
+    margin-bottom: 1rem;
     text-indent: 0;
 }
 
@@ -681,8 +681,8 @@ ul {
     margin: 0;
     padding: 0;
     width: 100%;
-    list-style-position: outside; /* Bullets outside the main block */
-    list-style-type: disc; /* Standard bullet style */
+    list-style-position: outside;
+    list-style-type: disc;
 }
 li {
     font-size: 1rem;
@@ -694,9 +694,6 @@ li div:last-of-type {margin-bottom: 0.5em}
 
 
 .li--no-bullet {list-style-type: none;}
-
-
-/* .word-row--help:last-of-type {margin-bottom: 2%;} */
 
 .help .word-row {
     margin-top: .3em;
