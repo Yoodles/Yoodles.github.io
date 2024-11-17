@@ -170,7 +170,6 @@ body {
     transition: all 0.2s ease-in-out; /* Smooth hover effect */
 
 }
-.btn:not(#game-logo, .btn--close):hover {transform: scale(1.1);}
 .btn:not(#game-logo, .btn--close):active {transform: scale(1.1);}
 
 
@@ -489,11 +488,15 @@ input:focus {outline: none}
 }
 .btn--del.active {opacity: 1;}
 
+
 .btn--del.fade-in, .btn--del.fade-out {
     transition-duration: 0.2s;
 }
 
 .btn--del--upper {transform: rotate(0.5turn)}
+.btn--del--upper:hover {
+    transform: scale(1.1), rotate(0.5turn);
+}
 
 
 
