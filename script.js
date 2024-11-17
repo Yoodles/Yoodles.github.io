@@ -420,14 +420,13 @@ function toggleFlip() {
 
     // Animation UI
     // const inputSet = document.getElementById('input-set');
-    // const upperDeleter = document.getElementById('upper-deleter');
-    const deleters = document.querySelectorAll('.deleter');
+    const deleters = document.getElementById('deleter-group');
     const overlay = document.getElementById('overlay');
     const flipper = document.getElementById('flippin-button');
 
     // toggleClassesInSequence([toggleFlip], ['pressed', 'pressed'], [0, 200]);
     toggleClassesInSequence([inputField, flipper], ['rotating', 'rotating'], [0, 1000]);
-    toggleClassesInSequence([...deleters], ['fade-out', 'fade-out'], [0, 800]);
+    toggleClassesInSequence([deleters], ['fade-out', 'fade-out'], [0, 800]);
 
     // toggleOverlay();
     fadeIn(overlay, 300);

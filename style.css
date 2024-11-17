@@ -451,56 +451,50 @@ input:focus {outline: none}
 }
 
 
-#flippin-button {
+.btn--flip {
     position: absolute;
     width: 3rem;
     height: 5.5rem;
     left: calc(50% + 30%); /* Offset to the right of the input field */
 
     flex-direction: column;
-
-    transition: transform 0.1s ease-out
+    transition: transform 0.1s ease-out;
 }
 
-/* Individual "W" styling */
-.flip-w {
-    font-size: 2rem; /* Set font size (adjust as needed) */
-    font-weight: 400;
-    line-height: 1; /* Prevent extra spacing within lines */
-    margin: 0; /* Remove default margin */
-    transform-origin: center; /* Set transform origin to the center */
+.btn--flip--pt {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+    margin: 0;
+    transform-origin: center;
     pointer-events: none;
 }
-/* .flip-w */
 
-/* Styling for the top flipped "W" */
-.flip-w--top {
+.btn--flip--top {
     transform: rotate(180deg);
     margin-bottom: -0.2rem;
 }
 
-.flip-w--bottom {margin-top: -0.2rem}
+.btn--flip--bottom {margin-top: -0.2rem}
 
 
 
 
-
-
-.deleter {
+.btn--del {
     width: 3rem;
     height: 3rem;
     position: relative;
     transition: opacity ease-in;
     opacity: 0;
 }
-.deleter.active {opacity: 1;}
+.btn--del.active {opacity: 1;}
 
-.deleter.fade-in, .deleter.fade-out {
+.btn--del.fade-in, .btn--del.fade-out {
     transition-duration: 0.2s;
 }
 
 .deleter img {height: 4vh;}
-.deleter--upper {transform: rotate(0.5turn)}
+.btn--del--upper {transform: rotate(0.5turn)}
 
 
 
