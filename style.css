@@ -1,10 +1,11 @@
 :root {
     --vh: 1vh;
     --main-bg-color: #f3f3f3;
-    --tile-color: rgb(59, 59, 59);
+    --tile-border-color: rgb(104, 104, 104);
+    --tile-font-color: rgb(26, 22, 22);
     --btn-color: rgba(229, 229, 217, 0.801);
-    --btn-border-color: rgb(197, 197, 181)
-
+    --btn-border-color: rgb(197, 197, 181);
+    --key-font-color: rgb(59, 59, 59);
 }
 
 
@@ -163,8 +164,8 @@ body {
 .btn--fill {
     font-size: 1rem;
     font-weight: 500;
-    color: grey;
     background-color: var(--btn-color);
+    color: var(--key-font-color);
     border: solid .2vh var(--btn-border-color);
     box-shadow: 1vh 1vh 1.5vh rgba(0, 0, 0, 0.101);
 
@@ -344,7 +345,7 @@ body {
 
     background: none;
 
-    border: 0.08rem ridge var(--tile-color);
+    border: 0.1rem ridge var(--tile-border-color);
     margin: 0.2em;
 
     border-radius: .2em;
