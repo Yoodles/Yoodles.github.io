@@ -8,6 +8,7 @@
     --btn-font-color: rgb(26, 22, 22);
     --btn-border-color: rgb(197, 197, 181);
     --key-font-color: rgb(59, 59, 59);
+    --panel-bg-color: white;
 }
 
 
@@ -108,12 +109,13 @@ body {
     width: 100%;
     z-index: 85;
     display: flex;
-    justify-content: space-between;
-    padding: 0 3%;
 }
 .fade-bar--top {top: 0; background: linear-gradient(to bottom, #f1f1f1 0%, rgba(255, 255, 255, 0) 100%);}
 .fade-bar--bottom {bottom: 0; background: linear-gradient(to top, #f1f1f1 0%, rgba(255, 255, 255, 0) 100%);}
-
+.fade-bar--btns {
+    justify-content: space-between;
+    padding: 0 3%;
+}
 
 .display {
     margin-bottom: auto;
@@ -200,7 +202,8 @@ body {
 
 
 
-/* SHADOWS: use "rem" to keep shadow uniform regardless of element size */
+/* SHADOWS============
+Use "rem" to keep shadow uniform regardless of element size */
 .shadow--top {
     filter: drop-shadow(.2rem .3rem .1rem rgba(165, 156, 156, 0.813));
 }
@@ -220,7 +223,6 @@ body {
     background: none;
     border: none;
     filter: drop-shadow(1.2vh 1.2vh .6vh rgba(128, 121, 121, 0.813));
-
 }
 
 
@@ -262,19 +264,6 @@ body {
 .keyboard__key--backspace {max-width: 12%; flex: 1.4;}
 .keyboard__key--enter {flex: 1.8}
 
-
-
-.btn--close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: transparent;
-    border: none;
-    margin: 3vh 5vh;
-    font-size: 4.5vh;
-    transform: scale(1, 0.9);
-}
-.btn.btn--close:hover {transform: scale(1.1, 1)}
 
 
 
@@ -530,13 +519,12 @@ input:focus {outline: none}
     display: flex;
     flex-direction: column;
     position: absolute;
-
-    background-color: rgb(255, 255, 255);
-
+    background-color: var(--panel-bg-color);
     border: solid .1rem grey;
-    border-radius: .8rem;
+
+    border-radius: .5rem;
     
-    padding: 2%;
+    padding: 4% 0;
 
     font-size: 1rem;
 
@@ -544,10 +532,38 @@ input:focus {outline: none}
 
     z-index: 100;
 
-
 }
+.panel .fade-bar--top {top: 4%}
+.panel .fade-bar--bottom {bottom: 4%}
+
+
+.popup-content {
+    padding: 5%;
+    overflow-y: auto;
+    scrollbar-width: none;
+    scrollbar-color: transparent;
+}
+
+.btn--close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    /* margin: 3vh 5vh; */
+    height: 2rem;
+    width: 2rem;
+    align-items: self-end;
+    font-size: 2rem;
+    font-weight: 400;
+    transform: scale(1, 0.9);
+}
+.btn.btn--close:hover {transform: scale(1.1, 1)}
+
+
+
 .panel.hidden {display: none}
-.panel--popup {width: 90%; height: 90%;}
+.panel--popup {width: 80%; height: 80%;}
 
 .panel--result {
     width: 85%;
@@ -556,14 +572,18 @@ input:focus {outline: none}
 }
 .panel--result.hidden {display: none}
 /* .panel--result .btn {margin: 2vh;} */
-.result__buttons {
-    display: inline-flex;
-    width: 70%;
-}
 
 .panel--dialog {
     width: 70%;
 }
+
+.result__buttons {
+    display: inline-flex;
+    justify-content: center;
+    gap: 2rem;
+    width: 70%;
+}
+
 
 .panel--dialog.hidden {display: none;}
 
@@ -582,10 +602,7 @@ input:focus {outline: none}
 }
 
 
-.popup-content {
-    padding: 0 4%;
-    overflow-y: auto; /* Make the content inside the pop-up scrollable */
-}
+
 
 
 
