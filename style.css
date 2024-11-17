@@ -126,6 +126,7 @@ body {
 .display {
     margin-bottom: auto;
     line-height: 1.4;
+    font-weight: 400;
     z-index: 80;
 }
 .display--moves-score div {text-align: start}
@@ -205,6 +206,25 @@ body {
     font-size: 1.2rem;
     font-weight: 500;
 }
+
+.btn--close {
+    position: absolute;
+    top: 1rem;
+    right: .8rem;
+    height: 1.6rem;
+    width: 1.6rem;
+
+    background: none;
+    border: none;
+
+    align-items: self-end;
+    font-size: 2rem;
+    font-weight: 400;
+    z-index: 90;
+    transform: scale(1, 0.9);
+}
+.btn.btn--close:hover {transform: scale(1.1, 1)}
+
 
 .btn--img {
     color: var(--symbol-btn-color);
@@ -289,10 +309,6 @@ Use "rem" to keep shadow uniform regardless of element size */
 }
 .flip .set {flex-direction: column-reverse;}
 
-#norm-rack, .flip #flip-rack {flex-direction: column;}
-#flip-rack, .flip #norm-rack {flex-direction: column-reverse;}
-
-
 .slide-down--comp-sbmt { transform: translateY(80%); }
 .slide-up--comp-sbmt { transform: translateY(-80%); }
 .slide-down--comp-del { transform: translateY(19.5%); }
@@ -300,12 +316,8 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 
 
-
-
-
-
-
-
+#norm-rack, .flip #flip-rack {flex-direction: column;}
+#flip-rack, .flip #norm-rack {flex-direction: column-reverse;}
 
 /*=====WORD CONTAINERS & TILES=====*/
 
@@ -581,28 +593,6 @@ input:focus {outline: none}
     z-index: 100;
 
 }
-
-
-
-.btn--close {
-    position: absolute;
-    top: 1rem;
-    right: .8rem;
-    height: 1.6rem;
-    width: 1.6rem;
-
-    background: none;
-    border: none;
-
-    align-items: self-end;
-    font-size: 2rem;
-    font-weight: 400;
-    z-index: 90;
-    transform: scale(1, 0.9);
-}
-.btn.btn--close:hover {transform: scale(1.1, 1)}
-
-
 
 .panel.hidden {display: none}
 .panel--popup {width: 88%; height: 80%;}
