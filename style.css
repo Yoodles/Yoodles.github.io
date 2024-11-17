@@ -493,7 +493,6 @@ input:focus {outline: none}
     transition-duration: 0.2s;
 }
 
-.deleter img {height: 4vh;}
 .btn--del--upper {transform: rotate(0.5turn)}
 
 
