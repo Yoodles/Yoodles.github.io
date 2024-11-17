@@ -83,27 +83,27 @@
 .logo__wdwd * {
     margin: 0;
     padding: 0;
+    gap: 0;
     vertical-align: baseline;
 }
 
 .logo__wdwd__half {
     display: inline-flex;
-    gap: 0;
     position: relative;
-
     transform: translateX(var(--adjustment, 0));
 }
-
 
 .logo__wdwd__elem {
     display: inline-block;
-    transform: translateX(var(--adjustment, 0));
     font-size: 2.5em;
     font-weight: 200;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.03em;
 }
+.logo__wdwd__elem:first-child {font-weight: 300;}
 
-.logo__wdwd__w {font-weight: 300;}
+.logo__elem-adjust {
+    transform: translateX(var(--adjustment, 0));
+}
 
 
 
