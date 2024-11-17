@@ -337,13 +337,13 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 
 .tile {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
 
     background: none;
 
-    border: 0.1rem ridge var(--tile-border-color);
+    border: 0.1em ridge var(--tile-border-color);
     margin: 0.2em;
 
     border-radius: .2em;
@@ -356,13 +356,6 @@ Use "rem" to keep shadow uniform regardless of element size */
 
     animation-name: fadeIn;
     animation-duration: 0.2s;
-}
-
-.word-row--help {font-size: 1em}
-.word-row--help:last-of-type {margin-bottom: 2%;}
-.word-row--help .tile {
-    height: 1.4rem;
-    width: 1.4rem;
 }
 
 .tile--min-max {height: 1.2rem; width: 1.2rem;}
@@ -553,19 +546,14 @@ input:focus {outline: none}
 
 }
 
-.popup-content {
-    padding: 5% 7%;
-    overflow-y: auto;
-    scrollbar-width: none;
-}
-.popup-content * {text-align: start}
+
 
 .btn--close {
     position: absolute;
-    top: .8rem;
+    top: 1rem;
     right: .8rem;
-    height: 2rem;
-    width: 2rem;
+    height: 1.6rem;
+    width: 1.6rem;
 
     background: none;
     border: none;
@@ -668,31 +656,82 @@ input:focus {outline: none}
 
 
 
-p {
-    font-size: 1.4rem;
+.popup-content {
+    padding: 5% 7%;
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+.popup-content * {text-align: start}
+
+h1 {
+    font-size: 1.5rem;
     font-weight: 400;
     letter-spacing: -.05rem;
-    text-align: start;
     margin: .6rem .6rem 1rem;
 }
 
-h2, li {font-size: 1rem;}
+p {
+    margin-bottom: 1.5rem;
+    text-indent: 0;
+}
 
 ul {
+    margin: 0;
+    padding: 0;
     width: 100%;
-    padding-inline-start: 3%;
+    list-style-position: outside; /* Bullets outside the main block */
+    list-style-type: disc; /* Standard bullet style */
 }
 li {
-    text-align: start;
-    line-height: 2rem;
-    margin-bottom: 2vh;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+li br {
+    line-height: 2;
 }
 
-.li--no-bullet {list-style-type: none;}
-li div {align-items: baseline;}
 
-.help__flipper-icon {width: 1.2em; margin: 0 0.05em; vertical-align: -33%;}
-.help__del-icon {width: 1.2em; margin: 0 0.05rm; vertical-align: -25%;}
+.li--no-bullet {list-style-type: none;}
+
+
+/* .word-row--help:last-of-type {margin-bottom: 2%;} */
+
+.help .word-row {
+    margin-top: .3em;
+    margin-left: .5em;
+    justify-content: flex-start;
+    gap: 0.02em;
+    width: 100%;
+}
+
+.help .tile {
+    width: 6.6%;    
+    height: auto;
+    aspect-ratio: 1/1;
+    font-size: 0.75em;
+    font-weight: 400;
+    border: 0.1em ridge var(--tile-border-color);
+    border-radius: 0.2em;
+    white-space: nowrap;
+}
+
+
+.help .tile--inline {
+    max-height: 1.5em;
+    vertical-align: baseline;
+}
+
+.help img {
+    max-height: 1.5em;
+    vertical-align: middle;
+}
+
+/* .help__flipper-icon {width: 1.2em; margin: 0 0.05em; vertical-align: -33%;}
+.help__del-icon {width: 1.2em; margin: 0 0.05rm; vertical-align: -25%;} */
 .icon-flipped {transform: rotate(0.5turn);}
 
 
