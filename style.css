@@ -5,7 +5,7 @@
     --tile-border-color: rgb(104, 104, 104);
     --tile-font-color: rgb(104, 104, 104);
     --btn-bg-color: rgba(229, 229, 217, 0.801);
-    --btn-font-color: rgb(26, 22, 22);
+    --btn-font-color: rgb(175, 169, 169);
     --btn-border-color: rgb(197, 197, 181);
     --key-font-color: rgb(59, 59, 59);
     --panel-bg-color: white;
@@ -350,6 +350,8 @@ Use "rem" to keep shadow uniform regardless of element size */
     margin: 0.2em;
 
     border-radius: .2em;
+    white-space: nowrap;
+
 }
 
 #gameplay-cont .tile {
@@ -361,7 +363,13 @@ Use "rem" to keep shadow uniform regardless of element size */
     animation-duration: 0.2s;
 }
 
-.tile--min-max {height: 1.2rem; width: 1.2rem;}
+.tile--min-max {
+    
+    height: 1.2rem; width: 1.2rem;
+    /* font-size: 0.75em; */
+    border: 0.08rem ridge var(--tile-border-color);
+    border-radius: 0.2em;
+}
 
 .tile.tile--added {background-color: rgb(219, 255, 219);}
 .tile.tile--moved {background-color: rgb(255, 227, 231)}
