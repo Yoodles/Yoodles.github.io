@@ -109,13 +109,15 @@ body {
     width: 100%;
     z-index: 85;
     display: flex;
-}
-.fade-bar--top {top: 0; background: linear-gradient(to bottom, #f1f1f1 0%, rgba(255, 255, 255, 0) 100%);}
-.fade-bar--bottom {bottom: 0; background: linear-gradient(to top, #f1f1f1 0%, rgba(255, 255, 255, 0) 100%);}
-.fade-bar--btns {
     justify-content: space-between;
     padding: 0 3%;
 }
+.fade-bar--top {top: 0; background: linear-gradient(to bottom, #f3f3f3 0%, rgba(255, 255, 255, 0) 100%);}
+.fade-bar--bottom {bottom: 0; background: linear-gradient(to top, #f3f3f3 0%, rgba(255, 255, 255, 0) 100%);}
+
+.panel .fade-bar--top {background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%);}
+.panel .fade-bar--bottom {background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0) 100%)}
+
 
 .display {
     margin-bottom: auto;
