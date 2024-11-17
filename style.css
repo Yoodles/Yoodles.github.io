@@ -1,13 +1,11 @@
 :root {
     --vh: 1vh;
-    --main-bg-color: #f1f1f1;
+    --main-bg-color: #f3f3f3;
     --tile-color: rgb(59, 59, 59);
     --btn-color: rgba(229, 229, 217, 0.801);
     --btn-border-color: rgb(197, 197, 181)
 
 }
-
-
 
 
 @font-face {
@@ -26,7 +24,6 @@
   text-align: center;
   vertical-align: baseline;
   font-variant-numeric: lining-nums; /* <numeric-figure-values> */
-
 }
 
 html {
@@ -50,8 +47,12 @@ body {
     align-items: center;
     margin: 0;
 
+    background-color: var(--main-bg-color);
+
+
     overflow: hidden;
     touch-action: manipulation;
+
 }
 
 .game-wrap {
@@ -65,8 +66,6 @@ body {
 
     justify-content: center;
     align-items: center;
-
-
 
     border: 0.3px grey solid; 
 }
@@ -94,7 +93,7 @@ body {
     /* height: 62%; */
     overflow-y: hidden;
     /* align-items: center; */
-    background: var(--main-bg-color);
+    background-color: var(--main-bg-color);
 }
 
 .fade-bar {
@@ -311,7 +310,6 @@ body {
     margin-left: auto;
     margin-right: auto;
     flex-wrap: nowrap;
-    gap: 1em;
 }
 .word-row--init-pair {font-weight: 500}
 
@@ -338,7 +336,7 @@ body {
     background: none;
 
     border: 0.08rem ridge var(--tile-color);
-    /* margin: 0.2em; */
+    margin: 0.2em;
 
     border-radius: .2em;
 }
@@ -353,12 +351,11 @@ body {
     animation-duration: 0.2s;
 }
 
-
-.word-row--help:last-of-type {margin-bottom: 1vh;}
+.word-row--help {font-size: 1em}
+.word-row--help:last-of-type {margin-bottom: 2%;}
 .word-row--help .tile {
     height: 1.4rem;
     width: 1.4rem;
-    font-size: 1.1rem;
 }
 
 .tile--min-max {height: 1.2rem; width: 1.2rem;}
