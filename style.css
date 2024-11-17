@@ -466,6 +466,7 @@ input:focus {outline: none}
     line-height: 1; /* Prevent extra spacing within lines */
     margin: 0; /* Remove default margin */
     transform-origin: center; /* Set transform origin to the center */
+    pointer-events: none;
 }
 
 /* Styling for the top flipped "W" */
