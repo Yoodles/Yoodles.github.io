@@ -30,7 +30,8 @@
 }
 
 html {
-    font-size: clamp(16px, 2.5vw, 2.5vh)
+    font-size: clamp(16px, 2.5vw, 2.5vh);
+    font-weight: 300;
 }
 
 html, body, .tile, .logo {
@@ -265,6 +266,67 @@ body {
 
 
 
+
+
+
+
+.set {
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* transition-delay: ? */
+    flex-direction: column;
+    transition: transform 0.8s ease;
+}
+.flip .set {flex-direction: column-reverse;}
+
+
+.slide-down--comp-sbmt { transform: translateY(19%); }
+.slide-up--comp-sbmt { transform: translateY(-19%); }
+.slide-down--comp-del { transform: translateY(19.5%); }
+.slide-up--comp-del { transform: translateY(-19.5%); }
+
+
+
+
+
+.rack {
+    position: relative;
+    display: flex;
+    margin: auto;
+    height: 0;
+    transition: height ease-in;
+    transition-duration: .2s;
+}
+#norm-rack, .flip #flip-rack {flex-direction: column;}
+#flip-rack, .flip #norm-rack {flex-direction: column-reverse;}
+
+.word-row {
+    display: flex;
+    justify-content: center; /* not sure */
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: nowrap;
+}
+.word-row--init-pair {font-weight: 500}
+
+
+.word-row--help:last-of-type {margin-bottom: 1vh;}
+
+
+.rack .word-row {opacity: 0}
+.rack .word-row.visible {opacity: 1}
+
+.word-row.fade-in {
+    transition-duration: .8s;
+    /* transition-delay: .4s; */
+    /* ↑ IF I WANT TO JUST START IT AFTER MODIFYHEIGHT */
+}
+.word-row.fade-out {
+    transition-duration: .8s;
+}
+
+
 /*=====WORD CONTAINERS & TILES=====*/
 
 .tile {
@@ -282,22 +344,20 @@ body {
     animation-duration: 0.2s;
 }
 
-.word-row .tile {
+.tile--help, .tile--min-max {
+    border-radius: 12%;
+}
+
+#gameplay-cont .tile {
     height: 5.2vh;
     width: 5.2vh;
     border-radius: 12%;
     font-size: 1.2rem;
     filter: drop-shadow(0.4vh 0.4vh 0.3vh rgba(128, 121, 121, 0.813));
 }
-.word-row.set-word .tile {font-weight: 500;}
 
 
-.tile--help, .tile--min-max {
-
-    border-radius: 12%;
-}
-
-.tile--help {
+.word-row--help .tile {
     height: 1.4rem;
     width: 1.4rem;
     font-size: 1.1rem;
@@ -316,37 +376,8 @@ body {
 
 
 
-.slide-down--comp-sbmt { transform: translateY(19%); }
-.slide-up--comp-sbmt { transform: translateY(-19%); }
-.slide-down--comp-del { transform: translateY(19.5%); }
-.slide-up--comp-del { transform: translateY(-19.5%); }
 
 
-
-
-.set {
-    display: flex;
-    align-items: center;
-    position: relative;
-    /* transition-delay: ? */
-    flex-direction: column;
-    transition: transform 0.8s ease;
-}
-.flip .set {flex-direction: column-reverse;}
-
-
-
-
-.rack {
-    position: relative;
-    display: flex;
-    margin: auto;
-    height: 0;
-    transition: height ease-in;
-    transition-duration: .2s;
-}
-#norm-rack, .flip #flip-rack {flex-direction: column;}
-#flip-rack, .flip #norm-rack {flex-direction: column-reverse;}
 
 
 
@@ -466,15 +497,6 @@ input:focus {outline: none}
 .visible {opacity: 1; pointer-events: auto;}
 .invisible { opacity: 0; pointer-events: none;}
 
-.word-row {
-    display: flex;
-    justify-content: center; /* not sure */
-    margin-left: auto;
-    margin-right: auto;
-}
-.rack .word-row {opacity: 0}
-.rack .word-row.visible {opacity: 1}
-
 
 
 
@@ -482,14 +504,7 @@ input:focus {outline: none}
 .fade-in { opacity: 1; transition: opacity ease-in; }
 .fade-out { opacity: 0; transition: opacity ease-out; }
 
-.word-row.fade-in {
-    transition-duration: .8s;
-    /* transition-delay: .4s; */
-    /* ↑ IF I WANT TO JUST START IT AFTER MODIFYHEIGHT */
-}
-.word-row.fade-out {
-    transition-duration: .8s;
-}
+
 
 
 
@@ -643,13 +658,6 @@ li div {align-items: baseline;}
 .help__flipper-icon {width: 1.2em; margin: 0 0.05em; vertical-align: -33%;}
 .help__del-icon {width: 1.2em; margin: 0 0.05rm; vertical-align: -25%;}
 .icon-flipped {transform: rotate(0.5turn);}
-
-.help__word-row {
-    display: inline-flex;
-    flex-wrap: nowrap;
-}
-
-.help__word-row:last-of-type {margin-bottom: 1vh;}
 
 
 
