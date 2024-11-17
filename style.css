@@ -17,13 +17,15 @@
 }
 
 *, *:before, *:after {
-  box-sizing: border-box;
-  user-select: none;
-  font: inherit;
-  font-size: inherit;
-  text-align: center;
-  vertical-align: baseline;
-  font-variant-numeric: lining-nums; /* <numeric-figure-values> */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font: inherit;
+    font-size: inherit;
+    text-align: center;
+    vertical-align: baseline;
+    font-variant-numeric: lining-nums; /* <numeric-figure-values> */
 }
 
 html {
@@ -235,7 +237,7 @@ body {
 .keyboard__key {
     flex: 1;
     display: flex;
-    margin: 0 1.3% 1.3% 0;
+    margin: 0 1.5% 1.5% 0;
     border-radius: .3rem;
     padding: 0;
     font-size: 1rem;
@@ -277,7 +279,10 @@ body {
     flex-direction: column;
     transition: transform 0.8s ease;
 }
+
 .flip .set {flex-direction: column-reverse;}
+#norm-rack, .flip #flip-rack {flex-direction: column;}
+#flip-rack, .flip #norm-rack {flex-direction: column-reverse;}
 
 
 .slide-down--comp-sbmt { transform: translateY(80%); }
@@ -292,13 +297,11 @@ body {
 .rack {
     position: relative;
     display: flex;
-    margin: auto;
     height: 0;
     transition: height ease-in;
     transition-duration: .2s;
 }
-#norm-rack, .flip #flip-rack {flex-direction: column;}
-#flip-rack, .flip #norm-rack {flex-direction: column-reverse;}
+
 
 
 
@@ -306,9 +309,7 @@ body {
 
 .word-row {
     display: flex;
-    justify-content: center; /* not sure */
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     flex-wrap: nowrap;
 }
 .word-row--init-pair {font-weight: 500}
@@ -580,7 +581,7 @@ input:focus {outline: none}
 .star-cont {
     display: flex;
     justify-content: center;
-    margin: 1vh 0;
+    gap: 1em;
 }
 
 .star-cont--unattempted {
@@ -588,22 +589,22 @@ input:focus {outline: none}
 }
 
 .star {
-    font-size: 7vh;
     color: grey;
     transition: background-color 0.3s ease-in-out;
     /* display: inline-block; */
-    margin: 0 1vh;
+
 }
 
 .star.yellow {
     color: rgb(255, 255, 206);
-    text-shadow: 0em 0em 0.05em rgb(0, 0, 0); /* Keeps the rim visible when stars are yellow */
+    text-shadow: 0em 0em 0.05em rgb(0, 0, 0);
 }
 .star-cont .star:nth-child(1).yellow { transition-delay: 0s; }
 .star-cont .star:nth-child(2).yellow { transition-delay: 0.3s; }
 .star-cont .star:nth-child(3).yellow { transition-delay: 0.6s; }
 
-.popup-content .star {font-size: 2.5vh;}
+.panel--result .star {font-size: 1.5em;}
+.popup-content .star {font-size: 1.2em;}
 
 
 #word-pair-menu li {
