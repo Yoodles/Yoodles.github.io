@@ -205,6 +205,11 @@ body {
     font-weight: 500;
 }
 
+.btn--img {
+    background: none;
+    border: none;
+}
+
 
 
 /* SHADOWS============
@@ -215,7 +220,6 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 
 .shadow--min {
-    /* filter: drop-shadow(0 0 .1em rgba(128, 121, 121, 0.813)); */
     filter: drop-shadow(.05rem .05rem .05rem #666666);
 
 }
@@ -224,11 +228,6 @@ Use "rem" to keep shadow uniform regardless of element size */
     filter: drop-shadow(.1rem -.1rem .2rem #8e8e8ea8);
 }
 
-.btn--img {
-    background: none;
-    border: none;
-    filter: drop-shadow(1.2vh 1.2vh .6vh rgba(128, 121, 121, 0.813));
-}
 
 
 
@@ -286,8 +285,8 @@ Use "rem" to keep shadow uniform regardless of element size */
     filter: drop-shadow(0.4vh 0.4vh 0.3vh rgba(128, 121, 121, 0.813));
 
 }
-
 .flip .set {flex-direction: column-reverse;}
+
 #norm-rack, .flip #flip-rack {flex-direction: column;}
 #flip-rack, .flip #norm-rack {flex-direction: column-reverse;}
 
@@ -301,6 +300,13 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 
 
+
+
+
+
+
+/*=====WORD CONTAINERS & TILES=====*/
+
 .rack {
     position: relative;
     display: flex;
@@ -308,11 +314,6 @@ Use "rem" to keep shadow uniform regardless of element size */
     transition: height ease-in;
     transition-duration: .2s;
 }
-
-
-
-
-/*=====WORD CONTAINERS & TILES=====*/
 
 .word-row {
     display: flex;
@@ -403,22 +404,45 @@ Use "rem" to keep shadow uniform regardless of element size */
 input:focus {outline: none}
 
 
-#flipper-and-deleters {
-    position: absolute;
-    display: flex;
-    right: 3%;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 27.5vh;
-    width: 12%;
-    align-items: center;
-}
+
 
 #flippin-button {
-    position: absolute;
-    right: 3%;
+    position: absolute; /* Keep aligned to input field */
+    right: 5.9%; /* Align to the side of input field */
+    flex-direction: column;
+    /* justify-content: center; */
+    width: 3.5rem;
+    height: 5.5rem; /* Fixed height to fit both W's comfortably */
+
+    border: none;
+    background: none;
 }
 
+
+/* Individual "W" styling */
+.flip-w {
+    font-size: 2rem; /* Set font size (adjust as needed) */
+    font-weight: 400;
+    line-height: 1; /* Prevent extra spacing within lines */
+    margin: 0; /* Remove default margin */
+    transform-origin: center; /* Set transform origin to the center */
+}
+
+/* Styling for the top flipped "W" */
+.flip-w--top {
+    transform: rotate(180deg); /* Flip the top "W" upside down */
+    margin-bottom: -0.2rem; /* Adjust spacing between W's */
+}
+
+/* Styling for the bottom "W" */
+.flip-w--bottom {
+    margin-top: -0.2rem; /* Adjust spacing between W's */
+}
+
+/* Ensure button scales proportionally across devices */
+#flippin-button2 {
+    font-size: calc(1rem + 0.5vw); /* Responsive font size */
+}
 
 #deleters {
     position: absolute;
@@ -429,6 +453,9 @@ input:focus {outline: none}
     height: 22.5vh;
     width: 12%;
     align-items: center;
+
+
+    display: none;
 }
 
 
@@ -446,8 +473,22 @@ input:focus {outline: none}
 }
 
 .deleter img {height: 4vh;}
+.deleter--upper {transform: rotate(0.5turn)}
 #lower-deleter img {transform: rotate(0.5turn)}
 
+#deleters2 {
+    position: absolute;
+    display: flex;
+    right: 3%;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 23vh;
+    width: 12%;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 400;
+
+}
 
 
 
