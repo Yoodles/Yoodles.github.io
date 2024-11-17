@@ -11,15 +11,9 @@
 .logo-wrap {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
+    align-items: center;
 
-    /* aspect-ratio: 5/2; */
-    /* height: 100%; */
-    width: 40%;
-    /* height: 90%; */
-    margin: 5% auto;
-    max-height: 90%;
-    /* padding: 10% 0; */
+    margin: auto;
 
     --arrow-color: rgb(181, 181, 181);
     --arrow-angle: 114.2deg;
