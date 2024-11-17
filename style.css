@@ -118,6 +118,9 @@ body {
 .panel .fade-bar--top {background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%);}
 .panel .fade-bar--bottom {background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0) 100%)}
 
+.panel .fade-bar {height: 7%}
+.panel .fade-bar--top {top: 3%}
+.panel .fade-bar--bottom {bottom: 3%}
 
 .display {
     margin-bottom: auto;
@@ -524,9 +527,9 @@ input:focus {outline: none}
     background-color: var(--panel-bg-color);
     border: solid .1rem grey;
 
-    border-radius: .5rem;
+    border-radius: 1rem;
     
-    padding: 4% 0;
+    padding: 4.5% 0;
 
     font-size: 1rem;
 
@@ -535,29 +538,30 @@ input:focus {outline: none}
     z-index: 100;
 
 }
-.panel .fade-bar--top {top: 4%}
-.panel .fade-bar--bottom {bottom: 4%}
+
 
 
 .popup-content {
     padding: 5%;
     overflow-y: auto;
     scrollbar-width: none;
-    scrollbar-color: transparent;
 }
+.popup-content * {text-align: start}
 
 .btn--close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    /* margin: 3vh 5vh; */
+    top: .8rem;
+    right: .8rem;
     height: 2rem;
     width: 2rem;
+    
+    background: none;
+    border: none;
+
     align-items: self-end;
     font-size: 2rem;
     font-weight: 400;
+    z-index: 90;
     transform: scale(1, 0.9);
 }
 .btn.btn--close:hover {transform: scale(1.1, 1)}
@@ -656,8 +660,8 @@ p {
     font-size: 1.4rem;
     font-weight: 400;
     letter-spacing: -.05rem;
-    margin-top: 0;
     text-align: start;
+    margin: .6rem .6rem 1rem;
 }
 
 h2, li {font-size: 1rem;}
