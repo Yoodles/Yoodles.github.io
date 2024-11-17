@@ -281,8 +281,8 @@ body {
 .flip .set {flex-direction: column-reverse;}
 
 
-.slide-down--comp-sbmt { transform: translateY(19%); }
-.slide-up--comp-sbmt { transform: translateY(-19%); }
+.slide-down--comp-sbmt { transform: translateY(80%); }
+.slide-up--comp-sbmt { transform: translateY(-80%); }
 .slide-down--comp-del { transform: translateY(19.5%); }
 .slide-up--comp-del { transform: translateY(-19.5%); }
 
@@ -301,17 +301,19 @@ body {
 #norm-rack, .flip #flip-rack {flex-direction: column;}
 #flip-rack, .flip #norm-rack {flex-direction: column-reverse;}
 
+
+
+/*=====WORD CONTAINERS & TILES=====*/
+
 .word-row {
     display: flex;
     justify-content: center; /* not sure */
     margin-left: auto;
     margin-right: auto;
     flex-wrap: nowrap;
+    gap: 1em;
 }
 .word-row--init-pair {font-weight: 500}
-
-
-.word-row--help:last-of-type {margin-bottom: 1vh;}
 
 
 .rack .word-row {opacity: 0}
@@ -327,7 +329,6 @@ body {
 }
 
 
-/*=====WORD CONTAINERS & TILES=====*/
 
 .tile {
     display: flex;
@@ -336,37 +337,31 @@ body {
 
     background: none;
 
-    font-weight: 400;
     border: 0.08rem ridge var(--tile-color);
-    margin: 0.2em;
+    /* margin: 0.2em; */
 
-    animation-name: fadeIn;
-    animation-duration: 0.2s;
-}
-
-.tile--help, .tile--min-max {
-    border-radius: 12%;
+    border-radius: .2em;
 }
 
 #gameplay-cont .tile {
     height: 5.2vh;
     width: 5.2vh;
-    border-radius: 12%;
     font-size: 1.2rem;
     filter: drop-shadow(0.4vh 0.4vh 0.3vh rgba(128, 121, 121, 0.813));
+
+    animation-name: fadeIn;
+    animation-duration: 0.2s;
 }
 
 
+.word-row--help:last-of-type {margin-bottom: 1vh;}
 .word-row--help .tile {
     height: 1.4rem;
     width: 1.4rem;
     font-size: 1.1rem;
 }
 
-.tile--min-max {
-    height: 1.2rem;
-    width: 1.2rem;
-}
+.tile--min-max {height: 1.2rem; width: 1.2rem;}
 
 .tile.tile--added {background-color: rgb(219, 255, 219);}
 .tile.tile--moved {background-color: rgb(255, 227, 231)}
@@ -510,9 +505,8 @@ input:focus {outline: none}
 
 /* Rotate effects */
 .rotating {
-    animation: verticalFlip 1.2s ease-in-out;
+    animation: verticalFlip 1s ease-in-out;
     pointer-events: none;
-    /* cursor: wait; */
 }
 
 @keyframes verticalFlip {
@@ -606,7 +600,7 @@ input:focus {outline: none}
 
 .star.yellow {
     color: rgb(255, 255, 206);
-    text-shadow: 3% 5% 1% rgb(0, 0, 0); /* Keeps the rim visible when stars are yellow */
+    text-shadow: 0em 0em 0.05em rgb(0, 0, 0); /* Keeps the rim visible when stars are yellow */
 }
 .star-cont .star:nth-child(1).yellow { transition-delay: 0s; }
 .star-cont .star:nth-child(2).yellow { transition-delay: 0.3s; }
