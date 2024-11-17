@@ -414,6 +414,11 @@ input:focus {outline: none}
     align-items: center;
 }
 
+#flippin-button {
+    position: absolute;
+    right: 3%;
+}
+
 
 #deleters {
     position: absolute;
@@ -569,7 +574,7 @@ input:focus {outline: none}
 
 
 .panel.hidden {display: none}
-.panel--popup {width: 80%; height: 80%;}
+.panel--popup {width: 88%; height: 80%;}
 
 .panel--result {
     width: 85%;
