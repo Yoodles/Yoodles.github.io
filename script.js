@@ -207,35 +207,35 @@ function logArrays(when) {
 
 ////UI: BUILDING AND REMOVING WORD TILES ========================////
 
-// Prepare a .word-cont div for the input word
+// Prepare a .word-row div for the input word
 function prepareInputCont(rack, array) {
     const positionInArray = array.length -1;
-    const wordContsInRack = rack.querySelectorAll('.word-cont');
+    const wordRowsInRack = rack.querySelectorAll('.word-row');
     let cont;
 
-    // Use an existing .word-cont div if available
-    if (positionInArray < wordContsInRack.length) {
-        cont = wordContsInRack[positionInArray];
+    // Use an existing .word-row div if available
+    if (positionInArray < wordRowsInRack.length) {
+        cont = wordRowsInRack[positionInArray];
     
-    // Otherwise create a new .word-cont div
+    // Otherwise create a new .word-row div
     } else {
         cont = document.createElement('div');
-        cont.classList.add('word-cont');
+        cont.classList.add('word-row');
         rack.appendChild(cont);
     }
 
     resetTiles(cont); // Reset tiles for reuse
 
-    // Dynamically populate word-cont with tiles if it has none
+    // Dynamically populate word-row with tiles if it has none
     if (!cont.hasChildNodes()) cont.innerHTML = '<div class="tile"></div>'.repeat(6);
 
     cont.classList.remove('visible');
     return cont;
 }
 
-// Generate tiles for the input word and populate the word-cont
-function makeTilesIn(wordCont, word) {
-    wordCont.querySelectorAll('.tile').forEach((tile, i) => {
+// Generate tiles for the input word and populate the word-row
+function makeTilesIn(wordRow, word) {
+    wordRow.querySelectorAll('.tile').forEach((tile, i) => {
         const isVisible = i < word.length;
         tile.textContent = isVisible ? word[i].toUpperCase() : '';
         tile.classList.toggle('hidden', !isVisible);
@@ -245,32 +245,32 @@ function makeTilesIn(wordCont, word) {
 }
 
 function buildWordPairTiles() {
-    const startWordCont = document.getElementById('start-word');
-    const endWordCont = document.getElementById('end-word');
+    const startwordRow = document.getElementById('start-word');
+    const endwordRow = document.getElementById('end-word');
 
-    makeTilesIn(startWordCont, wordPair.startWord);
-    makeTilesIn(endWordCont, wordPair.endWord);
+    makeTilesIn(startwordRow, wordPair.startWord);
+    makeTilesIn(endwordRow, wordPair.endWord);
 }
 
-// Reset the tiles inside an existing word-cont
-function resetTiles(wordCont) {
-    wordCont.querySelectorAll('.tile').forEach(tile => {
+// Reset the tiles inside an existing word-row
+function resetTiles(wordRow) {
+    wordRow.querySelectorAll('.tile').forEach(tile => {
         tile.textContent = ''; // Clear text content
         tile.classList.remove('hidden', 'fade-in', 'visible'); // Reset classes
     });
 }
 
 function addWordToRack(rack, array, word) {
-    const wordCont = prepareInputCont(rack, array);
-    makeTilesIn(wordCont, word);
+    const wordRow = prepareInputCont(rack, array);
+    makeTilesIn(wordRow, word);
 
-    // Make the wordCont visible with a fade-in effect
+    // Make the wordRow visible with a fade-in effect
     setTimeout(() => {
-        // toggleClassesInSequence(wordCont, ['fade-in', 'visible', 'fade-in'], [0, 0, 1000]);
-        wordCont.classList.add('visible');
+        // toggleClassesInSequence(wordRow, ['fade-in', 'visible', 'fade-in'], [0, 0, 1000]);
+        wordRow.classList.add('visible');
     }, 100);
 
-    return wordCont; // Return for further use if needed
+    return wordRow; // Return for further use if needed
 }
 
 
@@ -497,16 +497,16 @@ function deleteMove(which) {
     if (gameState.latestWord === gameState.targetWord) gameState.isComplete = true;
 
 
-    // find all visible wordConts in the rack
-    const wordConts = Array.from(rack.querySelectorAll('.word-cont.visible'));
-    const wordContToDelete = wordConts[wordConts.length - 1];
+    // find all visible wordRows in the rack
+    const wordRows = Array.from(rack.querySelectorAll('.word-row.visible'));
+    const wordRowToDelete = wordRows[wordRows.length - 1];
 
-    toggleClassesInSequence(wordContToDelete, ['visible', 'fade-out'], [0, 0]);
-    // toggleClassesInSequence(wordContToDelete, ['fade-out', 'visible'], [0, 200]);
+    toggleClassesInSequence(wordRowToDelete, ['visible', 'fade-out'], [0, 0]);
+    // toggleClassesInSequence(wordRowToDelete, ['fade-out', 'visible'], [0, 200]);
 
     // Reset tiles for future reuse after fade-out
     setTimeout(() => {
-        resetTiles(wordContToDelete); // Reset tiles instead of removing the wordCont
+        resetTiles(wordRowToDelete); // Reset tiles instead of removing the wordRow
         modifyHeight('delete', rack, array);
     }, 400);
 
@@ -557,7 +557,7 @@ function undoMove() {
 
 
 function modifyHeight(action, rack, array) {
-    const wordContHeight = window.innerWidth * 11.5 / 100;
+    const wordRowHeight = window.innerWidth * 11.5 / 100;
     const normSet = document.getElementById('norm-set');
     const flipSet = document.getElementById('flip-set');
 
@@ -580,11 +580,11 @@ function modifyHeight(action, rack, array) {
     switch (action) {
         case 'submit':
             if (gameState.isComplete) addSlideClasses('sbmt');
-            else rack.style.height = array.length * wordContHeight + 'px';
+            else rack.style.height = array.length * wordRowHeight + 'px';
             break;
         case 'delete':
             if (gameState.isComplete) addSlideClasses('del');
-            else rack.style.height = array.length * wordContHeight + 'px';
+            else rack.style.height = array.length * wordRowHeight + 'px';
             break;
         case 'undo':
             resetSets();
@@ -749,12 +749,12 @@ function updateGame(action) {
 
 ////EMPTYING CONTAINERS and CONTAINER RACKS
 function clearInputUI() {
-    document.querySelectorAll('#norm-rack .word-cont, #flip-rack .word-cont').forEach(wordCont => {
-        resetTiles(wordCont); // Clear each word-cont for reuse
-        wordCont.classList.remove('visible');
+    document.querySelectorAll('#norm-rack .word-row, #flip-rack .word-row').forEach(wordRow => {
+        resetTiles(wordRow); // Clear each word-row for reuse
+        wordRow.classList.remove('visible');
     });
 
-    // Remove excess wordConts if any
+    // Remove excess wordRows if any
     while (normRack.children.length > 10) normRack.lastElementChild.remove();
     while (flipRack.children.length > 10) flipRack.lastElementChild.remove();
 
