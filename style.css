@@ -114,10 +114,8 @@ body {
 
 .display {
     margin-bottom: auto;
-    /* font-size: 2.5vh; */
     line-height: 1.4;
     z-index: 80;
-
 }
 .display--moves-score div {text-align: start}
 
@@ -197,8 +195,13 @@ body {
     font-weight: 500;
 }
 
+.shadow--top {
+    filter: drop-shadow(.2rem .3rem .1rem rgba(165, 156, 156, 0.813));
+}
+
+
 .shadow--min {
-    filter: drop-shadow(.2vh .2vh .6vh rgba(128, 121, 121, 0.813));
+    filter: drop-shadow(0 0 .1em rgba(128, 121, 121, 0.813));
 }
 
 .btn--img {
@@ -209,10 +212,6 @@ body {
 }
 
 
-.shadow--top {
-    filter: drop-shadow(.2rem .3rem .1rem rgba(165, 156, 156, 0.813));
-
-}
 
 
 /*=====KEYBOARD=====*/
@@ -580,7 +579,7 @@ input:focus {outline: none}
 
 .star-cont {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     gap: 1em;
 }
 
