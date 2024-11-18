@@ -234,6 +234,59 @@ body {
     border: none;
 }
 
+.btn--flip {
+    position: absolute;
+    width: 3rem;
+    height: 5.5rem;
+    left: calc(50% + 30%); /* Offset to the right of the input field */
+
+    flex-direction: column;
+    transition: transform 0.1s ease-out;
+}
+
+.btn--flip--pt {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+    margin: 0;
+    transform-origin: center;
+    pointer-events: none;
+}
+
+.btn--flip--top {
+    transform: rotate(180deg);
+    margin-bottom: -0.2rem;
+}
+
+.btn--flip--bottom {margin-top: -0.2rem}
+
+
+
+
+.btn--del {
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: 400;
+    transition: opacity ease-in;
+    opacity: 0;
+}
+.btn--del.active {opacity: 1;}
+
+
+.btn--del.fade-in, .btn--del.fade-out {
+    transition-duration: 0.2s;
+}
+
+.btn--del--upper {transform: rotate(0.5turn)}
+.btn--del--upper:hover,
+.btn--del--upper:active {
+    transform: scale(1.1) rotate(0.5turn);
+}
+
+.btn--del--lower:hover {
+    transform: scale(1.1);
+}
 
 
 /* SHADOWS============
@@ -446,58 +499,10 @@ input:focus {outline: none}
     width: 3rem;
 
     /* align-items: center; */
-    font-size: 2rem;
-    font-weight: 400;
 }
 
 
-.btn--flip {
-    position: absolute;
-    width: 3rem;
-    height: 5.5rem;
-    left: calc(50% + 30%); /* Offset to the right of the input field */
 
-    flex-direction: column;
-    transition: transform 0.1s ease-out;
-}
-
-.btn--flip--pt {
-    font-size: 2rem;
-    font-weight: 300;
-    line-height: 1;
-    margin: 0;
-    transform-origin: center;
-    pointer-events: none;
-}
-
-.btn--flip--top {
-    transform: rotate(180deg);
-    margin-bottom: -0.2rem;
-}
-
-.btn--flip--bottom {margin-top: -0.2rem}
-
-
-
-
-.btn--del {
-    width: 3rem;
-    height: 3rem;
-    position: relative;
-    transition: opacity ease-in;
-    opacity: 0;
-}
-.btn--del.active {opacity: 1;}
-
-
-.btn--del.fade-in, .btn--del.fade-out {
-    transition-duration: 0.2s;
-}
-
-.btn--del--upper {transform: rotate(0.5turn)}
-.btn--del--upper:hover {
-    transform: scale(1.1), rotate(0.5turn);
-}
 
 
 
