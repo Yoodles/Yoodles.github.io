@@ -39,7 +39,7 @@
         </div>
 
         <div id="popup-panel" class="panel panel--popup hidden">
-            <button class="btn btn--close" onclick="togglePanel('close')">x</button>
+            <button class="btn btn--close-panel" onclick="togglePanel('close')">x</button>
             <div class="fade-bar fade-bar--top fade-bar--btns">
                 
             </div>
@@ -181,15 +181,15 @@
 
                     <input id="input-field" class="shadow--min" type ="text">
 
-                    <button id="flippin-button" class="btn btn--flip btn--img shadow--top" onclick="toggleFlip()">
-                        <div class="btn--flip--pt btn--flip--top">W</div>
-                        <div class="btn--flip--pt btn--flip--bottom">W</div>
+                    <button id="flippin-button" class="btn gameplay__flip-btn btn--img shadow--top" onclick="toggleFlip()">
+                        <div class="gameplay__flip-btn--pt gameplay__flip-btn--top">W</div>
+                        <div class="gameplay__flip-btn--pt gameplay__flip-btn--bottom">W</div>
                     </button>
 
 
-                    <div id="deleter-group" class="shadow--top">
-                        <button id="upper-deleter" class="btn btn--img btn--del btn--del--upper active" onclick="deleteMove('upper')">V</button>
-                        <button id="lower-deleter" class="btn btn--img btn--del btn--del--lower active" onclick="deleteMove('lower')">V</button>
+                    <div id="gameplay__deleters-cont" class="gameplay__deleters-cont shadow--top">
+                        <button id="upper-deleter" class="btn btn--img gameplay__del-btn gameplay__del-btn--upper active" onclick="deleteMove('upper')">V</button>
+                        <button id="lower-deleter" class="btn btn--img gameplay__del-btn gameplay__del-btn--lower active" onclick="deleteMove('lower')">V</button>
                     </div>
                 </div>
 

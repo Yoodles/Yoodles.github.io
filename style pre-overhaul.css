@@ -108,7 +108,7 @@ body.no-scroll {overflow: hidden;}
     text-shadow: 0.5vw 0.5vw 3vw rgba(0, 0, 0, 0.27);
 }
 
-.btn--close {
+.btn--close-panel {
     position: absolute;
     top: 0;
     right: 0;
@@ -118,7 +118,7 @@ body.no-scroll {overflow: hidden;}
     font-size: 7vw;
     transform: scale(1, 0.9);
 }
-.btn.btn--close:hover {transform: scale(1.1, 1)}
+.btn.btn--close-panel:hover {transform: scale(1.1, 1)}
 
 #header {
     /* display: inline-flex; */

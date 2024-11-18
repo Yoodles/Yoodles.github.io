@@ -171,7 +171,7 @@ body {
     transition: all 0.2s ease-in-out; /* Smooth hover effect */
 
 }
-.btn:not(#game-logo, .btn--close):active {transform: scale(1.1);}
+.btn:not(#game-logo, .btn--close-panel):active {transform: scale(1.1);}
 
 
 .btn--fill {
@@ -209,7 +209,7 @@ body {
     font-weight: 500;
 }
 
-.btn--close {
+.btn--close-panel {
     position: absolute;
     top: 1rem;
     right: .8rem;
@@ -225,7 +225,7 @@ body {
     z-index: 90;
     transform: scale(1, 0.9);
 }
-.btn.btn--close:hover {transform: scale(1.1, 1)}
+.btn.btn--close-panel:hover {transform: scale(1.1, 1)}
 
 
 .btn--img {
@@ -234,59 +234,7 @@ body {
     border: none;
 }
 
-.btn--flip {
-    position: absolute;
-    width: 3rem;
-    height: 5.5rem;
-    left: calc(50% + 30%); /* Offset to the right of the input field */
 
-    flex-direction: column;
-    transition: transform 0.1s ease-out;
-}
-
-.btn--flip--pt {
-    font-size: 2rem;
-    font-weight: 300;
-    line-height: 1;
-    margin: 0;
-    transform-origin: center;
-    pointer-events: none;
-}
-
-.btn--flip--top {
-    transform: rotate(180deg);
-    margin-bottom: -0.2rem;
-}
-
-.btn--flip--bottom {margin-top: -0.2rem}
-
-
-
-
-.btn--del {
-    width: 3rem;
-    height: 3rem;
-    font-size: 2rem;
-    font-weight: 400;
-    transition: opacity ease-in;
-    opacity: 0;
-}
-.btn--del.active {opacity: 1;}
-
-
-.btn--del.fade-in, .btn--del.fade-out {
-    transition-duration: 0.2s;
-}
-
-.btn--del--upper {transform: rotate(0.5turn)}
-.btn--del--upper:hover,
-.btn--del--upper:active {
-    transform: scale(1.1) rotate(0.5turn);
-}
-
-.btn--del--lower:hover {
-    transform: scale(1.1);
-}
 
 
 /* SHADOWS============
@@ -488,7 +436,7 @@ input:focus {outline: none}
 
 
 
-#deleter-group {
+.gameplay__deleters-cont {
     position: absolute;
     display: flex;
     left: calc(50% + 30%); /* Match flippin-button horizontal position */
@@ -502,7 +450,59 @@ input:focus {outline: none}
 }
 
 
+.gameplay__flip-btn {
+    position: absolute;
+    width: 3rem;
+    height: 5.5rem;
+    left: calc(50% + 30%); /* Offset to the right of the input field */
 
+    flex-direction: column;
+    transition: transform 0.1s ease-out;
+}
+
+.gameplay__flip-btn--pt {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+    margin: 0;
+    transform-origin: center;
+    pointer-events: none;
+}
+
+.gameplay__flip-btn--top {
+    transform: rotate(180deg);
+    margin-bottom: -0.2rem;
+}
+
+.gameplay__flip-btn--bottom {margin-top: -0.2rem}
+
+
+
+
+.gameplay__del-btn {
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: 400;
+    transition: opacity ease-in;
+    opacity: 0;
+}
+.gameplay__del-btn.active {opacity: 1;}
+
+
+.gameplay__del-btn.fade-in, .gameplay__del-btn.fade-out {
+    transition-duration: 0.2s;
+}
+
+.gameplay__del-btn--upper {transform: rotate(0.5turn)}
+.gameplay__del-btn--upper:hover,
+.gameplay__del-btn--upper:active {
+    transform: scale(1.1) rotate(0.5turn);
+}
+
+.gameplay__del-btn--lower:hover {
+    transform: scale(1.1);
+}
 
 
 

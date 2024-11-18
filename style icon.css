@@ -169,7 +169,7 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
     padding-inline: 0;
     align-items: center;
 }
-.btn:not(#game-logo, .btn--close):hover {transform: scale(1.1);}
+.btn:not(#game-logo, .btn--close-panel):hover {transform: scale(1.1);}
 
 
 

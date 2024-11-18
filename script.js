@@ -420,7 +420,7 @@ function toggleFlip() {
 
     // Animation UI
     // const inputSet = document.getElementById('input-set');
-    const deleters = document.getElementById('deleter-group');
+    const deleters = document.getElementById('deleters-cont');
     const overlay = document.getElementById('overlay');
     const flipper = document.getElementById('flippin-button');
 
