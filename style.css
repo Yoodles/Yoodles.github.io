@@ -664,9 +664,9 @@ input:focus {outline: none}
     opacity: 0.8;
 }
 
-.result__star-cont {
+/* .result__star-cont {
 
-}
+} */
 
 .star {
     color: grey;
@@ -685,6 +685,19 @@ input:focus {outline: none}
 .popup-content .star {font-size: 1.2em;}
 
 
+
+
+
+
+.popup-content {
+    padding: 5% 7%;
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+.popup-content * {text-align: start}
+
 #word-pair-menu li {
     /* padding: 2%; */
     display: flex;
@@ -700,16 +713,6 @@ input:focus {outline: none}
     cursor: pointer;
 }
 
-
-
-.popup-content {
-    padding: 5% 7%;
-    font-size: 1rem;
-    line-height: 1.5;
-    overflow-y: auto;
-    scrollbar-width: none;
-}
-.popup-content * {text-align: start}
 
 h1 {
     font-size: 1.5rem;
