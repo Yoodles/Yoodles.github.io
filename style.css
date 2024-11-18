@@ -9,7 +9,7 @@
     --btn-border-color: rgb(197, 197, 181);
     --key-font-color: rgb(59, 59, 59);
     --panel-bg-color: white;
-    --symbol-btn-color: rgb(65, 64, 64);
+    --letter-btn-color: rgb(65, 64, 64);
 }
 
 
@@ -171,7 +171,6 @@ body {
     transition: all 0.2s ease-in-out; /* Smooth hover effect */
 
 }
-.btn:not(#game-logo, .btn--close-panel):active {transform: scale(1.1);}
 
 
 .btn--fill {
@@ -188,6 +187,9 @@ body {
 .btn--fill:hover {
     transform: scale(1.05);
 }
+.panel .btn--fill {
+    border-radius: 0.3rem;
+}
 
 .btn--reset {
     position: absolute;
@@ -196,9 +198,7 @@ body {
     width: 14%;
     border-radius: 0.3rem;
 }
-.result__btns .btn--fill {
-    border-radius: 0.3rem;
-}
+
 
 .btn--help {
     position: absolute;
@@ -228,11 +228,11 @@ body {
     z-index: 90;
     transform: scale(1, 0.9);
 }
-.btn.btn--close-panel:hover {transform: scale(1.1, 1)}
+.btn--close-panel:hover {transform: scale(1.1, 1)}
 
 
 .btn--img {
-    color: var(--symbol-btn-color);
+    color: var(--letter-btn-color);
     background: none;
     border: none;
 }
@@ -254,6 +254,118 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 .shadow--arrow { /* inverted because of rotation */
     filter: drop-shadow(.1rem -.1rem .2rem #8e8e8ea8);
+}
+
+
+
+
+
+
+
+#input-set {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 2rem; /* Add space between groups */
+    padding: 0 2rem;
+
+    z-index: 70;
+}
+
+.gameplay__input-field {
+    width: 65%;
+    height: 8vh;
+
+    margin: 1em 0;
+
+    border: .08rem dashed #545454;
+    border-radius: 2vh;
+
+    background: none;
+    font-size: 1.4rem;
+    font-weight: 100;
+    letter-spacing: 0.3rem;
+
+    text-transform: uppercase;
+    text-align: center;
+
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+
+}
+input:focus {outline: none}
+
+
+
+.gameplay__deleters-cont {
+    position: absolute;
+    display: flex;
+    left: calc(50% + 30%); /* Match flippin-button horizontal position */
+
+    flex-direction: column;
+    justify-content: space-between;
+    height: 24.5vh;
+    width: 3rem;
+    pointer-events: none;
+
+    /* align-items: center; */
+}
+
+
+.gameplay__flip-btn {
+    position: absolute;
+    width: 3rem;
+    height: 5.5rem;
+    left: calc(50% + 30%); /* Offset to the right of the input field */
+
+    flex-direction: column;
+    transition: transform 0.1s ease-out;
+}
+
+.gameplay__flip-btn--pt {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+    margin: 0;
+    transform-origin: center;
+    pointer-events: none;
+}
+
+.gameplay__flip-btn--top {
+    transform: rotate(180deg);
+    margin-bottom: -0.2rem;
+}
+
+.gameplay__flip-btn--bottom {margin-top: -0.2rem}
+
+
+
+
+.gameplay__del-btn {
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: 400;
+    transition: opacity ease-in;
+    opacity: 0;
+    pointer-events: all;
+}
+.gameplay__del-btn.active {opacity: 1;}
+
+
+.gameplay__del-btn.fade-in, .gameplay__del-btn.fade-out {
+    transition-duration: 0.2s;
+}
+
+.gameplay__del-btn--upper {transform: rotate(0.5turn)}
+.gameplay__del-btn--upper:hover,
+.gameplay__del-btn--upper:active {
+    transform: scale(1.1) rotate(0.5turn);
+}
+
+.gameplay__del-btn--lower:hover {
+    transform: scale(1.1);
 }
 
 
@@ -402,112 +514,6 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 
 
-
-#input-set {
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 2rem; /* Add space between groups */
-    padding: 0 2rem;
-
-    z-index: 70;
-}
-
-.gameplay__input-field {
-    width: 65%;
-    height: 8vh;
-
-    margin: 1em 0;
-
-    border: .08rem dashed #545454;
-    border-radius: 2vh;
-
-    background: none;
-    font-size: 1.4rem;
-    font-weight: 100;
-    letter-spacing: 0.3rem;
-
-    text-transform: uppercase;
-    text-align: center;
-
-    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-
-}
-input:focus {outline: none}
-
-
-
-.gameplay__deleters-cont {
-    position: absolute;
-    display: flex;
-    left: calc(50% + 30%); /* Match flippin-button horizontal position */
-
-    flex-direction: column;
-    justify-content: space-between;
-    height: 24.5vh;
-    width: 3rem;
-    pointer-events: none;
-
-    /* align-items: center; */
-}
-
-
-.gameplay__flip-btn {
-    position: absolute;
-    width: 3rem;
-    height: 5.5rem;
-    left: calc(50% + 30%); /* Offset to the right of the input field */
-
-    flex-direction: column;
-    transition: transform 0.1s ease-out;
-}
-
-.gameplay__flip-btn--pt {
-    font-size: 2rem;
-    font-weight: 300;
-    line-height: 1;
-    margin: 0;
-    transform-origin: center;
-    pointer-events: none;
-}
-
-.gameplay__flip-btn--top {
-    transform: rotate(180deg);
-    margin-bottom: -0.2rem;
-}
-
-.gameplay__flip-btn--bottom {margin-top: -0.2rem}
-
-
-
-
-.gameplay__del-btn {
-    width: 3rem;
-    height: 3rem;
-    font-size: 2rem;
-    font-weight: 400;
-    transition: opacity ease-in;
-    opacity: 0;
-    pointer-events: revert;
-}
-.gameplay__del-btn.active {opacity: 1;}
-
-
-.gameplay__del-btn.fade-in, .gameplay__del-btn.fade-out {
-    transition-duration: 0.2s;
-}
-
-.gameplay__del-btn--upper {transform: rotate(0.5turn)}
-.gameplay__del-btn--upper:hover,
-.gameplay__del-btn--upper:active {
-    transform: scale(1.1) rotate(0.5turn);
-}
-
-.gameplay__del-btn--lower:hover {
-    transform: scale(1.1);
-}
 
 
 
