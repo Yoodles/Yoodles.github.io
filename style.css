@@ -9,7 +9,7 @@
     --btn-border-color: rgb(197, 197, 181);
     --key-font-color: rgb(59, 59, 59);
     --panel-bg-color: white;
-    --symbol-btn-color: rgb(104, 104, 104);
+    --symbol-btn-color: rgb(65, 64, 64);
 }
 
 
@@ -34,7 +34,8 @@
 }
 
 html {
-    font-size: clamp(16px, 2.5vw, 2.5vh);
+    /* font-size: clamp(16px, 2.5vw, 2.5vh); */
+    font-size: 16px;
     font-weight: 300;
 }
 
@@ -414,7 +415,7 @@ Use "rem" to keep shadow uniform regardless of element size */
     width: 65%;
     height: 8vh;
 
-    margin: 1rem 0;
+    margin: 1em 0;
 
     border: .08rem dashed #545454;
     border-radius: 2vh;
