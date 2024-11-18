@@ -412,7 +412,7 @@ Use "rem" to keep shadow uniform regardless of element size */
     z-index: 70;
 }
 
-#input-field {
+.gameplay__input-field {
     width: 65%;
     height: 8vh;
 
@@ -445,6 +445,7 @@ input:focus {outline: none}
     justify-content: space-between;
     height: 24.5vh;
     width: 3rem;
+    pointer-events: none;
 
     /* align-items: center; */
 }
@@ -486,6 +487,7 @@ input:focus {outline: none}
     font-weight: 400;
     transition: opacity ease-in;
     opacity: 0;
+    pointer-events: revert;
 }
 .gameplay__del-btn.active {opacity: 1;}
 
@@ -603,22 +605,26 @@ input:focus {outline: none}
 .panel--popup {width: 88%; height: 80%;}
 
 .panel--result {
-    width: 85%;
+    width: 75%;
     height: 40%;
     justify-content: center;
+    margin: auto;
 }
-.panel--result.hidden {display: none}
+/* .panel--result.hidden {display: none} */
+.panel--result.hidden {display: flex}
 /* .panel--result .btn {margin: 2vh;} */
 
 .panel--dialog {
     width: 70%;
 }
 
-.result__buttons {
+.result__btns {
     display: inline-flex;
-    justify-content: center;
-    gap: 2rem;
-    width: 70%;
+    /* justify-content: center; */
+    justify-content: space-evenly;
+    /* gap: auto; */
+    /* margin: auto; */
+    /* width: 70%; */
 }
 
 
@@ -645,12 +651,17 @@ input:focus {outline: none}
 
 .star-cont {
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
+    margin: 2em;
     gap: 1em;
 }
 
 .star-cont--unattempted {
     opacity: 0.8;
+}
+
+.result__star-cont {
+
 }
 
 .star {
