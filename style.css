@@ -609,12 +609,13 @@ input:focus {outline: none}
 
 .panel--result {
     width: 75%;
-    height: 40%;
+    height: 30%;
+    padding: 10% 3% 8%;
     justify-content: center;
     margin: auto;
 }
 /* .panel--result.hidden {display: none} */
-.panel--result.hidden {display: flex}
+/* .panel--result.hidden {display: flex} */
 /* .panel--result .btn {margin: 2vh;} */
 
 .panel--dialog {
