@@ -278,24 +278,31 @@ function addWordToRack(rack, array, word) {
 function centerInputField() {
     const gameplayCont = document.getElementById('gameplay-cont');
     const inputField = document.getElementById('input-field');
-    
-    // Get relevant dimensions
-    const inputPosition = inputField.offsetTop; // Distance of input-field from top of gameplay-cont
-    const containerHeight = gameplayCont.clientHeight; // Visible height of gameplay-cont
-    const inputHeight = inputField.offsetHeight; // Height of the input field
-    
-    // Calculate the scroll position to center the input field
-    const scrollTo = inputPosition - (containerHeight / 2) + (inputHeight / 2);
-    console.log(scrollTo);
+    const isFlipped = gameplayCont.classList.contains('flip');
 
-    // Apply the scroll
+    // Dimensions
+    const inputPosition = inputField.offsetTop;
+    const containerHeight = gameplayCont.clientHeight;
+    const inputHeight = inputField.offsetHeight;
+
+    // Calculate the scroll position
+    let scrollTo = inputPosition - (containerHeight / 2) + (inputHeight / 2);
+
+    console.log({ inputPosition, containerHeight, inputHeight });
+
+
+    // If flipped, adjust for reversed scroll direction
+    if (isFlipped) {
+        const totalScrollHeight = gameplayCont.scrollHeight;
+        scrollTo = totalScrollHeight - containerHeight - scrollTo;
+    }
+
+    // Scroll to the calculated position
     gameplayCont.scrollTo({
         top: scrollTo,
-        behavior: 'smooth' // Smooth scrolling for better UX
+        behavior: 'smooth',
     });
 }
-
-
 
 
 

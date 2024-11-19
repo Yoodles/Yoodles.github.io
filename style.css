@@ -248,6 +248,7 @@ Use "rem" to keep shadow uniform regardless of element size */
 #gameplay-cont {
     display: flex;
     flex-direction: column;
+    height: 100%;
     width: 100%;
     padding: 8% 0;
     margin: auto;
