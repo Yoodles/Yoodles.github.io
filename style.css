@@ -34,8 +34,8 @@
 }
 
 html {
-    /* font-size: clamp(16px, 2.5vw, 2.5vh); */
-    font-size: 16px;
+    font-size: calc(var(--vh, 1vh) * 0.2);
+
     font-weight: 300;
 }
 
@@ -49,15 +49,6 @@ html, body, .tile {
 }
 
 
-
-.logo-wrap, #input-set {
-    /* font-size: clamp(8px, 18px, 64px); */
-    /* font-size: 16px; */
-    font-size: calc(var(--vh, 1vh) * 3);
-
-    /* font-size: 24px; */
-}
-
 .logo-wrap {
     display: flex;
     justify-content: center;
@@ -67,7 +58,7 @@ html, body, .tile {
 
     /* font-size: clamp(8px, 18px, 64px); */
 
-    font-size: 2em;
+    font-size: 28rem;
 
     /* font-size: 24px; */
     font-family: 'Raleway', sans-serif;
@@ -101,23 +92,22 @@ body {
 }
 
 .game-wrap {
+    position: relative;
     height: 100%;
     width: 100%;
     max-width: 75vh;
-
     display: flex;
     flex-direction: column;
-    position: relative;
-
     justify-content: center;
     align-items: center;
 
-    border: 0.3px grey solid; 
+    font-size: 10rem;
+    border: 0.3px grey solid; /*delete*/
 }
 
 #header {
-    display: flex;
     position: relative;
+    display: flex;
     align-items: center;
 
     width: 100%;
@@ -127,7 +117,7 @@ body {
     z-index: 80;
 }
 
-#game-area {
+.game-area {
     position: relative;
     display: flex;
     flex: 1;
@@ -192,25 +182,30 @@ body {
     padding-inline: 0;
     align-items: center;
     transition: all 0.1s ease-in-out; /* Smooth hover effect */
+    font-size: 12rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
 .btn--fill {
-    font-size: 1rem;
+    /* font-size: 1em; */
+    width: auto;
     font-weight: 500;
     background-color: var(--btn-bg-color);
     color: var(--key-font-color);
-    border: solid .2vh var(--btn-border-color);
-    box-shadow: .1em .1em 1em rgba(0, 0, 0, 0.101);
+    border: solid 1rem var(--btn-border-color);
+    box-shadow: .1rem .1rem 1rem rgba(0, 0, 0, 0.101);
 
-    padding: 0.5rem 1.5rem;
+    padding: 0.5em 1.5em;
     text-align: center;
 }
 .btn--fill:hover {
     transform: scale(1.05);
 }
 .panel .btn--fill {
-    border-radius: 0.3rem;
+    border-radius: 0.3em;
 }
 
 .btn--reset {
@@ -218,19 +213,19 @@ body {
     left: 3%;
     height: 33%;
     width: 14%;
-    border-radius: 0.3rem;
+    border-radius: 0.3em;
 }
 
 
 .btn--help {
     position: absolute;
     right: 3%;
-    height: 1.8rem;
-    width: 1.8rem;
-    border: solid black .1rem;
+    height: 18rem;
+    width: 18rem;
+    border: solid black 1rem;
     border-radius: 50%;
     background: none;
-    font-size: 1.2rem;
+    font-size: 14rem;
     font-weight: 500;
 }
 
@@ -301,14 +296,15 @@ Use "rem" to keep shadow uniform regardless of element size */
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 2rem; /* Add space between groups */
-    padding: 0 2rem;
+    font-size: 10em;
+    gap: 2em; /* Add space between groups */
+    padding: 0 10em;
     z-index: 70;
 }
 
 .gameplay__input-field {
     width: 65%;
-    height: 8vh;
+    height: 20em;
 
     margin: 1em 0;
 
@@ -317,7 +313,7 @@ Use "rem" to keep shadow uniform regardless of element size */
 
     background: none;
 
-    font-size: 1em;
+    font-size: 18em;
     font-weight: 100;
     letter-spacing: 0.1em;
 
@@ -332,8 +328,8 @@ input:focus {outline: none}
 
 .gameplay__flip-btn {
     position: absolute;
-    width: 3em;
-    height: 5.5em;
+    width: 30em;
+    height: 30em;
     left: calc(50% + 33%); /* Offset to the right of the input field */
 
     flex-direction: column;
@@ -343,7 +339,7 @@ input:focus {outline: none}
 .gameplay__flip-btn:active {transform: scale(1.1);}
 
 .gameplay__flip-btn--pt {
-    font-size: 1em;
+    font-size: 10em;
     font-weight: 400;
     line-height: 1;
     margin: 0;
@@ -353,17 +349,17 @@ input:focus {outline: none}
 
 .gameplay__flip-btn--top {
     transform: rotate(180deg);
-    margin-bottom: -0.09em;
+    margin-bottom: -0.9em;
 }
 .gameplay__flip-btn--bottom {
-    margin-top: -0.09em;
+    margin-top: -0.9em;
 }
 
 .gameplay__deleters-cont {
     position: absolute;
     left: calc(50% + 33%); /* Match flippin-button horizontal position */
-    width: 3em;
-    height: 12em;
+    width: 30em;
+    height: 120em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -408,6 +404,7 @@ input:focus {outline: none}
     height: 27%;
     width: 100%;
     padding: 2% 2%;
+    font-size: 10rem;
 }
 .keyboard__spacer {flex: 0.6}
 
@@ -424,14 +421,13 @@ input:focus {outline: none}
     flex: 1;
     display: flex;
     margin: 0 1.5% 1.5% 0;
-    border-radius: .3rem;
+    border-radius: .3em;
     padding: 0;
-    font-size: 1rem;
     font-weight: 500;
     transition: background-color 0.1s ease;
 }
 
-.keyboard__key:last-of-type {margin: 0 0 1vh 0;}
+.keyboard__key:last-of-type {margin: 0 0 1rem 0;}
 .keyboard__key:active {background-color: #e3e3e3;}
 
 .keyboard__key--backspace {max-width: 12%; flex: 1.4;}
@@ -451,7 +447,7 @@ input:focus {outline: none}
     /* transition-delay: ? */
     flex-direction: column;
     transition: transform 0.8s ease;
-    filter: drop-shadow(0.4vh 0.4vh 0.3vh rgba(128, 121, 121, 0.813));
+    filter: drop-shadow(0.4rem 0.4rem 0.3rem rgba(128, 121, 121, 0.813));
 
 }
 .flip .set {flex-direction: column-reverse;}
@@ -504,6 +500,7 @@ input:focus {outline: none}
     align-items: center;
 
     background: none;
+    font-size: 1em;
 
     border: 0.1em ridge var(--tile-border-color);
     margin: 0.2em;
@@ -514,8 +511,8 @@ input:focus {outline: none}
 }
 
 #gameplay-cont .tile {
-    height: 5.2vh;
-    width: 5.2vh;
+    height: 5.2rem;
+    width: 5.2rem;
     font-size: 1.2rem;
 
     animation-name: fadeIn;
@@ -575,7 +572,7 @@ input:focus {outline: none}
     z-index: 90;
     position: fixed;
     width: 100%;
-    height: 100vh;
+    height: 100rem;
 }
 
 .overlay--dark {
@@ -587,7 +584,7 @@ input:focus {outline: none}
 .overlay--dark.invisible {pointer-events: none;}
 .overlay--message {
     color: black;
-    font-size: 7vh;
+    font-size: 7rem;
     text-align: center;
 }
 
@@ -651,7 +648,7 @@ input:focus {outline: none}
 }
 /* .panel--result.hidden {display: none} */
 /* .panel--result.hidden {display: flex} */
-/* .panel--result .btn {margin: 2vh;} */
+/* .panel--result .btn {margin: 2rem;} */
 
 .panel--dialog {
     width: 70%;
