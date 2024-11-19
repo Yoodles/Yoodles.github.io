@@ -98,7 +98,6 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* height: 62%; */
     overflow-y: hidden;
     /* align-items: center; */
     background-color: var(--main-bg-color);
@@ -302,7 +301,7 @@ input:focus {outline: none}
 
     flex-direction: column;
     justify-content: space-between;
-    height: 24.5vh;
+    height: 27vh;
     width: 3rem;
     pointer-events: none;
 
@@ -318,6 +317,9 @@ input:focus {outline: none}
 
     flex-direction: column;
     transition: transform 0.1s ease-out;
+}
+.gameplay__flip-btn:hover {
+    transform: scale(1.05);
 }
 
 .gameplay__flip-btn--pt {
@@ -341,7 +343,7 @@ input:focus {outline: none}
 .gameplay__del-btn {
     width: 3rem;
     height: 3rem;
-    font-size: 2rem;
+    font-size: 1.9rem;
     font-weight: 400;
     transition: opacity ease-in;
     opacity: 0;
