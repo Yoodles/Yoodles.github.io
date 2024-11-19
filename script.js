@@ -286,6 +286,7 @@ function centerInputField() {
     
     // Calculate the scroll position to center the input field
     const scrollTo = inputPosition - (containerHeight / 2) + (inputHeight / 2);
+    console.log(scrollTo);
 
     // Apply the scroll
     gameplayCont.scrollTo({
@@ -456,6 +457,7 @@ function toggleFlip() {
     fadeIn(overlay, 300);
     setTimeout(() => {
         updateDirectionUI(gameState.direction);
+        centerInputField();
         fadeOut(overlay, 300);
     }, 1000);
 
@@ -484,6 +486,7 @@ function submitMove() {
 
         // Adjust rack height and UI
         modifyHeight('submit', upperRack, upperArray);
+        centerInputField();
         updateDeleterVisibility();
         emptyInputField();
         updateMoveCounterUI();
