@@ -295,16 +295,13 @@ input:focus {outline: none}
 
 .gameplay__deleters-cont {
     position: absolute;
-    display: flex;
-    left: calc(50% + 30%); /* Match flippin-button horizontal position */
-
-    flex-direction: column;
-    justify-content: space-between;
+    left: calc(50% + 33%); /* Match flippin-button horizontal position */
     height: 27vh;
     width: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     pointer-events: none;
-
-    /* align-items: center; */
 }
 
 
@@ -312,7 +309,7 @@ input:focus {outline: none}
     position: absolute;
     width: 3rem;
     height: 5.5rem;
-    left: calc(50% + 30%); /* Offset to the right of the input field */
+    left: calc(50% + 33%); /* Offset to the right of the input field */
 
     flex-direction: column;
     transition: transform 0.1s ease-out;
