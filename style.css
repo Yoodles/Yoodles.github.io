@@ -2,8 +2,8 @@
     --vh: 1vh;
     --main-bg-color: #f3f3f3;
 
-    --tile-border-color: rgb(104, 104, 104);
-    --tile-font-color: rgb(104, 104, 104);
+    --tile-border-color: rgb(69, 69, 69);
+    --tile-font-color: rgb(69, 69, 69);
     --btn-bg-color: rgba(229, 229, 217, 0.801);
     --btn-font-color: rgb(175, 169, 169);
     --btn-border-color: rgb(197, 197, 181);
@@ -321,8 +321,8 @@ input:focus {outline: none}
 }
 
 .gameplay__flip-btn--pt {
-    font-size: 2rem;
-    font-weight: 300;
+    font-size: 2.1em;
+    font-weight: 400;
     line-height: 1;
     margin: 0;
     transform-origin: center;
@@ -333,10 +333,9 @@ input:focus {outline: none}
     transform: rotate(180deg);
     margin-bottom: -0.2rem;
 }
-
-.gameplay__flip-btn--bottom {margin-top: -0.2rem}
-
-
+.gameplay__flip-btn--bottom {
+    margin-top: -0.2rem;
+}
 
 
 .gameplay__del-btn {
@@ -476,7 +475,7 @@ input:focus {outline: none}
     border: 0.1em ridge var(--tile-border-color);
     margin: 0.2em;
 
-    border-radius: .2em;
+    border-radius: .25em;
     white-space: nowrap;
 
 }

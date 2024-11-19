@@ -1,11 +1,11 @@
-#css-test {
-    /* position: absolute; */
-    height: 100%;
-    width: 100%;
-    z-index: 800;
+/*
+@media (max-width: 800px) {
+    .logo {
+        width: 100%;
+        height: auto;
+    }
 }
-#css-test.off {display: none}
-
+*/
 
 
 .logo-wrap {
@@ -94,26 +94,9 @@
     letter-spacing: -0.03em;
     color: var(--letter-btn-color);
 }
-.logo__wdwd__elem:first-child {font-weight: 300;}
+.logo__wdwd__elem:first-child {font-weight: 400;}
 
 .logo__elem-adjust {
     transform: translateX(var(--adjustment, 0));
 }
 
-
-
-/* Ensuring aspect ratio */
-/* .logo {
-    aspect-ratio: 16 / 9;
-    width: 50vw;
-    height: auto;
-} */
-
-/*
-@media (max-width: 800px) {
-    .logo {
-        width: 100%;
-        height: auto;
-    }
-}
-*/
