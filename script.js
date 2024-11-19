@@ -184,7 +184,7 @@ function updateMoveCounterUI() {
 
 function updateMinMaxDisplay() {
     document.getElementById('min-max-lengths').innerHTML = `
-        <span class="tile tile--min-max"></span><span class="display__colon">:</span><span> ${wordPair.minLength} – ${wordPair.maxLength}</span>
+    <span class="tile tile--min-max"></span><span class="display__colon">:</span><span> ${wordPair.minLength} – ${wordPair.maxLength}</span>
     `;
 }
 
@@ -272,6 +272,30 @@ function addWordToRack(rack, array, word) {
 
     return wordRow; // Return for further use if needed
 }
+
+
+
+function centerInputField() {
+    const gameplayCont = document.getElementById('gameplay-cont');
+    const inputField = document.getElementById('input-field');
+    
+    // Get relevant dimensions
+    const inputPosition = inputField.offsetTop; // Distance of input-field from top of gameplay-cont
+    const containerHeight = gameplayCont.clientHeight; // Visible height of gameplay-cont
+    const inputHeight = inputField.offsetHeight; // Height of the input field
+    
+    // Calculate the scroll position to center the input field
+    const scrollTo = inputPosition - (containerHeight / 2) + (inputHeight / 2);
+
+    // Apply the scroll
+    gameplayCont.scrollTo({
+        top: scrollTo,
+        behavior: 'smooth' // Smooth scrolling for better UX
+    });
+}
+
+
+
 
 
 //====UTILITY FUNCTIONS====//
