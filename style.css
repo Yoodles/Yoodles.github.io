@@ -39,7 +39,7 @@ html {
     font-weight: 300;
 }
 
-html, body, .tile, .logo {
+html, body, .tile {
     background-color: var(--main-bg-color);
 
     font-family: 'Raleway', sans-serif;
