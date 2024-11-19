@@ -53,7 +53,7 @@ html, body, .tile {
 .logo-wrap, #input-set {
     /* font-size: clamp(8px, 18px, 64px); */
     /* font-size: 16px; */
-    font-size: calc(var(--vh, 1vh) * 4);
+    font-size: calc(var(--vh, 1vh) * 3);
 
     /* font-size: 24px; */
 }
