@@ -164,7 +164,7 @@ body {
     background-color: var(--btn-bg-color);
     color: var(--key-font-color);
     border: solid .2vh var(--btn-border-color);
-    box-shadow: 1vh 1vh 1.5vh rgba(0, 0, 0, 0.101);
+    box-shadow: .1em .1em 1em rgba(0, 0, 0, 0.101);
 
     padding: 0.5rem 1.5rem;
     text-align: center;
@@ -292,19 +292,6 @@ Use "rem" to keep shadow uniform regardless of element size */
 input:focus {outline: none}
 
 
-
-.gameplay__deleters-cont {
-    position: absolute;
-    left: calc(50% + 33%); /* Match flippin-button horizontal position */
-    height: 27vh;
-    width: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    pointer-events: none;
-}
-
-
 .gameplay__flip-btn {
     position: absolute;
     width: 3rem;
@@ -315,7 +302,7 @@ input:focus {outline: none}
     transition: transform 0.1s ease-out;
 }
 .gameplay__flip-btn:hover,
-.gameplay__flip-btn:active {transform: scale(1.05);}
+.gameplay__flip-btn:active {transform: scale(1.1);}
 
 .gameplay__flip-btn--pt {
     font-size: 2.1em;
@@ -328,12 +315,22 @@ input:focus {outline: none}
 
 .gameplay__flip-btn--top {
     transform: rotate(180deg);
-    margin-bottom: -0.2rem;
+    margin-bottom: -0.09em;
 }
 .gameplay__flip-btn--bottom {
-    margin-top: -0.2rem;
+    margin-top: -0.09em;
 }
 
+.gameplay__deleters-cont {
+    position: absolute;
+    left: calc(50% + 33%); /* Match flippin-button horizontal position */
+    height: 27vh;
+    width: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+}
 
 .gameplay__del-btn {
     width: 3rem;
@@ -344,20 +341,24 @@ input:focus {outline: none}
     opacity: 0;
     pointer-events: all;
 }
+
+.gameplay__del-btn--upper {transform: rotate(0.5turn)}
+.gameplay__del-btn--upper:hover,
+.gameplay__del-btn--upper:active {transform: scale(1.2) rotate(0.5turn);}
+
+.gameplay__del-btn--lower:hover,
+.gameplay__del-btn--lower:active {transform: scale(1.2);}
+
+
+
+
+
 .gameplay__del-btn.active {opacity: 1;}
 
 
 .gameplay__del-btn.fade-in, .gameplay__del-btn.fade-out {
     transition-duration: 0.2s;
 }
-
-.gameplay__del-btn--upper {transform: rotate(0.5turn)}
-.gameplay__del-btn--upper:hover,
-.gameplay__del-btn--upper:active {transform: scale(1.1) rotate(0.5turn);}
-
-.gameplay__del-btn--lower:hover,
-.gameplay__del-btn--lower:active {transform: scale(1.1);}
-
 
 
 
