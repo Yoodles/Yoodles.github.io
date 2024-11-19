@@ -134,10 +134,7 @@ body {
 }
 .display--moves-score * {text-align: start}
 
-.display__colon {
-    font-weight: 500;
-    margin: 0 .2em;
-}
+.display__colon {font-weight: 500; margin: 0 .2em;}
 
 .display--min-max {
     display: inline-flex;
@@ -146,16 +143,6 @@ body {
     text-wrap: nowrap;
     pointer-events: all;
 }
-
-#gameplay-cont {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 8% 0;
-    margin: auto;
-    overflow-y: scroll;
-}
-#gameplay-cont.flip {flex-direction: column-reverse}
 
 
 
@@ -259,6 +246,16 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 
 
+
+#gameplay-cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 8% 0;
+    margin: auto;
+    overflow-y: scroll;
+}
+#gameplay-cont.flip {flex-direction: column-reverse}
 
 
 
