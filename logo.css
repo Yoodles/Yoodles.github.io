@@ -9,19 +9,18 @@
 
 
 .logo-wrap {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-
-    margin: auto;
+    margin: auto; */
 
     /* font-size: clamp(8px, 18px, 64px); */
 
-    font-size: 24px;
+    /* font-size: 24px;
     font-family: 'Raleway', sans-serif;
     font-variant: normal;
     font-kerning: normal;
-    font-feature-settings: "liga" on, "kern" on;
+    font-feature-settings: "liga" on, "kern" on; */
 
     --arrow-color: rgb(181, 181, 181);
     --arrow-angle: 114.2deg;
@@ -87,14 +86,13 @@
     transform: translateX(var(--adjustment, 0));
 }
 
-.logo__wdwd__elem {
+.logo__wdwd__wd-part {
     display: inline-block;
-    font-size: 1em;
     font-weight: 200;
     letter-spacing: -0.03em;
     color: var(--letter-btn-color);
 }
-.logo__wdwd__elem:first-child {font-weight: 400;}
+.logo__wdwd__wd-part:first-child {font-weight: 400;}
 
 .logo__elem--adjust {
     transform: translateX(var(--adjustment, 0));

@@ -50,7 +50,38 @@ html, body, .tile {
 
 
 
+.logo-wrap, #input-set {
+    /* font-size: clamp(8px, 18px, 64px); */
+    /* font-size: 16px; */
+    font-size: calc(var(--vh, 1vh) * 4);
 
+    /* font-size: 24px; */
+}
+
+.logo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: auto;
+
+    /* font-size: clamp(8px, 18px, 64px); */
+
+    font-size: 2em;
+
+    /* font-size: 24px; */
+    font-family: 'Raleway', sans-serif;
+    font-variant: normal;
+    font-kerning: normal;
+    font-feature-settings: "liga" on, "kern" on;
+
+    /* --arrow-color: rgb(181, 181, 181);
+    --arrow-angle: 114.2deg;
+    --arrow-length: 40%;
+    --arrow-thickness: 0.1rem;
+
+    line-height: 1; */
+}
 
 
 
@@ -281,13 +312,14 @@ Use "rem" to keep shadow uniform regardless of element size */
 
     margin: 1em 0;
 
-    border: .08rem dashed #545454;
-    border-radius: 2vh;
+    border: .08em dashed #545454;
+    border-radius: .6em;
 
     background: none;
-    font-size: 1.4rem;
+
+    font-size: 1em;
     font-weight: 100;
-    letter-spacing: 0.3rem;
+    letter-spacing: 0.1em;
 
     text-transform: uppercase;
     text-align: center;
@@ -300,8 +332,8 @@ input:focus {outline: none}
 
 .gameplay__flip-btn {
     position: absolute;
-    width: 3rem;
-    height: 5.5rem;
+    width: 3em;
+    height: 5.5em;
     left: calc(50% + 33%); /* Offset to the right of the input field */
 
     flex-direction: column;
@@ -311,7 +343,7 @@ input:focus {outline: none}
 .gameplay__flip-btn:active {transform: scale(1.1);}
 
 .gameplay__flip-btn--pt {
-    font-size: 2.1em;
+    font-size: 1em;
     font-weight: 400;
     line-height: 1;
     margin: 0;
@@ -330,8 +362,8 @@ input:focus {outline: none}
 .gameplay__deleters-cont {
     position: absolute;
     left: calc(50% + 33%); /* Match flippin-button horizontal position */
-    height: 27vh;
-    width: 3rem;
+    width: 3em;
+    height: 12em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -339,9 +371,9 @@ input:focus {outline: none}
 }
 
 .gameplay__del-btn {
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.9rem;
+    /* width: 3rem; */
+    /* height: 3rem; */
+    font-size: 1em;
     font-weight: 400;
     transition: opacity ease-in;
     opacity: 0;
