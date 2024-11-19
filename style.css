@@ -266,7 +266,6 @@ Use "rem" to keep shadow uniform regardless of element size */
     width: 100%;
     gap: 2rem; /* Add space between groups */
     padding: 0 2rem;
-
     z-index: 70;
 }
 
