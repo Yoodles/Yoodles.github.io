@@ -154,8 +154,7 @@ body {
     touch-action: manipulation;
     padding-inline: 0;
     align-items: center;
-    transition: all 0.2s ease-in-out; /* Smooth hover effect */
-
+    transition: all 0.1s ease-in-out; /* Smooth hover effect */
 }
 
 
@@ -318,9 +317,8 @@ input:focus {outline: none}
     flex-direction: column;
     transition: transform 0.1s ease-out;
 }
-.gameplay__flip-btn:hover {
-    transform: scale(1.05);
-}
+.gameplay__flip-btn:hover,
+.gameplay__flip-btn:active {transform: scale(1.05);}
 
 .gameplay__flip-btn--pt {
     font-size: 2.1em;
@@ -358,13 +356,10 @@ input:focus {outline: none}
 
 .gameplay__del-btn--upper {transform: rotate(0.5turn)}
 .gameplay__del-btn--upper:hover,
-.gameplay__del-btn--upper:active {
-    transform: scale(1.1) rotate(0.5turn);
-}
+.gameplay__del-btn--upper:active {transform: scale(1.1) rotate(0.5turn);}
 
-.gameplay__del-btn--lower:hover {
-    transform: scale(1.1);
-}
+.gameplay__del-btn--lower:hover,
+.gameplay__del-btn--lower:active {transform: scale(1.1);}
 
 
 
