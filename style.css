@@ -48,6 +48,12 @@ html, body, .tile {
     text-rendering: optimizeLegibility;
 }
 
+
+
+
+
+
+
 body {
     height: calc(var(--vh, 1vh) * 100); /* Full viewport height based on custom property */
     display: flex;
