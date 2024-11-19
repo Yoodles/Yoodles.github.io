@@ -85,6 +85,7 @@ body {
 
     background-color: var(--main-bg-color);
 
+    font-size: 10rem;
 
     overflow: hidden;
     touch-action: manipulation;
@@ -406,7 +407,7 @@ input:focus {outline: none}
     padding: 2% 2%;
     font-size: 10rem;
 }
-.keyboard__spacer {flex: 0.6}
+.keyboard__spacer {flex: 0.5}
 
 .keyboard__row {
     display: flex;
@@ -427,7 +428,7 @@ input:focus {outline: none}
     transition: background-color 0.1s ease;
 }
 
-.keyboard__key:last-of-type {margin: 0 0 1rem 0;}
+.keyboard__key:last-of-type {margin: 0 0 1.5% 0;}
 .keyboard__key:active {background-color: #e3e3e3;}
 
 .keyboard__key--backspace {max-width: 12%; flex: 1.4;}
@@ -447,7 +448,7 @@ input:focus {outline: none}
     /* transition-delay: ? */
     flex-direction: column;
     transition: transform 0.8s ease;
-    filter: drop-shadow(0.4rem 0.4rem 0.3rem rgba(128, 121, 121, 0.813));
+    filter: drop-shadow(4em 4em 0.3em rgba(128, 121, 121, 0.813));
 
 }
 .flip .set {flex-direction: column-reverse;}
@@ -500,7 +501,7 @@ input:focus {outline: none}
     align-items: center;
 
     background: none;
-    font-size: 1em;
+    font-size: 10em;
 
     border: 0.1em ridge var(--tile-border-color);
     margin: 0.2em;
@@ -511,9 +512,9 @@ input:focus {outline: none}
 }
 
 #gameplay-cont .tile {
-    height: 5.2rem;
-    width: 5.2rem;
-    font-size: 1.2rem;
+    height: 20em;
+    width: 20em;
+    font-size: 12em;
 
     animation-name: fadeIn;
     animation-duration: 0.2s;
@@ -521,10 +522,10 @@ input:focus {outline: none}
 
 .tile--min-max {
     
-    height: 1.2rem; width: 1.2rem;
+    height: 12rem; width: 12rem;
     /* font-size: 0.75em; */
-    border: 0.08rem ridge var(--tile-border-color);
-    border-radius: 0.2em;
+    border: 0.8rem ridge var(--tile-border-color);
+    border-radius: 0.2rem;
 }
 
 .tile.tile--added {background-color: rgb(219, 255, 219);}
@@ -572,7 +573,7 @@ input:focus {outline: none}
     z-index: 90;
     position: fixed;
     width: 100%;
-    height: 100rem;
+    height: 100%;
 }
 
 .overlay--dark {
@@ -584,7 +585,7 @@ input:focus {outline: none}
 .overlay--dark.invisible {pointer-events: none;}
 .overlay--message {
     color: black;
-    font-size: 7rem;
+    font-size: 12rem;
     text-align: center;
 }
 
@@ -623,14 +624,14 @@ input:focus {outline: none}
     display: flex;
     flex-direction: column;
 
-    border: solid .1rem grey;
-    border-radius: 1rem;
+    border: solid .1em grey;
+    border-radius: 1em;
     background-color: var(--panel-bg-color);
     
     padding: 4.5% 0;
-    font-size: 1rem;
+    font-size: 10rem;
     
-    box-shadow: .3rem .3rem .5rem rgba(0,0,0,.2);
+    box-shadow: 3em 3em 5em rgba(0,0,0,.2);
 
     z-index: 100;
 
@@ -668,16 +669,16 @@ input:focus {outline: none}
 
 .dialog-content {
     background-color: white;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 20rem;
+    border-radius: 8rem;
 }
 
 .dialog-content input {
     width: 100%;
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    margin-bottom: 15rem;
+    padding: 10rem;
+    border: 1rem solid #ccc;
+    border-radius: 4rem;
 }
 
 
@@ -707,7 +708,7 @@ input:focus {outline: none}
 
 .star.yellow {
     color: rgb(255, 255, 206);
-    text-shadow: 0em 0em 0.05em rgb(0, 0, 0);
+    text-shadow: 0em 0em 0.5em rgb(0, 0, 0);
 }
 .star-cont .star:nth-child(1).yellow { transition-delay: 0s; }
 .star-cont .star:nth-child(2).yellow { transition-delay: 0.3s; }
@@ -723,7 +724,7 @@ input:focus {outline: none}
 
 .popup-content {
     padding: 5% 7%;
-    font-size: 1rem;
+    font-size: 10rem;
     line-height: 1.5;
     overflow-y: auto;
     scrollbar-width: none;
@@ -738,7 +739,7 @@ input:focus {outline: none}
     margin: 0;
 }
 #word-pair-menu li:not(:last-of-type) {
-    border-bottom: .05rem solid #ddd;
+    border-bottom: 5em solid #ddd;
 }
 #word-pair-menu li:hover {
     transform: scale(1.03);
@@ -747,14 +748,14 @@ input:focus {outline: none}
 
 
 h1 {
-    font-size: 1.5rem;
+    font-size: 15rem;
     font-weight: 400;
-    letter-spacing: -.05rem;
-    margin: .6rem .6rem 1rem;
+    letter-spacing: -.5rem;
+    margin: 6rem 6rem 1rem;
 }
 
 p {
-    margin-bottom: 1rem;
+    margin-bottom: 10rem;
     text-indent: 0;
 }
 
@@ -766,7 +767,7 @@ ul {
     list-style-type: disc;
 }
 li {
-    font-size: 1rem;
+    font-size: 10em;
     line-height: 1.5;
     margin-bottom: .8rem;
     padding-left: 1rem;
