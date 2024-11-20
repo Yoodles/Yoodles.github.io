@@ -181,13 +181,14 @@
 
                     <input id="input-field" class="gameplay__input-field shadow--min" type ="text">
 
-                    <button id="flippin-button" class="btn gameplay__flip-btn btn--img shadow--top" onclick="toggleFlip()">
-                        <div class="gameplay__flip-btn--pt gameplay__flip-btn--top">W</div>
-                        <div class="gameplay__flip-btn--pt gameplay__flip-btn--bottom">W</div>
-                    </button>
+                    <div class="gameplay__flipper-cont gameplay__side-btns shadow--top">
+                        <button id="flippin-button" class="btn gameplay__flip-btn btn--img gameplay__side-btns shadow--top" onclick="toggleFlip()">
+                            <div class="gameplay__flip-btn--pt gameplay__flip-btn--top">W</div>
+                            <div class="gameplay__flip-btn--pt gameplay__flip-btn--bottom">W</div>
+                        </button>
+                    </div>
 
-
-                    <div id="gameplay__deleters-cont" class="gameplay__deleters-cont shadow--top">
+                    <div class="gameplay__deleters-cont gameplay__side-btns shadow--top">
                         <button id="upper-deleter" class="btn btn--img gameplay__del-btn gameplay__del-btn--upper active" onclick="deleteMove('upper')">V</button>
                         <button id="lower-deleter" class="btn btn--img gameplay__del-btn gameplay__del-btn--lower active" onclick="deleteMove('lower')">V</button>
                     </div>

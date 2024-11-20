@@ -299,11 +299,7 @@ input:focus {outline: none}
 
 
 .gameplay__flip-btn {
-    position: absolute;
-    width: 5em;
     height: 8em;
-    left: calc(50% + 33%); /* Offset to the right of the input field */
-
     flex-direction: column;
     transition: transform 0.1s ease-out;
 
@@ -325,22 +321,35 @@ input:focus {outline: none}
 .gameplay__flip-btn--top {transform: rotate(180deg); margin-bottom: -0.11em;}
 .gameplay__flip-btn--bottom {margin-top: -0.11em;}
 
-.gameplay__deleters-cont {
+
+.gameplay__side-btns{
     position: absolute;
-    left: calc(50% + 33%); /* Match flippin-button horizontal position */
+    left: calc(50% + 33%); /* Offset to the right of the input field */
+    border: 0.3px rgba(128, 128, 128, 0.311) solid; /*delete*/
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    width: 6em;
+
+
+
+}
+
+.gameplay__flipper-cont {
+    justify-content: center;
+
+}
+
+.gameplay__deleters-cont {
     width: 5em;
     height: 28em;
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     pointer-events: none;
-    border: 0.3px grey solid; /*delete*/
 
 }
 
 .gameplay__del-btn {
-    /* width: 1em; */
-    /* height: 28em; */
     font-size: 4em;
     font-weight: 400;
     transition: opacity ease-in;
@@ -358,15 +367,8 @@ input:focus {outline: none}
 .gameplay__del-btn--lower:active {transform: scale(1.2);}
 
 
-
-
-
 .gameplay__del-btn.active {opacity: 1;}
-
-
-.gameplay__del-btn.fade-in, .gameplay__del-btn.fade-out {
-    transition-duration: 0.2s;
-}
+.gameplay__del-btn.fade-in, .gameplay__del-btn.fade-out {transition-duration: 0.2s;}
 
 
 
