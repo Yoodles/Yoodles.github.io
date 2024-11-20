@@ -301,14 +301,14 @@ Use "rem" to keep shadow uniform regardless of element size */
     width: 65%;
     height: 4em;
 
-    margin: .5em 0;
+    margin: .5em 3em;
 
     border: .07em dashed #545454;
     border-radius: .9em;
 
     background: none;
 
-    font-size: 2em;
+    font-size: 4em;
     font-weight: 100;
     letter-spacing: 0.1em;
 
@@ -324,11 +324,14 @@ input:focus {outline: none}
 .gameplay__flip-btn {
     position: absolute;
     width: 5em;
-    height: 10em;
+    height: 8em;
     left: calc(50% + 33%); /* Offset to the right of the input field */
 
     flex-direction: column;
     transition: transform 0.1s ease-out;
+
+    border: 0.3px rgba(128, 128, 128, 0.311) solid; /*delete*/
+
 }
 .gameplay__flip-btn:hover,
 .gameplay__flip-btn:active {transform: scale(1.1);}
@@ -348,22 +351,26 @@ input:focus {outline: none}
 .gameplay__deleters-cont {
     position: absolute;
     left: calc(50% + 33%); /* Match flippin-button horizontal position */
-    width: 3em;
-    height: 8em;
+    width: 5em;
+    height: 18em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     pointer-events: none;
+    border: 0.3px grey solid; /*delete*/
+
 }
 
 .gameplay__del-btn {
     width: 1em;
-    height: 2rem;
+    height: 2em;
     font-size: 1em;
     font-weight: 400;
     transition: opacity ease-in;
     opacity: 0;
     pointer-events: all;
+    border: 0.3px grey solid; /*delete*/
+
 }
 
 .gameplay__del-btn--upper {transform: rotate(0.5turn)}
