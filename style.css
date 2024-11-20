@@ -725,10 +725,10 @@ input:focus {outline: none}
 
 
 h1 {
-    font-size: 1em;
+    font-size: 1.5em;
     font-weight: 400;
     letter-spacing: -.05em;
-    margin: .6em .6em .1em;
+    margin: .6em .1em .4em;
 }
 
 p {
@@ -747,7 +747,7 @@ li {
     font-size: 1em;
     line-height: 1.5;
     margin-bottom: .08rem;
-    padding-left: 1em;
+    padding-left: .3em;
 }
 li div:last-of-type {margin-bottom: 0.5em}
 
