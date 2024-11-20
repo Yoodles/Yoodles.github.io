@@ -352,7 +352,7 @@ input:focus {outline: none}
     position: absolute;
     left: calc(50% + 33%); /* Match flippin-button horizontal position */
     width: 5em;
-    height: 18em;
+    height: 28em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -362,9 +362,9 @@ input:focus {outline: none}
 }
 
 .gameplay__del-btn {
-    width: 1em;
-    height: 2em;
-    font-size: 1em;
+    /* width: 1em; */
+    /* height: 28em; */
+    font-size: 4em;
     font-weight: 400;
     transition: opacity ease-in;
     opacity: 0;
