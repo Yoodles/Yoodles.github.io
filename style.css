@@ -34,12 +34,12 @@
 }
 
 html {
-    font-size: calc(var(--vh, 1vh) * 0.1);
+    font-size: calc(var(--vh, 1vh));
 
     font-weight: 300;
 }
 
-html, body, .tile {
+html, body {
     background-color: var(--main-bg-color);
 
     font-family: 'Raleway', sans-serif;
@@ -56,12 +56,7 @@ html, body, .tile {
 
     margin: auto;
 
-    /* font-size: clamp(8px, 18px, 64px); */
-
-    font-size: 28rem;
-
-    /* font-size: 24px; */
-    font-family: 'Raleway', sans-serif;
+    font-size: 6rem;
     font-variant: normal;
     font-kerning: normal;
     font-feature-settings: "liga" on, "kern" on;
@@ -85,7 +80,7 @@ body {
 
     background-color: var(--main-bg-color);
 
-    font-size: 10rem;
+    /* font-size: 0.1rem; */
 
     overflow: hidden;
     touch-action: manipulation;
@@ -102,7 +97,6 @@ body {
     justify-content: center;
     align-items: center;
 
-    font-size: 10rem;
     border: 0.3px grey solid; /*delete*/
 }
 
@@ -183,7 +177,7 @@ body {
     padding-inline: 0;
     align-items: center;
     transition: all 0.1s ease-in-out; /* Smooth hover effect */
-    font-size: 12rem;
+    /* font-size: 12em; */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -196,17 +190,17 @@ body {
     font-weight: 500;
     background-color: var(--btn-bg-color);
     color: var(--key-font-color);
-    border: solid 1rem var(--btn-border-color);
-    box-shadow: .1rem .1rem 1rem rgba(0, 0, 0, 0.101);
+    border: solid .1em var(--btn-border-color);
+    box-shadow: .1em .1em 1em rgba(0, 0, 0, 0.101);
 
-    padding: 0.5em 1.5em;
+    padding: 0.5em 1em;
     text-align: center;
 }
 .btn--fill:hover {
     transform: scale(1.05);
 }
 .panel .btn--fill {
-    border-radius: 0.3em;
+    border-radius: .3em;
 }
 
 .btn--reset {
@@ -214,34 +208,34 @@ body {
     left: 3%;
     height: 33%;
     width: 14%;
-    border-radius: 0.3em;
+    border-radius: .3em;
 }
 
 
 .btn--help {
     position: absolute;
     right: 3%;
-    height: 18rem;
-    width: 18rem;
-    border: solid black 1rem;
+    height: 2em;
+    width: 2em;
+    border: solid black .1em;
     border-radius: 50%;
     background: none;
-    font-size: 14rem;
+    font-size: 2em;
     font-weight: 500;
 }
 
 .btn--close-panel {
     position: absolute;
-    top: 1rem;
-    right: .8rem;
-    height: 1.6rem;
-    width: 1.6rem;
+    top: 1em;
+    right: .8em;
+    height: 1.6em;
+    width: 1.6em;
 
     background: none;
     border: none;
 
     align-items: self-end;
-    font-size: 2rem;
+    font-size: 2em;
     font-weight: 400;
     z-index: 90;
     transform: scale(1, 0.9);
@@ -261,17 +255,17 @@ body {
 /* SHADOWS============
 Use "rem" to keep shadow uniform regardless of element size */
 .shadow--top {
-    filter: drop-shadow(.2rem .3rem .1rem rgba(165, 156, 156, 0.813));
+    filter: drop-shadow(.2em .3em .1em rgba(165, 156, 156, 0.813));
 }
 
 
 .shadow--min {
-    filter: drop-shadow(.05rem .05rem .05rem #666666);
+    filter: drop-shadow(.05em .05em .05em #666666);
 
 }
 
 .shadow--arrow { /* inverted because of rotation */
-    filter: drop-shadow(.1rem -.1rem .2rem #8e8e8ea8);
+    filter: drop-shadow(.1em -.2em .2em #8e8e8ea8);
 }
 
 
@@ -297,7 +291,7 @@ Use "rem" to keep shadow uniform regardless of element size */
     align-items: center;
     justify-content: center;
     width: 100%;
-    font-size: 10em;
+    font-size: 1rem;
     gap: 2em; /* Add space between groups */
     padding: 0 10em;
     z-index: 70;
@@ -305,16 +299,16 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 .gameplay__input-field {
     width: 65%;
-    height: 20em;
+    height: 6em;
 
-    margin: 1em 0;
+    margin: .5em 0;
 
-    border: .08em dashed #545454;
-    border-radius: .6em;
+    border: .1em dashed #545454;
+    border-radius: .2em;
 
     background: none;
 
-    font-size: 18em;
+    font-size: 2em;
     font-weight: 100;
     letter-spacing: 0.1em;
 
@@ -329,8 +323,8 @@ input:focus {outline: none}
 
 .gameplay__flip-btn {
     position: absolute;
-    width: 30em;
-    height: 30em;
+    width: 3em;
+    height: 3em;
     left: calc(50% + 33%); /* Offset to the right of the input field */
 
     flex-direction: column;
@@ -340,7 +334,7 @@ input:focus {outline: none}
 .gameplay__flip-btn:active {transform: scale(1.1);}
 
 .gameplay__flip-btn--pt {
-    font-size: 10em;
+    font-size: 2em;
     font-weight: 400;
     line-height: 1;
     margin: 0;
@@ -405,7 +399,8 @@ input:focus {outline: none}
     height: 27%;
     width: 100%;
     padding: 2% 2%;
-    font-size: 10rem;
+    font-size: 2.4em;
+    font-weight: 500;
 }
 .keyboard__spacer {flex: 0.5}
 
@@ -424,7 +419,6 @@ input:focus {outline: none}
     margin: 0 1.5% 1.5% 0;
     border-radius: .3em;
     padding: 0;
-    font-weight: 500;
     transition: background-color 0.1s ease;
 }
 
@@ -501,7 +495,7 @@ input:focus {outline: none}
     align-items: center;
 
     background: none;
-    font-size: 10em;
+    font-size: 3em;
 
     border: 0.1em ridge var(--tile-border-color);
     margin: 0.2em;
@@ -512,9 +506,9 @@ input:focus {outline: none}
 }
 
 #gameplay-cont .tile {
-    height: 20em;
-    width: 20em;
-    font-size: 12em;
+    height: 2em;
+    width: 2em;
+    font-size: 4em;
 
     animation-name: fadeIn;
     animation-duration: 0.2s;
@@ -629,9 +623,9 @@ input:focus {outline: none}
     background-color: var(--panel-bg-color);
     
     padding: 4.5% 0;
-    font-size: 10rem;
+    font-size: 1rem;
     
-    box-shadow: 3em 3em 5em rgba(0,0,0,.2);
+    box-shadow: .3em .3em .5em rgba(0,0,0,.2);
 
     z-index: 100;
 
@@ -675,7 +669,7 @@ input:focus {outline: none}
 
 .dialog-content input {
     width: 100%;
-    margin-bottom: 15rem;
+    margin-bottom: 1.5rem;
     padding: 10rem;
     border: 1rem solid #ccc;
     border-radius: 4rem;
@@ -724,7 +718,7 @@ input:focus {outline: none}
 
 .popup-content {
     padding: 5% 7%;
-    font-size: 10rem;
+    /* font-size: 1rem; */
     line-height: 1.5;
     overflow-y: auto;
     scrollbar-width: none;
@@ -739,7 +733,7 @@ input:focus {outline: none}
     margin: 0;
 }
 #word-pair-menu li:not(:last-of-type) {
-    border-bottom: 5em solid #ddd;
+    border-bottom: .5em solid #ddd;
 }
 #word-pair-menu li:hover {
     transform: scale(1.03);
@@ -748,14 +742,14 @@ input:focus {outline: none}
 
 
 h1 {
-    font-size: 15rem;
+    font-size: 1em;
     font-weight: 400;
-    letter-spacing: -.5rem;
-    margin: 6rem 6rem 1rem;
+    letter-spacing: -.05em;
+    margin: .6em .6em .1em;
 }
 
 p {
-    margin-bottom: 10rem;
+    margin-bottom: 1em;
     text-indent: 0;
 }
 
@@ -767,10 +761,10 @@ ul {
     list-style-type: disc;
 }
 li {
-    font-size: 10em;
+    font-size: 1em;
     line-height: 1.5;
-    margin-bottom: .8rem;
-    padding-left: 1rem;
+    margin-bottom: .08rem;
+    padding-left: 1em;
 }
 li div:last-of-type {margin-bottom: 0.5em}
 
@@ -788,7 +782,7 @@ li div:last-of-type {margin-bottom: 0.5em}
     width: 6.6%;    
     height: auto;
     aspect-ratio: 1/1;
-    font-size: 0.75em;
+    /* font-size: 0.75em; */
     font-weight: 400;
     border: 0.1em ridge var(--tile-border-color);
     border-radius: 0.2em;
