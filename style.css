@@ -48,26 +48,6 @@ html, body {
 }
 
 
-.logo-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin: auto;
-
-    font-size: 6rem;
-    font-variant: normal;
-    font-kerning: normal;
-    font-feature-settings: "liga" on, "kern" on;
-
-    /* --arrow-color: rgb(181, 181, 181);
-    --arrow-angle: 114.2deg;
-    --arrow-length: 40%;
-    --arrow-thickness: 0.1rem;
-
-    line-height: 1; */
-}
-
 
 
 body {
@@ -149,6 +129,7 @@ body {
     margin-bottom: auto;
     line-height: 1.4;
     font-weight: 400;
+    font-size: 2.2rem;
     z-index: 80;
     text-align: start;
 }
@@ -184,7 +165,8 @@ body {
 
 
 .btn--fill {
-    font-size: 1rem;
+    font-size: 2.2rem;
+
     width: auto;
     font-weight: 500;
     background-color: var(--btn-bg-color);
@@ -217,7 +199,7 @@ body {
     border: solid black .1em;
     border-radius: 50%;
     background: none;
-    font-size: 2em;
+    font-size: 2.4rem;
     font-weight: 500;
 }
 
@@ -297,26 +279,21 @@ Use "rem" to keep shadow uniform regardless of element size */
     z-index: 70;
 }
 
+
+
 .gameplay__input-field {
     width: 65%;
-    height: 4em;
-
-    margin: .5em 3em;
-
+    height: 2.5em;
+    margin: .5em .8em;
     border: .07em dashed #545454;
-    border-radius: .9em;
-
+    border-radius: .7em;
     background: none;
-
     font-size: 4em;
     font-weight: 100;
     letter-spacing: 0.1em;
-
     text-transform: uppercase;
     text-align: center;
-
     transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-
 }
 input:focus {outline: none}
 

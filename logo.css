@@ -9,18 +9,17 @@
 
 
 .logo-wrap {
-    /* display: flex;
+
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto; */
 
-    /* font-size: clamp(8px, 18px, 64px); */
+    margin: auto;
 
-    /* font-size: 24px;
-    font-family: 'Raleway', sans-serif;
+    font-size: 6rem;
     font-variant: normal;
     font-kerning: normal;
-    font-feature-settings: "liga" on, "kern" on; */
+    font-feature-settings: "liga" on, "kern" on;
 
     --arrow-color: rgb(181, 181, 181);
     --arrow-angle: 114.2deg;
