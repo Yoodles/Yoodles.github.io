@@ -30,12 +30,11 @@
     font-size: inherit;
     text-align: center;
     vertical-align: baseline;
-    font-variant-numeric: lining-nums; /* <numeric-figure-values> */
+    font-variant-numeric: lining-nums;
 }
 
 html {
     font-size: calc(var(--vh, 1vh));
-
     font-weight: 300;
 }
 
