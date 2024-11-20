@@ -257,13 +257,11 @@ Use "rem" to keep shadow uniform regardless of element size */
 }
 
 .shadow--tile-set {
-
+    filter: drop-shadow(.4em .4em 0.09em rgba(170, 163, 163, 0.813));
 }
-
 
 .shadow--min {
     filter: drop-shadow(.05em .05em .05em #666666);
-
 }
 
 .shadow--arrow { /* inverted because of rotation */
@@ -401,7 +399,7 @@ input:focus {outline: none}
     height: 27%;
     width: 100%;
     padding: 2% 2%;
-    font-size: 2.4em;
+    font-size: 5em;
     font-weight: 500;
 }
 .keyboard__spacer {flex: 0.5}
@@ -444,7 +442,6 @@ input:focus {outline: none}
     /* transition-delay: ? */
     flex-direction: column;
     transition: transform 0.8s ease;
-    filter: drop-shadow(4em 4em 0.3em rgba(128, 121, 121, 0.813));
 
 }
 .flip .set {flex-direction: column-reverse;}
