@@ -302,11 +302,13 @@ input:focus {outline: none}
 .gameplay__side-btns{
     position: absolute;
     left: calc(50% + 38%); /* Offset to the right of the input field */
-    border: 0.3px rgba(128, 128, 128, 0.311) solid; /*delete*/
+    
     display: flex;
     flex-direction: column;
     align-items: center;
     transform: translateX(-50%);
+
+    border: 0.3px rgba(128, 128, 128, 0.311) solid;
 }
 
 .gameplay__flipper-cont {
@@ -326,47 +328,51 @@ input:focus {outline: none}
     pointer-events: none;
 }
 
-.gameplay__flip-btn {
+.btn--flip {
     flex-direction: column;
     transition: transform 0.1s ease-out;
 
-    border: 0.3px rgba(128, 128, 128, 0.311) solid; /*delete*/
+    /* border: 0.3px rgba(128, 128, 128, 0.311) solid; */
 
 }
-.gameplay__flip-btn:hover,
-.gameplay__flip-btn:active {transform: scale(1.1);}
+.btn--flip:hover,
+.btn--flip:active {transform: scale(1.1);}
 
-.gameplay__flip-btn--pt {
+.btn--flip--top, .btn--flip--bottom {
     line-height: 1;
     margin: 0;
     transform-origin: center;
     pointer-events: none;
 }
 
-.gameplay__flip-btn--top {transform: rotate(180deg); margin-bottom: -0.11em;}
-.gameplay__flip-btn--bottom {margin-top: -0.11em;}
+.btn--flip--top {transform: rotate(180deg); margin-bottom: -0.11em;}
+.btn--flip--bottom {margin-top: -0.11em;}
 
 
-.gameplay__del-btn {
+.btn--delete {
     transition: opacity ease-in;
     opacity: 0;
     pointer-events: all;
-    border: 0.3px grey solid; /*delete*/
+    /* border: 0.3px grey solid; */
 
 }
 
-.gameplay__del-btn--upper {transform: rotate(0.5turn)}
-.gameplay__del-btn--upper:hover,
-.gameplay__del-btn--upper:active {transform: scale(1.2) rotate(0.5turn);}
+.btn--delete--upper {transform: rotate(0.5turn)}
+.btn--delete--upper:hover,
+.btn--delete--upper:active {transform: scale(1.2) rotate(0.5turn);}
 
-.gameplay__del-btn--lower:hover,
-.gameplay__del-btn--lower:active {transform: scale(1.2);}
-
-
-.gameplay__del-btn.active {opacity: 1;}
-.gameplay__del-btn.fade-in, .gameplay__del-btn.fade-out {transition-duration: 0.2s;}
+.btn--delete--lower:hover,
+.btn--delete--lower:active {transform: scale(1.2);}
 
 
+.btn--delete.active {opacity: 1;}
+.btn--delete.fade-in, .btn--delete.fade-out {transition-duration: 0.2s;}
+
+.help .btn--in-text {
+    cursor: default;
+    opacity: 1;
+}
+.help .btn--in-text:hover {transform: none}
 
 
 /*=====KEYBOARD=====*/
@@ -595,12 +601,12 @@ input:focus {outline: none}
     display: flex;
     flex-direction: column;
 
-    border: solid .1em grey;
+    border: solid .08em grey;
     border-radius: 1em;
     background-color: var(--panel-bg-color);
     
     padding: 4.5% 0;
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     
     box-shadow: .3em .3em .5em rgba(0,0,0,.2);
 

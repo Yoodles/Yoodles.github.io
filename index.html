@@ -38,7 +38,7 @@
             <button class="btn btn--help shadow--top" onclick="togglePanel('help')">?</button>
         </div>
 
-        <div id="popup-panel" class="panel panel--popup hidden">
+        <div id="popup-panel" class="panel panel--popup">
             <button class="btn btn--close-panel" onclick="togglePanel('close')">x</button>
             <div class="fade-bar fade-bar--top fade-bar--btns">
                 
@@ -120,8 +120,20 @@
                     <li>Words should be 3–6 letters long. They also can't be more than 1 letter longer, or more than 1 letter shorter, than both of the starting words.<br>
                         (The range for each round is shown in the top-right corner next to <span class="tile tile--inline">&nbsp;</span>.)</li>
 
-                    <li>You can only change the word just above the text box, but clicking <img src="images/flipper.svg" class="help__flipper-icon"> will flip the whole board. Sometimes it helps to work backwards!</li>
-                    <li>You can also undo a move by clicking <img src="images/deleter.png" class="help__del-icon"> or <img src="images/deleter.png" class="help__del-icon icon-flipped">.</li>
+                    <li>You can only change the word just above the text box, but clicking
+
+                        <span class="btn btn--in-text btn--flip btn--img">
+                            <span class="btn--flip--top">W</span>
+                            <span class="btn--flip--bottom">W</span>
+                        </span>
+                        will flip the whole board. Sometimes it helps to work backwards!
+                    </li>
+                    <li>You can also undo a move by clicking
+                        <span class="btn btn--in-text btn--img btn--delete btn--delete--upper">V</span>
+                        or 
+                        <span class="btn btn--in-text btn--img btn--delete btn--delete--lower">V</span>
+                        .
+                    </li>
                 </ul>
             </div>
 
@@ -182,15 +194,15 @@
                     <input id="input-field" class="gameplay__input-field shadow--min" type ="text">
 
                     <div class="gameplay__flipper-cont gameplay__side-btns shadow--top">
-                        <button id="flippin-button" class="btn gameplay__flip-btn btn--img shadow--top" onclick="toggleFlip()">
-                            <div class="gameplay__flip-btn--pt gameplay__flip-btn--top">W</div>
-                            <div class="gameplay__flip-btn--pt gameplay__flip-btn--bottom">W</div>
+                        <button id="flippin-button" class="btn btn--flip btn--img shadow--top" onclick="toggleFlip()">
+                            <div class="btn--flip--top">W</div>
+                            <div class="btn--flip--bottom">W</div>
                         </button>
                     </div>
 
                     <div class="gameplay__deleters-cont gameplay__side-btns shadow--top">
-                        <button id="upper-deleter" class="btn btn--img gameplay__del-btn gameplay__del-btn--upper active" onclick="deleteMove('upper')">V</button>
-                        <button id="lower-deleter" class="btn btn--img gameplay__del-btn gameplay__del-btn--lower active" onclick="deleteMove('lower')">V</button>
+                        <button id="upper-deleter" class="btn btn--img btn--delete btn--delete--upper active" onclick="deleteMove('upper')">V</button>
+                        <button id="lower-deleter" class="btn btn--img btn--delete btn--delete--lower active" onclick="deleteMove('lower')">V</button>
                     </div>
                 </div>
 
