@@ -732,7 +732,7 @@ input:focus {outline: none}
     margin: 0;
 }
 #word-pair-menu li:not(:last-of-type) {
-    border-bottom: .5em solid #ddd;
+    border-bottom: .05em solid #ddd;
 }
 #word-pair-menu li:hover {
     transform: scale(1.03);
