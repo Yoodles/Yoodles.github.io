@@ -578,7 +578,7 @@ input:focus {outline: none}
 .overlay--dark.invisible {pointer-events: none;}
 .overlay--message {
     color: black;
-    font-size: 12rem;
+    font-size: 2rem;
     text-align: center;
 }
 
