@@ -600,7 +600,7 @@ input:focus {outline: none}
     background-color: var(--panel-bg-color);
     
     padding: 4.5% 0;
-    font-size: 1rem;
+    font-size: 2.5rem;
     
     box-shadow: .3em .3em .5em rgba(0,0,0,.2);
 
