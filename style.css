@@ -298,6 +298,36 @@ Use "rem" to keep shadow uniform regardless of element size */
 input:focus {outline: none}
 
 
+
+.gameplay__side-btns{
+    position: absolute;
+    left: calc(50% + 35%); /* Offset to the right of the input field */
+    border: 0.3px rgba(128, 128, 128, 0.311) solid; /*delete*/
+    display: flex;
+    font-size: 4rem;
+    flex-direction: column;
+    align-items: center;
+    width: 7rem;
+    transform: translateX(-50%);
+}
+
+.gameplay__flipper-cont {
+    /* width: 3rem; */
+    height: 8rem;
+    justify-content: center;
+    font-size: 4.5rem;
+    font-weight: 400;
+}
+
+.gameplay__deleters-cont {
+    /* width: 5rem; */
+    height: 28rem;
+    justify-content: space-between;
+    font-size: 4rem;
+    font-weight: 400;
+    pointer-events: none;
+}
+
 .gameplay__flip-btn {
     flex-direction: column;
     transition: transform 0.1s ease-out;
@@ -309,8 +339,6 @@ input:focus {outline: none}
 .gameplay__flip-btn:active {transform: scale(1.1);}
 
 .gameplay__flip-btn--pt {
-    font-size: 4.5rem;
-    font-weight: 400;
     line-height: 1;
     margin: 0;
     transform-origin: center;
@@ -321,36 +349,7 @@ input:focus {outline: none}
 .gameplay__flip-btn--bottom {margin-top: -0.11em;}
 
 
-.gameplay__side-btns{
-    position: absolute;
-    left: calc(50% + 35%); /* Offset to the right of the input field */
-    border: 0.3px rgba(128, 128, 128, 0.311) solid; /*delete*/
-    display: flex;
-    font-size: 4rem;
-    flex-direction: column;
-    align-items: center;
-    /* width: 4rem; */
-
-}
-
-.gameplay__flipper-cont {
-    justify-content: center;
-    width: 3rem;
-    height: 8rem;
-
-}
-
-.gameplay__deleters-cont {
-    width: 5rem;
-    height: 28rem;
-    justify-content: space-between;
-    pointer-events: none;
-
-}
-
 .gameplay__del-btn {
-    /* font-size: 4em; */
-    font-weight: 400;
     transition: opacity ease-in;
     opacity: 0;
     pointer-events: all;
