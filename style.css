@@ -202,8 +202,8 @@ body {
 .btn--help {
     position: absolute;
     right: 3%;
-    height: 2em;
-    width: 2em;
+    height: 3.8rem;
+    width: 3.8rem;
     border: solid black .1em;
     border-radius: 50%;
     background: none;
