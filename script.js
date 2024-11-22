@@ -184,7 +184,7 @@ function updateMoveCounterUI() {
 
 function updateMinMaxDisplay() {
     document.getElementById('min-max-lengths').innerHTML = `
-    <span class="tile tile--min-max"></span><span class="display__colon">:</span><span> ${wordPair.minLength} – ${wordPair.maxLength}</span>
+    <span class="tile display--min-max__tile"></span><span class="display__colon">:</span><span> ${wordPair.minLength} – ${wordPair.maxLength}</span>
     `;
 }
 

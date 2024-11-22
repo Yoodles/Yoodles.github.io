@@ -146,6 +146,13 @@ body {
     pointer-events: all;
 }
 
+.display--min-max__tile {
+    height: 1.1em;
+    width: 1.1em;
+    /* font-size: 0.75em; */
+    border: 0.1em ridge var(--tile-border-color);
+    border-radius: 0.2em;
+}
 
 
 
@@ -460,14 +467,6 @@ input:focus {outline: none}
     animation-duration: 0.2s;
 }
 
-.tile--min-max {
-    
-    height: 2rem;
-    width: 2rem;
-    /* font-size: 0.75em; */
-    border: 0.08rem ridge var(--tile-border-color);
-    border-radius: 0.2rem;
-}
 
 .tile.tile--added {background-color: rgb(219, 255, 219);}
 .tile.tile--moved {background-color: rgb(255, 227, 231)}
