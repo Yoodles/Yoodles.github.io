@@ -275,7 +275,7 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 
 
-#input-set {
+.input-set {
     display: flex;
     position: relative;
     align-items: center;
@@ -290,7 +290,7 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 
 
-.gameplay__input-field {
+.input-field {
     width: 65%;
     height: 2em;
     margin: .5em .8em;
