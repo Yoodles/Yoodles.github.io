@@ -247,7 +247,7 @@ Use "rem" to keep shadow uniform regardless of element size */
 }
 
 .shadow--arrow { /* inverted because of rotation */
-    filter: drop-shadow(.1em -.2em .2em #8e8e8ea8);
+    filter: drop-shadow(.05em -.05em .2em #8e8e8ea8);
 }
 
 
