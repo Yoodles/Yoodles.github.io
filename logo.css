@@ -54,7 +54,7 @@
     position: absolute;
     color: var(--arrow-color);
     font-weight: 400;
-    font-size: 3rem;
+    font-size: .6em;
     z-index: 0;
 }
 
