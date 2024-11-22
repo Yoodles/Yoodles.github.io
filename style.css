@@ -276,7 +276,7 @@ Use "rem" to keep shadow uniform regardless of element size */
     width: 100%;
     /* font-size: 1rem; */
     /* gap: 2em; */
-    padding: 0 1em;
+    /* padding: 0 1em; */
     z-index: 70;
     font-size: 1.1rem;
 }
