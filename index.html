@@ -19,7 +19,7 @@
             <button class="btn btn--reset btn--fill" onclick="updateGame('resetRound')">RESET</button>
             <!-- <button id="game-logo" class="btn btn--img shadow" onclick="testUI()"><img src="images/logo.png"></button> -->
             
-            <div class="logo-wrap">
+            <div class="logo-wrap" onclick="togglePanel('rounds')">
                 <div class="logo__wdwd">
                     <div class="logo__arrow-shaft shadow--arrow"></div>
 
@@ -34,11 +34,10 @@
                 </div>
             </div>
             
-            <!-- <button id="game-logo" class="btn btn--img" onclick="togglePanel('rounds')"><img src="images/logo.png"></button> -->
             <button class="btn btn--help shadow--top" onclick="togglePanel('help')">?</button>
         </div>
 
-        <div id="popup-panel" class="panel panel--popup">
+        <div id="popup-panel" class="panel panel--popup hidden">
             <button class="btn btn--close-panel" onclick="togglePanel('close')">x</button>
             <div class="fade-bar fade-bar--top fade-bar--btns">
                 
@@ -157,7 +156,7 @@
                     <div id="best-score">Best<span class="display__colon">:</span>--</div>
                 </div>
 
-                <div onclick="togglePanel('rounds')" id="min-max-lengths" class="display display--min-max shadow--min">
+                <div id="min-max-lengths" class="display display--min-max shadow--min">
                     <span class="tile tile--min-max"></span><span class="display__colon">:</span>
                 </div>
 
