@@ -281,13 +281,9 @@ Use "rem" to keep shadow uniform regardless of element size */
     align-items: center;
     justify-content: center;
     width: 100%;
-    /* font-size: 1rem; */
-    /* gap: 2em; */
-    /* padding: 0 1em; */
     z-index: 70;
     font-size: 1.1rem;
 }
-
 
 
 .input-field {
