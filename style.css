@@ -2,8 +2,10 @@
     --vh: 1vh;
     --main-bg-color: #f3f3f3;
 
-    --tile-border-color: rgb(69, 69, 69);
-    --tile-font-color: rgb(69, 69, 69);
+    /* --tile-border-color: rgb(69, 69, 69);
+    --tile-font-color: rgb(69, 69, 69); */
+    --tile-border-color: rgb(65, 64, 64);
+    --tile-font-color: rgb(65, 64, 64);
     --btn-bg-color: rgba(229, 229, 217, 0.801);
     --btn-font-color: rgb(175, 169, 169);
     --btn-border-color: rgb(197, 197, 181);
@@ -59,8 +61,6 @@ body {
 
     background-color: var(--main-bg-color);
 
-    /* font-size: 0.1rem; */
-
     overflow: hidden;
     touch-action: manipulation;
 
@@ -94,11 +94,12 @@ body {
 .game-area {
     position: relative;
     display: flex;
-    flex: 1;
+    /* flex: 1; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 60%;
     overflow-y: hidden;
     /* align-items: center; */
     background-color: var(--main-bg-color);
@@ -353,8 +354,6 @@ input:focus {outline: none}
     transition: opacity ease-in;
     opacity: 0;
     pointer-events: all;
-    /* border: 0.3px grey solid; */
-
 }
 
 .btn--delete--upper {transform: rotate(0.5turn)}
@@ -577,9 +576,6 @@ input:focus {outline: none}
 /* Fade effects */
 .fade-in { opacity: 1; transition: opacity ease-in; }
 .fade-out { opacity: 0; transition: opacity ease-out; }
-
-
-
 
 
 /* Rotate effects */
