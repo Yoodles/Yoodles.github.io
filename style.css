@@ -246,7 +246,7 @@ Use "rem" to keep shadow uniform regardless of element size */
 }
 
 .shadow--tile-set {
-    filter: drop-shadow(.4rem .4rem 0.09rem rgba(170, 163, 163, 0.813));
+    filter: drop-shadow(.4rem .4rem 0.2rem rgba(170, 163, 163, 0.813));
 }
 
 .shadow--min {
@@ -254,7 +254,7 @@ Use "rem" to keep shadow uniform regardless of element size */
 }
 
 .shadow--arrow { /* inverted because of rotation */
-    filter: drop-shadow(.05em -.05em .02em #b3b3b3a8);
+    filter: drop-shadow(.05rem -.05rem .02rem #b3b3b3a8);
 }
 
 
