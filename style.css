@@ -278,13 +278,14 @@ Use "rem" to keep shadow uniform regardless of element size */
     /* gap: 2em; */
     padding: 0 1em;
     z-index: 70;
+    font-size: 1.1rem;
 }
 
 
 
 .gameplay__input-field {
     width: 65%;
-    height: 2.5em;
+    height: 2em;
     margin: .5em .8em;
     border: .07em dashed #545454;
     border-radius: .7em;
@@ -314,17 +315,17 @@ input:focus {outline: none}
 
 .gameplay__flipper-cont {
     /* width: 3rem; */
-    height: 10rem;
+    height: 10em;
     justify-content: center;
-    font-size: 4.5rem;
+    font-size: 4.5em;
     font-weight: 400;
 }
 
 .gameplay__deleters-cont {
     /* width: 5rem; */
-    height: 26rem;
+    height: 8em;
     justify-content: space-between;
-    font-size: 3.5rem;
+    font-size: 3.5em;
     font-weight: 500;
     pointer-events: none;
 }
@@ -373,42 +374,6 @@ input:focus {outline: none}
 }
 .help .btn--in-text:hover {transform: none}
 
-
-/*=====KEYBOARD=====*/
-#keyboard {
-    display: flex;
-    flex-direction: column;
-    height: 27%;
-    width: 100%;
-    padding: 2% 2%;
-    font-size: 5em;
-    font-weight: 500;
-}
-.keyboard__spacer {flex: 0.5}
-
-.keyboard__row {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    touch-action: manipulation;
-    justify-content: center;
-}
-
-.keyboard__key {
-    flex: 1;
-    display: flex;
-    margin: 0 1.5% 1.5% 0;
-    border-radius: .3em;
-    padding: 0;
-    transition: background-color 0.1s ease;
-}
-
-.keyboard__key:last-of-type {margin: 0 0 1.5% 0;}
-.keyboard__key:active {background-color: #e3e3e3;}
-
-.keyboard__key--backspace {max-width: 12%; flex: 1.4;}
-.keyboard__key--enter {flex: 1.8}
 
 
 
@@ -778,6 +743,56 @@ li div:last-of-type {margin-bottom: 0.5em}
 }
 
 .icon-flipped {transform: rotate(0.5turn);}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*=====KEYBOARD=====*/
+#keyboard {
+    display: flex;
+    flex-direction: column;
+    height: 27%;
+    width: 100%;
+    padding: 2% 2%;
+    font-size: 5em;
+    font-weight: 500;
+}
+.keyboard__spacer {flex: 0.5}
+
+.keyboard__row {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    touch-action: manipulation;
+    justify-content: center;
+}
+
+.keyboard__key {
+    flex: 1;
+    display: flex;
+    margin: 0 1.5% 1.5% 0;
+    border-radius: .3em;
+    padding: 0;
+    transition: background-color 0.1s ease;
+}
+
+.keyboard__key:last-of-type {margin: 0 0 1.5% 0;}
+.keyboard__key:active {background-color: #e3e3e3;}
+
+.keyboard__key--backspace {max-width: 12%; flex: 1.4;}
+.keyboard__key--enter {flex: 1.8}
+
+
 
 
 
