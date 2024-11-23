@@ -253,7 +253,7 @@ body {
 /* SHADOWS============
 Use "rem" to keep shadow uniform regardless of element size */
 .shadow--top {
-    filter: drop-shadow(.4rem .4rem .2rem rgba(166, 161, 161, 0.813));
+    filter: drop-shadow(.4rem .4rem .5rem rgba(166, 161, 161, 0.813));
 }
 
 .shadow--tile-set {
