@@ -301,10 +301,10 @@ Use "rem" to keep shadow uniform regardless of element size */
     height: var(--input-field-height);
     margin: var(--input-margin-vertical) 2rem;
 
-    border: .07em dashed #545454;
-    border-radius: .7em;
+    border: .2rem dashed #545454;
+    border-radius: 2.4rem;
     background: none;
-    font-size: 2.4em;
+    font-size: 3.4rem;
     font-weight: 100;
     letter-spacing: 0.1em;
     text-transform: uppercase;
