@@ -14,10 +14,14 @@
     --letter-btn-color: rgb(65, 64, 64);
 
 
+
+    --input-field-height: 8rem;
+    --input-margin-vertical: 1.4rem;
+
     --tile-font-size: 3rem;
     --tile-height-width: 6rem;
     --tile-margin: .2em;
-    --word-row-height: calc(var(--tile-height-width) + (2 * var(--tile-margin)));
+    --word-row-height: calc(var(--tile-height-width) + (var(--tile-margin) * 2));
 }
 
 
@@ -294,8 +298,9 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 .input-field {
     width: 65%;
-    height: 2em;
-    margin: .5em .8em;
+    height: var(--input-field-height);
+    margin: var(--input-margin-vertical) 2rem;
+
     border: .07em dashed #545454;
     border-radius: .7em;
     background: none;
