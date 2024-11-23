@@ -282,7 +282,7 @@ Use "rem" to keep shadow uniform regardless of element size */
     justify-content: center;
     width: 100%;
     z-index: 70;
-    font-size: 1.1rem;
+    font-size: 2rem;
 }
 
 
@@ -293,7 +293,7 @@ Use "rem" to keep shadow uniform regardless of element size */
     border: .07em dashed #545454;
     border-radius: .7em;
     background: none;
-    font-size: 4em;
+    font-size: 2.4em;
     font-weight: 100;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -303,10 +303,6 @@ Use "rem" to keep shadow uniform regardless of element size */
 input:focus {outline: none}
 
 
-
-.logo-wrap, .gameplay__flipper-cont, .gameplay__deleters-cont {
-    font-size: 4rem;
-}
 
 
 .gameplay__side-btns{
@@ -328,10 +324,8 @@ input:focus {outline: none}
 }
 
 .gameplay__deleters-cont {
-    /* width: 5rem; */
-    height: 8em;
+    height: 12em;
     justify-content: space-between;
-    /* font-size: 3.5em; */
     font-weight: 500;
     pointer-events: none;
 }
