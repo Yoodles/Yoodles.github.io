@@ -570,7 +570,7 @@ input:focus {outline: none}
     background-color: var(--panel-bg-color);
     
     padding: 4.5% 0;
-    font-size: 2.6rem;
+    font-size: 1rem;
     
     box-shadow: .3em .3em .5em rgba(0,0,0,.2);
 
@@ -581,10 +581,14 @@ input:focus {outline: none}
 .panel.hidden {display: none}
 .panel--popup {width: 88%; height: 80%;}
 
+.panel--dialog {width: 70%;}
+
 .panel--result {
+    font-size: 2.6em;
     width: 75%;
     height: 30%;
-    padding: 10% 3% 8%;
+    /* max-height: 30%; */
+    padding: 15% 10%;
     justify-content: center;
     margin: auto;
 }
@@ -592,9 +596,7 @@ input:focus {outline: none}
 /* .panel--result.hidden {display: flex} */
 /* .panel--result .btn {margin: 2rem;} */
 
-.panel--dialog {
-    width: 70%;
-}
+
 
 .result__btns {
     display: inline-flex;
