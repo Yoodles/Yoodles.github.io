@@ -241,7 +241,7 @@ h1 {font-size:8.1vw;font-weight: 100;letter-spacing: -0.04em;line-height: 1;}
 #flippin-button img {height: 12.3vw;}
 
 
-#input-field {
+#input__text-field {
     width: 70%;
     height: 14vw;
     text-transform: uppercase;

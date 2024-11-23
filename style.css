@@ -105,13 +105,13 @@ body {
     /* align-items: center; */
     background-color: var(--main-bg-color);
 
-    --input-field-height: 8rem;
-    --input-margin-vert: 1.4rem;
-    --input-field-total-height: calc(var(--input-field-height) + (var(--input-margin-vert) *2));
+    --text-field-hgt: 8rem;
+    --text-field-margin-hgt: 1.4rem;
+    --text-field-total-hgt: calc(var(--text-field-hgt) + (var(--text-field-margin-hgt) *2));
 
     --tile-font-size: 3rem;
-    --tile-height-width: 6rem;
-    --tile-margin: .6rem;
+    --tile-height-width: 5rem;
+    --tile-margin: .5rem;
     --word-row-height: calc(var(--tile-height-width) + (var(--tile-margin) * 2));
 }
 
@@ -252,11 +252,11 @@ body {
 /* SHADOWS============
 Use "rem" to keep shadow uniform regardless of element size */
 .shadow--top {
-    filter: drop-shadow(.2rem .03rem .01rem rgba(165, 156, 156, 0.813));
+    filter: drop-shadow(.2rem .2rem .1rem rgba(165, 156, 156, 0.813));
 }
 
 .shadow--tile-set {
-    filter: drop-shadow(.4rem .4rem 0.2rem rgba(170, 163, 163, 0.813));
+    filter: drop-shadow(.4rem .4rem 0.5rem rgba(170, 163, 163, 0.813));
 }
 
 .shadow--min {
@@ -297,15 +297,16 @@ Use "rem" to keep shadow uniform regardless of element size */
 }
 
 
-.input-field {
+.input__text-field {
     width: 65%;
-    height: var(--input-field-height);
-    margin: var(--input-margin-vert) 2rem;
+    height: var(--text-field-hgt);
+    margin: var(--text-field-margin-hgt) 2rem;
 
     border: .2rem dashed #545454;
     border-radius: 2.4rem;
     background: none;
-    font-size: 3.4rem;
+    /* font-size: 3.4rem; */
+    font-size: 1.7em;
     font-weight: 100;
     letter-spacing: .7rem;
     text-transform: uppercase;
@@ -317,7 +318,7 @@ input:focus {outline: none}
 
 
 
-.gameplay__side-btns{
+.input__side-btns {
     position: absolute;
     left: calc(50% + 40%); /* Offset to the right of the input field */
     
@@ -326,56 +327,42 @@ input:focus {outline: none}
     align-items: center;
     transform: translateX(-50%);
 
+    pointer-events: none;
     /* border: 0.3px rgba(128, 128, 128, 0.311) solid; */
 }
 
-.gameplay__flipper-cont {
-    justify-content: center;
-    font-weight: 400;
-}
-
-.gameplay__deleters-cont {
-    height: 11.5em;
-    justify-content: space-between;
-    font-weight: 500;
-    pointer-events: none;
-}
+.input__flipper-cont {justify-content: center;}
+.input__deleters-cont {height: 11.5em; justify-content: space-between;}
 
 .btn--flip {
     flex-direction: column;
     transition: transform 0.1s ease-out;
-
+    pointer-events: all;
     /* border: 0.3px rgba(128, 128, 128, 0.311) solid; */
-
 }
-.btn--flip:hover,
-.btn--flip:active {transform: scale(1.1);}
+.btn--flip:hover, .btn--flip:active {transform: scale(1.08);}
 
 .btn--flip--top, .btn--flip--bottom {
-    font-size: 2.4em;
+    font-size: 2.1em;
+    font-weight: 400;
     line-height: 1;
     margin: 0;
     transform-origin: center;
-    pointer-events: none;
 }
-
-.btn--flip--top {transform: rotate(180deg); margin-bottom: -0.11em;}
-.btn--flip--bottom {margin-top: -0.11em;}
+.btn--flip--top {transform: rotate(180deg); margin-bottom: -0.1em;}
+.btn--flip--bottom {margin-top: -0.1em;}
 
 
 .btn--delete {
-    font-size: 1.9em;
+    font-size: 1.6em;
+    font-weight: 500;
     transition: opacity ease-in;
     opacity: 0;
     pointer-events: all;
 }
-
 .btn--delete--upper {transform: rotate(0.5turn)}
-.btn--delete--upper:hover,
-.btn--delete--upper:active {transform: scale(1.2) rotate(0.5turn);}
-
-.btn--delete--lower:hover,
-.btn--delete--lower:active {transform: scale(1.2);}
+.btn--delete--upper:hover, .btn--delete--upper:active {transform: scale(1.15) rotate(0.5turn);}
+.btn--delete--lower:hover, .btn--delete--lower:active {transform: scale(1.15);}
 
 
 .btn--delete.active {opacity: 1;}
@@ -407,15 +394,15 @@ input:focus {outline: none}
 .flip .set {flex-direction: column-reverse;}
 
 
-.slide-down--comp-sbmt {transform: translateY(calc(var(--input-field-total-height) * 0.5));}
-.slide-up--comp-sbmt {transform: translateY(calc(var(--input-field-total-height) * -0.5));}
+.slide-down--comp-sbmt {transform: translateY(calc(var(--text-field-total-hgt) * 0.5));}
+.slide-up--comp-sbmt {transform: translateY(calc(var(--text-field-total-hgt) * -0.5));}
 
 .slide-down--comp-del {
-    transform: translateY(calc((var(--input-field-total-height) + (var(--word-row-height) * 2)) * 0.5 ));
+    transform: translateY(calc((var(--text-field-total-hgt) + (var(--word-row-height) * 2)) * 0.5 ));
 }
 
 .slide-up--comp-del {
-    transform: translateY(calc((var(--input-field-total-height) + (var(--word-row-height) * 2)) * -0.5 ));
+    transform: translateY(calc((var(--text-field-total-hgt) + (var(--word-row-height) * 2)) * -0.5 ));
 }
 
 
