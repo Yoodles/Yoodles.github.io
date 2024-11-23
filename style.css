@@ -326,7 +326,7 @@ input:focus {outline: none}
     align-items: center;
     transform: translateX(-50%);
 
-    border: 0.3px rgba(128, 128, 128, 0.311) solid;
+    /* border: 0.3px rgba(128, 128, 128, 0.311) solid; */
 }
 
 .gameplay__flipper-cont {
@@ -335,7 +335,7 @@ input:focus {outline: none}
 }
 
 .gameplay__deleters-cont {
-    height: 14em;
+    height: 11.5em;
     justify-content: space-between;
     font-weight: 500;
     pointer-events: none;
