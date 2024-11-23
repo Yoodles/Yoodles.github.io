@@ -513,18 +513,17 @@ function submitMove() {
 }
 
 function scrollScreen() {
-const gameplayCont = document.getElementById('gameplay-cont');
-console.log('scrollHeight:', gameplayCont.scrollHeight);
-console.log('clientHeight:', gameplayCont.clientHeight);
-console.log('scrollTop:', gameplayCont.scrollTop);
+    const gameplayCont = document.getElementById('gameplay-cont');
+    console.log('scrollHeight:', gameplayCont.scrollHeight);
+    console.log('clientHeight:', gameplayCont.clientHeight);
+    console.log('scrollTop:', gameplayCont.scrollTop);
 
-const wordRowHeight = calculateWordRowHeight();
+    const wordRowHeight = calculateWordRowHeight();
 
-console.log('wordRowHeight: ', wordRowHeight);
-// gameplayCont.scrollBy(0, -wordRowHeight *2);
-gameplayCont.scrollBy(0, 400);
-console.log('After scrollBy:', gameplayCont.scrollTop);
-
+    console.log('wordRowHeight: ', wordRowHeight);
+    // gameplayCont.scrollBy(0, -wordRowHeight *2);
+    gameplayCont.scrollBy(0, -200);
+    console.log('After scrollBy:', gameplayCont.scrollTop);
 
 }
 
