@@ -9,8 +9,9 @@
 
     --arrow-color: rgb(181, 181, 181);
     --arrow-angle: 114.2deg;
-    --arrow-length: 40%;
-    --arrow-thickness: .06em;
+    /* --arrow-length: 40%; */
+    --arrow-length: 38%;
+    --arrow-thickness: .05em;
 
     line-height: 1;
 }
@@ -29,7 +30,7 @@
 .logo__arrow-shaft {
     position: absolute;
     top: 50%;
-    left: 33%;
+    left: 34%;
     transform: rotate(var(--arrow-angle, 114.2deg));
 
     width: var(--arrow-length);
@@ -46,13 +47,16 @@
     content: 'v';
     position: absolute;
     color: var(--arrow-color);
-    font-weight: 400;
-    font-size: .6em;
+    /* font-weight: 400;
+    font-size: .6em; */
+
+    font-weight: 500;
+    font-size: .4em;
     z-index: 0;
 }
 
-.logo__arrow-shaft::before {transform: translate(0%, -46%) rotate(-91deg); right: 0;}
-.logo__arrow-shaft::after {transform: translate(0%, -46%) rotate(89deg); left: 0;}
+.logo__arrow-shaft::before {transform: translate(0%, -43.5%) rotate(-91deg); right: 0;}
+.logo__arrow-shaft::after {transform: translate(0%, -43.5%) rotate(89deg); left: 0;}
 
 
 
