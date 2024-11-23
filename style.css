@@ -353,7 +353,7 @@ input:focus {outline: none}
 
 
 .btn--delete {
-    font-size: 2em;
+    font-size: 1.9em;
     transition: opacity ease-in;
     opacity: 0;
     pointer-events: all;
