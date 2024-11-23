@@ -219,6 +219,7 @@ body {
     background: none;
     font-size: 2.4rem;
     font-weight: 500;
+    overflow: visible;
 }
 
 .btn--close-panel {
@@ -280,11 +281,8 @@ Use "rem" to keep shadow uniform regardless of element size */
     margin: auto;
     overflow-y: scroll;
     font-size: 1rem;
-
 }
 #gameplay-cont.flip {flex-direction: column-reverse}
-
-
 
 .input-set {
     display: flex;
@@ -298,19 +296,20 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 
 .input__text-field {
-    width: 65%;
+    width: 60%;
     height: var(--text-field-hgt);
     margin: var(--text-field-margin-hgt) 2rem;
 
-    border: .2rem dashed #545454;
-    border-radius: 2.4rem;
+    border: .05em dashed #545454;
+    border-radius: .7em;
     background: none;
-    /* font-size: 3.4rem; */
+
     font-size: 1.7em;
     font-weight: 100;
     letter-spacing: .7rem;
     text-transform: uppercase;
     text-align: center;
+
     transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
 }
 input:focus {outline: none}
@@ -320,7 +319,7 @@ input:focus {outline: none}
 
 .input__side-btns {
     position: absolute;
-    left: calc(50% + 40%); /* Offset to the right of the input field */
+    left: calc(50% + 38%); /* Offset to the right of the input field */
     
     display: flex;
     flex-direction: column;
@@ -332,7 +331,7 @@ input:focus {outline: none}
 }
 
 .input__flipper-cont {justify-content: center;}
-.input__deleters-cont {height: 11.5em; justify-content: space-between;}
+.input__deleters-cont {height: 10.4em; justify-content: space-between;}
 
 .btn--flip {
     flex-direction: column;
