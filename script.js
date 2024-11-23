@@ -275,34 +275,34 @@ function addWordToRack(rack, array, word) {
 
 
 
-function centerInputField() {
-    const gameplayCont = document.getElementById('gameplay-cont');
-    const inputField = document.getElementById('input-field');
-    const isFlipped = gameplayCont.classList.contains('flip');
+// function centerInputField() {
+//     const gameplayCont = document.getElementById('gameplay-cont');
+//     const inputField = document.getElementById('input-field');
+//     const isFlipped = gameplayCont.classList.contains('flip');
 
-    // Dimensions
-    const inputPosition = inputField.offsetTop;
-    const containerHeight = gameplayCont.clientHeight;
-    const inputHeight = inputField.offsetHeight;
+//     // Dimensions
+//     const inputPosition = inputField.offsetTop;
+//     const containerHeight = gameplayCont.clientHeight;
+//     const inputHeight = inputField.offsetHeight;
 
-    // Calculate the scroll position
-    let scrollTo = inputPosition - (containerHeight / 2) + (inputHeight / 2);
+//     // Calculate the scroll position
+//     let scrollTo = inputPosition - (containerHeight / 2) + (inputHeight / 2);
 
-    console.log({ inputPosition, containerHeight, inputHeight });
+//     console.log({ inputPosition, containerHeight, inputHeight });
 
 
-    // If flipped, adjust for reversed scroll direction
-    if (isFlipped) {
-        const totalScrollHeight = gameplayCont.scrollHeight;
-        scrollTo = totalScrollHeight - containerHeight - scrollTo;
-    }
+//     // If flipped, adjust for reversed scroll direction
+//     if (isFlipped) {
+//         const totalScrollHeight = gameplayCont.scrollHeight;
+//         scrollTo = totalScrollHeight - containerHeight - scrollTo;
+//     }
 
-    // Scroll to the calculated position
-    gameplayCont.scrollTo({
-        top: scrollTo,
-        behavior: 'smooth',
-    });
-}
+//     // Scroll to the calculated position
+//     gameplayCont.scrollTo({
+//         top: scrollTo,
+//         behavior: 'smooth',
+//     });
+// }
 
 
 
@@ -464,7 +464,10 @@ function toggleFlip() {
     fadeIn(overlay, 300);
     setTimeout(() => {
         updateDirectionUI(gameState.direction);
-        centerInputField();
+        // centerInputField();
+
+
+
         fadeOut(overlay, 300);
     }, 1000);
 
@@ -493,12 +496,35 @@ function submitMove() {
 
         // Adjust rack height and UI
         modifyHeight('submit', upperRack, upperArray);
-        centerInputField();
+        // centerInputField();
+
+
+        setTimeout(() => {
+            scrollScreen();
+        }, 0);
+
+
         updateDeleterVisibility();
         emptyInputField();
         updateMoveCounterUI();
         if (gameState.isComplete) updateGame('complete');
     }
+
+}
+
+function scrollScreen() {
+const gameplayCont = document.getElementById('gameplay-cont');
+console.log('scrollHeight:', gameplayCont.scrollHeight);
+console.log('clientHeight:', gameplayCont.clientHeight);
+console.log('scrollTop:', gameplayCont.scrollTop);
+
+const wordRowHeight = calculateWordRowHeight();
+
+console.log('wordRowHeight: ', wordRowHeight);
+// gameplayCont.scrollBy(0, -wordRowHeight *2);
+gameplayCont.scrollBy(0, 400);
+console.log('After scrollBy:', gameplayCont.scrollTop);
+
 
 }
 
@@ -589,16 +615,26 @@ function undoMove() {
 }
 
 
+function calculateWordRowHeight() {
+    const gameplayCont = document.getElementById('gameplay-cont');
+    if (!gameplayCont) return 0;
+
+    const styles = getComputedStyle(gameplayCont);
+    const remToPixels = parseFloat(styles.fontSize); // 1rem in pixels
+
+    return (
+        (parseFloat(styles.getPropertyValue('--tile-height-width')) +
+        parseFloat(styles.getPropertyValue('--tile-margin')) * 2) *
+        remToPixels
+    );
+}
+
+
 function modifyHeight(action, rack, array) {
 
-    // Fetch the computed styles of #gameplay-cont
-    const styles = getComputedStyle(document.getElementById('game-area'));
+    const wordRowHeight = calculateWordRowHeight();
 
-    // Calculate wordRowHeight directly, in rem units
-    const wordRowHeight =
-        parseFloat(styles.getPropertyValue('--tile-height-width')) +
-        parseFloat(styles.getPropertyValue('--tile-margin')) * 2;
-
+    console.log('wordRowHeight in modify...(): ', wordRowHeight);
     const normSet = document.getElementById('norm-set');
     const flipSet = document.getElementById('flip-set');
 
@@ -621,11 +657,11 @@ function modifyHeight(action, rack, array) {
     switch (action) {
         case 'submit':
             if (gameState.isComplete) addSlideClassForComplete('sbmt');
-            else rack.style.height = array.length * wordRowHeight + 'rem';
+            else rack.style.height = array.length * wordRowHeight + 'px';
             break;
         case 'delete':
             if (gameState.isComplete) addSlideClassForComplete('del');
-            else rack.style.height = array.length * wordRowHeight + 'rem';
+            else rack.style.height = array.length * wordRowHeight + 'px';
             break;
         case 'undo':
             resetSets();
