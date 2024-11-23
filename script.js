@@ -590,7 +590,15 @@ function undoMove() {
 
 
 function modifyHeight(action, rack, array) {
-    const wordRowHeight = window.innerWidth * 11.5 / 100;
+
+    // Fetch the computed styles of #gameplay-cont
+    const styles = getComputedStyle(document.getElementById('gameplay-cont'));
+
+    // Calculate wordRowHeight directly, in rem units
+    const wordRowHeight =
+        parseFloat(styles.getPropertyValue('--tile-height-width')) +
+        parseFloat(styles.getPropertyValue('--tile-margin')) * 2;
+
     const normSet = document.getElementById('norm-set');
     const flipSet = document.getElementById('flip-set');
 
@@ -601,7 +609,7 @@ function modifyHeight(action, rack, array) {
     };
 
     // Utility function to add the appropriate classes
-    const addSlideClasses = (actionType) => {
+    const addSlideClassForComplete = (actionType) => {
         const directionClass = gameState.direction === 'norm' ? 'down' : 'up';
         const normClass = `slide-${directionClass}--comp-${actionType}`;
         const flipClass = `slide-${directionClass === 'down' ? 'up' : 'down'}--comp-${actionType}`;
@@ -612,21 +620,20 @@ function modifyHeight(action, rack, array) {
 
     switch (action) {
         case 'submit':
-            if (gameState.isComplete) addSlideClasses('sbmt');
-            else rack.style.height = array.length * wordRowHeight + 'px';
+            if (gameState.isComplete) addSlideClassForComplete('sbmt');
+            else rack.style.height = array.length * wordRowHeight + 'rem';
             break;
         case 'delete':
-            if (gameState.isComplete) addSlideClasses('del');
-            else rack.style.height = array.length * wordRowHeight + 'px';
+            if (gameState.isComplete) addSlideClassForComplete('del');
+            else rack.style.height = array.length * wordRowHeight + 'rem';
             break;
         case 'undo':
             resetSets();
             break;
         case 'reset':
             resetSets();
-            normRack.style.height = '0px';
-            flipRack.style.height = '0px';
-
+            normRack.style.height = '0';
+            flipRack.style.height = '0';
             break;
         default:
             console.warn(`Unknown action: ${action}`);
