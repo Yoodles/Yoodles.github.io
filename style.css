@@ -324,7 +324,7 @@ input:focus {outline: none}
 }
 
 .gameplay__deleters-cont {
-    height: 12em;
+    height: 14em;
     justify-content: space-between;
     font-weight: 500;
     pointer-events: none;
@@ -341,6 +341,7 @@ input:focus {outline: none}
 .btn--flip:active {transform: scale(1.1);}
 
 .btn--flip--top, .btn--flip--bottom {
+    font-size: 2.4em;
     line-height: 1;
     margin: 0;
     transform-origin: center;
@@ -352,6 +353,7 @@ input:focus {outline: none}
 
 
 .btn--delete {
+    font-size: 2em;
     transition: opacity ease-in;
     opacity: 0;
     pointer-events: all;
