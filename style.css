@@ -12,6 +12,11 @@
     --key-font-color: rgb(59, 59, 59);
     --panel-bg-color: white;
     --letter-btn-color: rgb(65, 64, 64);
+
+
+    --tile-height-width: 2em;
+    --tile-margin: .2em;
+    --word-row-height: calc();
 }
 
 
@@ -445,7 +450,8 @@ input:focus {outline: none}
     /* font-size: 3em; */
 
     border: 0.1em ridge var(--tile-border-color);
-    margin: 0.2em;
+
+    margin: var(--tile-margin);
 
     border-radius: .25em;
     white-space: nowrap;
@@ -453,8 +459,9 @@ input:focus {outline: none}
 }
 
 #gameplay-cont .tile {
-    height: 2em;
-    width: 2em;
+    height: var(--tile-height-width);
+    width: var(--tile-height-width);
+
     font-size: 3em;
 
     animation-name: fadeIn;
