@@ -17,7 +17,7 @@
     --tile-font-size: 3rem;
     --tile-height-width: 6rem;
     --tile-margin: .2em;
-    --word-row-height: calc();
+    --word-row-height: calc(var(--tile-height-width) + (2 * var(--tile-margin)));
 }
 
 
@@ -400,10 +400,15 @@ input:focus {outline: none}
 }
 .flip .set {flex-direction: column-reverse;}
 
-.slide-down--comp-sbmt { transform: translateY(80%); }
-.slide-up--comp-sbmt { transform: translateY(-80%); }
+/* .slide-down--comp-sbmt { transform: translateY(80%); }
+.slide-up--comp-sbmt { transform: translateY(-80%); } */
 .slide-down--comp-del { transform: translateY(19.5%); }
 .slide-up--comp-del { transform: translateY(-19.5%); }
+
+.slide-down--comp-sbmt { transform: translateY(var(--word-row-height)); }
+.slide-up--comp-sbmt { transform: translateY(- var(--word-row-height)); }
+
+/* .slide-up--comp-sbmt { transform: translateY(-80%); } */
 
 
 
