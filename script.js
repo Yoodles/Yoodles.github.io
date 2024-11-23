@@ -592,7 +592,7 @@ function undoMove() {
 function modifyHeight(action, rack, array) {
 
     // Fetch the computed styles of #gameplay-cont
-    const styles = getComputedStyle(document.getElementById('gameplay-cont'));
+    const styles = getComputedStyle(document.getElementById('game-area'));
 
     // Calculate wordRowHeight directly, in rem units
     const wordRowHeight =
