@@ -306,7 +306,7 @@ Use "rem" to keep shadow uniform regardless of element size */
     background: none;
     font-size: 3.4rem;
     font-weight: 100;
-    letter-spacing: 0.1em;
+    letter-spacing: .7rem;
     text-transform: uppercase;
     text-align: center;
     transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
