@@ -92,7 +92,7 @@ body {
     z-index: 80;
 }
 
-.game-area {
+#game-area {
     position: relative;
     display: flex;
     /* flex: 1; */
@@ -104,6 +104,15 @@ body {
     overflow-y: hidden;
     /* align-items: center; */
     background-color: var(--main-bg-color);
+
+    --input-field-height: 8rem;
+    --input-margin-vert: 1.4rem;
+    --input-field-total-height: calc(var(--input-field-height) + (var(--input-margin-vert) *2));
+
+    --tile-font-size: 3rem;
+    --tile-height-width: 6rem;
+    --tile-margin: .6rem;
+    --word-row-height: calc(var(--tile-height-width) + (var(--tile-margin) * 2));
 }
 
 .fade-bar {
@@ -272,14 +281,6 @@ Use "rem" to keep shadow uniform regardless of element size */
     overflow-y: scroll;
     font-size: 1rem;
 
-
-    --input-field-height: 8rem;
-    --input-margin-vertical: 1.4rem;
-
-    --tile-font-size: 3rem;
-    --tile-height-width: 6rem;
-    --tile-margin: .6rem;
-    --word-row-height: calc(var(--tile-height-width) + (var(--tile-margin) * 2));
 }
 #gameplay-cont.flip {flex-direction: column-reverse}
 
@@ -299,7 +300,7 @@ Use "rem" to keep shadow uniform regardless of element size */
 .input-field {
     width: 65%;
     height: var(--input-field-height);
-    margin: var(--input-margin-vertical) 2rem;
+    margin: var(--input-margin-vert) 2rem;
 
     border: .2rem dashed #545454;
     border-radius: 2.4rem;
@@ -405,19 +406,17 @@ input:focus {outline: none}
 }
 .flip .set {flex-direction: column-reverse;}
 
-/* .slide-down--comp-sbmt { transform: translateY(80%); }
-.slide-up--comp-sbmt { transform: translateY(-80%); } */
-.slide-down--comp-del { transform: translateY(19.5%); }
-.slide-up--comp-del { transform: translateY(-19.5%); }
 
-/* .slide-down--comp-sbmt { transform: translateY(var(--word-row-height) + var(--input-field-height) + (var(--input-margin-vertical) * 2)); } */
-/* .slide-up--comp-sbmt { transform: translateY(- var(--word-row-height)); } */
+.slide-down--comp-sbmt {transform: translateY(calc(var(--input-field-total-height) * 0.5));}
+.slide-up--comp-sbmt {transform: translateY(calc(var(--input-field-total-height) * -0.5));}
 
-.slide-down--comp-sbmt {transform: translateY(calc((var(--input-field-height) + (var(--input-margin-vertical) * 2)) * 0.5));}
-.slide-up--comp-sbmt {transform: translateY(calc((var(--input-field-height) + (var(--input-margin-vertical) * 2)) * -0.5));}
+.slide-down--comp-del {
+    transform: translateY(calc((var(--input-field-total-height) + (var(--word-row-height) * 2)) * 0.5 ));
+}
 
-
-/* .slide-up--comp-sbmt { transform: translateY(-80%); } */
+.slide-up--comp-del {
+    transform: translateY(calc((var(--input-field-total-height) + (var(--word-row-height) * 2)) * -0.5 ));
+}
 
 
 
