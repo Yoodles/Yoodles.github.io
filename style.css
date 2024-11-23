@@ -20,8 +20,9 @@
 
     --tile-font-size: 3rem;
     --tile-height-width: 6rem;
-    --tile-margin: .2em;
+    --tile-margin: .6rem;
     --word-row-height: calc(var(--tile-height-width) + (var(--tile-margin) * 2));
+
 }
 
 
@@ -410,8 +411,12 @@ input:focus {outline: none}
 .slide-down--comp-del { transform: translateY(19.5%); }
 .slide-up--comp-del { transform: translateY(-19.5%); }
 
-.slide-down--comp-sbmt { transform: translateY(var(--word-row-height)); }
-.slide-up--comp-sbmt { transform: translateY(- var(--word-row-height)); }
+/* .slide-down--comp-sbmt { transform: translateY(var(--word-row-height) + var(--input-field-height) + (var(--input-margin-vertical) * 2)); } */
+/* .slide-up--comp-sbmt { transform: translateY(- var(--word-row-height)); } */
+
+.slide-down--comp-sbmt {transform: translateY(calc((var(--input-field-height) + (var(--input-margin-vertical) * 2)) * 0.5));}
+.slide-up--comp-sbmt {transform: translateY(calc((var(--input-field-height) + (var(--input-margin-vertical) * 2)) * -0.5));}
+
 
 /* .slide-up--comp-sbmt { transform: translateY(-80%); } */
 
