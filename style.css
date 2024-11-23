@@ -14,7 +14,8 @@
     --letter-btn-color: rgb(65, 64, 64);
 
 
-    --tile-height-width: 2em;
+    --tile-font-size: 3rem;
+    --tile-height-width: 6rem;
     --tile-margin: .2em;
     --word-row-height: calc();
 }
@@ -462,7 +463,7 @@ input:focus {outline: none}
     height: var(--tile-height-width);
     width: var(--tile-height-width);
 
-    font-size: 3em;
+    font-size: var(--tile-font-size);
 
     animation-name: fadeIn;
     animation-duration: 0.2s;
