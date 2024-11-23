@@ -187,7 +187,8 @@ body {
 .btn--fill {
     font-size: 2.2rem;
 
-    width: auto;
+    /* width: auto; */
+    aspect-ratio: 3/1;
     font-weight: 500;
     background-color: var(--btn-bg-color);
     color: var(--key-font-color);
@@ -195,7 +196,7 @@ body {
     box-shadow: .1em .1em 1em rgba(0, 0, 0, 0.101);
     border-radius: .3em;
 
-    padding: 0.2em .2em;
+    padding: .5em .8em;
     text-align: center;
 }
 .btn--fill:hover {
@@ -450,7 +451,6 @@ input:focus {outline: none}
     align-items: center;
 
     background: none;
-    /* font-size: 3em; */
 
     border: 0.1em ridge var(--tile-border-color);
 
@@ -595,26 +595,9 @@ input:focus {outline: none}
 
 .result__btns {
     display: inline-flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     /* margin: auto; */
     /* width: 70%; */
-}
-
-
-.panel--dialog.hidden {display: none;}
-
-.dialog-content {
-    background-color: white;
-    padding: 20em;
-    border-radius: 8em;
-}
-
-.dialog-content input {
-    width: 100%;
-    margin-bottom: 1.5em;
-    padding: 10em;
-    border: 1em solid #ccc;
-    border-radius: 4em;
 }
 
 
@@ -740,6 +723,23 @@ li div:last-of-type {margin-bottom: 0.5em}
 .icon-flipped {transform: rotate(0.5turn);}
 
 
+
+
+.panel--dialog.hidden {display: none;}
+
+.dialog-content {
+    background-color: white;
+    padding: 20em;
+    border-radius: 8em;
+}
+
+.dialog-content input {
+    width: 100%;
+    margin-bottom: 1.5em;
+    padding: 10em;
+    border: 1em solid #ccc;
+    border-radius: 4em;
+}
 
 
 
