@@ -522,7 +522,12 @@ function scrollScreen() {
 
     console.log('wordRowHeight: ', wordRowHeight);
     // gameplayCont.scrollBy(0, -wordRowHeight *2);
-    gameplayCont.scrollBy(0, -200);
+    // gameplayCont.scrollBy(0, 200);
+    gameplayCont.scrollBy({
+        top: wordRowHeight, // Amount to scroll
+        // top: 200,
+        behavior: 'smooth', // Smooth scrolling
+    });
     console.log('After scrollBy:', gameplayCont.scrollTop);
 
 }

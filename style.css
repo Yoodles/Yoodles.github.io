@@ -39,6 +39,8 @@
 html {
     font-size: calc(var(--vh, 1vh));
     font-weight: 300;
+    scroll-behavior: smooth;
+
 }
 
 html, body {
@@ -278,7 +280,7 @@ Use "rem" to keep shadow uniform regardless of element size */
     height: 100%;
     /* max-height: 100%; */
     width: 100%;
-    padding: 8% 0;
+    padding: 33% 0;
     /* margin: auto; */
     overflow-y: auto;
     font-size: 1rem;
