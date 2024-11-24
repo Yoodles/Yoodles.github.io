@@ -572,9 +572,9 @@ input:focus {outline: none}
 .panel.hidden {display: none}
 .panel--popup {width: 88%; height: 80%;}
 
-.panel--dialog {width: 70%;}
+.popup-panel--dialog {width: 70%;}
 
-.panel--result {
+.popup-panel--result {
     font-size: 2.4em;
     width: 75%;
     height: 30%;
@@ -612,7 +612,7 @@ input:focus {outline: none}
     transition: background-color 0.3s ease-in-out;
 }
 
-.panel--result .star {font-size: 1.4em;}
+.popup-panel--result .star {font-size: 1.4em;}
 .popup-content .star {font-size: 1.2em;}
 
 .star.yellow {
@@ -717,7 +717,7 @@ li div:last-of-type {margin-bottom: 0.5em}
 
 
 
-.panel--dialog.hidden {display: none;}
+.popup-panel--dialog.hidden {display: none;}
 
 .dialog-content {
     background-color: white;
