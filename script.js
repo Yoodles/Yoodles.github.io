@@ -433,28 +433,19 @@ function prepareResultPanel() {
 
 }
 
-// ***** add fade?
-function showOrHideResultPanel(which) {
-    const resultPanel = document.getElementById('result-content');
-    
-    if (which === "hide") resultPanel.classList.add('hidden');
-    else resultPanel.classList.toggle('hidden');
-
-}
 
 function togglePanel(panelType) { // *****
     const popup = document.getElementById('popup-panel');
 
     if (panelType === 'close') {
-        // toggleOverlay(); *****
-        popup.querySelectorAll('.popup-content').forEach((type) => type.classList.add('hidden'));
+        const allContentTypes = popup.querySelectorAll('.popup-content');
+        console.log(allContentTypes);
+        allContentTypes.forEach((type) => type.classList.add('hidden'));
         popup.classList.add('hidden');
 
     } else {
         const content = document.getElementById(`${panelType}-content`);
-
         content.classList.remove('hidden');
-
         popup.classList.remove('hidden');
     }
     // toggleOverlay('popup-background');
@@ -606,7 +597,6 @@ function deleteMove(which) {
 // UNDO
 function undoMove() {
     gameState.isComplete = false;
-    // showOrHideResultPanel('hide');
     togglePanel('close');
     modifyHeight('undo'); //*****
 
@@ -840,8 +830,6 @@ function clearInputUI() {
 
 
 function resetInitialUI() {
-
-    // showOrHideResultPanel("hide");
     togglePanel('close');
 
     // Reset height adjustments and directions
