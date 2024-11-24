@@ -572,10 +572,8 @@ input:focus {outline: none}
     z-index: 100;
 
 }
-
-
-
 .popup-panel.hidden {display: none}
+
 .panel--popup {width: 88%; height: 80%;}
 
 
@@ -590,10 +588,6 @@ input:focus {outline: none}
     justify-content: center;
     margin: auto;
 }
-
-
-
-
 
 
 .popup-content {

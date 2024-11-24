@@ -169,7 +169,7 @@
         </div>
     </div>
 
-    <div id="popup-panel" class="popup-panel panel--popup hidden">
+    <div id="popup-panel" class="popup-panel hidden">
         <button class="btn btn--close-panel" onclick="togglePanel('close')">x</button>
         <div class="fade-bar fade-bar--top fade-bar--btns">
             
@@ -282,11 +282,29 @@
             </ul>
         </div>
 
-        <div id="rounds-content" class="popup-panel--rounds content hidden">
+        <div id="rounds-content" class="popup-panel--rounds hidden">
             <h1>Select a Round</h1>
             <ul id="word-pair-menu">
                 <!-- List of rounds here -->
             </ul>
+        </div>
+
+        <div id="dialog-content" class="popup-panel--dialog hidden">
+            <div class="dialog-content">
+                <label for="startWordInput">Start Word:</label>
+                <input type="text" id="startWordInput" placeholder="Enter start word" />
+        
+                <label for="endWordInput">End Word:</label>
+                <input type="text" id="endWordInput" placeholder="Enter end word" />
+        
+                <label for="maxStepsDropdown">Max Steps:</label>
+                <select id="maxStepsDropdown"></select>
+    
+                <div class="dialog-buttons">
+                    <button id="runPathFinder">Find Paths</button>
+                    <button id="closeDialog">Cancel</button>
+                </div>
+            </div>
         </div>
 
         <div class="fade-bar fade-bar--bottom"></div>
@@ -294,23 +312,7 @@
 
 
 
-    <div id="pathFinderDialog" class="panel popup-panel popup-popup-panel--dialog hidden">
-        <div class="dialog-content">
-            <label for="startWordInput">Start Word:</label>
-            <input type="text" id="startWordInput" placeholder="Enter start word" />
-    
-            <label for="endWordInput">End Word:</label>
-            <input type="text" id="endWordInput" placeholder="Enter end word" />
-    
-            <label for="maxStepsDropdown">Max Steps:</label>
-            <select id="maxStepsDropdown"></select>
 
-            <div class="dialog-buttons">
-                <button id="runPathFinder">Find Paths</button>
-                <button id="closeDialog">Cancel</button>
-            </div>
-        </div>
-    </div>
 
     </div>
 
