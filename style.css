@@ -781,7 +781,7 @@ li div:last-of-type {margin-bottom: 0.5em}
 .keyboard__key:active {background-color: #e3e3e3;}
 
 .keyboard__key--backspace {max-width: 12%; flex: 1.4;}
-.keyboard__key--enter {flex: 1.8}
+.keyboard__key--enter {max-width: 14%; flex: 1.8}
 
 
 
