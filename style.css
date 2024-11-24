@@ -586,14 +586,14 @@ input:focus {outline: none}
     width: 75%;
     height: 30%;
     /* max-height: 30%; */
-    padding: 8%;
+    padding: 0 6%;
     justify-content: center;
     margin: auto;
 }
 
 .result__btns {
     display: inline-flex;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 4%;
     /* margin: auto; */
     /* width: 70%; */
