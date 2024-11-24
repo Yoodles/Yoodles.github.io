@@ -441,7 +441,7 @@ function togglePanel(panelType) { // *****
         const allContentTypes = popup.querySelectorAll('.popup-content');
         console.log(allContentTypes);
         allContentTypes.forEach((type) => type.classList.add('hidden'));
-        popup.className = 'popup-content hidden';
+        popup.className = 'popup-panel hidden';
         // popup.classList.add('hidden');
 
     } else {

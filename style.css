@@ -215,28 +215,6 @@ body {
     overflow: visible;
 }
 
-.btn--close-panel {
-    position: absolute;
-    top: 1em;
-    right: .8em;
-    height: 2.6em;
-    width: 2.6em;
-
-    background: none;
-    border: none;
-
-    align-items: self-end;
-    /* font-size: 2em; */
-    font-weight: 400;
-    z-index: 90;
-    transform: scale(1, 0.9);
-}
-.btn--close-panel:hover {transform: scale(1.1, 1)}
-
-.popup-panel--result .btn--close-panel,
-.popup-panel--dialog .btn--close-panel {
-    display: none;
-}
 
 .btn--img {
     color: var(--letter-btn-color);
@@ -553,7 +531,7 @@ input:focus {outline: none}
     flex-direction: column;
 
     border: solid .08em grey;
-    border-radius: 1em;
+    border-radius: 2em;
     background-color: var(--panel-bg-color);
     
     padding: 4.5% 0;
@@ -600,6 +578,32 @@ input:focus {outline: none}
     scrollbar-width: none;
 }
 .popup-content * {text-align: start}
+
+
+
+.btn--close-panel {
+    position: absolute;
+    top: 1em;
+    right: .8em;
+    /* height: 4em; */
+    /* width: 4em; */
+    font-size: 2em;
+
+    background: none;
+    border: none;
+
+    align-items: self-end;
+    /* font-size: 2em; */
+    font-weight: 400;
+    z-index: 90;
+    transform: scale(1, 0.9);
+}
+.btn--close-panel:hover {transform: scale(1.1, 1)}
+
+.popup-panel--result .btn--close-panel,
+.popup-panel--dialog .btn--close-panel {
+    display: none;
+}
 
 #word-pair-menu li {
     /* padding: 2%; */
