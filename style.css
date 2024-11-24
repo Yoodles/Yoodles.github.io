@@ -4,8 +4,8 @@
 
     /* --tile-border-color: rgb(69, 69, 69);
     --tile-font-color: rgb(69, 69, 69); */
-    --tile-border-color: rgb(65, 64, 64);
-    --tile-font-color: rgb(65, 64, 64);
+    --tile-border-color: rgba(65, 64, 64, 0.8);
+    --tile-font-color: rgb(65, 64, 64, 0.8);
     --btn-bg-color: rgba(186, 186, 178, 0.801);
     --btn-font-color: rgb(175, 169, 169);
     --btn-border-color: rgb(197, 197, 181);
@@ -210,8 +210,7 @@ body {
     position: absolute;
     left: 2%;
     height: 30%;
-    /* width: 14%; */
-    /* border-radius: .3em; */
+    width: 14%;
 }
 
 
