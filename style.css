@@ -546,13 +546,15 @@ input:focus {outline: none}
 
 
 .popup-content--result {
-    width: 75%;
-    height: 30%;
-    /* max-height: 30%; */
     padding: 0 6%;
     justify-content: center;
     margin: auto;
     font-size: 2.4em;
+}
+
+.popup-panel--result {
+    width: 75%;
+    height: 30%;
 }
 
 .popup-panel--help {
@@ -572,7 +574,6 @@ input:focus {outline: none}
 
 .popup-content {
     padding: 5% 7%;
-    /* font-size: 1rem; */
     line-height: 1.5;
     overflow-y: auto;
     scrollbar-width: none;
