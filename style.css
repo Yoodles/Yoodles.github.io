@@ -445,7 +445,7 @@ input:focus {outline: none}
 
     border: 0.1em ridge var(--tile-border-color);
 
-    margin: var(--tile-margin);
+    /* margin: var(--tile-margin); */
 
     border-radius: .25em;
     white-space: nowrap;
@@ -455,8 +455,8 @@ input:focus {outline: none}
 #gameplay-cont .tile {
     height: var(--tile-height-width);
     width: var(--tile-height-width);
-
     font-size: var(--tile-font-size);
+    margin: var(--tile-margin);
 
     animation-name: fadeIn;
     animation-duration: 0.2s;
