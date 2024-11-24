@@ -197,7 +197,7 @@ body {
     background-color: var(--btn-bg-color);
     color: var(--key-font-color);
     border: solid .1em var(--btn-border-color);
-    box-shadow: .1em .1em 1em rgba(0, 0, 0, 0.101);
+    box-shadow: .3rem .3rem .3rem rgba(0, 0, 0, 0.101);
     border-radius: .3em;
 
     padding: .5em 1em;
@@ -207,10 +207,10 @@ body {
 
 .btn--reset {
     position: absolute;
-    left: 3%;
-    height: 33%;
-    width: 14%;
-    border-radius: .3em;
+    left: 2%;
+    height: 30%;
+    /* width: 14%; */
+    /* border-radius: .3em; */
 }
 
 
@@ -262,15 +262,15 @@ Use "rem" to keep shadow uniform regardless of element size */
 }
 
 .shadow--tile-set {
-    filter: drop-shadow(.4rem .4rem 0.5rem rgba(170, 163, 163, 0.813));
+    filter: drop-shadow(.5rem .5rem .4rem rgba(170, 163, 163, 0.813));
 }
 
 .shadow--min {
-    filter: drop-shadow(.05rem .05rem .05rem #666666);
+    filter: drop-shadow(.2rem .2rem .3rem #afaaaa);
 }
 
 .shadow--arrow { /* inverted because of rotation */
-    filter: drop-shadow(.05rem -.05rem .02rem #b3b3b3a8);
+    filter: drop-shadow(.05rem -.05rem .2rem #b3b3b3a8);
 }
 
 
