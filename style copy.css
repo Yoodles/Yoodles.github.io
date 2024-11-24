@@ -574,7 +574,7 @@ input:focus {outline: none}
 
 .popup-panel--dialog {width: 70%;}
 
-.popup-panel--result {
+.popup-content--result {
     font-size: 2.4em;
     width: 75%;
     height: 30%;
@@ -612,7 +612,7 @@ input:focus {outline: none}
     transition: background-color 0.3s ease-in-out;
 }
 
-.popup-panel--result .star {font-size: 1.4em;}
+.popup-content--result .star {font-size: 1.4em;}
 .popup-content .star {font-size: 1.2em;}
 
 .star.yellow {

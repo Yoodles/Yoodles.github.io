@@ -752,24 +752,27 @@ function fadeOut(element, duration = 500, addHidden = false) {
 
 
 
-function togglePanel(action) {
+function togglePanel(panelType) {
     const popup = document.getElementById('popup-panel');
 
-    if (action === 'close') {
+    if (panelType === 'close') {
         // toggleOverlay(); *****
         popup.classList.add('hidden');
 
     } else {
-        const helpContent = document.getElementById('help-content');
-        const roundsContent = document.getElementById('rounds-content');
+        // const helpContent = document.getElementById('help-content');
+        // const roundsContent = document.getElementById('rounds-content');
+        const content = document.getElementById(`${panelType}-content`);
+
+        content.classList.remove('hidden');
 
         // Hide all content initially
         helpContent.classList.add('hidden');
         roundsContent.classList.add('hidden');
         
         // Show specific content based on the type
-        if (action === 'help') helpContent.classList.remove('hidden');
-        else if (action === 'rounds') roundsContent.classList.remove('hidden');
+        if (panelType === 'help') helpContent.classList.remove('hidden');
+        else if (panelType === 'rounds') roundsContent.classList.remove('hidden');
 
         popup.classList.remove('hidden');
 
