@@ -442,6 +442,30 @@ function showOrHideResultPanel(which) {
 
 }
 
+function togglePanel(panelType) { // *****
+    const popup = document.getElementById('popup-panel');
+
+    if (panelType === 'close') {
+        // toggleOverlay(); *****
+        popup.querySelectorAll('.popup-content').forEach((type) => type.classList.add('hidden'));
+        popup.classList.add('hidden');
+
+    } else {
+        const content = document.getElementById(`${panelType}-content`);
+
+        content.classList.remove('hidden');
+
+        popup.classList.remove('hidden');
+    }
+    // toggleOverlay('popup-background');
+}
+
+
+
+
+
+
+
 
 function toggleFlip() {
     // Toggle game direction and update latest/target words
@@ -582,7 +606,8 @@ function deleteMove(which) {
 // UNDO
 function undoMove() {
     gameState.isComplete = false;
-    showOrHideResultPanel('hide');
+    // showOrHideResultPanel('hide');
+    togglePanel('close');
     modifyHeight('undo'); //*****
 
 
@@ -752,45 +777,13 @@ function fadeOut(element, duration = 500, addHidden = false) {
 
 
 
-function togglePanel(panelType) {
-    const popup = document.getElementById('popup-panel');
-
-    if (panelType === 'close') {
-        // toggleOverlay(); *****
-        popup.querySelectorAll('.popup-content').classList.add('hidden');
-        popup.classList.add('hidden');
-
-    } else {
-        // const helpContent = document.getElementById('help-content');
-        // const roundsContent = document.getElementById('rounds-content');
-        const content = document.getElementById(`popup-content--${panelType}`);
-
-        content.classList.remove('hidden');
-
-        // Hide all content initially
-        helpContent.classList.add('hidden');
-        roundsContent.classList.add('hidden');
-        
-        // Show specific content based on the type
-        if (panelType === 'help') helpContent.classList.remove('hidden');
-        else if (panelType === 'rounds') roundsContent.classList.remove('hidden');
-
-        popup.classList.remove('hidden');
-
-    }
-
-    // toggleOverlay('popup-background');
-}
-
-
-
 function updateGame(action) {
     switch (action) {
         case 'complete':
             checkBestScoreAndUpdate();
             localStorage.setItem('lastCompletedPair', wordPair.currentPairKey);
             prepareResultPanel();
-            setTimeout(() => showOrHideResultPanel(), 1200);
+            setTimeout(() => togglePanel('result'), 1200);
             break;
 
         case 'nextRound':
@@ -848,7 +841,8 @@ function clearInputUI() {
 
 function resetInitialUI() {
 
-    showOrHideResultPanel("hide");
+    // showOrHideResultPanel("hide");
+    togglePanel('close');
 
     // Reset height adjustments and directions
     modifyHeight('reset');
