@@ -441,11 +441,13 @@ function togglePanel(panelType) { // *****
         const allContentTypes = popup.querySelectorAll('.popup-content');
         console.log(allContentTypes);
         allContentTypes.forEach((type) => type.classList.add('hidden'));
-        popup.classList.add('hidden');
+        popup.className = 'popup-content hidden';
+        // popup.classList.add('hidden');
 
     } else {
         const content = document.getElementById(`${panelType}-content`);
         content.classList.remove('hidden');
+        popup.classList.add(`popup-panel--${panelType}`);
         popup.classList.remove('hidden');
     }
     // toggleOverlay('popup-background');

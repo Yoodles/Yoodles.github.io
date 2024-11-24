@@ -74,18 +74,6 @@ body {
 
 }
 
-.game-wrap {
-    /* position: relative; */
-    height: 100%;
-    /* width: 100%; */
-    /* max-width: 75vh; */
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: center; */
-    /* align-items: center; */
-
-}
-
 #header {
     position: relative;
     display: flex;
@@ -231,8 +219,8 @@ body {
     position: absolute;
     top: 1em;
     right: .8em;
-    height: 1.6em;
-    width: 1.6em;
+    height: 2.6em;
+    width: 2.6em;
 
     background: none;
     border: none;
@@ -245,6 +233,10 @@ body {
 }
 .btn--close-panel:hover {transform: scale(1.1, 1)}
 
+.popup-panel--result .btn--close-panel,
+.popup-panel--dialog .btn--close-panel {
+    display: none;
+}
 
 .btn--img {
     color: var(--letter-btn-color);
@@ -447,7 +439,7 @@ input:focus {outline: none}
 
     background: none;
 
-    border: 0.1em ridge var(--tile-border-color);
+    border: 0.08em ridge var(--tile-border-color);
 
     /* margin: var(--tile-margin); */
 
@@ -572,23 +564,33 @@ input:focus {outline: none}
     z-index: 100;
 
 }
-.popup-panel.hidden {display: none}
+/* .popup-panel.hidden {display: none} */
 
-.panel--popup {width: 88%; height: 80%;}
-
-
-.popup-panel--dialog {width: 70%;}
 
 .popup-content--result {
-    font-size: 2.4em;
     width: 75%;
     height: 30%;
     /* max-height: 30%; */
     padding: 0 6%;
     justify-content: center;
     margin: auto;
+    font-size: 2.4em;
 }
 
+.popup-panel--help {
+    width: 88%;
+    height: 80%;
+    font-size: 2.2em;
+}
+.popup-panel--rounds {
+    width: 88%;
+    height: 80%;
+    font-size: 2.2em;
+}
+.popup-panel--dialog {
+    width: 70%;
+    font-size: 2.4em;
+}
 
 .popup-content {
     padding: 5% 7%;
