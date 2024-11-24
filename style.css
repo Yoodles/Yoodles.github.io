@@ -346,8 +346,8 @@ input:focus {outline: none}
     margin: 0;
     transform-origin: center;
 }
-.btn--flip--top {transform: rotate(180deg); margin-bottom: -0.15em;}
-.btn--flip--bottom {margin-top: -0.15em;}
+.btn--flip--top {transform: rotate(180deg); margin-bottom: -0.08em;}
+.btn--flip--bottom {margin-top: -0.08em;}
 
 
 .btn--delete {
