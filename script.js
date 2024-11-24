@@ -757,12 +757,13 @@ function togglePanel(panelType) {
 
     if (panelType === 'close') {
         // toggleOverlay(); *****
+        popup.querySelectorAll('.popup-content').classList.add('hidden');
         popup.classList.add('hidden');
 
     } else {
         // const helpContent = document.getElementById('help-content');
         // const roundsContent = document.getElementById('rounds-content');
-        const content = document.getElementById(`${panelType}-content`);
+        const content = document.getElementById(`popup-content--${panelType}`);
 
         content.classList.remove('hidden');
 
