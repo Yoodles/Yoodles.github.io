@@ -199,9 +199,7 @@ body {
     padding: .5em .8em;
     text-align: center;
 }
-.btn--fill:hover {
-    transform: scale(1.05);
-}
+.btn--fill:hover {transform: scale(1.05);}
 
 .btn--reset {
     position: absolute;
@@ -588,7 +586,7 @@ input:focus {outline: none}
     width: 75%;
     height: 30%;
     /* max-height: 30%; */
-    padding: 15% 10%;
+    padding: 8%;
     justify-content: center;
     margin: auto;
 }
@@ -596,6 +594,7 @@ input:focus {outline: none}
 .result__btns {
     display: inline-flex;
     justify-content: space-between;
+    gap: 1em;
     /* margin: auto; */
     /* width: 70%; */
 }
