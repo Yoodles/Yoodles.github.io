@@ -397,21 +397,14 @@ input:focus {outline: none}
 
 .slide-down--comp-sbmt {transform: translateY(calc(var(--text-field-total-hgt) * 0.5));}
 .slide-up--comp-sbmt {transform: translateY(calc(var(--text-field-total-hgt) * -0.5));}
-
-.slide-down--comp-del {
-    transform: translateY(calc((var(--text-field-total-hgt) + (var(--word-row-height) * 2)) * 0.5 ));
-}
-
-.slide-up--comp-del {
-    transform: translateY(calc((var(--text-field-total-hgt) + (var(--word-row-height) * 2)) * -0.5 ));
-}
+.slide-down--comp-del {transform: translateY(calc((var(--text-field-total-hgt) + (var(--word-row-height) * 2)) * 0.5 ));}
+.slide-up--comp-del {transform: translateY(calc((var(--text-field-total-hgt) + (var(--word-row-height) * 2)) * -0.5 ));}
 
 
+/*=====WORD CONTAINERS & TILES=====*/
 
 #norm-rack, .flip #flip-rack {flex-direction: column;}
 #flip-rack, .flip #norm-rack {flex-direction: column-reverse;}
-
-/*=====WORD CONTAINERS & TILES=====*/
 
 .rack {
     position: relative;
