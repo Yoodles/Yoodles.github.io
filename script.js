@@ -435,7 +435,7 @@ function prepareResultPanel() {
 
 // ***** add fade?
 function showOrHideResultPanel(which) {
-    const resultPanel = document.getElementById('result-panel');
+    const resultPanel = document.getElementById('result-content');
     
     if (which === "hide") resultPanel.classList.add('hidden');
     else resultPanel.classList.toggle('hidden');

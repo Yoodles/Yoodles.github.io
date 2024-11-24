@@ -175,7 +175,21 @@
             
         </div>
 
-        <div id="help-content" class="popup-content help">
+        <div id="result-content" class="popup-panel--result hidden">
+            <div id="result-message" class="result">Completed in X moves!<br>You know words good!</div>
+            <div id="star-cont" class="star-cont result__star-cont">
+                <span class="star" id="star1">★</span>
+                <span class="star" id="star2">★</span>
+                <span class="star" id="star3">★</span>
+            </div>
+            <div class="result__btns">
+                <button class="btn btn--retry btn--fill" onclick="updateGame('resetRound')">RETRY</button>
+                <button class="btn btn--undo btn--fill" onclick="undoMove()">UNDO</button>
+                <button class="btn btn--next btn--fill" onclick="updateGame('nextRound')">NEXT</button>
+            </div>
+        </div>
+
+        <div id="help-content" class="popup-panel--help hidden">
 
             <h1>How To Play</h1>
             <p>Get from the word at the top to the word at the bottom, using as few moves as possible.</p2>
@@ -268,7 +282,7 @@
             </ul>
         </div>
 
-        <div id="rounds-content" class="popup-content hidden">
+        <div id="rounds-content" class="popup-panel--rounds content hidden">
             <h1>Select a Round</h1>
             <ul id="word-pair-menu">
                 <!-- List of rounds here -->
@@ -278,19 +292,7 @@
         <div class="fade-bar fade-bar--bottom"></div>
     </div>
 
-    <div id="result-panel" class="panel popup-panel popup-panel--result hidden">
-        <div id="result-message" class="result">Completed in X moves!<br>You know words good!</div>
-        <div id="star-cont" class="star-cont result__star-cont">
-            <span class="star" id="star1">★</span>
-            <span class="star" id="star2">★</span>
-            <span class="star" id="star3">★</span>
-        </div>
-        <div class="result__btns">
-            <button class="btn btn--retry btn--fill" onclick="updateGame('resetRound')">RETRY</button>
-            <button class="btn btn--undo btn--fill" onclick="undoMove()">UNDO</button>
-            <button class="btn btn--next btn--fill" onclick="updateGame('nextRound')">NEXT</button>
-        </div>
-    </div>
+
 
     <div id="pathFinderDialog" class="panel popup-panel popup-popup-panel--dialog hidden">
         <div class="dialog-content">

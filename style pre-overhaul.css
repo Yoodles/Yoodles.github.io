@@ -57,7 +57,7 @@ body.no-scroll {overflow: hidden;}
     border-radius: 0.42vw;
 }
 
-#result-panel .btn {
+#result-content .btn {
     height: 4vh;
     width: 20vw;
 }
@@ -455,7 +455,7 @@ input:focus {outline: none}
 
 
 
-#result-panel {
+#result-content {
     background-color: rgb(255, 255, 255);
     position: absolute;
     top: 50%;
@@ -472,8 +472,8 @@ input:focus {outline: none}
     justify-content: space-evenly;
     box-shadow: 0 0.5vw 2vw 0 rgba(0,0,0,.2);
 }
-#result-panel.hidden {display: none}
-#result-panel .btn {margin: 2vw;}
+#result-content.hidden {display: none}
+#result-content .btn {margin: 2vw;}
 
 .star-cont {
     display: flex;
