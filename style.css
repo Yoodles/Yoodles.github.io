@@ -188,7 +188,7 @@ body {
     font-size: 2.2rem;
 
     width: auto;
-    aspect-ratio: 3/1;
+    aspect-ratio: 2.4/1;
     font-weight: 500;
     background-color: var(--btn-bg-color);
     color: var(--key-font-color);
@@ -196,7 +196,7 @@ body {
     box-shadow: .1em .1em 1em rgba(0, 0, 0, 0.101);
     border-radius: .3em;
 
-    padding: .5em .8em;
+    padding: .5em 1em;
     text-align: center;
 }
 .btn--fill:hover {transform: scale(1.05);}
@@ -582,7 +582,7 @@ input:focus {outline: none}
 .panel--dialog {width: 70%;}
 
 .panel--result {
-    font-size: 2.6em;
+    font-size: 2.4em;
     width: 75%;
     height: 30%;
     /* max-height: 30%; */
@@ -593,8 +593,8 @@ input:focus {outline: none}
 
 .result__btns {
     display: inline-flex;
-    justify-content: space-between;
-    gap: 1em;
+    justify-content: center;
+    gap: 4%;
     /* margin: auto; */
     /* width: 70%; */
 }
