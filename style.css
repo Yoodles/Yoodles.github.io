@@ -544,14 +544,6 @@ input:focus {outline: none}
 }
 .popup-panel.hidden {display: none}
 
-
-.popup-content--result {
-    padding: 0 6%;
-    justify-content: center;
-    margin: auto;
-    font-size: 2.4em;
-}
-
 .popup-panel--result {
     width: 75%;
     height: 30%;
@@ -572,14 +564,30 @@ input:focus {outline: none}
     font-size: 2.4em;
 }
 
+
+
 .popup-content {
+    /* display: flex; */
+    /* flex-direction: column; */
     padding: 5% 7%;
     line-height: 1.5;
     overflow-y: auto;
     scrollbar-width: none;
 }
-.popup-content * {text-align: start}
+.popup-content--help {text-align: start}
 
+.popup-content--result {
+    /* padding: 0 6%; */
+    justify-content: center;
+    /* margin: auto; */
+    font-size: 2.4em;
+}
+
+.popup-content--rounds {
+
+}
+
+/* .popup-content.hidden {display: none;} */
 
 
 .btn--close-panel {
@@ -606,11 +614,22 @@ input:focus {outline: none}
     display: none;
 }
 
+
+#word-pair-menu {
+    /* display: grid;
+    grid-template-columns: auto auto; */
+    justify-content: space-between;
+
+
+}
+
 #word-pair-menu li {
     /* padding: 2%; */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
+    display: inline-flex;
+
+    cursor: pointer;
+
     margin: 0;
 }
 #word-pair-menu li:not(:last-of-type) {
@@ -618,7 +637,6 @@ input:focus {outline: none}
 }
 #word-pair-menu li:hover {
     transform: scale(1.03);
-    cursor: pointer;
 }
 
 
@@ -640,7 +658,7 @@ input:focus {outline: none}
     gap: .8em;
 }
 
-.star-cont--unattempted {opacity: 0.8}
+/* .star-cont--unattempted {opacity: 0.4} */
 
 
 .star {
