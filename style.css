@@ -542,7 +542,7 @@ input:focus {outline: none}
     z-index: 100;
 
 }
-/* .popup-panel.hidden {display: none} */
+.popup-panel.hidden {display: none}
 
 
 .popup-content--result {
