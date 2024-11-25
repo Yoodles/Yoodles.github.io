@@ -588,7 +588,7 @@ input:focus {outline: none}
     position: absolute;
     pointer-events: none;
     height: 9%;
-    width: 100%;
+    width: 90%;
     z-index: 85;
     display: flex;
     justify-content: space-between;
@@ -613,7 +613,7 @@ input:focus {outline: none}
 
 .panel-content {
     /* display: flex; */
-    /* flex-direction: column; */
+    flex-direction: column;
     /* padding: 5% 7%; */
     width: 100%;
     position: relative;
