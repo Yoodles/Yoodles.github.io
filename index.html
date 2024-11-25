@@ -175,8 +175,8 @@
             <h1 class="panel__heading panel__heading-rounds">Select a Round</h1>
             <button class="btn btn--close-panel" onclick="togglePanel('close')">x</button>
         </div>
-        <div class="fade-bar fade-bar--top fade-bar--btns">
-        </div>
+        <!-- <div class="fade-bar fade-bar--top fade-bar--btns"> -->
+        <!-- </div> -->
 
         <div id="result-content" class="popup-content popup-content--result hidden">
             <div id="result-message" class="result">Completed in X moves!<br>You know words good!</div>
@@ -193,6 +193,7 @@
         </div>
 
         <div id="help-content" class="popup-content popup-content--help hidden">
+            <div class="fade-bar fade-bar--top"></div>
 
             <p>Get from the word at the top to the word at the bottom, using as few moves as possible.</p2>
             
@@ -282,12 +283,18 @@
                     .
                 </li>
             </ul>
+            <div class="fade-bar fade-bar--bottom"></div>
+
         </div>
 
         <div id="rounds-content" class="popup-content popup-content--rounds hidden">
+            <div class="fade-bar fade-bar--top"></div>
+
             <ul id="word-pair-menu">
                 <!-- List of rounds here -->
             </ul>
+            <div class="fade-bar fade-bar--bottom"></div>
+
         </div>
 
         <div id="dialog-content" class="popup-content popup-content--dialog hidden">
@@ -308,7 +315,7 @@
             </div>
         </div>
 
-        <div class="fade-bar fade-bar--bottom"></div>
+        <!-- <div class="fade-bar fade-bar--bottom"></div> -->
     </div>
 
 
