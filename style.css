@@ -618,17 +618,24 @@ input:focus {outline: none}
 
 
 
-
+/* 
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 60%;
+overflow-y: hidden; */
 
 
 .popup-content {
     /* display: flex; */
     /* flex-direction: column; */
     /* padding: 5% 7%; */
+    width: 100%;
     position: relative;
     line-height: 1.5;
     overflow-y: auto;
-    scrollbar-width: none;
+    /* scrollbar-width: none; */
 }
 .popup-content--help {text-align: start}
 
@@ -774,7 +781,7 @@ li div:last-of-type {margin-bottom: 0.5em}
 
 
 
-.popup-panel--dialog.hidden {display: none;}
+/* .popup-panel--dialog.hidden {display: none;} */
 
 .dialog-content {
     background-color: white;
