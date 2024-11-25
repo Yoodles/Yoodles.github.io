@@ -548,7 +548,6 @@ input:focus {outline: none}
     width: 75%;
     height: 30%;
 }
-
 .popup-panel--help {
     width: 88%;
     height: 80%;
@@ -566,28 +565,6 @@ input:focus {outline: none}
 
 
 
-.popup-content {
-    /* display: flex; */
-    /* flex-direction: column; */
-    padding: 5% 7%;
-    line-height: 1.5;
-    overflow-y: auto;
-    scrollbar-width: none;
-}
-.popup-content--help {text-align: start}
-
-.popup-content--result {
-    /* padding: 0 6%; */
-    justify-content: center;
-    /* margin: auto; */
-    font-size: 2.4em;
-}
-
-.popup-content--rounds {
-
-}
-
-
 .popup-panel__header {
     position: relative;
     display: flex;
@@ -598,11 +575,10 @@ input:focus {outline: none}
     /* overflow: hidden; */
 }
 
+/* only show the h1 relevant to panel type */
 .panel__heading {display: none}
 .popup-panel--help .panel__heading-help,
 .popup-panel--rounds .panel__heading-rounds {display: flex}
-
-/* .popup-content.hidden {display: none;} */
 
 
 .btn--close-panel {
@@ -624,10 +600,37 @@ input:focus {outline: none}
 }
 .btn--close-panel:hover {transform: scale(1.1, 1)}
 
-.popup-panel--result .btn--close-panel,
+/* .popup-panel--result .btn--close-panel,
 .popup-panel--dialog .btn--close-panel {
     display: none;
+} */
+
+
+
+
+
+
+.popup-content {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* padding: 5% 7%; */
+    line-height: 1.5;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
+.popup-content--help {text-align: start}
+
+.popup-content--result {
+    /* padding: 0 6%; */
+    justify-content: center;
+    /* margin: auto; */
+    font-size: 2.4em;
+}
+
+.popup-content--rounds {
+
+}
+
 
 
 #word-pair-menu {
