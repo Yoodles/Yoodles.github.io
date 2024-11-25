@@ -75,19 +75,15 @@ body {
 }
 
 #header {
+    position: relative;
+
     display: flex;
     align-items: center;
 
     height: 13%;
+    width: 100%;
     padding: 0;
     z-index: 80;
-}
-
-.header {
-    position: relative;
-
-    width: 100%;
-
 }
 
 #game-area {
@@ -549,7 +545,6 @@ input:focus {outline: none}
     width: 70%;
     font-size: 2.4em;
 }
-
 
 
 .popup-panel__header {
