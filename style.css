@@ -552,9 +552,9 @@ input:focus {outline: none}
 .panel--rounds .panel__features {
     display: flex;
 }
-
+/* 
 .panel--help .panel-content--help,
-.panel--rounds .panel-content--rounds {display: flex;}
+.panel--rounds .panel-content--rounds {display: flex;} */
 
 /* only show the h1 relevant to panel type */
 .panel__heading {display: none}

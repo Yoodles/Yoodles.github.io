@@ -445,8 +445,8 @@ function togglePanel(panelType) { // *****
         // popup.classList.add('hidden');
 
     } else {
-        // const content = document.getElementById(`${panelType}-content`);
-        // content.classList.remove('hidden');
+        const content = document.getElementById(`${panelType}-content`);
+        content.classList.remove('hidden');
         popup.classList.add(`panel--${panelType}`);
         popup.classList.remove('hidden');
     }
