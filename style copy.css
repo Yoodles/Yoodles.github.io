@@ -574,7 +574,7 @@ input:focus {outline: none}
 
 .popup-panel--dialog {width: 70%;}
 
-.popup-content--result {
+.panel-content--result {
     font-size: 2.4em;
     width: 75%;
     height: 30%;
@@ -612,8 +612,8 @@ input:focus {outline: none}
     transition: background-color 0.3s ease-in-out;
 }
 
-.popup-content--result .star {font-size: 1.4em;}
-.popup-content .star {font-size: 1.2em;}
+.panel-content--result .star {font-size: 1.4em;}
+.panel-content .star {font-size: 1.2em;}
 
 .star.yellow {
     color: rgb(255, 255, 206);
@@ -630,14 +630,14 @@ input:focus {outline: none}
 
 
 
-.popup-content {
+.panel-content {
     padding: 5% 7%;
     /* font-size: 1rem; */
     line-height: 1.5;
     overflow-y: auto;
     scrollbar-width: none;
 }
-.popup-content * {text-align: start}
+.panel-content * {text-align: start}
 
 #word-pair-menu li {
     /* padding: 2%; */

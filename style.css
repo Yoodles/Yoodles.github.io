@@ -504,7 +504,7 @@ input:focus {outline: none}
 
 
 
-.popup-panel {
+.panel {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -522,33 +522,22 @@ input:focus {outline: none}
     overflow: hidden;
 
 }
-.popup-panel.hidden {display: none}
+.panel.hidden {display: none}
 
-.popup-panel--result {
+.panel--result, .panel--dialog {
     width: 75%;
     height: 30%;
-}
-
-.popup-panel--help, .popup-panel--rounds {
-    width: 88%;
-    height: 80%;
-}
-.popup-panel--help {
     font-size: 2.2em;
 }
-.popup-panel--rounds {
+
+.panel--help, .panel--rounds {
     width: 88%;
     height: 80%;
     font-size: 2.2em;
-
-}
-.popup-panel--dialog {
-    width: 70%;
-    font-size: 2.4em;
 }
 
 
-.popup-panel__header {
+.panel__header {
     position: relative;
     align-items: center;
 
@@ -558,16 +547,19 @@ input:focus {outline: none}
     /* overflow: hidden; */
 }
 
-.popup-panel__optional {display: none;}
-.popup-panel--help .popup-panel__optional,
-.popup-panel--rounds .popup-panel__optional {
+.panel__features {display: none;}
+.panel--help .panel__features,
+.panel--rounds .panel__features {
     display: flex;
 }
 
+.panel--help .panel-content--help,
+.panel--rounds .panel-content--rounds {display: flex;}
+
 /* only show the h1 relevant to panel type */
 .panel__heading {display: none}
-.popup-panel--help .panel__heading-help,
-.popup-panel--rounds .panel__heading-rounds {display: flex}
+.panel--help .panel__heading-help,
+.panel--rounds .panel__heading-rounds {display: flex}
 
 
 .btn--close-panel {
@@ -605,33 +597,21 @@ input:focus {outline: none}
 .fade-bar--top {top: 0; background: linear-gradient(to bottom, #f3f3f3 0%, rgba(255, 255, 255, 0) 100%);}
 .fade-bar--bottom {bottom: 0; background: linear-gradient(to top, #f3f3f3 0%, rgba(255, 255, 255, 0) 100%);}
 
-
-
-.popup-content .fade-bar {
-    height: 7%;
+.panel-content--help, .panel-content--rounds {
+    overflow-y: scroll;
 }
-.popup-content .fade-bar--top {
+
+.panel .fade-bar--top {
+    top: 12%;
     background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
 }
-.popup-content .fade-bar--bottom {
+.panel .fade-bar--bottom {
+    bottom: 4%;
     background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0) 100%)
 }
 
-.popup-content
 
-
-
-
-/* 
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-height: 60%;
-overflow-y: hidden; */
-
-
-.popup-content {
+.panel-content {
     /* display: flex; */
     /* flex-direction: column; */
     /* padding: 5% 7%; */
@@ -640,21 +620,14 @@ overflow-y: hidden; */
     line-height: 1.5;
     /* scrollbar-width: none; */
 }
-.popup-content--help {text-align: start}
+.panel-content--help {text-align: start}
 
-.popup-content--help, .popup-content--rounds {
-    overflow-y: auto;
-}
 
-.popup-content--result {
+.panel-content--result {
     /* padding: 0 6%; */
     justify-content: center;
     /* margin: auto; */
     font-size: 2.4em;
-}
-
-.popup-content--rounds {
-
 }
 
 
@@ -710,8 +683,8 @@ overflow-y: hidden; */
     transition: background-color 0.3s ease-in-out;
 }
 
-.popup-content--result .star {font-size: 1.4em;}
-.popup-content .star {font-size: 1.2em;}
+.panel-content--result .star {font-size: 1.4em;}
+.panel-content .star {font-size: 1.2em;}
 
 .star.yellow {
     color: rgb(255, 255, 206);

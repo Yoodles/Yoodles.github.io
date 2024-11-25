@@ -438,16 +438,16 @@ function togglePanel(panelType) { // *****
     const popup = document.getElementById('popup-panel');
 
     if (panelType === 'close') {
-        const allContentTypes = popup.querySelectorAll('.popup-content');
+        const allContentTypes = popup.querySelectorAll('.panel-content');
         console.log(allContentTypes);
         allContentTypes.forEach((type) => type.classList.add('hidden'));
         popup.className = 'popup-panel hidden';
         // popup.classList.add('hidden');
 
     } else {
-        const content = document.getElementById(`${panelType}-content`);
-        content.classList.remove('hidden');
-        popup.classList.add(`popup-panel--${panelType}`);
+        // const content = document.getElementById(`${panelType}-content`);
+        // content.classList.remove('hidden');
+        popup.classList.add(`panel--${panelType}`);
         popup.classList.remove('hidden');
     }
     // toggleOverlay('popup-background');
