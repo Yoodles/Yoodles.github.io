@@ -170,7 +170,11 @@
     </div>
 
     <div id="popup-panel" class="popup-panel hidden">
-        <button class="btn btn--close-panel" onclick="togglePanel('close')">x</button>
+        <div class="popup-panel__header">
+            <h1 class="panel__heading panel__heading-help">How To Play</h1>
+            <h1 class="panel__heading panel__heading-rounds">Select a Round</h1>
+            <button class="btn btn--close-panel" onclick="togglePanel('close')">x</button>
+        </div>
         <div class="fade-bar fade-bar--top fade-bar--btns">
         </div>
 
@@ -190,7 +194,6 @@
 
         <div id="help-content" class="popup-content popup-content--help hidden">
 
-            <h1>How To Play</h1>
             <p>Get from the word at the top to the word at the bottom, using as few moves as possible.</p2>
             
             <ul>
@@ -282,7 +285,6 @@
         </div>
 
         <div id="rounds-content" class="popup-content popup-content--rounds hidden">
-            <h1>Select a Round</h1>
             <ul id="word-pair-menu">
                 <!-- List of rounds here -->
             </ul>

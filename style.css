@@ -534,7 +534,7 @@ input:focus {outline: none}
     border-radius: 2em;
     background-color: var(--panel-bg-color);
     
-    padding: 4.5% 0;
+    padding: 4%;
     font-size: 1rem;
     
     box-shadow: .3em .3em .5em rgba(0,0,0,.2);
@@ -587,12 +587,27 @@ input:focus {outline: none}
 
 }
 
+
+.popup-panel__header {
+    position: relative;
+    display: flex;
+
+    width: 100%;
+    height: 10%;
+    padding: 0;
+    /* overflow: hidden; */
+}
+
+.panel__heading {display: none}
+.popup-panel--help .panel__heading-help,
+.popup-panel--rounds .panel__heading-rounds {display: flex}
+
 /* .popup-content.hidden {display: none;} */
 
 
 .btn--close-panel {
     position: absolute;
-    top: 1em;
+    /* top: 1em; */
     right: .8em;
     /* height: 4em; */
     /* width: 4em; */
