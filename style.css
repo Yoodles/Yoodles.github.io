@@ -513,7 +513,7 @@ input:focus {outline: none}
     border-radius: 2em;
     background-color: var(--panel-bg-color);
     
-    padding: 4%;
+    padding: 4% 5%;
     font-size: 1rem;
     
     box-shadow: .3em .3em .5em rgba(0,0,0,.2);
@@ -551,6 +551,7 @@ input:focus {outline: none}
 .popup-panel__header {
     position: relative;
     display: none;
+    align-items: center;
 
     width: 100%;
     height: 8%;
@@ -571,7 +572,8 @@ input:focus {outline: none}
 .btn--close-panel {
     position: absolute;
     /* top: 1em; */
-    right: .8em;
+    right: 0;
+    top: 0;
     /* height: 4em; */
     /* width: 4em; */
     font-size: 2em;
@@ -608,11 +610,9 @@ input:focus {outline: none}
     height: 7%;
 }
 .popup-content .fade-bar--top {
-    top: 0;
     background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
 }
 .popup-content .fade-bar--bottom {
-    bottom: 0;
     background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0) 100%)
 }
 
