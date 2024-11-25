@@ -519,6 +519,7 @@ input:focus {outline: none}
     box-shadow: .3em .3em .5em rgba(0,0,0,.2);
 
     z-index: 100;
+    overflow: hidden;
 
 }
 .popup-panel.hidden {display: none}
@@ -549,7 +550,6 @@ input:focus {outline: none}
 
 .popup-panel__header {
     position: relative;
-    display: none;
     align-items: center;
 
     width: 100%;
@@ -557,8 +557,10 @@ input:focus {outline: none}
     padding: 0;
     /* overflow: hidden; */
 }
-.popup-panel--help .popup-panel__header,
-.popup-panel--rounds .popup-panel__header {
+
+.popup-panel__optional {display: none;}
+.popup-panel--help .popup-panel__optional,
+.popup-panel--rounds .popup-panel__optional {
     display: flex;
 }
 
@@ -615,6 +617,8 @@ input:focus {outline: none}
     background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0) 100%)
 }
 
+.popup-content
+
 
 
 
@@ -634,10 +638,13 @@ overflow-y: hidden; */
     width: 100%;
     position: relative;
     line-height: 1.5;
-    overflow-y: auto;
     /* scrollbar-width: none; */
 }
 .popup-content--help {text-align: start}
+
+.popup-content--help, .popup-content--rounds {
+    overflow-y: auto;
+}
 
 .popup-content--result {
     /* padding: 0 6%; */
