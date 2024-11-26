@@ -532,7 +532,7 @@ input:focus {outline: none}
     position: relative;
     width: 100%;
     height: 100%;
-    align-content: center;
+    padding: 3%;
 }
 
 .panel--help, .panel--rounds {
@@ -559,15 +559,15 @@ input:focus {outline: none}
 
     width: 100%;
     height: 8%;
-    padding: 0;
+    margin: 0 2% 2%;
     /* overflow: hidden; */
 }
 
-.panel__features {display: none;}
+/* .panel__features {display: none;}
 .panel--help .panel__features,
 .panel--rounds .panel__features {
     display: flex;
-}
+} */
 
 
 /* only show the h1 relevant to panel type */
@@ -579,7 +579,7 @@ input:focus {outline: none}
 .btn--close-panel {
     position: absolute;
     /* top: 1em; */
-    right: 0;
+    right: 3%;
     top: 0;
     /* height: 4em; */
     /* width: 4em; */
@@ -610,7 +610,7 @@ input:focus {outline: none}
     height: 9%;
     z-index: 85;
 }
-#popup-panel > .fade-bar {
+.panel .fade-bar {
     width: 90%;
     height: 7%;
     z-index: inherit;
@@ -644,22 +644,18 @@ input:focus {outline: none}
 
 
 .panel .fade-bar--top {
-    top: 12%;
+    top: 10%;
     background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
 }
 .panel .fade-bar--bottom {
-    bottom: 4%;
+    bottom: 0%;
     background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0) 100%)
 }
 
 
 
 #word-pair-menu {
-    /* display: grid;
-    grid-template-columns: auto auto; */
     justify-content: space-between;
-
-
 }
 
 #word-pair-menu li {
@@ -781,9 +777,6 @@ li div:last-of-type {margin-bottom: 0.5em}
 .icon-flipped {transform: rotate(0.5turn);}
 
 
-
-
-/* .popup-panel--dialog.hidden {display: none;} */
 
 .dialog-content {
     background-color: white;
