@@ -39,7 +39,7 @@
     <div id="game-area" class="game-area">    
         <div id="overlay" class="overlay overlay--full-scr visible" onclick="togglePanel('close')">All Rounds Completed!</div>
         
-        <div class="fade-bar fade-bar--top">
+        <div class="fade-bar fade-bar--main fade-bar--top">
             <div class="display display--moves-score shadow--min">
                 <div id="move-counter">Moves<span class="display__colon">:</span>0</div>
                 <div id="best-score">Best<span class="display__colon">:</span>--</div>
@@ -119,7 +119,7 @@
 
         </div>
 
-        <div class="fade-bar fade-bar--bottom"></div>
+        <div class="fade-bar fade-bar--main fade-bar--bottom"></div>
 
 
     </div>    
@@ -170,8 +170,8 @@
     <div id="popup-panel" class="panel hidden">
         <div class="panel--large">
             <div class="panel__header panel__features">
-                <h1 class="panel__heading panel__heading-help">How To Play</h1>
-                <h1 class="panel__heading panel__heading-rounds">Select a Round</h1>
+                <h1 class="panel__heading panel__heading--help">How To Play</h1>
+                <h1 class="panel__heading panel__heading--rounds">Select a Round</h1>
                 <button class="btn btn--close-panel" onclick="togglePanel('close')">x</button>
             </div>
 

@@ -109,6 +109,24 @@ body {
     --word-row-height: calc(var(--tile-height-width) + (var(--tile-margin) * 2));
 }
 
+.fade-bar {
+    position: absolute;
+    pointer-events: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.fade-bar--top {top: 0; background: linear-gradient(to bottom, #f3f3f3 0%, rgba(255, 255, 255, 0) 100%);}
+.fade-bar--bottom {bottom: 0; background: linear-gradient(to top, #f3f3f3 0%, rgba(255, 255, 255, 0) 100%);}
+
+
+.fade-bar--main {
+    width: 100%;
+    height: 9%;
+    z-index: 85;
+}
+
 .display {
     margin: 0 2.5% auto;
     line-height: 1.4;
@@ -506,25 +524,21 @@ input:focus {outline: none}
 
 .panel {
     position: absolute;
+    width: auto;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 
     border: solid .08em grey;
-    border-radius: 2em;
+    border-radius: 1.6em;
     background-color: var(--panel-bg-color);
-    /* align-items: center; */
-    /* padding: 4% 5%; */
-    font-size: 1rem;
-    
     box-shadow: .3em .3em .5em rgba(0,0,0,.2);
 
+    font-size: 1rem;
+    
     z-index: 100;
-    overflow: hidden;
-    width: auto;
-
 }
 .panel.hidden {display: none}
-
 
 .panel--large, .panel--small {
     display: none;
@@ -533,6 +547,7 @@ input:focus {outline: none}
     width: 100%;
     height: 100%;
     padding: 3%;
+    overflow: hidden;
 }
 
 .panel--help, .panel--rounds {
@@ -543,7 +558,7 @@ input:focus {outline: none}
 .panel--result, .panel--dialog {
     width: 75%;
     height: 30%;
-    font-size: 2.2em;
+    font-size: 2.8em;
 }
 
 .panel--help .panel--large, .panel--rounds .panel--large,
@@ -555,6 +570,7 @@ input:focus {outline: none}
 
 .panel__header {
     position: relative;
+    flex-shrink: 0;
     align-items: center;
 
     width: 100%;
@@ -563,62 +579,32 @@ input:focus {outline: none}
     /* overflow: hidden; */
 }
 
-/* .panel__features {display: none;}
-.panel--help .panel__features,
-.panel--rounds .panel__features {
-    display: flex;
-} */
-
-
 /* only show the h1 relevant to panel type */
 .panel__heading {display: none}
-.panel--help .panel__heading-help,
-.panel--rounds .panel__heading-rounds {display: flex}
+.panel--help .panel__heading--help,
+.panel--rounds .panel__heading--rounds {display: flex}
 
 
 .btn--close-panel {
     position: absolute;
-    /* top: 1em; */
     right: 3%;
     top: 0;
-    /* height: 4em; */
-    /* width: 4em; */
     font-size: 2em;
-
     background: none;
     border: none;
 
     align-items: self-end;
-    /* font-size: 2em; */
     font-weight: 400;
-    z-index: 90;
+    z-index: 101;
     transform: scale(1, 0.9);
 }
 .btn--close-panel:hover {transform: scale(1.1, 1)}
 
-
-
-.fade-bar {
-    position: absolute;
-    pointer-events: none;
-    display: flex;
-    justify-content: space-between;
-    /* padding: 0 3%; */
-}
-#game-area > .fade-bar {
-    width: 100%;
-    height: 9%;
-    z-index: 85;
-}
 .panel .fade-bar {
     width: 90%;
     height: 7%;
-    z-index: inherit;
+    z-index: 101;
 }
-
-.fade-bar--top {top: 0; background: linear-gradient(to bottom, #f3f3f3 0%, rgba(255, 255, 255, 0) 100%);}
-.fade-bar--bottom {bottom: 0; background: linear-gradient(to top, #f3f3f3 0%, rgba(255, 255, 255, 0) 100%);}
-
 
 .panel-content {
     display: flex;
@@ -633,13 +619,13 @@ input:focus {outline: none}
 
 .panel-content--help, .panel-content--rounds {
     overflow-y: scroll;
+    flex-grow: 1;
 }
 
 .panel-content--result {
     /* padding: 0 6%; */
     justify-content: center;
     /* margin: auto; */
-    font-size: 2.4em;
 }
 
 
