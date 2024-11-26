@@ -736,14 +736,14 @@ li div:last-of-type {margin-bottom: 0.5em}
 
 .li--no-bullet {list-style-type: none;}
 
-.help .word-row {
+.panel-content .word-row {
     margin-top: .3em;
     margin-left: .5em;
     justify-content: flex-start;
     width: 100%;
 }
 
-.help .tile {
+.panel-content .tile {
     width: 6.6%;    
     height: auto;
     aspect-ratio: 1/1;
@@ -754,9 +754,9 @@ li div:last-of-type {margin-bottom: 0.5em}
     white-space: nowrap;
 }
 
-.help .tile--inline {vertical-align: bottom;}
+.panel-content .tile--inline {vertical-align: bottom;}
 
-.help img {
+.panel-content img {
     max-height: 1.5em;
     vertical-align: middle;
 }
