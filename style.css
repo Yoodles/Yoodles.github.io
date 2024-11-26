@@ -513,7 +513,7 @@ input:focus {outline: none}
     border-radius: 2em;
     background-color: var(--panel-bg-color);
     
-    padding: 4% 5%;
+    /* padding: 4% 5%; */
     font-size: 1rem;
     
     box-shadow: .3em .3em .5em rgba(0,0,0,.2);
@@ -612,6 +612,7 @@ input:focus {outline: none}
     line-height: 1.5;
     /* scrollbar-width: none; */
 }
+.panel-content.hidden {display: none;}
 .panel-content--help {text-align: start}
 
 .panel-content--help, .panel-content--rounds {
