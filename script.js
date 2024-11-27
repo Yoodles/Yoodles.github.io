@@ -517,7 +517,7 @@ function submitMove() {
 
 
         setTimeout(() => {
-            scrollScreen();
+            // scrollScreen();
         }, 0);
 
 
