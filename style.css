@@ -555,10 +555,16 @@ input:focus {outline: none}
     height: 80%;
     font-size: 2.2em;
 }
-.panel--result, .panel--dialog {
-    width: 75%;
+.panel--result {
+    width: 70%;
     height: 30%;
     font-size: 2.8em;
+}
+
+.panel--dialog {
+    width: 60%;
+    height: 20%;
+    font-size: 2.4em;
 }
 
 .panel--help .panel--large, .panel--rounds .panel--large,
