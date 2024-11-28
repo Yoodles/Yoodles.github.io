@@ -243,18 +243,36 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 
 
-
-
-#gameplay-cont {
+#gameplay-cont-saved {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    
     /* max-height: 100%; */
     width: 100%;
     padding: 33% 0;
     /* margin: auto; */
     overflow-y: auto;
     font-size: 1rem;
+
+    border: 0.1px solid;
+    /* height: 100%; */
+    padding: 33% 0;
+}
+
+#gameplay-cont {
+    display: flex;
+    flex-direction: column;
+    
+    /* max-height: 100%; */
+    width: 100%;
+    padding: 33% 0;
+    /* margin: auto; */
+    overflow-y: auto;
+    font-size: 1rem;
+
+    border: 0.1px solid;
+    height: 100%;
+    padding: 0;
 }
 #gameplay-cont.flip {flex-direction: column-reverse}
 
