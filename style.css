@@ -536,6 +536,7 @@ input:focus {outline: none}
     box-shadow: .3em .3em .5em rgba(0,0,0,.2);
 
     font-size: 1rem;
+    font-weight: 400;
     
     z-index: 100;
 }
@@ -561,7 +562,7 @@ input:focus {outline: none}
 .panel--help, .panel--rounds {
     width: 88%;
     height: 80%;
-    font-size: 2.2em;
+    font-size: 2.6em;
 }
 .panel--result {
     width: 70%;
@@ -585,7 +586,11 @@ input:focus {outline: none}
     width: 100%;
     height: 10%;
     /* margin: 0 2% 2%; */
-    padding: 2% 3%;
+    padding: 5% 5%;
+
+    font-size: 1.5em;
+    font-weight: 400;
+    letter-spacing: -.05em;
     /* overflow: hidden; */
 }
 
@@ -594,18 +599,12 @@ input:focus {outline: none}
 .panel--help .panel__heading--help,
 .panel--rounds .panel__heading--rounds {display: flex}
 
-.panel__heading {
-    font-size: 1.5em;
-    font-weight: 400;
-    letter-spacing: -.05em;
-    margin: .6em .1em .4em;
-}
 
 .btn--close-panel {
     position: absolute;
     right: 4%;
     top: 10%;
-    font-size: 2em;
+    font-size: 1.3em;
     background: none;
     border: none;
 
@@ -613,6 +612,7 @@ input:focus {outline: none}
     font-weight: 400;
     z-index: 101;
     transform: scale(1, 0.9);
+    transform-origin: center;
 }
 .btn--close-panel:hover {transform: scale(1.1, 1)}
 
@@ -623,12 +623,12 @@ input:focus {outline: none}
 }
 .panel .fade-bar--top {
     top: 10%;
-    height: 6%;
+    height: 4%;
     background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
 }
 .panel .fade-bar--bottom {
     bottom: 0%;
-    height: 10%;
+    height: 6%;
     background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0) 100%)
 }
 
@@ -646,7 +646,7 @@ input:focus {outline: none}
 
 .panel--large .panel-content {
     overflow-y: scroll;
-    padding: 5%;
+    padding: 5% 10%;
     /* flex-grow: 1; */
 }
 
