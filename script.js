@@ -1164,6 +1164,77 @@ function getValidNeighbors(currentWord, minLength, maxLength, visited, pathLengt
 
 
 
+
+
+async function lookUpWord() {
+    const dictContent = document.querySelector('#dict-content');
+    const word = inputField.value.toLowerCase();
+  
+    try {
+      // Fetch the word data from the API
+      const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+      
+      // Check if the request was successful
+      if (!response.ok) {
+        dictContent.innerHTML = `<p>Word not found: ${word}</p>`;
+        return;
+      }
+  
+      const data = await response.json();
+  
+      // Extract the first result (API can return multiple entries for some words)
+      const entry = data[0];
+      const { word: headword, phonetic, phonetics, meanings } = entry;
+  
+      // Prepare the HTML for the headword and audio
+      let contentHTML = `
+        <h2>${headword}</h2>
+        <p><strong>Phonetic:</strong> ${phonetic || 'N/A'}</p>
+      `;
+  
+      // Include the first available audio pronunciation if it exists
+      const audio = phonetics.find(p => p.audio)?.audio;
+      if (audio) {
+        contentHTML += `<audio controls src="${audio}">Your browser does not support audio playback.</audio>`;
+      }
+  
+      // Loop through meanings and append definitions and examples
+      contentHTML += `<div>`;
+      meanings.forEach(meaning => {
+        const { partOfSpeech, definitions } = meaning;
+  
+        contentHTML += `
+          <h3>${partOfSpeech}</h3>
+          <ul>
+        `;
+  
+        definitions.forEach(def => {
+          contentHTML += `
+            <li>
+              <p><strong>Definition:</strong> ${def.definition}</p>
+              ${def.example ? `<p><strong>Example:</strong> ${def.example}</p>` : ''}
+            </li>
+          `;
+        });
+  
+        contentHTML += `</ul>`;
+      });
+      contentHTML += `</div>`;
+  
+      // Populate the #dict-content element with the generated HTML
+      dictContent.innerHTML = contentHTML;
+    } catch (error) {
+      console.error('Error fetching word definition:', error);
+      dictContent.innerHTML = `<p>An error occurred while fetching the word: ${word}</p>`;
+    }
+    togglePanel('dict');
+  }
+  
+
+
+
+
+
 function testUI() {
     console.log('hey');
     document.getElementById('css-test').classList.toggle('off');

@@ -135,7 +135,8 @@ body {
     z-index: 80;
     text-align: start;
 }
-.display--moves-score * {text-align: start}
+/* pointer-events (just for testing) */
+.display--moves-score * {text-align: start; pointer-events: all;}
 
 .display__colon {font-weight: 500; margin: 0 .2em;}
 
