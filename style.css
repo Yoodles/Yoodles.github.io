@@ -687,10 +687,12 @@ li div:last-of-type {margin-bottom: 0.5em}
 .panel-content .word-row:first-of-type {margin-top: 0.2em;}
 
 .panel-content .tile {
-    width: 8%;    
-    height: auto;
-    aspect-ratio: 1/1;
-    margin: 0.12em;
+    /* width: 8%; */
+    width: 1.7em;
+    height: 1.7em;  
+    /* height: auto;
+    aspect-ratio: 1/1; */
+    margin: 0.1em;
     font-size: 0.75em;
     font-weight: 500;
     border: 0.13em ridge var(--tile-border-color);
