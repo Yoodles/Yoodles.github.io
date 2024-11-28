@@ -550,6 +550,8 @@ input:focus {outline: none}
     padding: 0;
     overflow: hidden;
 }
+
+.panel--dict .panel--small,
 .panel--help .panel--large, .panel--rounds .panel--large,
 .panel--dialog .panel--small, .panel--result .panel--small {
     display: flex;

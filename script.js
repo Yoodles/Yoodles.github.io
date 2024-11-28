@@ -1170,6 +1170,8 @@ async function lookUpWord() {
     const dictContent = document.querySelector('#dict-content');
     const word = inputField.value.toLowerCase();
   
+
+    console.log(word);
     try {
       // Fetch the word data from the API
       const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
