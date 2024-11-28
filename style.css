@@ -578,9 +578,6 @@ input:focus {outline: none}
 
 .panel__header {
     position: relative;
-    /* flex-direction: row; */
-
-    /* flex-shrink: 0; */
     align-items: center;
 
     width: 100%;
@@ -616,19 +613,15 @@ input:focus {outline: none}
 }
 .btn--close-panel:hover {transform: scale(1.1, 1)}
 
-.panel .fade-bar {
-    /* width: 100%; */
-    /* height: 5%; */
-    z-index: 101;
-}
+.panel .fade-bar {z-index: 101;}
 .panel .fade-bar--top {
     top: 10%;
-    height: 4%;
+    height: 6%;
     background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
 }
 .panel .fade-bar--bottom {
     bottom: 0%;
-    height: 6%;
+    height: 8%;
     background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0) 100%)
 }
 
@@ -638,7 +631,7 @@ input:focus {outline: none}
     width: auto;
     margin: 0%;
     position: relative;
-    line-height: 1.5;
+    line-height: 1.2;
     /* scrollbar-width: none; */
 }
 .panel-content.hidden {display: none;}
@@ -657,18 +650,13 @@ input:focus {outline: none}
 
 
 p {
-    margin-bottom: 1em;
-    text-indent: 0;
+    margin-bottom: 0.8em;
 }
 
-ul {
-    /* list-style-position: outside; */
-    list-style-type: disc;
-}
 li {
     font-size: 1em;
-    line-height: 1.5;
-    margin-bottom: 1em;
+    line-height: 1;
+    margin-bottom: .5em;
     padding-left: .3em;
     /* display: inline; */
     /* text-wrap: nowrap; */
@@ -679,24 +667,20 @@ li div:last-of-type {margin-bottom: 0.5em}
 .li--no-bullet {list-style-type: none;}
 
 .panel-content .word-row {
-    /* margin-top: .3em;
-    margin-left: .5em; */
     justify-content: flex-start;
     width: 100%;
 }
-.panel-content .word-row:first-of-type {margin-top: 0.2em;}
+.panel-content .word-row:last-of-type {margin-bottom: 0.6em;}
 
 .panel-content .tile {
-    /* width: 8%; */
     width: 1.7em;
     height: 1.7em;  
-    /* height: auto;
-    aspect-ratio: 1/1; */
     margin: 0.1em;
     font-size: 0.75em;
     font-weight: 500;
     border: 0.13em ridge var(--tile-border-color);
     border-radius: 0.3em;
+    vertical-align: bottom;
     white-space: nowrap;
 }
 .help-content__arrow {
@@ -706,8 +690,6 @@ li div:last-of-type {margin-bottom: 0.5em}
     font-weight: 500;
 }
 
-.panel-content .tile--inline {vertical-align: bottom;}
-
 .panel-content img {
     max-height: 1.5em;
     vertical-align: middle;
@@ -715,17 +697,6 @@ li div:last-of-type {margin-bottom: 0.5em}
 
 .icon-flipped {transform: rotate(0.5turn);}
 
-
-
-
-
-
-
-.panel-content--result {
-    /* padding: 0 6%; */
-    justify-content: center;
-    /* margin: auto; */
-}
 
 
 
