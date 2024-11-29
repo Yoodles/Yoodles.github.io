@@ -384,6 +384,10 @@ input:focus {outline: none}
 }
 .flip .set {flex-direction: column-reverse;}
 
+.set.mid-shift {
+    transform: translateY(100%); /* Push down initially */
+}
+
 
 .slide-down--comp-sbmt {transform: translateY(calc(var(--text-field-total-hgt) * 0.5));}
 .slide-up--comp-sbmt {transform: translateY(calc(var(--text-field-total-hgt) * -0.5));}

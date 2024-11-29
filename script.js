@@ -656,6 +656,7 @@ function modifyHeight(action, rack, array) {
     const wordRowHeight = calculateWordRowHeight();
 
     console.log('wordRowHeight in modify...(): ', wordRowHeight);
+    const gameplayCont = document.getElementById('gameplayCont');
     const normSet = document.getElementById('norm-set');
     const flipSet = document.getElementById('flip-set');
 
@@ -678,7 +679,20 @@ function modifyHeight(action, rack, array) {
     switch (action) {
         case 'submit':
             if (gameState.isComplete) addSlideClassForComplete('sbmt');
-            else rack.style.height = array.length * wordRowHeight + 'px';
+            else {
+                rack.style.height = array.length * wordRowHeight + 'px';
+                // Apply mid-shift effect
+                normSet.classList.add('mid-shift');
+
+                // Reset transform after the animation
+                setTimeout(() => {
+                    normSet.classList.remove('mid-shift');
+                }, 800); // Matches CSS transition duration
+
+                // Adjust padding-bottom of gameplay-cont
+                const currentPadding = parseFloat(window.getComputedStyle(gameplayCont).paddingBottom);
+                gameplayCont.style.paddingBottom = `${currentPadding + wordRowHeight}px`;
+            }
             break;
         case 'delete':
             if (gameState.isComplete) addSlideClassForComplete('del');
