@@ -518,6 +518,7 @@ function submitMove() {
 
         setTimeout(() => {
             // scrollScreen();
+            centerInputFieldWithScrollIntoView();
         }, 0);
 
 
@@ -527,6 +528,16 @@ function submitMove() {
         if (gameState.isComplete) updateGame('complete');
     }
 
+}
+
+function centerInputFieldWithScrollIntoView() {
+    // const gameplayCont = document.getElementById('gameplay-cont');
+
+    inputField.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',  // This attempts to center the element
+        inline: 'nearest'
+    });
 }
 
 function scrollScreen() {
@@ -697,8 +708,8 @@ function modifyHeight(action, rack, array) {
                     normSet.classList.remove('mid-shift');
                 }, 0); // Matches CSS transition duration
 
-                const currentMargin = parseFloat(flipSet.style.marginBottom) || 0;
-                flipSet.style.marginBottom = `${currentMargin + wordRowHeight}px`;
+                // const currentMargin = parseFloat(flipSet.style.marginBottom) || 0;
+                // flipSet.style.marginBottom = `${currentMargin + wordRowHeight}px`;
             }
             break;
         case 'delete':
