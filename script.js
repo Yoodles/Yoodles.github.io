@@ -656,7 +656,7 @@ function modifyHeight(action, rack, array) {
     const wordRowHeight = calculateWordRowHeight();
 
     console.log('wordRowHeight in modify...(): ', wordRowHeight);
-    const gameplayCont = document.getElementById('gameplayCont');
+    const gameplayCont = document.getElementById('gameplay-cont');
     const normSet = document.getElementById('norm-set');
     const flipSet = document.getElementById('flip-set');
 
@@ -676,6 +676,14 @@ function modifyHeight(action, rack, array) {
         flipSet.classList.add(flipClass);
     };
 
+    // const adjustMarginBottom = (rack) => {
+    //     const lastWordRow = rack.querySelector('.word-row:last-child');
+    //     if (lastWordRow) {
+    //         lastWordRow.style.marginBottom = `${wordRowHeight}px`;
+    //     }
+    // };
+    
+
     switch (action) {
         case 'submit':
             if (gameState.isComplete) addSlideClassForComplete('sbmt');
@@ -687,13 +695,15 @@ function modifyHeight(action, rack, array) {
                 // Reset transform after the animation
                 setTimeout(() => {
                     normSet.classList.remove('mid-shift');
-                }, 800); // Matches CSS transition duration
+                }, 0); // Matches CSS transition duration
 
                 // Adjust padding-bottom of gameplay-cont
-                const gameplayCont = document.getElementById('gameplay-cont');
-
-                const currentPadding = parseFloat(window.getComputedStyle(gameplayCont).paddingBottom);
-                gameplayCont.style.paddingBottom = `${currentPadding + wordRowHeight}px`;
+                if (!gameplayCont) {
+                    console.error('Error: #gameplay-cont not found in the DOM.');
+                    return;
+                }
+                const currentMargin = parseFloat(window.getComputedStyle(gameplayCont).marginBottom);
+                gameplayCont.style.marginBottom = `${currentMargin + wordRowHeight}px`;
             }
             break;
         case 'delete':
