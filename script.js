@@ -697,13 +697,8 @@ function modifyHeight(action, rack, array) {
                     normSet.classList.remove('mid-shift');
                 }, 0); // Matches CSS transition duration
 
-                // Adjust padding-bottom of gameplay-cont
-                if (!gameplayCont) {
-                    console.error('Error: #gameplay-cont not found in the DOM.');
-                    return;
-                }
-                const currentMargin = parseFloat(window.getComputedStyle(gameplayCont).marginBottom);
-                gameplayCont.style.marginBottom = `${currentMargin + wordRowHeight}px`;
+                const currentMargin = parseFloat(flipSet.style.marginBottom) || 0;
+                flipSet.style.marginBottom = `${currentMargin + wordRowHeight}px`;
             }
             break;
         case 'delete':
