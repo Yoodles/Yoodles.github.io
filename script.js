@@ -690,6 +690,8 @@ function modifyHeight(action, rack, array) {
                 }, 800); // Matches CSS transition duration
 
                 // Adjust padding-bottom of gameplay-cont
+                const gameplayCont = document.getElementById('gameplay-cont');
+
                 const currentPadding = parseFloat(window.getComputedStyle(gameplayCont).paddingBottom);
                 gameplayCont.style.paddingBottom = `${currentPadding + wordRowHeight}px`;
             }

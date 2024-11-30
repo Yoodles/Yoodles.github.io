@@ -109,6 +109,43 @@ body {
     --word-row-height: calc(var(--tile-height-width) + (var(--tile-margin) * 2));
 }
 
+
+#gameplay-cont-saved {
+    display: flex;
+    flex-direction: column;
+    
+    /* max-height: 100%; */
+    width: 100%;
+    padding: 33% 0;
+    /* margin: auto; */
+    overflow-y: auto;
+    font-size: 1rem;
+
+    border: 0.1px solid;
+    /* height: 100%; */
+    padding: 33% 0;
+}
+
+#gameplay-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 100%;
+    width: 100%;
+    padding: 33% 0;
+    /* margin: auto 0; */
+    overflow-y: auto;
+    font-size: 1rem;
+
+    border: 0.1px solid;
+    height: 100%;
+    /* padding: 0; */
+}
+#gameplay-cont.flip {flex-direction: column-reverse}
+
+
+
+
 .fade-bar {
     position: absolute;
     width: 100%;
@@ -120,7 +157,6 @@ body {
 
 .fade-bar--top {top: 0; background: linear-gradient(to bottom, #f3f3f3 0%, rgba(255, 255, 255, 0) 100%);}
 .fade-bar--bottom {bottom: 0; background: linear-gradient(to top, #f3f3f3 0%, rgba(255, 255, 255, 0) 100%);}
-
 
 .fade-bar--main {
     height: 9%;
@@ -243,38 +279,6 @@ Use "rem" to keep shadow uniform regardless of element size */
 
 
 
-#gameplay-cont-saved {
-    display: flex;
-    flex-direction: column;
-    
-    /* max-height: 100%; */
-    width: 100%;
-    padding: 33% 0;
-    /* margin: auto; */
-    overflow-y: auto;
-    font-size: 1rem;
-
-    border: 0.1px solid;
-    /* height: 100%; */
-    padding: 33% 0;
-}
-
-#gameplay-cont {
-    display: flex;
-    flex-direction: column;
-    
-    /* max-height: 100%; */
-    width: 100%;
-    padding: 33% 0;
-    /* margin: auto; */
-    overflow-y: auto;
-    font-size: 1rem;
-
-    border: 0.1px solid;
-    height: 100%;
-    padding: 0;
-}
-#gameplay-cont.flip {flex-direction: column-reverse}
 
 .input-set {
     display: flex;
