@@ -517,8 +517,9 @@ function submitMove() {
 
 
         setTimeout(() => {
-            // scrollScreen();
-            centerInputFieldWithScrollIntoView();
+            scrollScreen();
+            // centerInputFieldWithScrollIntoView();
+            // centerInputField();
         }, 0);
 
 
@@ -530,15 +531,6 @@ function submitMove() {
 
 }
 
-function centerInputFieldWithScrollIntoView() {
-    // const gameplayCont = document.getElementById('gameplay-cont');
-
-    inputField.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',  // This attempts to center the element
-        inline: 'nearest'
-    });
-}
 
 function scrollScreen() {
     const gameplayCont = document.getElementById('gameplay-cont');
@@ -554,11 +546,82 @@ function scrollScreen() {
     gameplayCont.scrollBy({
         top: wordRowHeight, // Amount to scroll
         // top: 200,
-        behavior: 'smooth', // Smooth scrolling
+        // behavior: 'smooth',
     });
     console.log('After scrollBy:', gameplayCont.scrollTop);
 
 }
+
+
+function modifyHeight(action, rack, array) {
+
+    const wordRowHeight = calculateWordRowHeight();
+
+    console.log('wordRowHeight in modify...(): ', wordRowHeight);
+    const gameplayCont = document.getElementById('gameplay-cont');
+    const normSet = document.getElementById('norm-set');
+    const flipSet = document.getElementById('flip-set');
+
+    // Utility function to reset normSet and flipSet
+    const resetSets = () => {
+        normSet.className = 'set';
+        flipSet.className = 'set';
+    };
+
+    // Utility function to add the appropriate classes
+    const addSlideClassForComplete = (actionType) => {
+        const directionClass = gameState.direction === 'norm' ? 'down' : 'up';
+        const normClass = `slide-${directionClass}--comp-${actionType}`;
+        const flipClass = `slide-${directionClass === 'down' ? 'up' : 'down'}--comp-${actionType}`;
+
+        normSet.classList.add(normClass);
+        flipSet.classList.add(flipClass);
+    };
+
+    // const adjustMarginBottom = (rack) => {
+    //     const lastWordRow = rack.querySelector('.word-row:last-child');
+    //     if (lastWordRow) {
+    //         lastWordRow.style.marginBottom = `${wordRowHeight}px`;
+    //     }
+    // };
+    
+
+    switch (action) {
+        case 'submit':
+            if (gameState.isComplete) addSlideClassForComplete('sbmt');
+            else {
+                rack.style.height = array.length * wordRowHeight + 'px';
+                // Apply mid-shift effect
+                normSet.classList.add('mid-shift');
+
+                // Reset transform after the animation
+                setTimeout(() => {
+                    normSet.classList.remove('mid-shift');
+                }, 0); // Matches CSS transition duration
+
+                // const currentMargin = parseFloat(flipSet.style.marginBottom) || 0;
+                // flipSet.style.marginBottom = `${currentMargin + wordRowHeight}px`;
+            }
+            break;
+        case 'delete':
+            if (gameState.isComplete) addSlideClassForComplete('del');
+            else rack.style.height = array.length * wordRowHeight + 'px';
+            break;
+        case 'undo':
+            resetSets();
+            break;
+        case 'reset':
+            resetSets();
+            normRack.style.height = '0';
+            flipRack.style.height = '0';
+            break;
+        default:
+            console.warn(`Unknown action: ${action}`);
+            break;
+    }
+}
+
+
 
 // DELETE
 function deleteMove(which) {
@@ -661,74 +724,6 @@ function calculateWordRowHeight() {
     );
 }
 
-
-function modifyHeight(action, rack, array) {
-
-    const wordRowHeight = calculateWordRowHeight();
-
-    console.log('wordRowHeight in modify...(): ', wordRowHeight);
-    const gameplayCont = document.getElementById('gameplay-cont');
-    const normSet = document.getElementById('norm-set');
-    const flipSet = document.getElementById('flip-set');
-
-    // Utility function to reset normSet and flipSet
-    const resetSets = () => {
-        normSet.className = 'set';
-        flipSet.className = 'set';
-    };
-
-    // Utility function to add the appropriate classes
-    const addSlideClassForComplete = (actionType) => {
-        const directionClass = gameState.direction === 'norm' ? 'down' : 'up';
-        const normClass = `slide-${directionClass}--comp-${actionType}`;
-        const flipClass = `slide-${directionClass === 'down' ? 'up' : 'down'}--comp-${actionType}`;
-
-        normSet.classList.add(normClass);
-        flipSet.classList.add(flipClass);
-    };
-
-    // const adjustMarginBottom = (rack) => {
-    //     const lastWordRow = rack.querySelector('.word-row:last-child');
-    //     if (lastWordRow) {
-    //         lastWordRow.style.marginBottom = `${wordRowHeight}px`;
-    //     }
-    // };
-    
-
-    switch (action) {
-        case 'submit':
-            if (gameState.isComplete) addSlideClassForComplete('sbmt');
-            else {
-                rack.style.height = array.length * wordRowHeight + 'px';
-                // Apply mid-shift effect
-                normSet.classList.add('mid-shift');
-
-                // Reset transform after the animation
-                setTimeout(() => {
-                    normSet.classList.remove('mid-shift');
-                }, 0); // Matches CSS transition duration
-
-                // const currentMargin = parseFloat(flipSet.style.marginBottom) || 0;
-                // flipSet.style.marginBottom = `${currentMargin + wordRowHeight}px`;
-            }
-            break;
-        case 'delete':
-            if (gameState.isComplete) addSlideClassForComplete('del');
-            else rack.style.height = array.length * wordRowHeight + 'px';
-            break;
-        case 'undo':
-            resetSets();
-            break;
-        case 'reset':
-            resetSets();
-            normRack.style.height = '0';
-            flipRack.style.height = '0';
-            break;
-        default:
-            console.warn(`Unknown action: ${action}`);
-            break;
-    }
-}
 
 
 
