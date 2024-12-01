@@ -174,7 +174,7 @@
             <div class="panel__header panel__features">
                 <h1 class="panel__heading panel__heading--help">How To Play</h1>
                 <h1 class="panel__heading panel__heading--rounds">Select a Round</h1>
-                <button class="btn btn--close-panel" onclick="togglePanel('close')">x</button>
+                <button class="btn panel__btn--close" onclick="togglePanel('close')">x</button>
             </div>
 
             <div class="fade-bar fade-bar--top panel__features"></div>
@@ -295,12 +295,11 @@
             </div>
 
             <div id="dialog-content" class="panel-content panel-content--dialog hidden">
-                <div class="dialog-content">
-                    <div id="error-message"></div>
-                    <div class="dialog__btns">
-                        <button class="btn btn--fill btn--ok" onclick="togglePanel('close')">OK</button>
-                    </div>
+                <div id="error-message"></div>
+                <div class="dialog__btns">
+                    <button class="btn btn--fill btn--ok" onclick="togglePanel('close')">OK</button>
                 </div>
+
                 <!-- <div class="dialog-content">
                     <label for="startWordInput">Start Word:</label>
                     <input type="text" id="startWordInput" placeholder="Enter start word" />

@@ -873,22 +873,8 @@ function resetInitialUI() {
 
 
 function showErrorMessage(message) {
-    // const dialogContent = document.getElementById('dialog-content');
-
     document.getElementById('error-message').textContent = message;
     togglePanel('dialog');
-
-    // // Clear any existing messages
-    // dialogContent.innerHTML = '';
-
-    // const errorMessage = document.createElement('div');
-    // // errorMessage.className = 'error-message'; // Add a class for styling
-    // errorMessage.textContent = message;
-
-    // document.createElement('div').textContent = message;
-    
-    // // Append the message to the dialog content
-    // dialogContent.appendChild(errorMessage);
 }
 
 

@@ -223,7 +223,7 @@ body {
     overflow: visible;
 }
 
-.btn--close-panel {
+.panel__btn--close {
     position: absolute;
     top: 1em;
     right: .8em;
@@ -239,7 +239,7 @@ body {
     z-index: 90;
     transform: scale(1, 0.9);
 }
-.btn--close-panel:hover {transform: scale(1.1, 1)}
+.panel__btn--close:hover {transform: scale(1.1, 1)}
 
 
 .btn--img {
