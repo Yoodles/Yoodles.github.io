@@ -41,15 +41,15 @@ function isTotallyValid(word, word2) {
     //INPUT IS VALID WORD LENGTH ✅
     function isValidLength(word) {
         if (word.length === 0) {
-            alert("Don't be shy, have a try.");
+            showErrorMessage("Don't be shy, have a try.");
             return false;
         }
         if (word.length < wordPair.minLength) {
-            alert("Minimum length is " + wordPair.minLength + " letters.");
+            showErrorMessage("Minimum length is " + wordPair.minLength + " letters.");
             return false;
         }
         if (word.length > wordPair.maxLength) {
-            alert("Maximum length is " + wordPair.maxLength + " letters.");
+            showErrorMessage("Maximum length is " + wordPair.maxLength + " letters.");
             return false;
         }
         return true;
@@ -63,7 +63,7 @@ function isTotallyValid(word, word2) {
         } else if (wordList[length] && wordList[length].has(word)) {
             return true;
         } else {
-            alert("That's not even a word!");
+            showErrorMessage("That's not even a word!");
             return false;
         }
     };
@@ -72,7 +72,7 @@ function isTotallyValid(word, word2) {
         return false;
     };
     if (!isOneMoveApart(word, word2)) {
-        alert("You can't do that!");
+        showErrorMessage("You can't do that!");
         return false;
     };
     if (!isInWordListOrWordPair(word)) {

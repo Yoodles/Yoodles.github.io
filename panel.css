@@ -103,7 +103,7 @@
 .panel-content {
     display: flex;
     flex-direction: column;
-    width: auto;
+    width: 100%;
     margin: 0%;
     position: relative;
     line-height: 1.2;
@@ -115,6 +115,13 @@
 .panel--large .panel-content {
     overflow-y: scroll;
     padding: 5% 10%;
+}
+
+.panel--small .panel-content {
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
 }
 
 .panel-content--help * {
@@ -200,18 +207,26 @@ li div:last-of-type {margin-bottom: 0.5em}
 
 
 
-.result__btns {
-    display: inline-flex;
+.result__btns, .dialog__btns {
+    display: flex;
     justify-content: space-evenly;
-    gap: 4%;
+    gap: 1rem;
+    width: 100%;
     /* margin: auto; */
     /* width: 70%; */
+}
+
+.result__btns {justify-content: space-evenly}
+.dialog__btns {justify-content: center}
+.btn--ok {
+    width: 100%;
+    max-width: 200px;
 }
 
 .star-cont {
     display: flex;
     justify-content: center;
-    margin: .6em auto 1em;
+    /* margin: .6em auto 1em; */
     gap: .8em;
 }
 
@@ -241,7 +256,7 @@ li div:last-of-type {margin-bottom: 0.5em}
 
 
 
-.dialog-content {
+/* .dialog-content {
     background-color: white;
     padding: 20em;
     border-radius: 8em;
@@ -253,4 +268,4 @@ li div:last-of-type {margin-bottom: 0.5em}
     padding: 10em;
     border: 1em solid #ccc;
     border-radius: 4em;
-}
+} */
